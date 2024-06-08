@@ -1,7 +1,6 @@
 import React from 'react';
 import { SessionProvider } from 'next-auth/react';
 import Layout from '../components/Layout';
-
 const MyApp = ({ Component, pageProps }) => {
 
     const isSignUpPage = Component.name === "SignUp"

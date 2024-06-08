@@ -6,6 +6,7 @@ import MenuIcon from '@mui/icons-material/Menu';
 import { signIn, signOut, useSession } from 'next-auth/react';
 import Link from 'next/link';
 import Logo from "./Logo";
+import InvestmentCalculator from "./InvestmentCalculator"; // исправьте импорт
 
 const drawerWidth = 240;
 
@@ -100,9 +101,9 @@ const Layout = ({ children }) => {
             </Drawer>
             <Box
                 component="main"
-                sx={{ flexGrow: 1, bgcolor: 'background.default', p: 3, ml: { sm: `${drawerWidth}px` }, mt: isMobile ? '60px' : '80px' }}
+                sx={{ flexGrow: 1,   height: '100vh', bgcolor: 'background.default', p: 4, ml: 5, mt: isMobile ? '60px' : '80px' }}
             >
-                {children}
+                <InvestmentCalculator /> {/* Используем компонент */}
             </Box>
         </Box>
     );
