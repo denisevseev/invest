@@ -1,44 +1,78 @@
 import { useState } from 'react';
-import axios from 'axios';
 import { useRouter } from 'next/router';
-import { getSession } from 'next-auth/react';
-import { Container, TextField, Button, Typography } from '@mui/material';
-import AmountSlider from "../components/SliderWithInput";
+import { Container, TextField, Button, Typography, Box } from '@mui/material';
+import { signIn } from 'next-auth/react';
+import Logo from '../components/Logo';
 
-const Signup = ({ isLoggedIn }) => {
+const SignUp = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [message, setMessage] = useState('');
+  const [name, setName] = useState('');
+  const [phone, setPhone] = useState('');
+  const [error, setError] = useState('');
+
   const router = useRouter();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setError('');
+
     try {
-      console.log(password);
-      const response = await axios.post('/api/auth/register', { email, password });
-      alert(1);
-      console.log('Received signup data:', response);
-      setMessage(response.data.message);
-      if (response.status === 201) {
-        router.push('/'); // Перенаправление на корневой домен
+      const response = await fetch('/api/auth/register', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name, phone, email, password }),
+      });
+
+      if (response.ok) {
+        // Регистрация успешна
+        console.log('Registration successful:', response);
+
+        // Автоматический вход после регистрации
+        const signInResponse = await signIn('credentials', {
+          redirect: false,
+          email,
+          password,
+        });
+
+        if (signInResponse.ok) {
+          // Перенаправление в личный кабинет
+          router.push('/'); // Измените на путь к личному кабинету
+        } else {
+          setError('Login after registration failed.');
+          console.error('Login error:', signInResponse.error);
+        }
+      } else {
+        // Ошибка при регистрации
+        const data = await response.json();
+        setError(data.message || 'Registration failed');
+        console.error('Registration error:', data.message || response.statusText);
       }
     } catch (error) {
-      setMessage(error.response ? error.response.data.message : 'An error occurred');
+      setError('An error occurred. Please try again later.');
+      console.error('Registration error:', error);
     }
   };
 
-  if (isLoggedIn) {
-    return (
-        <Container>
-         <AmountSlider/>
-        </Container>
-    );
-  }
-
   return (
       <Container>
-        <Typography variant="h4">Sign Up</Typography>
+        <Logo />
+        <Typography variant="h4" align="center" gutterBottom>Sign Up</Typography>
         <form onSubmit={handleSubmit}>
+          <TextField
+              label="Name"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+              fullWidth
+              margin="normal"
+          />
+          <TextField
+              label="Phone"
+              value={phone}
+              onChange={(e) => setPhone(e.target.value)}
+              fullWidth
+              margin="normal"
+          />
           <TextField
               label="Email"
               value={email}
@@ -54,23 +88,17 @@ const Signup = ({ isLoggedIn }) => {
               fullWidth
               margin="normal"
           />
-          <Button type="submit" variant="contained" color="primary">Sign Up</Button>
+          <Button type="submit" variant="contained" color="primary" fullWidth>
+            Sign Up
+          </Button>
         </form>
-        {message && <Typography color="error">{message}</Typography>}
+        {error && (
+            <Typography color="error" align="center" mt={2}>
+              {error}
+            </Typography>
+        )}
       </Container>
   );
 };
 
-export async function getServerSideProps(context) {
-  const session = await getSession(context);
-  if (session) {
-    return {
-      props: { isLoggedIn: true },
-    };
-  }
-  return {
-    props: { isLoggedIn: false },
-  };
-}
-
-export default Signup;
+export default SignUp;

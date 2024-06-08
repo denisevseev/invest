@@ -1,44 +1,41 @@
-import mongoose from 'mongoose';
-import User from '../../../models/User';
+import { MongoClient } from 'mongodb';
 
-mongoose.connect(process.env.MONGODB_URI, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-}).then(() => {
-    console.log('Connected to MongoDB for signup');
-}).catch(err => {
-    console.error('Error connecting to MongoDB for signup:', err);
-});
+const uri = process.env.MONGODB_URI; // Получите URI из переменной окружения
+const client = new MongoClient(uri);
 
 export default async function handler(req, res) {
-    console.log('Signup request received');
-    if (req.method !== 'POST') {
-        console.log('Invalid method');
-        return res.status(405).end(); // Метод не разрешен
-    }
+    console.log('!!!!');
+    if (req.method === 'POST') {
+        const { name, phone, email, password } = req.body;
 
-    const { email, password } = req.body;
-    console.log('Received signup data:', email, password);
+        try {
+            await client.connect();
+            const db = client.db('victorum-portal'); // Используем имя базы данных из MONGODB_URI
+            const usersCollection = db.collection('users'); // Используем имя коллекции 'users'
 
-    if (!email || !password) {
-        console.log('Email and password are required');
-        return res.status(400).json({ message: 'Email и пароль обязательны' });
-    }
+            // Проверка на существование пользователя с таким email
+            const existingUser = await usersCollection.findOne({ email });
+            if (existingUser) {
+                return res.status(409).json({ message: 'User with this email already exists' });
+            }
 
-    try {
-        const existingUser = await User.findOne({ email });
-        if (existingUser) {
-            console.log('User already exists:', email);
-            return res.status(400).json({ message: 'Пользователь уже существует' });
+            // Создание нового пользователя (без хеширования пароля)
+            const result = await usersCollection.insertOne({
+                name,
+                phone,
+                email,
+                password, // Сохраняем пароль в чистом виде (НЕ ДЕЛАЙТЕ ЭТО В ПРОИЗВОДСТВЕННОЙ СРЕДЕ!)
+            });
+
+            // Ответ клиенту
+            res.status(200).json({ message: 'User registered successfully!' });
+        } catch (error) {
+            console.error('Error registering user:', error);
+            res.status(500).json({ message: 'Internal server error' });
+        } finally {
+            await client.close(); // Закрываем подключение к MongoDB
         }
-
-        const newUser = new User({ email, password });
-        await newUser.save();
-
-        console.log('User created successfully:', email);
-        res.status(201).json({ message: 'Пользователь успешно создан' });
-    } catch (error) {
-        console.error('Error creating user:', error);
-        res.status(500).json({ message: 'Внутренняя ошибка сервера' });
+    } else {
+        res.status(405).end(); // Метод не разрешен
     }
 }

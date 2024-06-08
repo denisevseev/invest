@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { signIn } from 'next-auth/react';
 import { Container, TextField, Button, Typography } from '@mui/material';
+import Logo from '../components/Logo';
 
 const Signin = () => {
     const [email, setEmail] = useState('');
@@ -28,6 +29,7 @@ const Signin = () => {
     return (
         <Container>
             <Typography variant="h4">Sign In</Typography>
+            <Logo/>
             <form onSubmit={handleSubmit}>
                 <TextField
                     label="Email"
