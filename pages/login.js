@@ -46,7 +46,7 @@ const Login = () => {
                     fullWidth
                     margin="normal"
                 />
-                <Button type="submit" variant="contained"  color="primary">Sign In</Button>
+                <Button type="submit" variant="contained"  color="primary" fullWidth>Sign In</Button>
             </form>
             {error && <Typography color="error">{error}</Typography>}
         </Container>
