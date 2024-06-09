@@ -22,10 +22,15 @@ const Layout = ({ children }) => {
         { text: 'Finance', href: 'https://vicpayments.com', icon: <AccountBalanceIcon /> }
     ];
     const { data: session } = useSession();
-    const router = useRouter(); // Используем useRouter
+    const router = useRouter();
 
     const handleDrawerToggle = () => {
         setMobileOpen(!mobileOpen);
+    };
+
+    const handleLogout = async () => {
+        await signOut({ redirect: false });
+        router.reload();
     };
 
     const drawer = (
@@ -75,7 +80,7 @@ const Layout = ({ children }) => {
                     {session ? (
                         <>
                             {/*<Avatar alt="User Avatar" src={session.user.image} sx={{ mr: 2 }} />*/}
-                            <Button sx={{ color: 'white', textShadow: '1px 1px 2px black' }} onClick={() => signOut({ callbackUrl: '/login' })}>Logout</Button>
+                            <Button sx={{ color: 'white', textShadow: '1px 1px 2px black' }} onClick={handleLogout}>Logout</Button>
                         </>
                     ) : (
                         <>
