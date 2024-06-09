@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { AppBar, Toolbar, Typography, Avatar, Drawer, List, ListItem, ListItemIcon, ListItemText, Box, CssBaseline, Button, useMediaQuery, useTheme, IconButton } from '@mui/material';
-import InboxIcon from '@mui/icons-material/Inbox';
-import MailIcon from '@mui/icons-material/Mail';
+import HomeIcon from '@mui/icons-material/Home';
+import AttachMoneyIcon from '@mui/icons-material/AttachMoney';
+import AccountBalanceIcon from '@mui/icons-material/AccountBalance';
 import MenuIcon from '@mui/icons-material/Menu';
 import { signIn, signOut, useSession } from 'next-auth/react';
 import Link from 'next/link';
@@ -9,16 +10,16 @@ import Logo from "./Logo";
 import InvestmentCalculator from "./InvestmentCalculator"; // исправьте импорт
 import { useRouter } from 'next/router'; // Импортируем useRouter
 
-const drawerWidth = 240;
+const drawerWidth = 200;
 
 const Layout = ({ children }) => {
     const theme = useTheme();
     const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
     const [mobileOpen, setMobileOpen] = useState(false);
     const links = [
-        { text: 'Victorum Group', href: 'https://victorum-group.com' },
-        { text: 'Victorum Trade', href: 'https://victorum-trade.com' },
-        { text: 'FAQ', href: 'https://victorum-faq.com' }
+        { text: 'Home', href: 'https://victorum-capital.com', icon: <HomeIcon /> },
+        { text: 'Trade', href: 'https://victorum-trade.com', icon: <AttachMoneyIcon /> },
+        { text: 'Finance', href: 'https://vicpayments.com', icon: <AccountBalanceIcon /> }
     ];
     const { data: session } = useSession();
     const router = useRouter(); // Используем useRouter
@@ -28,12 +29,12 @@ const Layout = ({ children }) => {
     };
 
     const drawer = (
-        <Box sx={{ overflow: 'auto', backgroundImage: 'url(/images/sidebar_background.png)', backgroundSize: 'cover', backgroundPosition: 'center', height: '100%' }}>
+        <Box sx={{ overflow: 'auto', backgroundSize: 'cover', backgroundPosition: 'center', height: '100%' }}>
             <List>
                 {links.map((link, index) => (
                     <ListItem button key={link.text} component="a" href={link.href}>
                         <ListItemIcon>
-                            {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
+                            {link.icon}
                         </ListItemIcon>
                         <ListItemText primary={link.text} />
                     </ListItem>
@@ -74,7 +75,7 @@ const Layout = ({ children }) => {
                     {session ? (
                         <>
                             {/*<Avatar alt="User Avatar" src={session.user.image} sx={{ mr: 2 }} />*/}
-                            <Button sx={{ color: 'white', textShadow: '1px 1px 2px black' }} onClick={() => signOut()}>Logout</Button>
+                            <Button sx={{ color: 'white', textShadow: '1px 1px 2px black' }} onClick={() => signOut({ callbackUrl: '/login' })}>Logout</Button>
                         </>
                     ) : (
                         <>
@@ -106,7 +107,7 @@ const Layout = ({ children }) => {
                 sx={{ flexGrow: 1, height: '100vh', bgcolor: 'background.default', p: 0, mt: isMobile ? '60px' : '80px', display: 'flex', justifyContent: 'center', alignItems: 'center' }}
             >
                 <Box sx={{ width: '100%' }}>
-                    {session ? <InvestmentCalculator /> : <Typography>Please log in to use the invest calculator.</Typography>}
+                    {session ? <InvestmentCalculator /> : <h1>Please log in to use the invest calculator.</h1>}
                 </Box>
             </Box>
         </Box>
