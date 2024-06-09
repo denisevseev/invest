@@ -57,46 +57,48 @@ const SignUp = () => {
   return (
       <Container>
         <Logo />
-        <Typography variant="h4" align="center" gutterBottom>Sign Up</Typography>
-        <form onSubmit={handleSubmit}>
-          <TextField
-              label="Name"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-              fullWidth
-              margin="normal"
-          />
-          <TextField
-              label="Phone"
-              value={phone}
-              onChange={(e) => setPhone(e.target.value)}
-              fullWidth
-              margin="normal"
-          />
-          <TextField
-              label="Email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              fullWidth
-              margin="normal"
-          />
-          <TextField
-              label="Password"
-              type="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              fullWidth
-              margin="normal"
-          />
-          <Button type="submit" variant="contained" color="primary" fullWidth>
-            Sign Up
-          </Button>
-        </form>
-        {error && (
-            <Typography color="error" align="center" mt={2}>
-              {error}
-            </Typography>
-        )}
+        <Box style={{paddingTop: '8rem'}}>
+          <Typography variant="h4" align="center" gutterBottom>Sign Up</Typography>
+          <form onSubmit={handleSubmit}>
+            <TextField
+                label="Name"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                fullWidth
+                margin="normal"
+            />
+            <TextField
+                label="Phone"
+                value={phone}
+                onChange={(e) => setPhone(e.target.value)}
+                fullWidth
+                margin="normal"
+            />
+            <TextField
+                label="Email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                fullWidth
+                margin="normal"
+            />
+            <TextField
+                label="Password"
+                type="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                fullWidth
+                margin="normal"
+            />
+            <Button type="submit" variant="contained" color="primary" fullWidth>
+              Sign Up
+            </Button>
+          </form>
+          {error && (
+              <Typography color="error" align="center" mt={2}>
+                {error}
+              </Typography>
+          )}
+        </Box>
       </Container>
   );
 };
