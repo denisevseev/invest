@@ -103,7 +103,7 @@ const Layout = ({ children }) => {
                 component="main"
                 sx={{ flexGrow: 1,   height: '100vh', bgcolor: 'background.default', p: 4, ml: 5, mt: isMobile ? '60px' : '80px' }}
             >
-                <InvestmentCalculator /> {/* Используем компонент */}
+                {session ? <InvestmentCalculator /> : <Typography>Please log in to use the invest calculator.</Typography>}
             </Box>
         </Box>
     );
