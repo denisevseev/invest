@@ -73,7 +73,7 @@ const Layout = ({ children }) => {
                     </Box>
                     {session ? (
                         <>
-                            <Avatar alt="User Avatar" src={session.user.image} sx={{ mr: 2 }} />
+                            {/*<Avatar alt="User Avatar" src={session.user.image} sx={{ mr: 2 }} />*/}
                             <Button sx={{ color: 'white', textShadow: '1px 1px 2px black' }} onClick={() => signOut()}>Logout</Button>
                         </>
                     ) : (
