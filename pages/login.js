@@ -3,7 +3,7 @@ import { signIn } from 'next-auth/react';
 import { Container, TextField, Button, Typography } from '@mui/material';
 import Logo from '../components/Logo';
 
-const Signin = () => {
+const Login = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
@@ -20,15 +20,15 @@ const Signin = () => {
 
         if (result.error) {
             setError(result.error);
-            console.error('Signin error:', result.error);
+            console.error('Login error:', result.error);
         } else {
-            console.log('Signin successful:', result);
+            console.log('Login successful:', result);
+            window.location.href = '/'
         }
     };
 
     return (
-        <Container>
-            <Typography variant="h4">Sign In</Typography>
+        <Container  style={{paddingTop: '8rem'}} >
             <Logo/>
             <form onSubmit={handleSubmit}>
                 <TextField
@@ -46,11 +46,11 @@ const Signin = () => {
                     fullWidth
                     margin="normal"
                 />
-                <Button type="submit" variant="contained" color="primary">Sign In</Button>
+                <Button type="submit" variant="contained"  color="primary">Sign In</Button>
             </form>
             {error && <Typography color="error">{error}</Typography>}
         </Container>
     );
 };
 
-export default Signin;
+export default Login;

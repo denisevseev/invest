@@ -7,6 +7,7 @@ import { signIn, signOut, useSession } from 'next-auth/react';
 import Link from 'next/link';
 import Logo from "./Logo";
 import InvestmentCalculator from "./InvestmentCalculator"; // исправьте импорт
+import { useRouter } from 'next/router'; // Импортируем useRouter
 
 const drawerWidth = 240;
 
@@ -20,6 +21,7 @@ const Layout = ({ children }) => {
         { text: 'FAQ', href: 'https://victorum-faq.com' }
     ];
     const { data: session } = useSession();
+    const router = useRouter(); // Используем useRouter
 
     const handleDrawerToggle = () => {
         setMobileOpen(!mobileOpen);
@@ -76,7 +78,7 @@ const Layout = ({ children }) => {
                         </>
                     ) : (
                         <>
-                            <Button sx={{ color: 'white', textShadow: '1px 1px 2px black' }} onClick={() => signIn()}>Login</Button>
+                            <Button sx={{ color: 'white', textShadow: '1px 1px 2px black' }} onClick={() => router.push('/login')}>Login</Button>
                             <Link href="/signup" passHref>
                                 <Button sx={{ color: 'white', textShadow: '1px 1px 2px black' }}>Sign Up</Button>
                             </Link>
@@ -101,7 +103,7 @@ const Layout = ({ children }) => {
             </Drawer>
             <Box
                 component="main"
-                sx={{ flexGrow: 1,   height: '100vh', bgcolor: 'background.default', p: 4, ml: 5, mt: isMobile ? '60px' : '80px' }}
+                sx={{ flexGrow: 1, height: '100vh', bgcolor: 'background.default', p: 4, ml: 5, mt: isMobile ? '60px' : '80px' }}
             >
                 {session ? <InvestmentCalculator /> : <Typography>Please log in to use the invest calculator.</Typography>}
             </Box>

@@ -3,8 +3,10 @@ import { SessionProvider } from 'next-auth/react';
 import Layout from '../components/Layout';
 const MyApp = ({ Component, pageProps }) => {
 
-    const isSignUpPage = Component.name === "SignUp"
-    let a = 0
+    let isSignUpPage
+    if(Component.name === "SignUp" || Component.name === "Login") {
+        isSignUpPage = true
+    }
 
     return (
         <SessionProvider session={pageProps.session}>
