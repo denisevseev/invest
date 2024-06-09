@@ -73,7 +73,7 @@ const Layout = ({ children }) => {
                     </Box>
                     {session ? (
                         <>
-                            {/*<Avatar alt="User Avatar" src={session.user.image} sx={{ mr: 2 }} />*/}
+                            <Avatar alt="User Avatar" src={session.user.image} sx={{ mr: 2 }} />
                             <Button sx={{ color: 'white', textShadow: '1px 1px 2px black' }} onClick={() => signOut()}>Logout</Button>
                         </>
                     ) : (
@@ -103,9 +103,11 @@ const Layout = ({ children }) => {
             </Drawer>
             <Box
                 component="main"
-                sx={{ flexGrow: 1, height: '100vh', bgcolor: 'background.default', p: 4, ml: 5, mt: isMobile ? '60px' : '80px' }}
+                sx={{ flexGrow: 1, height: '100vh', bgcolor: 'background.default', p: 0, mt: isMobile ? '60px' : '80px', display: 'flex', justifyContent: 'center', alignItems: 'center' }}
             >
-                {session ? <InvestmentCalculator /> : <Typography>Please log in to use the invest calculator.</Typography>}
+                <Box sx={{ width: '100%' }}>
+                    {session ? <InvestmentCalculator /> : <Typography>Please log in to use the invest calculator.</Typography>}
+                </Box>
             </Box>
         </Box>
     );
