@@ -3,6 +3,8 @@ import { useRouter } from 'next/router';
 import { Container, TextField, Button, Typography, Box, Link } from '@mui/material';
 import { signIn } from 'next-auth/react';
 import Logo from '../components/Logo';
+import { useSession } from 'next-auth/react';
+import { useEffect } from 'react';
 
 const SignUp = () => {
   const [email, setEmail] = useState('');
@@ -10,8 +12,14 @@ const SignUp = () => {
   const [name, setName] = useState('');
   const [phone, setPhone] = useState('');
   const [error, setError] = useState('');
-
   const router = useRouter();
+  const { data: session } = useSession();
+
+  useEffect(() => {
+    if (session) {
+      router.push('/');
+    }
+  }, [session, router]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
