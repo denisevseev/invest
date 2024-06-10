@@ -74,16 +74,14 @@ const Layout = ({ children }) => {
                 sx={{
                     zIndex: (theme) => theme.zIndex.drawer + 1,
                     width: '100%',
-                    backgroundImage: 'url(/images/img.png)',
-                    backgroundSize: 'cover',
-                    backgroundPosition: 'center',
-                    height: isMobile ? '60px' : '80px',
+                    height: isMobile ? '60px' : '80px', // Adjust height for mobile
+                    background: 'white', // Change background color to white
                 }}
             >
                 <Toolbar>
                     {isMobile && (
                         <IconButton
-                            color="inherit"
+                            color="black"
                             aria-label="open drawer"
                             edge="start"
                             onClick={handleDrawerToggle}
@@ -92,24 +90,25 @@ const Layout = ({ children }) => {
                             <MenuIcon />
                         </IconButton>
                     )}
-                    <Box sx={{ display: 'flex', alignItems: 'center', height: '100%', flexGrow: 1 }}>
+                    <Box sx={{ display: 'flex', alignItems: 'center', flexGrow: 1 }}>
                         <Logo />
                     </Box>
                     {session ? (
                         <>
-                            {/*<Avatar alt="User Avatar" src={session.user.image} sx={{ mr: 2 }} />*/}
-                            <Button sx={{ color: 'white', textShadow: '1px 1px 2px black' }} onClick={handleLogout}>Logout</Button>
+                            <Button sx={{ color: 'black', textShadow: '1px 1px 2px rgba(0,0,0,0.4)' }} onClick={handleLogout}>Logout</Button>
                         </>
                     ) : (
                         <>
-                            <Button sx={{ color: 'white', textShadow: '1px 1px 2px black' }} onClick={() => router.push('/login')}>Login</Button>
+                            <Button sx={{ color: 'black', textShadow: '1px 1px 2px rgba(0,0,0,0.4)' }} onClick={() => router.push('/login')}>Login</Button>
                             <Link href="/signup" passHref>
-                                <Button sx={{ color: 'white', textShadow: '1px 1px 2px black' }}>Sign Up</Button>
+                                <Button sx={{ color: 'black', textShadow: '1px 1px 2px rgba(0,0,0,0.4)' }}>Sign Up</Button>
                             </Link>
                         </>
                     )}
                 </Toolbar>
             </AppBar>
+
+
             <Drawer
                 variant={isMobile ? "temporary" : "permanent"}
                 open={isMobile ? mobileOpen : true}
