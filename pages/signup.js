@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useRouter } from 'next/router';
-import { Container, TextField, Button, Typography, Box } from '@mui/material';
+import { Container, TextField, Button, Typography, Box, Link } from '@mui/material';
 import { signIn } from 'next-auth/react';
 import Logo from '../components/Logo';
 
@@ -98,6 +98,14 @@ const SignUp = () => {
                 {error}
               </Typography>
           )}
+          <Box mt={5} textAlign="center">
+            <Typography>
+              Already have an account?{' '}
+              <Link href="/login" underline="hover">
+                Log in
+              </Link>
+            </Typography>
+          </Box>
         </Box>
       </Container>
   );
