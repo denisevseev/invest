@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { signIn } from 'next-auth/react';
-import { Container, TextField, Button, Typography } from '@mui/material';
+import {Container, TextField, Button, Typography, Link, Box} from '@mui/material';
 import Logo from '../components/Logo';
 
 const Login = () => {
@@ -49,6 +49,14 @@ const Login = () => {
                 <Button type="submit" variant="contained"  color="primary" fullWidth>Sign In</Button>
             </form>
             {error && <Typography color="error">{error}</Typography>}
+            <Box mt={5} textAlign="center">
+                <Typography>
+                    No account?{' '}
+                    <Link href="/signup" underline="hover">
+                        Sign up
+                    </Link>
+                </Typography>
+            </Box>
         </Container>
     );
 };
