@@ -74,7 +74,7 @@ const Layout = ({ children }) => {
                 sx={{
                     zIndex: (theme) => theme.zIndex.drawer + 1,
                     width: '100%',
-                    backgroundImage: 'url(/images/img.png)', // путь к вашему изображению
+                    backgroundImage: 'url(/images/img.png)',
                     backgroundSize: 'cover',
                     backgroundPosition: 'center',
                     height: isMobile ? '60px' : '80px',
@@ -130,7 +130,24 @@ const Layout = ({ children }) => {
                 sx={{ flexGrow: 1, height: '100vh', bgcolor: 'background.default', p: 0, mt: isMobile ? '60px' : '80px', display: 'flex', justifyContent: 'center', alignItems: 'center' }}
             >
                 <Box sx={{ width: '100%' }}>
-                    {session ? <InvestmentCalculator /> : <h1>Please log in to use the invest calculator.</h1>}
+                    {session ? <InvestmentCalculator /> : <Box
+                        component="main"
+                        sx={{
+                            flexGrow: 1,
+                            width: '100%',
+                            display: 'flex',
+                            justifyContent: 'center',
+                            alignItems: 'center',
+                            p: 2,
+                        }}
+                    >
+                        <Box sx={{ textAlign: 'center' }}>
+                            <Typography variant="h3">
+                                Please log in to use the invest calculator.
+                            </Typography>
+                        </Box>
+                    </Box>
+                    }
                 </Box>
             </Box>
         </Box>
