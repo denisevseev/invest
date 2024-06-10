@@ -37,16 +37,34 @@ const Layout = ({ children }) => {
         <Box sx={{ overflow: 'auto', backgroundSize: 'cover', backgroundPosition: 'center', height: '100%' }}>
             <List>
                 {links.map((link, index) => (
-                    <ListItem button key={link.text} component="a" href={link.href}>
+                    <ListItem
+                        button
+                        key={link.text}
+                        component="a"
+                        href={link.href}
+                        sx={{
+                            '&:hover': { transform: 'scale(1.1)', boxShadow: '0 4px 20px rgba(0, 0, 0, 0.1)' },
+                            py: 3 // Увеличиваем вертикальный отступ
+                        }}
+                    >
                         <ListItemIcon>
                             {link.icon}
                         </ListItemIcon>
-                        <ListItemText primary={link.text} />
+                        <ListItemText
+                            primaryTypographyProps={{
+                                sx: {
+                                    fontSize: '1.2rem',
+                                    textShadow: '2px 2px 4px rgba(0, 0, 0, 0.2)'
+                                }
+                            }}
+                            primary={link.text}
+                        />
                     </ListItem>
                 ))}
             </List>
         </Box>
     );
+
 
     return (
         <Box sx={{ display: 'flex' }}>
