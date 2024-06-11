@@ -7,7 +7,6 @@ import StepThree from '../components/hardSignUp/StepThree';
 const steps = ['Individual Client', 'Corporate Client', 'Finish'];
 
 const RegistrationForm = () => {
-
     const [activeStep, setActiveStep] = useState(0);
     const [formData, setFormData] = useState({
         clientType: 'individual',
@@ -53,7 +52,6 @@ const RegistrationForm = () => {
     };
 
     return (
-
         <Box
             sx={{
                 maxWidth: 500,
@@ -70,13 +68,15 @@ const RegistrationForm = () => {
                 <Typography variant="h4" gutterBottom>
                     Register in minutes
                 </Typography>
-                <Stepper activeStep={activeStep}>
-                    {steps.map((label, index) => (
-                        <Step key={index}>
-                            <StepLabel>{label}</StepLabel>
-                        </Step>
-                    ))}
-                </Stepper>
+                {formData.clientType !== 'corporate' && (
+                    <Stepper activeStep={activeStep}>
+                        {steps.map((label, index) => (
+                            <Step key={index}>
+                                <StepLabel>{label}</StepLabel>
+                            </Step>
+                        ))}
+                    </Stepper>
+                )}
                 <Box sx={{ mt: 2 }}>
                     {getStepContent(activeStep)}
                 </Box>
@@ -102,8 +102,6 @@ const RegistrationForm = () => {
                 </Box>
             </Box>
         </Box>
-
-
     );
 };
 

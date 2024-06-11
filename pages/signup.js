@@ -61,7 +61,6 @@ const SignUp = () => {
         });
 
         if (signInResponse.ok) {
-          // Перенаправление в личный кабинет
           router.push('/'); // Измените на путь к личному кабинету
         } else {
           setError('Login after registration failed.');

@@ -12,24 +12,19 @@ import { useRouter } from 'next/router';
 
 const drawerWidth = 200;
 
-const AnimatedButton = styled(Button)(({ theme }) => ({
-    transition: 'transform 0.5s ease-in-out', // Добавляем анимацию перехода
-    animation: '$pulse 2s infinite', // Добавляем анимацию пульсации
-    // Убираем увеличение при наведении
-    '&:hover': {
-        transform: 'scale(1.1)', // Увеличиваем размер при наведении
-    },
-    '&:active': {
-        transform: 'scale(0.95)', // Уменьшаем размер при нажатии
-    },
-}));
+const pulseKeyframes = `
+  0% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+  100% { transform: scale(1); }
+`;
 
-// Анимация пульсации
-const pulse = {
-    '0%': { transform: 'scale(1)' },
-    '50%': { transform: 'scale(1.1)' },
-    '100%': { transform: 'scale(1)' },
-};
+const AnimatedButton = styled(Button)(({ theme }) => ({
+    animation: 'pulse 2s infinite',
+    '&:hover': {
+        transform: 'scale(1.1)',
+    },
+    '@keyframes pulse': pulseKeyframes
+}));
 
 const Layout = ({ children }) => {
     const theme = useTheme();
@@ -84,7 +79,6 @@ const Layout = ({ children }) => {
         </Box>
     );
 
-
     return (
         <Box sx={{ display: 'flex' }}>
             <CssBaseline />
@@ -127,7 +121,6 @@ const Layout = ({ children }) => {
                 </Toolbar>
             </AppBar>
 
-
             <Drawer
                 variant={isMobile ? "temporary" : "permanent"}
                 open={isMobile ? mobileOpen : true}
@@ -152,8 +145,10 @@ const Layout = ({ children }) => {
                     {session ? (
                         <>
                             <InvestmentCalculator />
-                            <Box sx={{ display: 'flex', justifyContent: 'center', mt: 2 }}> {/* Center the button */}
-                                <AnimatedButton size="large" onClick={() => router.push('/RegistrationForm')} variant="outlined" sx={{ mt: 2 }}>become an investor</AnimatedButton>
+                            <Box sx={{ display: 'flex', justifyContent: 'center', mt: 2 }}>
+                                <AnimatedButton onClick={() => router.push('/RegistrationForm')} variant="contained" sx={{ mt: 2 }}>
+                                    Open Registration Form
+                                </AnimatedButton>
                             </Box>
                         </>
                     ) : (
