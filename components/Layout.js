@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { AppBar, Toolbar, Typography, Avatar, Drawer, List, ListItem, ListItemIcon, ListItemText, Box, CssBaseline, Button, useMediaQuery, useTheme, IconButton } from '@mui/material';
+import React, { useState, useEffect } from 'react';
+import { AppBar, Toolbar, Typography, Avatar, Drawer, List, ListItem, ListItemIcon, ListItemText, Box, CssBaseline, Button, useMediaQuery, useTheme, IconButton, styled } from '@mui/material';
 import HomeIcon from '@mui/icons-material/Home';
 import AttachMoneyIcon from '@mui/icons-material/AttachMoney';
 import AccountBalanceIcon from '@mui/icons-material/AccountBalance';
@@ -7,10 +7,29 @@ import MenuIcon from '@mui/icons-material/Menu';
 import { signIn, signOut, useSession } from 'next-auth/react';
 import Link from 'next/link';
 import Logo from "./Logo";
-import InvestmentCalculator from "./InvestmentCalculator"; // исправьте импорт
-import { useRouter } from 'next/router'; // Импортируем useRouter
+import InvestmentCalculator from "./InvestmentCalculator";
+import { useRouter } from 'next/router';
 
 const drawerWidth = 200;
+
+const AnimatedButton = styled(Button)(({ theme }) => ({
+    transition: 'transform 0.5s ease-in-out', // Добавляем анимацию перехода
+    animation: '$pulse 2s infinite', // Добавляем анимацию пульсации
+    // Убираем увеличение при наведении
+    '&:hover': {
+        transform: 'scale(1.1)', // Увеличиваем размер при наведении
+    },
+    '&:active': {
+        transform: 'scale(0.95)', // Уменьшаем размер при нажатии
+    },
+}));
+
+// Анимация пульсации
+const pulse = {
+    '0%': { transform: 'scale(1)' },
+    '50%': { transform: 'scale(1.1)' },
+    '100%': { transform: 'scale(1)' },
+};
 
 const Layout = ({ children }) => {
     const theme = useTheme();
@@ -44,7 +63,7 @@ const Layout = ({ children }) => {
                         href={link.href}
                         sx={{
                             '&:hover': { transform: 'scale(1.1)', boxShadow: '0 4px 20px rgba(0, 0, 0, 0.1)' },
-                            py: 3 // Увеличиваем вертикальный отступ
+                            py: 3
                         }}
                     >
                         <ListItemIcon>
@@ -74,8 +93,8 @@ const Layout = ({ children }) => {
                 sx={{
                     zIndex: (theme) => theme.zIndex.drawer + 1,
                     width: '100%',
-                    height: isMobile ? '60px' : '80px', // Adjust height for mobile
-                    background: 'white', // Change background color to white
+                    height: isMobile ? '60px' : '80px',
+                    background: 'white',
                 }}
             >
                 <Toolbar>
@@ -114,7 +133,7 @@ const Layout = ({ children }) => {
                 open={isMobile ? mobileOpen : true}
                 onClose={handleDrawerToggle}
                 ModalProps={{
-                    keepMounted: true, // Better open performance on mobile.
+                    keepMounted: true,
                 }}
                 sx={{
                     width: drawerWidth,
@@ -124,29 +143,38 @@ const Layout = ({ children }) => {
             >
                 {drawer}
             </Drawer>
+
             <Box
                 component="main"
                 sx={{ flexGrow: 1, height: '100vh', bgcolor: 'background.default', p: 0, mt: isMobile ? '60px' : '80px', display: 'flex', justifyContent: 'center', alignItems: 'center' }}
             >
                 <Box sx={{ width: '100%' }}>
-                    {session ? <InvestmentCalculator /> : <Box
-                        component="main"
-                        sx={{
-                            flexGrow: 1,
-                            width: '100%',
-                            display: 'flex',
-                            justifyContent: 'center',
-                            alignItems: 'center',
-                            p: 2,
-                        }}
-                    >
-                        <Box sx={{ textAlign: 'center' }}>
-                            <Typography variant="h3">
-                                Please log in to use the invest calculator.
-                            </Typography>
+                    {session ? (
+                        <>
+                            <InvestmentCalculator />
+                            <Box sx={{ display: 'flex', justifyContent: 'center', mt: 2 }}> {/* Center the button */}
+                                <AnimatedButton size="large" onClick={() => router.push('/RegistrationForm')} variant="outlined" sx={{ mt: 2 }}>become an investor</AnimatedButton>
+                            </Box>
+                        </>
+                    ) : (
+                        <Box
+                            component="main"
+                            sx={{
+                                flexGrow: 1,
+                                width: '100%',
+                                display: 'flex',
+                                justifyContent: 'center',
+                                alignItems: 'center',
+                                p: 2,
+                            }}
+                        >
+                            <Box sx={{ textAlign: 'center' }}>
+                                <Typography variant="h3">
+                                    Please log in to use the invest calculator.
+                                </Typography>
+                            </Box>
                         </Box>
-                    </Box>
-                    }
+                    )}
                 </Box>
             </Box>
         </Box>

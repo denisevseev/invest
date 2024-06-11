@@ -4,7 +4,7 @@ import Layout from '../components/Layout';
 const MyApp = ({ Component, pageProps }) => {
 
     let isSignUpPage
-    if(Component.name === "SignUp" || Component.name === "Login") {
+    if(Component.name === "SignUp" || Component.name === "Login" || Component.name === "RegistrationForm") {
         isSignUpPage = true
     }
 

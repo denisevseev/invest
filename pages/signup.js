@@ -25,6 +25,23 @@ const SignUp = () => {
     e.preventDefault();
     setError('');
 
+    // Валидация полей
+    if (!name || !phone || !email || !password) {
+      setError('Please fill in all fields');
+      return;
+    }
+
+    if (!/\S+@\S+\.\S+/.test(email)) {
+      setError('Please enter a valid email address');
+      return;
+    }
+
+    // Проверка формата телефона (добавьте проверку, соответствующую вашему региону)
+    if (!/^\+?\d{10,15}$/.test(phone)) {
+      setError('Please enter a valid phone number');
+      return;
+    }
+
     try {
       const response = await fetch('/api/auth/register', {
         method: 'POST',
@@ -65,8 +82,10 @@ const SignUp = () => {
   return (
       <Container>
         <Logo />
-        <Box style={{paddingTop: '8rem'}}>
-          <Typography variant="h4" align="center" gutterBottom>Sign Up</Typography>
+        <Box style={{ paddingTop: '8rem' }}>
+          <Typography variant="h4" align="center" gutterBottom>
+            Sign Up
+          </Typography>
           <form onSubmit={handleSubmit}>
             <TextField
                 label="Name"

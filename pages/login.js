@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { signIn } from 'next-auth/react';
-import {Container, TextField, Button, Typography, Link, Box} from '@mui/material';
+import { Container, TextField, Button, Typography, Link, Box } from '@mui/material';
 import Logo from '../components/Logo';
 
 const Login = () => {
@@ -12,6 +12,18 @@ const Login = () => {
         e.preventDefault();
         setError('');
 
+        // Валидация полей
+        if (!email || !password) {
+            setError('Please fill in all fields');
+            return;
+        }
+
+        if (!/\S+@\S+\.\S+/.test(email)) {
+            setError('Please enter a valid email address');
+            return;
+        }
+
+        // Если валидация прошла успешно, запускаем аутентификацию
         const result = await signIn('credentials', {
             redirect: false,
             email,
