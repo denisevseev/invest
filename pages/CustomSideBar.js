@@ -43,8 +43,6 @@ const CustomSideBar = () => {
             sx={{
                 width: 240,
                 flexShrink: 0,
-                // top: 0, // Убираем top
-                marginTop: 64, //  Если нужен отступ, используем marginTop
             }}
         >
             <Box sx={{ overflow: 'auto' }}>
