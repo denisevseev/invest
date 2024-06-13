@@ -1,24 +1,19 @@
 import React, { useState } from 'react';
-import { Box, Stepper, Step, StepLabel, Button, Typography } from '@mui/material';
+import {Box, Stepper, Step, StepLabel, Button, Typography, useMediaQuery, useTheme} from '@mui/material';
 import StepOne from '../components/hardSignUp/StepOne';
 import StepTwo from '../components/hardSignUp/StepTwo';
 import StepThree from '../components/hardSignUp/StepThree';
 import { useFormik } from 'formik';
 import AppBarComponent from "../components/AppBar";
-import { useRouter } from 'next/router';
-import { useSession } from 'next-auth/react';
-
+import { useRouter } from "next/router";
+import CustomSideBar from "./CustomSideBar";
 
 const steps = ['Individual Client', 'Corporate Client', 'Finish'];
 
 const RegistrationForm = () => {
     const router = useRouter();
-    const { data: session } = useSession();
-
-    if(!session){
-        router.push('/login');
-    }
-
+    const theme = useTheme();
+    const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
     const [activeStep, setActiveStep] = useState(0);
     const formik = useFormik({
         initialValues: {
@@ -50,8 +45,7 @@ const RegistrationForm = () => {
                 if (response.ok) {
                     console.log('User registered successfully:', data);
                     alert('User registered successfully');
-                    router.push('/');
-                    // Здесь вы можете добавить логику для перенаправления пользователя на страницу успешной регистрации или логин
+                    router.push('/'); // Перенаправление после успешной регистрации
                 } else {
                     console.error('Error registering user:', data);
                     alert('Error registering user');
@@ -103,7 +97,9 @@ const RegistrationForm = () => {
 
     return (
         <div>
-            <AppBarComponent />
+                <AppBarComponent />
+            {!isMobile ? <CustomSideBar/>:""}
+
             <Box
                 sx={{
                     maxWidth: 500,
