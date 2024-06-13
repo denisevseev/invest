@@ -4,14 +4,9 @@ import CountrySelect from './../CountrySelect'; // Импортируем ком
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 
-const StepTwo = ({ formData, handleChange }) => {
+const StepTwo = ({ formik }) => {
     const handleDateChange = date => {
-        handleChange({
-            target: {
-                name: 'dateOfBirth',
-                value: date
-            }
-        });
+        formik.setFieldValue('dateOfBirth', date);
     };
 
     return (
@@ -22,7 +17,7 @@ const StepTwo = ({ formData, handleChange }) => {
             <FormControl fullWidth margin="normal">
                 <FormLabel>Date of Birth</FormLabel>
                 <DatePicker
-                    selected={formData.dateOfBirth}
+                    selected={formik.values.dateOfBirth}
                     onChange={handleDateChange}
                     dateFormat="dd.MM.yyyy"
                     placeholderText="ДД.ММ.ГГГГ"
@@ -32,10 +27,9 @@ const StepTwo = ({ formData, handleChange }) => {
             </FormControl>
             <FormControl fullWidth margin="normal">
                 <FormLabel>Nationality</FormLabel>
-                {/* Используем компонент CountrySelect для выбора национальности */}
                 <CountrySelect
-                    value={formData.nationality}
-                    onChange={value => handleChange({ target: { name: 'nationality', value } })}
+                    value={formik.values.nationality}
+                    onChange={value => formik.setFieldValue('nationality', value)}
                 />
             </FormControl>
             <Typography variant="h6" gutterBottom>
@@ -44,25 +38,24 @@ const StepTwo = ({ formData, handleChange }) => {
             <TextField
                 label="Full Address"
                 name="fullAddress"
-                value={formData.fullAddress}
-                onChange={handleChange}
+                value={formik.values.fullAddress}
+                onChange={formik.handleChange}
                 fullWidth
                 margin="normal"
                 required
             />
             <FormControl fullWidth margin="normal">
                 <FormLabel>Country</FormLabel>
-                {/* Используем компонент CountrySelect для выбора страны проживания */}
                 <CountrySelect
-                    value={formData.country}
-                    onChange={value => handleChange({ target: { name: 'country', value } })}
+                    value={formik.values.country}
+                    onChange={value => formik.setFieldValue('country', value)}
                 />
             </FormControl>
             <TextField
                 label="City/Town"
                 name="city"
-                value={formData.city}
-                onChange={handleChange}
+                value={formik.values.city}
+                onChange={formik.handleChange}
                 fullWidth
                 margin="normal"
                 required
@@ -70,8 +63,8 @@ const StepTwo = ({ formData, handleChange }) => {
             <TextField
                 label="Postal/ZIP Code"
                 name="postalCode"
-                value={formData.postalCode}
-                onChange={handleChange}
+                value={formik.values.postalCode}
+                onChange={formik.handleChange}
                 fullWidth
                 margin="normal"
                 required

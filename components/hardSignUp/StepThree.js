@@ -1,7 +1,7 @@
 import React from 'react';
 import { Box, TextField, Button, MenuItem, FormControl, FormLabel, Select, InputLabel } from '@mui/material';
 
-const StepThree = ({ formData, handleChange, handleSubmit }) => {
+const StepThree = ({ formik }) => {
 
     const questions = [
         {
@@ -97,14 +97,14 @@ const StepThree = ({ formData, handleChange, handleSubmit }) => {
     ];
 
     return (
-        <Box component="form" onSubmit={handleSubmit}>
+        <Box component="form" onSubmit={formik.handleSubmit}>
             {questions.map((question, index) => (
                 <FormControl key={index} fullWidth margin="normal">
                     <InputLabel>{question.label}</InputLabel>
                     <Select
                         name={question.name}
-                        value={formData[question.name]}
-                        onChange={handleChange}
+                        value={formik.values[question.name]}
+                        onChange={formik.handleChange}
                         label={question.label}
                     >
                         {question.options.map((option, idx) => (

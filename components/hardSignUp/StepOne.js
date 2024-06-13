@@ -2,22 +2,23 @@ import React, { useState } from 'react';
 import { Box, TextField, FormControl, FormLabel, RadioGroup, FormControlLabel, Radio, Typography, Checkbox, FormGroup, styled } from '@mui/material';
 import PhoneInput from 'react-phone-input-2';
 import 'react-phone-input-2/lib/material.css';
-import CountrySelect from './../CountrySelect'; // Импортируем компонент для выбора стран
+import CountrySelect from './../CountrySelect';
+import store from './../../stores/userStore';
 
 const CustomCheckbox = styled(Checkbox)(({ theme }) => ({
-    color: 'green', // Зеленый цвет для неотмеченного чекбокса
+    color: 'green',
     '&.Mui-checked': {
-        color: 'green', // Зеленый цвет для отмеченного чекбокса
+        color: 'green',
     },
     '& .MuiSvgIcon-root': {
-        width: theme.spacing(2), // Размер галочки
-        height: theme.spacing(2), // Размер галочки
+        width: theme.spacing(2),
+        height: theme.spacing(2),
     },
 }));
 
 const CustomFormControlLabel = styled(FormControlLabel)(({ theme }) => ({
-    fontSize: '0.4rem', // Уменьшаем размер шрифта описания пунктов
-    color: theme.palette.grey[500], // Серый цвет для описания пунктов
+    fontSize: '0.4rem',
+    color: theme.palette.grey[500],
 }));
 
 const customStyles = {
@@ -36,7 +37,7 @@ const customStyles = {
     }),
 };
 
-const StepOne = ({ formData, handleChange }) => {
+const StepOne = ({ formik }) => {
     const [passwordCriteria, setPasswordCriteria] = useState({
         length: false,
         lowercase: false,
@@ -44,6 +45,10 @@ const StepOne = ({ formData, handleChange }) => {
         number: false,
         specialChar: false,
     });
+
+    const handleStore = async (e) => {
+        store.setUser()
+    }
 
     const handlePasswordChange = (e) => {
         const { value } = e.target;
@@ -54,90 +59,116 @@ const StepOne = ({ formData, handleChange }) => {
             number: /\d/.test(value),
             specialChar: /[!@#$%^&*(),.?":{}|<>]/.test(value),
         });
-        handleChange(e);
+        formik.handleChange(e);
     };
 
     return (
         <Box>
             <FormControl component="fieldset" margin="normal">
                 <FormLabel component="legend">Client Type</FormLabel>
-                <RadioGroup row name="clientType" value={formData.clientType} onChange={handleChange}>
+                <RadioGroup
+                    row
+                    name="clientType"
+                    value={formik.values.clientType}
+                    onChange={formik.handleChange}
+                >
                     <FormControlLabel value="individual" control={<Radio />} label="Individual Client" />
                     <FormControlLabel value="corporate" control={<Radio />} label="Corporate Client" />
                 </RadioGroup>
             </FormControl>
-            {formData.clientType === 'individual' ? (
+            {formik.values.clientType === 'individual' ? (
                 <>
                     <TextField
                         label="First Name"
                         name="firstName"
-                        value={formData.firstName}
-                        onChange={handleChange}
+                        value={formik.values.firstName}
+                        onChange={formik.handleChange}
+                        onBlur={formik.handleBlur}
                         fullWidth
                         margin="normal"
                         required
                         sx={{ width: '100%', mb: 2 }}
+                        error={formik.touched.firstName && Boolean(formik.errors.firstName)}
+                        helperText={formik.touched.firstName && formik.errors.firstName}
                     />
                     <TextField
                         label="Last Name"
                         name="lastName"
-                        value={formData.lastName}
-                        onChange={handleChange}
+                        value={formik.values.lastName}
+                        onChange={formik.handleChange}
+                        onBlur={formik.handleBlur}
                         fullWidth
                         margin="normal"
                         required
                         sx={{ width: '100%', mb: 2 }}
+                        error={formik.touched.lastName && Boolean(formik.errors.lastName)}
+                        helperText={formik.touched.lastName && formik.errors.lastName}
                     />
                 </>
             ) : (
                 <TextField
                     label="Company Name"
                     name="companyName"
-                    value={formData.companyName}
-                    onChange={handleChange}
+                    value={formik.values.companyName}
+                    onChange={formik.handleChange}
+                    onBlur={formik.handleBlur}
                     fullWidth
                     margin="normal"
                     required
                     sx={{ width: '100%', mb: 2 }}
+                    error={formik.touched.companyName && Boolean(formik.errors.companyName)}
+                    helperText={formik.touched.companyName && formik.errors.companyName}
                 />
             )}
             <FormControl fullWidth margin="normal" sx={{ width: '100%', mb: 2 }}>
                 <FormLabel>Country of Residence</FormLabel>
                 <CountrySelect
-                    value={formData.country}
-                    onChange={country => handleChange({ target: { name: 'country', value: country } })}
+                    value={formik.values.country}
+                    onChange={country => formik.setFieldValue('country', country)}
                 />
+                {formik.touched.country && formik.errors.country && (
+                    <Typography color="error">{formik.errors.country}</Typography>
+                )}
             </FormControl>
             <FormControl fullWidth margin="normal" sx={{ width: '100%', mb: 2 }}>
                 <PhoneInput
-                    country={formData.country.toLowerCase()}
-                    value={formData.phoneNumber}
-                    onChange={phone => handleChange({ target: { name: 'phoneNumber', value: phone } })}
+                    country={formik.values.country.toLowerCase()}
+                    value={formik.values.phoneNumber}
+                    onChange={phone => formik.setFieldValue('phoneNumber', phone)}
                     enableSearch
-                    inputStyle={{ width: '100%' }} // Устанавливаем ширину поля для ввода телефонного номера в 100%
+                    inputStyle={{ width: '100%' }}
                 />
+                {formik.touched.phoneNumber && formik.errors.phoneNumber && (
+                    <Typography color="error">{formik.errors.phoneNumber}</Typography>
+                )}
             </FormControl>
             <TextField
                 label="Email"
                 name="email"
                 type="email"
-                value={formData.email}
-                onChange={handleChange}
+                value={formik.values.email}
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
                 fullWidth
                 margin="normal"
                 required
                 sx={{ width: '100%', mb: 2 }}
+                error={formik.touched.email && Boolean(formik.errors.email)}
+                helperText={formik.touched.email && formik.errors.email}
             />
             <TextField
                 label="Password"
                 name="password"
                 type="password"
-                value={formData.password}
+                value={formik.values.password}
                 onChange={handlePasswordChange}
+                onBlur={formik.handleBlur}
                 fullWidth
                 margin="normal"
                 required
                 sx={{ width: '100%', mb: 2 }}
+                error={formik.touched.password && Boolean(formik.errors.password)}
+                helperText={formik.touched.password && formik.errors.password}
             />
             <FormGroup
                 sx={{
@@ -158,25 +189,25 @@ const StepOne = ({ formData, handleChange }) => {
                     control={<CustomCheckbox checked={passwordCriteria.lowercase} />}
                     label="One lowercase character"
                     sx={{ flex: '0 0 calc(40% - 10px)', mr: '10px' }}
-                    component={CustomFormControlLabel} // Используем наш кастомный компонент для описания
+                    component={CustomFormControlLabel}
                 />
                 <FormControlLabel
                     control={<CustomCheckbox checked={passwordCriteria.uppercase} />}
                     label="One uppercase character"
                     sx={{ flex: '0 0 calc(60% - 10px)', mr: '10px' }}
-                    component={CustomFormControlLabel} // Используем наш кастомный компонент для описания
+                    component={CustomFormControlLabel}
                 />
                 <FormControlLabel
                     control={<CustomCheckbox checked={passwordCriteria.number} />}
                     label="One number"
                     sx={{ flex: '0 0 calc(40% - 10px)', mr: '10px' }}
-                    component={CustomFormControlLabel} // Используем наш кастомный компонент для описания
+                    component={CustomFormControlLabel}
                 />
                 <FormControlLabel
                     control={<CustomCheckbox checked={passwordCriteria.specialChar} />}
                     label="One special character"
                     sx={{ flex: '0 0 calc(60% - 10px)' }}
-                    component={CustomFormControlLabel} // Используем наш кастомный компонент для описания
+                    component={CustomFormControlLabel}
                 />
             </FormGroup>
         </Box>

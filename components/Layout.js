@@ -9,6 +9,7 @@ import Link from 'next/link';
 import Logo from "./Logo";
 import InvestmentCalculator from "./InvestmentCalculator";
 import { useRouter } from 'next/router';
+import AppBarComponent from "./AppBar";
 
 const drawerWidth = 200;
 
@@ -82,45 +83,7 @@ const Layout = ({ children }) => {
     return (
         <Box sx={{ display: 'flex' }}>
             <CssBaseline />
-            <AppBar
-                position="fixed"
-                sx={{
-                    zIndex: (theme) => theme.zIndex.drawer + 1,
-                    width: '100%',
-                    height: isMobile ? '60px' : '80px',
-                    background: 'white',
-                }}
-            >
-                <Toolbar>
-                    {isMobile && (
-                        <IconButton
-                            color="black"
-                            aria-label="open drawer"
-                            edge="start"
-                            onClick={handleDrawerToggle}
-                            sx={{ mr: 2 }}
-                        >
-                            <MenuIcon />
-                        </IconButton>
-                    )}
-                    <Box sx={{ display: 'flex', alignItems: 'center', flexGrow: 1 }}>
-                        <Logo />
-                    </Box>
-                    {session ? (
-                        <>
-                            <Button sx={{ color: 'black', textShadow: '1px 1px 2px rgba(0,0,0,0.4)' }} onClick={handleLogout}>Logout</Button>
-                        </>
-                    ) : (
-                        <>
-                            <Button sx={{ color: 'black', textShadow: '1px 1px 2px rgba(0,0,0,0.4)' }} onClick={() => router.push('/login')}>Login</Button>
-                            <Link href="/signup" passHref>
-                                <Button sx={{ color: 'black', textShadow: '1px 1px 2px rgba(0,0,0,0.4)' }}>Sign Up</Button>
-                            </Link>
-                        </>
-                    )}
-                </Toolbar>
-            </AppBar>
-
+            <AppBarComponent/>
             <Drawer
                 variant={isMobile ? "temporary" : "permanent"}
                 open={isMobile ? mobileOpen : true}
@@ -176,4 +139,4 @@ const Layout = ({ children }) => {
     );
 };
 
-export default Layout;
+export default Layout
