@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import {Box, Stepper, Step, StepLabel, Button, Typography, useMediaQuery, useTheme} from '@mui/material';
+import React, { useState, useEffect } from 'react';
+import { Box, Stepper, Step, StepLabel, Button, Typography, useMediaQuery, useTheme, Drawer, IconButton } from '@mui/material';
 import StepOne from '../components/hardSignUp/StepOne';
 import StepTwo from '../components/hardSignUp/StepTwo';
 import StepThree from '../components/hardSignUp/StepThree';
@@ -7,6 +7,11 @@ import { useFormik } from 'formik';
 import AppBarComponent from "../components/AppBar";
 import { useRouter } from "next/router";
 import CustomSideBar from "./CustomSideBar";
+import { useSession } from 'next-auth/react'; // Импортируем useSession
+import * as Yup from 'yup';
+import MenuIcon from '@mui/icons-material/Menu';
+import UserInfoComponent from "../components/UserInfoComponent";
+import store from './../stores/userStore'
 
 const steps = ['Individual Client', 'Corporate Client', 'Finish'];
 
@@ -15,6 +20,10 @@ const RegistrationForm = () => {
     const theme = useTheme();
     const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
     const [activeStep, setActiveStep] = useState(0);
+    const [mobileOpen, setMobileOpen] = useState(false);
+    const { data: session, status } = useSession(); // Получаем данные сессии
+
+
     const formik = useFormik({
         initialValues: {
             clientType: 'individual',
@@ -55,6 +64,14 @@ const RegistrationForm = () => {
                 alert('Error registering user');
             }
         },
+        validationSchema: Yup.object().shape({
+            firstName: Yup.string().required('Required'),
+            lastName: Yup.string().required('Required'),
+            country: Yup.string().required('Required'),
+            phoneNumber: Yup.string().required('Required'),
+            email: Yup.string().email('Invalid email').required('Required'),
+            password: Yup.string().required('Required'),
+        }),
     });
 
     const handleNext = () => {
@@ -95,12 +112,35 @@ const RegistrationForm = () => {
         }
     };
 
+    const handleDrawerToggle = () => {
+        setMobileOpen(!mobileOpen);
+    };
+
+    useEffect(() => {
+        if (!session || status !== 'authenticated') {
+            router.push('/login');
+        }
+    }, [session, status]);
+
     return (
         <div>
-                <AppBarComponent />
-            {!isMobile ? <CustomSideBar/>:""}
+            <UserInfoComponent isMobile={isMobile}/>
+            <Drawer
+                variant="temporary"
+                anchor="left"
+                open={mobileOpen}
+                onClose={handleDrawerToggle}
+                ModalProps={{
+                    keepMounted: true, // Better open performance on mobile.
+                }}
+                sx={{
+                    '& .MuiDrawer-paper': { boxSizing: 'border-box', width: 240 },
+                }}
+            >
+                <CustomSideBar />
+            </Drawer>
 
-            <Box
+            {store.RegForm ? <Box
                 sx={{
                     maxWidth: 500,
                     mx: 'auto',
@@ -163,7 +203,8 @@ const RegistrationForm = () => {
                         )}
                     </Box>
                 </Box>
-            </Box>
+            </Box>: "" }
+
         </div>
     );
 };

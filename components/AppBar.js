@@ -74,7 +74,7 @@ export default function AppBarComponent() {
                         '& .MuiDrawer-paper': { boxSizing: 'border-box', width: 240 },
                     }}
                 >
-                    <CustomSideBar />
+                    <CustomSideBar mobileOpen={mobileOpen} />
                 </Drawer>
             )}
         </div>

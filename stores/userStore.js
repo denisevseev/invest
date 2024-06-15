@@ -1,18 +1,37 @@
-import { makeAutoObservable } from 'mobx';
+import { makeAutoObservable, configure, observable, runInAction } from "mobx";
+
+configure({
+  useProxies: "never",
+  enforceActions: "never",
+});
 
 class UserStore {
   user = null;
-  r = 1;
+  regForm = true;
+  routeLink = "/"
 
   constructor() {
-    makeAutoObservable(this);
+    makeAutoObservable(this, {
+      user: observable,
+      regForm: observable,
+      routeLink: observable,
+    });
   }
 
-  setUser() { // Принимаем аргумент user
-    // this.user = user; // Устанавливаем значение user
-    console.log('!!!!!');
-    this.r = 2; // Изменяем значение r
-    console.log(this.r);
+  setUser(user) {
+    runInAction(() => {
+      this.user = user;
+    });
+  }
+
+  setRegForm() {
+    runInAction(() => {
+      this.regForm = false;
+    });
+  }
+
+  async SetUserInfo() {
+
   }
 }
 

@@ -9,6 +9,7 @@ import CloudDownloadIcon from '@mui/icons-material/CloudDownload';
 import CalendarTodayIcon from '@mui/icons-material/CalendarToday';
 import TrendingUpIcon from '@mui/icons-material/TrendingUp';
 import { useRouter } from 'next/router';
+import store from "../stores/userStore";
 
 const StyledDrawer = styled(Drawer)(({ theme }) => ({
     '& .MuiDrawer-paper': {
@@ -18,7 +19,7 @@ const StyledDrawer = styled(Drawer)(({ theme }) => ({
     },
 }));
 
-const CustomSideBar = () => {
+const CustomSideBar = ({ mobileOpen }) => {
     const router = useRouter();
     const [openAccounts, setOpenAccounts] = useState(false);
     const [openFunds, setOpenFunds] = useState(false);
@@ -34,6 +35,12 @@ const CustomSideBar = () => {
 
     const handleClickProfile = () => {
         setOpenProfile(!openProfile);
+    };
+
+    const handleText = (text) => {
+        console.log('Clicked text:', text);
+        store.routeLink = text
+        // Perform any actions with the clicked text here
     };
 
     return (
@@ -63,7 +70,7 @@ const CustomSideBar = () => {
                     <Collapse in={openAccounts} timeout="auto" unmountOnExit>
                         <List component="div" disablePadding>
                             {[...Array(5)].map((_, index) => (
-                                <ListItem button sx={{ pl: 4 }} key={index}>
+                                <ListItem button sx={{ pl: 4 }} key={index} onClick={() => handleText(`Account ${index + 1}`)}>
                                     <ListItemText primary={`Account ${index + 1}`} />
                                 </ListItem>
                             ))}
@@ -80,7 +87,7 @@ const CustomSideBar = () => {
                     <Collapse in={openFunds} timeout="auto" unmountOnExit>
                         <List component="div" disablePadding>
                             {[...Array(5)].map((_, index) => (
-                                <ListItem button sx={{ pl: 4 }} key={index}>
+                                <ListItem button sx={{ pl: 4 }} key={index} onClick={() => handleText(`Fund ${index + 1}`)}>
                                     <ListItemText primary={`Fund ${index + 1}`} />
                                 </ListItem>
                             ))}
@@ -97,20 +104,20 @@ const CustomSideBar = () => {
                     <Collapse in={openProfile} timeout="auto" unmountOnExit>
                         <List component="div" disablePadding>
                             {['Profile', 'Upload Documents', 'My Agreements', 'Messages', 'Help Desk', 'Two-factor authentication', 'Instant Message', 'Personal Information', 'Individual Questionnaire'].map((text, index) => (
-                                <ListItem button sx={{ pl: 4 }} key={index}>
+                                <ListItem button sx={{ pl: 4 }} key={index} onClick={() => handleText(text)}>
                                     <ListItemText primary={text} />
                                 </ListItem>
                             ))}
                         </List>
                     </Collapse>
 
-                    <ListItem button>
+                    <ListItem button onClick={() => handleText('Downloads')}>
                         <ListItemIcon>
                             <CloudDownloadIcon />
                         </ListItemIcon>
                         <ListItemText primary="Downloads" />
                     </ListItem>
-                    <ListItem button>
+                    <ListItem button onClick={() => handleText('Economic Calendar')}>
                         <ListItemIcon>
                             <CalendarTodayIcon />
                         </ListItemIcon>
@@ -124,7 +131,7 @@ const CustomSideBar = () => {
                         </ListSubheader>
                     }
                 >
-                    <ListItem button>
+                    <ListItem button onClick={() => handleText('MQ WebTrader - MT5')}>
                         <ListItemIcon>
                             <TrendingUpIcon />
                         </ListItemIcon>
