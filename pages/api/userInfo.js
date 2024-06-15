@@ -7,7 +7,7 @@ const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology:
 export default async function handler(req, res) {
     const session = await getSession({ req });
     console.log(session, 'backend session');
-    console.log(req, 'backend req');
+    console.log(req, 'backend req!!');
 
     if (!session) {
         return res.status(401).json({ message: 'Unauthorized' });

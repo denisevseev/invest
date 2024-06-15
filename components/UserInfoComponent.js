@@ -23,7 +23,11 @@ const UserInfoComponent = ({}) => {
 
     const fetchUser = async () => {
         if (session) {
-            const response = await fetch('/api/userInfo');
+            const response = await fetch('/api/userInfo', {
+                headers: {
+                    'Authorization': `Bearer ${session}`
+                }
+            });
             const data = await response.json();
             if(data){
                 setUser(data)
@@ -56,16 +60,6 @@ const UserInfoComponent = ({}) => {
         );
     }
 
-    if (store.user && (!user.companyName || !user.postalCode)) {
-        return (
-            <div>
-                <AppBarComponent />
-                <Box sx={{ marginLeft: isMobile ? 0 : 240, padding: 3 }}>
-                    <InvestmentCalculator />
-                </Box>
-            </div>
-        );
-    }
 
     if(link === "Upload Documents"){
         return (
