@@ -21,20 +21,21 @@ const UserInfoComponent = ({}) => {
     const theme = useTheme();
     const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
 
+    const fetchUser = async () => {
+        if (session) {
+            const response = await fetch('/api/userInfo');
+            const data = await response.json();
+            if(data){
+                setUser(data)
+                store.user = data
+            }
+        } else {
+            // router.push('/login');
+        }
+    };
+
 
     useEffect(() => {
-        const fetchUser = async () => {
-            if (session) {
-                const response = await fetch('/api/userInfo');
-                const data = await response.json();
-                if(data){
-                    setUser(data)
-                }
-            } else {
-                // router.push('/login');
-            }
-        };
-
         fetchUser();
     }, [session, router]);
 

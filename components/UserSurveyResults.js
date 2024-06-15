@@ -1,11 +1,12 @@
 import React from 'react';
 import { Box, Typography, Grid, Paper, Card, CardContent } from '@mui/material';
 import { motion } from 'framer-motion';
+import {observer} from "mobx-react-lite";
+import store from './../stores/userStore';
 
-const UserSurveyResults = ({ user }) => {
-    if (!user) {
-        return <Typography>Loading user data...</Typography>;
-    }
+const UserSurveyResults = ({}) => {
+
+    let user = store.user;
 
     // Создаем массив вопросов и ответов из объекта user
     const questions = Object.entries(user).map(([key, value]) => ({
@@ -38,4 +39,4 @@ const UserSurveyResults = ({ user }) => {
     );
 }
 
-export default UserSurveyResults;
+export default observer(UserSurveyResults);
