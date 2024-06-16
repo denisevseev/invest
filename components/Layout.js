@@ -45,7 +45,7 @@ const Layout = ({ children }) => {
 
     const handleLogout = async () => {
         await signOut({ redirect: false });
-        router.reload();
+        router.push('/login');
     };
 
     const drawer = (

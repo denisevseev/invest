@@ -13,6 +13,7 @@ import {observer} from "mobx-react-lite";
 import * as storage from "mobx";
 import Layout from "./Layout";
 import EconomicCalendar from "../pages/EconomicCalendar";
+import Login from "../pages/login";
 
 const UserInfoComponent = ({}) => {
     const link = store.routeLink
@@ -24,19 +25,22 @@ const UserInfoComponent = ({}) => {
     const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
 
     const fetchUser = async () => {
+        if(session && session.user) {
             const response = await fetch('/api/userInfo', {
                 headers: {
                     'Authorization': `Bearer ${session}`
                 }
             });
             const data = await response.json();
-            if(data.message === 'Unauthorized'){
-                router.push('/login');
-            }
+            // if(data.message === 'Unauthorized') {
+            //     router.push('/login');
+            // }
             if(data){
                 setUser(data)
                 store.user = data
             }
+        }
+
     };
 
 
@@ -93,6 +97,16 @@ const UserInfoComponent = ({}) => {
             </div>
         );
     }
+
+    if(!session){
+        return (
+            <div>
+                <Login/>
+            </div>
+        )
+    }
+
+
     return (
         <div>
             <AppBarComponent/>
