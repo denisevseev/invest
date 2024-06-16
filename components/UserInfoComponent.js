@@ -26,6 +26,7 @@ const UserInfoComponent = ({}) => {
 
     const fetchUser = async () => {
         if(session && session.user) {
+            debugger
             const response = await fetch('/api/userInfo', {
                 headers: {
                     'Authorization': `Bearer ${session}`

@@ -1,8 +1,8 @@
-
 import NextAuth from 'next-auth';
 import CredentialsProvider from 'next-auth/providers/credentials';
 import mongoose from 'mongoose';
 import User from '../../../models/User';
+import logToFile from './logger'; // Путь к вашему файлу logger.js
 
 // Подключение к MongoDB
 mongoose.connect(process.env.MONGODB_URI, {
@@ -23,23 +23,24 @@ export default NextAuth({
         password: { label: "Password", type: "password" }
       },
       authorize: async (credentials) => {
-        console.log('Received credentials:', credentials);
+        logToFile('Received credentials: ' + JSON.stringify(credentials)); // Логгирование полученных учетных данных
         try {
           const user = await User.findOne({ email: credentials.email });
           if (!user) {
-            console.log('No user found with the given email');
+            logToFile('No user found with the given email'); // Логгирование отсутствия пользователя
             return null;
           }
 
-          console.log('User found:', user);
+          logToFile('User found: ' + JSON.stringify(user)); // Логгирование найденного пользователя
           if (user.password !== credentials.password) {
-            console.log('Invalid password');
+            logToFile('Invalid password'); // Логгирование неверного пароля
             return null;
           }
 
-          console.log('Authentication successful');
+          logToFile('Authentication successful'); // Логгирование успешной аутентификации
           return { id: user._id, email: user.email };
         } catch (error) {
+          logToFile('Error during authentication: ' + error.message); // Логгирование ошибки аутентификации
           console.error('Error during authentication:', error);
           return null;
         }
@@ -48,17 +49,17 @@ export default NextAuth({
   ],
   callbacks: {
     async session({ session, token }) {
-      console.log('Session callback invoked');
+      logToFile('Session callback invoked'); // Логгирование вызова колбэка сессии
       session.user.id = token.id;
-      console.log('Session:', session);
+      logToFile('Session: ' + JSON.stringify(session)); // Логгирование данных сессии
       return session;
     },
     async jwt({ token, user }) {
-      console.log('JWT callback invoked');
+      logToFile('JWT callback invoked'); // Логгирование вызова колбэка JWT
       if (user) {
         token.id = user.id;
-        console.log('User in JWT callback:', user);
-        console.log('Token in JWT callback:', token);
+        logToFile('User in JWT callback: ' + JSON.stringify(user)); // Логгирование данных пользователя в JWT
+        logToFile('Token in JWT callback: ' + JSON.stringify(token)); // Логгирование токена JWT
       }
       return token;
     },
