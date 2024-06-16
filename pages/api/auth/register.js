@@ -5,8 +5,10 @@ const client = new MongoClient(uri);
 
 export default async function handler(req, res) {
     if (req.method === 'POST') {
-        let { name, phone, email, password, ...rest } = req.body;
-        const extraFields = Object.keys(rest).length;
+        console.log(req.body);
+        const { clientType, firstName, lastName, companyName, country, phoneNumber, city, email, password, dateOfBirth, fullAddress, nationality, postalCode, securityQuestion1, securityQuestion2, securityQuestion3, securityQuestion4, securityQuestion5, securityQuestion6, securityQuestion7, securityQuestion8, securityQuestion9, securityQuestion10, name, phone } = req.body;
+        const isCorporate = clientType === 'corporate';
+        const isIndividual = clientType === 'individual';
 
         try {
             await client.connect();
@@ -18,39 +20,28 @@ export default async function handler(req, res) {
                 return res.status(409).json({ message: 'User with this email already exists' });
             }
 
-            if (extraFields > 7) {
-                const { clientType,
-                    firstName,
-                    lastName,
+            let newUser;
+            if (isCorporate) {
+                newUser = {
+                    clientType,
                     companyName,
                     country,
                     phoneNumber,
-                    city,
+                    email,
+                    password,
+                };
+            } else if (isIndividual) {
+                newUser = {
+                    clientType,
+                    firstName,
+                    lastName,
+                    country,
+                    phoneNumber,
                     email,
                     password,
                     dateOfBirth,
                     fullAddress,
-                    nationality,
-                    postalCode,
-                    securityQuestion1,
-                    securityQuestion2,
-                    securityQuestion3,
-                    securityQuestion4,
-                    securityQuestion5,
-                    securityQuestion6,
-                    securityQuestion7,
-                    securityQuestion8, securityQuestion9, securityQuestion10 } = req.body;
-
-                await usersCollection.insertOne({
-                    clientType,
-                    firstName,
-                    lastName,
-                    companyName,
-                    country,
-                    phoneNumber,
                     city,
-                    dateOfBirth,
-                    fullAddress,
                     nationality,
                     postalCode,
                     securityQuestion1,
@@ -63,17 +54,19 @@ export default async function handler(req, res) {
                     securityQuestion8,
                     securityQuestion9,
                     securityQuestion10,
-                    email,
-                    password
-                });
+                };
             } else {
-                await usersCollection.insertOne({
+                newUser = {
                     name,
                     phone,
                     email,
                     password,
-                });
+                };
             }
+
+            console.log('New User:', newUser);
+
+            await usersCollection.insertOne(newUser);
 
             res.status(200).json({ message: 'User registered successfully!' });
         } catch (error) {

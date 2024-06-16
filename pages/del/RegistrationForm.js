@@ -1,57 +1,34 @@
-import React, { useState } from 'react';
-import { Box, Stepper, Step, StepLabel, Button, Typography, useMediaQuery, useTheme } from '@mui/material';
+import React, { useState, useEffect } from 'react';
+import { Box, Stepper, Step, StepLabel, Button, Typography, useMediaQuery, useTheme, Drawer, IconButton } from '@mui/material';
 import StepOne from '../components/hardSignUp/StepOne';
 import StepTwo from '../components/hardSignUp/StepTwo';
 import StepThree from '../components/hardSignUp/StepThree';
 import { useFormik } from 'formik';
-import * as Yup from 'yup';
 import AppBarComponent from "../components/AppBar";
 import { useRouter } from "next/router";
-import { useSession } from "next-auth/react";
+import CustomSideBar from "./CustomSideBar";
+import { useSession } from 'next-auth/react'; // Импортируем useSession
+import * as Yup from 'yup';
+import MenuIcon from '@mui/icons-material/Menu';
+import UserInfoComponent from "../components/UserInfoComponent";
+import store from './../stores/userStore'
 
 const steps = ['Individual Client', 'Corporate Client', 'Finish'];
 
 const RegistrationForm = () => {
+    const router = useRouter();
     const theme = useTheme();
     const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
     const [activeStep, setActiveStep] = useState(0);
-    const { data: session } = useSession();
-    const router = useRouter();
-    if (!session) {
-        return (
-            <div style={{ textAlign: 'center' }}>
-                <h1>Please sign in</h1>
-                <Button onClick={() => router.push('/login')}>Login</Button>
-            </div>
-        );
-    }
+    const [mobileOpen, setMobileOpen] = useState(false);
+    const { data: session, status } = useSession(); // Получаем данные сессии
 
-
-    const phoneRegExp = /^(\+?\d{1,4}|\d{1,4})?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}$/;
-
-    const individualValidationSchema = Yup.object().shape({
-        firstName: Yup.string().required('Required'),
-        lastName: Yup.string().required('Required'),
-        country: Yup.string().required('Required'),
-        phoneNumber: Yup.string().matches(phoneRegExp, 'Invalid phone number').required('Required'),
-        email: Yup.string().email('Invalid email').required('Required'),
-        password: Yup.string().required('Required'),
-    });
-
-    const corporateValidationSchema = Yup.object().shape({
-        companyName: Yup.string().required('Required'),
-        country: Yup.string().required('Required'),
-        phoneNumber: Yup.string().matches(phoneRegExp, 'Invalid phone number').required('Required'),
-        email: Yup.string().email('Invalid email').required('Required'),
-        password: Yup.string().required('Required'),
-    });
 
     const formik = useFormik({
         initialValues: {
             clientType: 'individual',
             firstName: '',
             lastName: '',
-            companyName: '',
             country: '',
             phoneNumber: '',
             email: '',
@@ -62,29 +39,14 @@ const RegistrationForm = () => {
             city: '',
             postalCode: '',
         },
-        validationSchema: Yup.lazy(values =>
-            values.clientType === 'individual' ? individualValidationSchema : corporateValidationSchema
-        ),
         onSubmit: async (values) => {
-            const filteredValues = values.clientType === 'corporate'
-                ? {
-                    clientType: values.clientType,
-                    companyName: values.companyName,
-                    country: values.country,
-                    phoneNumber: values.phoneNumber,
-                    email: values.email,
-                    password: values.password,
-                }
-                : values;
-
-
             try {
                 const response = await fetch('/api/auth/register', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
                     },
-                    body: JSON.stringify(filteredValues),
+                    body: JSON.stringify(values),
                 });
 
                 const data = await response.json();
@@ -92,7 +54,7 @@ const RegistrationForm = () => {
                 if (response.ok) {
                     console.log('User registered successfully:', data);
                     alert('User registered successfully');
-                    router.push('/login');
+                    router.push('/'); // Перенаправление после успешной регистрации
                 } else {
                     console.error('Error registering user:', data);
                     alert('Error registering user');
@@ -102,6 +64,14 @@ const RegistrationForm = () => {
                 alert('Error registering user');
             }
         },
+        validationSchema: Yup.object().shape({
+            firstName: Yup.string().required('Required'),
+            lastName: Yup.string().required('Required'),
+            country: Yup.string().required('Required'),
+            phoneNumber: Yup.string().required('Required'),
+            email: Yup.string().email('Invalid email').required('Required'),
+            password: Yup.string().required('Required'),
+        }),
     });
 
     const handleNext = () => {
@@ -111,16 +81,16 @@ const RegistrationForm = () => {
     };
 
     const validateForm = () => {
-        const { values } = formik;
-        const requiredFields = values.clientType === 'corporate'
-            ? ['companyName', 'country', 'phoneNumber', 'email', 'password']
-            : ['firstName', 'lastName', 'country', 'phoneNumber', 'email', 'password'];
-
-        const allValuesPresent = requiredFields.every(field => values[field] !== '' && values[field] !== null && values[field] !== undefined);
-
-        if (!allValuesPresent) {
-            alert('Please fill in all required fields.');
-            return false;
+        if (formik.values.clientType === 'individual') {
+            if (!formik.values.firstName || !formik.values.lastName || !formik.values.email || !formik.values.password) {
+                alert('Please fill in all required fields.');
+                return false;
+            }
+        } else {
+            if (!formik.values.companyName || !formik.values.email || !formik.values.password) {
+                alert('Please fill in all required fields.');
+                return false;
+            }
         }
         return true;
     };
@@ -142,10 +112,35 @@ const RegistrationForm = () => {
         }
     };
 
+    const handleDrawerToggle = () => {
+        setMobileOpen(!mobileOpen);
+    };
+
+    useEffect(() => {
+        if (!session || status !== 'authenticated') {
+            router.push('/login');
+        }
+    }, [session, status]);
+
     return (
         <div>
-            <AppBarComponent />
-            <Box
+            <UserInfoComponent isMobile={isMobile}/>
+            <Drawer
+                variant="temporary"
+                anchor="left"
+                open={mobileOpen}
+                onClose={handleDrawerToggle}
+                ModalProps={{
+                    keepMounted: true, // Better open performance on mobile.
+                }}
+                sx={{
+                    '& .MuiDrawer-paper': { boxSizing: 'border-box', width: 240 },
+                }}
+            >
+                <CustomSideBar />
+            </Drawer>
+
+            {store.RegForm ? <Box
                 sx={{
                     maxWidth: 500,
                     mx: 'auto',
@@ -208,7 +203,8 @@ const RegistrationForm = () => {
                         )}
                     </Box>
                 </Box>
-            </Box>
+            </Box>: "" }
+
         </div>
     );
 };

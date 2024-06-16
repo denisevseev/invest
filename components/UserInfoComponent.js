@@ -11,6 +11,8 @@ import store from "../stores/userStore";
 import UserSurveyResults from "./UserSurveyResults";
 import {observer} from "mobx-react-lite";
 import * as storage from "mobx";
+import Layout from "./Layout";
+import EconomicCalendar from "../pages/EconomicCalendar";
 
 const UserInfoComponent = ({}) => {
     const link = store.routeLink
@@ -22,20 +24,19 @@ const UserInfoComponent = ({}) => {
     const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
 
     const fetchUser = async () => {
-        if (session) {
             const response = await fetch('/api/userInfo', {
                 headers: {
                     'Authorization': `Bearer ${session}`
                 }
             });
             const data = await response.json();
+            if(data.message === 'Unauthorized'){
+                router.push('/login');
+            }
             if(data){
                 setUser(data)
                 store.user = data
             }
-        } else {
-            // router.push('/login');
-        }
     };
 
 
@@ -44,20 +45,31 @@ const UserInfoComponent = ({}) => {
     }, [session, router]);
 
 
-    // if (!session) {
-    //     router.push('/login');
-    //     return null; // Или можно вернуть null, чтобы ничего не рендерить до перенаправления
-    // }
+    if(user?.phone) {
+        return (
+            <Layout>
+                <Layout/>
+            </Layout>
+        );
+    }
 
-    if (store.user && (!user.companyName || !user.postalCode)) {
+    if(link === 'Economic Calendar'){
+            return (<div>
+                <AppBarComponent/>
+                {isMobile === false && (<CustomSideBar/>)}
+                <EconomicCalendar/>
+            </div>)
+    }
+
+
+
+    if (link === '/' && user?.clientType === 'corporate') {
         return (
             <div>
-                <AppBarComponent />
-                <Box sx={{ marginLeft: isMobile ? 0 : 240, padding: 3 }}>
-                    <InvestmentCalculator />
-                </Box>
+                <AppBarComponent/>
+                {isMobile === false && (<CustomSideBar/>)}
             </div>
-        );
+            )
     }
 
 
@@ -81,18 +93,14 @@ const UserInfoComponent = ({}) => {
             </div>
         );
     }
-
-
-
-
     return (
         <div>
             <AppBarComponent/>
             {isMobile === false && (<CustomSideBar/>)}
-            {/*<UploadScansComponent />*/}
-            {/*{user && (<UserSurveyResults user={user}/>)}*/}
         </div>
-    );
+    )
+
+
 };
 
 export default observer(UserInfoComponent) ;
