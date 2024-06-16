@@ -6,13 +6,17 @@ import Link from "next/link";
 import { signIn, signOut, useSession } from 'next-auth/react';
 import { useRouter } from "next/router";
 import CustomSideBar from "./../pages/CustomSideBar";
+import store from "../stores/userStore";
+import {observer} from "mobx-react-lite";
+import DefaultSideBar from "./DefaultSideBar";
 
-export default function AppBarComponent() {
+const AppBarComponent = () => {
     const theme = useTheme();
     const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
     const [mobileOpen, setMobileOpen] = useState(false);
     const { data: session } = useSession();
     const router = useRouter();
+    const user = store.user;
 
     const handleDrawerToggle = () => {
         setMobileOpen(!mobileOpen);
@@ -22,6 +26,8 @@ export default function AppBarComponent() {
         await signOut({ redirect: false });
         router.reload();
     };
+
+
 
     return (
         <div>
@@ -74,9 +80,10 @@ export default function AppBarComponent() {
                         '& .MuiDrawer-paper': { boxSizing: 'border-box', width: 240 },
                     }}
                 >
-                    <CustomSideBar mobileOpen={mobileOpen} />
+                    {user?.phone ? <DefaultSideBar/> : <CustomSideBar mobileOpen={mobileOpen} />}
                 </Drawer>
             )}
         </div>
     );
 }
+export default observer(AppBarComponent);

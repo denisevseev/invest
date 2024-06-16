@@ -1,15 +1,13 @@
-import React, { useState, useEffect } from 'react';
-import { AppBar, Toolbar, Typography, Avatar, Drawer, List, ListItem, ListItemIcon, ListItemText, Box, CssBaseline, Button, useMediaQuery, useTheme, IconButton, styled } from '@mui/material';
+import React, { useState } from 'react';
+import { Typography,  Drawer,  Box, CssBaseline, Button, useMediaQuery, useTheme , styled } from '@mui/material';
 import HomeIcon from '@mui/icons-material/Home';
 import AttachMoneyIcon from '@mui/icons-material/AttachMoney';
 import AccountBalanceIcon from '@mui/icons-material/AccountBalance';
-import MenuIcon from '@mui/icons-material/Menu';
-import { signIn, signOut, useSession } from 'next-auth/react';
-import Link from 'next/link';
-import Logo from "./Logo";
+import { useSession } from 'next-auth/react';
 import InvestmentCalculator from "./InvestmentCalculator";
 import { useRouter } from 'next/router';
 import AppBarComponent from "./AppBar";
+import DefaultSideBar from "./DefaultSideBar";
 
 const drawerWidth = 200;
 
@@ -27,7 +25,7 @@ const AnimatedButton = styled(Button)(({ theme }) => ({
     '@keyframes pulse': pulseKeyframes
 }));
 
-const Layout = ({ children }) => {
+const Layout = ({}) => {
     const theme = useTheme();
     const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
     const [mobileOpen, setMobileOpen] = useState(false);
@@ -43,42 +41,7 @@ const Layout = ({ children }) => {
         setMobileOpen(!mobileOpen);
     };
 
-    const handleLogout = async () => {
-        await signOut({ redirect: false });
-        router.push('/login');
-    };
 
-    const drawer = (
-        <Box sx={{ overflow: 'auto', backgroundSize: 'cover', backgroundPosition: 'center', height: '100%' }}>
-            <List>
-                {links.map((link, index) => (
-                    <ListItem
-                        button
-                        key={link.text}
-                        component="a"
-                        href={link.href}
-                        sx={{
-                            '&:hover': { transform: 'scale(1.1)', boxShadow: '0 4px 20px rgba(0, 0, 0, 0.1)' },
-                            py: 3
-                        }}
-                    >
-                        <ListItemIcon>
-                            {link.icon}
-                        </ListItemIcon>
-                        <ListItemText
-                            primaryTypographyProps={{
-                                sx: {
-                                    fontSize: '1.2rem',
-                                    textShadow: '2px 2px 4px rgba(0, 0, 0, 0.2)'
-                                }
-                            }}
-                            primary={link.text}
-                        />
-                    </ListItem>
-                ))}
-            </List>
-        </Box>
-    );
 
     return (
         <Box sx={{ display: 'flex' }}>
@@ -97,7 +60,7 @@ const Layout = ({ children }) => {
                     [`& .MuiDrawer-paper`]: { width: drawerWidth, boxSizing: 'border-box', mt: isMobile ? '60px' : '80px' },
                 }}
             >
-                {drawer}
+               <DefaultSideBar/>
             </Drawer>
 
             <Box
