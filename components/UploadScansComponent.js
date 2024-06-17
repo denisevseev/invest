@@ -30,7 +30,7 @@ const UploadScansComponent = () => {
                 }
             });
             const data = await response.json();
-            setFiles(data.map(file => ({
+            setFiles(data?.map(file => ({
                 ...file,
                 preview: `/api/getFile?filename=${file.filename}`
             })));

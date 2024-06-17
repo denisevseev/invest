@@ -179,3 +179,5 @@
 [2024-06-17T01:23:46.738Z] User found: {"_id":"666ed695a4af98131f38362b","clientType":"corporate","companyName":"victorum","country":"Afghanistan","phoneNumber":"8798798","email":"te32100112@example.com","password":"wssssdf#sdf3434jn@#WW"}
 [2024-06-17T01:24:31.788Z] {"user":{"email":"te32100112@example.com","id":"666ed695a4af98131f38362b"},"expires":"2024-07-17T01:24:31.786Z"} backend session
 [2024-06-17T01:24:32.416Z] User found: {"_id":"666ed695a4af98131f38362b","clientType":"corporate","companyName":"victorum","country":"Afghanistan","phoneNumber":"8798798","email":"te32100112@example.com","password":"wssssdf#sdf3434jn@#WW"}
+[2024-06-17T01:28:00.976Z] {"user":{"email":"te32100112@example.com","id":"666ed695a4af98131f38362b"},"expires":"2024-07-17T01:28:00.970Z"} backend session
+[2024-06-17T01:28:01.742Z] User found: {"_id":"666ed695a4af98131f38362b","clientType":"corporate","companyName":"victorum","country":"Afghanistan","phoneNumber":"8798798","email":"te32100112@example.com","password":"wssssdf#sdf3434jn@#WW"}
