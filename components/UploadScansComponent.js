@@ -53,6 +53,7 @@ const UploadScansComponent = () => {
 
         if (response.ok) {
             setFiles(prevFiles => prevFiles.filter(f => f.filename !== file.filename));
+            alert('File deleted successfully');
         } else {
             alert('Error deleting file');
         }
@@ -72,6 +73,7 @@ const UploadScansComponent = () => {
 
         if (response.ok) {
             fetchFiles();
+            alert('Upload successfully!');
         } else {
             alert('Error uploading files');
         }
@@ -140,7 +142,7 @@ const UploadScansComponent = () => {
                 onClick={handleUpload}
                 disabled={files.length === 0}
             >
-                Upload
+                Save
             </Button>
         </Box>
     );
