@@ -257,7 +257,7 @@
 // export default UploadScansComponent;
 
 import React, { useState, useEffect } from 'react';
-import { Box, Typography, Grid, IconButton, Modal } from '@mui/material';
+import { Box, Typography, Grid, IconButton, Modal, Button } from '@mui/material';
 import { useDropzone } from 'react-dropzone';
 import CloudUploadIcon from '@mui/icons-material/CloudUpload';
 import DeleteIcon from '@mui/icons-material/Delete';
