@@ -16,6 +16,7 @@ async function connectToDatabase() {
 
 export default async function handler(req, res) {
     const { filename } = req.query;
+    console.log('!!!!')
 
     if (!filename) {
         return res.status(400).json({ message: 'Filename is required' });

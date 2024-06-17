@@ -236,3 +236,296 @@
 [2024-06-17T12:13:40.973Z] User found: {"_id":"6669b6f5756d40ac2c7ea451","name":"test test","phone":"+79153403785","email":"te32100@example.com","password":"wssssdf#sdf3434jn@#WW"}
 [2024-06-17T12:14:04.926Z] {"user":{"email":"te32100@example.com","id":"6669b6f5756d40ac2c7ea451"},"expires":"2024-07-17T12:14:04.923Z"} backend session
 [2024-06-17T12:14:05.969Z] User found: {"_id":"6669b6f5756d40ac2c7ea451","name":"test test","phone":"+79153403785","email":"te32100@example.com","password":"wssssdf#sdf3434jn@#WW"}
+[2024-06-17T12:31:48.748Z] {"user":{"email":"te32100@example.com","id":"6669b6f5756d40ac2c7ea451"},"expires":"2024-07-17T12:31:48.741Z"} backend session
+[2024-06-17T12:32:18.767Z] Error fetching user: getaddrinfo ENOTFOUND ac-unogyfd-shard-00-00.rosrr3n.mongodb.net
+[2024-06-17T12:34:57.904Z] {"user":{"email":"te32100@example.com","id":"6669b6f5756d40ac2c7ea451"},"expires":"2024-07-17T12:34:57.903Z"} backend session
+[2024-06-17T12:35:27.908Z] Error fetching user: getaddrinfo ENOTFOUND ac-unogyfd-shard-00-00.rosrr3n.mongodb.net
+[2024-06-17T12:36:51.117Z] {"user":{"email":"te32100@example.com","id":"6669b6f5756d40ac2c7ea451"},"expires":"2024-07-17T12:36:51.113Z"} backend session
+[2024-06-17T12:36:52.193Z] User found: {"_id":"6669b6f5756d40ac2c7ea451","name":"test test","phone":"+79153403785","email":"te32100@example.com","password":"wssssdf#sdf3434jn@#WW"}
+[2024-06-17T12:37:28.562Z] {"user":{"email":"te32102323230@example.com","id":"6669b99762b7153c33c22f43"},"expires":"2024-07-17T12:37:28.560Z"} backend session
+[2024-06-17T12:37:28.645Z] User found: {"_id":"6669b99762b7153c33c22f43","clientType":"individual","firstName":"sdfsdf","lastName":"sdfsdf","companyName":"victorum","country":"United Arab Emirates","phoneNumber":"453425435","city":"moscow","dateOfBirth":"2024-06-02T21:00:00.000Z","fullAddress":"moscow","nationality":"Afghanistan","postalCode":"03434","securityQuestion1":"What was your first pet's name?","securityQuestion2":"What is your favorite color?","securityQuestion3":"What is your favorite movie?","securityQuestion4":"What is the name of your best friend?","securityQuestion5":"What is your dream job?","securityQuestion6":"What is your favorite vacation destination?","securityQuestion7":"What is your favorite fruit?","securityQuestion8":"What is your favorite animal?","securityQuestion9":"What is your favorite TV show?","securityQuestion10":"What is your favorite holiday?","email":"te32102323230@example.com","password":"wssssdf#sdf3434jn@#WW"}
+[2024-06-17T12:37:31.374Z] {"user":{"email":"te32102323230@example.com","id":"6669b99762b7153c33c22f43"},"expires":"2024-07-17T12:37:31.366Z"} backend session
+[2024-06-17T12:37:31.469Z] User found: {"_id":"6669b99762b7153c33c22f43","clientType":"individual","firstName":"sdfsdf","lastName":"sdfsdf","companyName":"victorum","country":"United Arab Emirates","phoneNumber":"453425435","city":"moscow","dateOfBirth":"2024-06-02T21:00:00.000Z","fullAddress":"moscow","nationality":"Afghanistan","postalCode":"03434","securityQuestion1":"What was your first pet's name?","securityQuestion2":"What is your favorite color?","securityQuestion3":"What is your favorite movie?","securityQuestion4":"What is the name of your best friend?","securityQuestion5":"What is your dream job?","securityQuestion6":"What is your favorite vacation destination?","securityQuestion7":"What is your favorite fruit?","securityQuestion8":"What is your favorite animal?","securityQuestion9":"What is your favorite TV show?","securityQuestion10":"What is your favorite holiday?","email":"te32102323230@example.com","password":"wssssdf#sdf3434jn@#WW"}
+[2024-06-17T12:43:54.846Z] {"user":{"email":"te32102323230@example.com","id":"6669b99762b7153c33c22f43"},"expires":"2024-07-17T12:43:54.844Z"} backend session
+[2024-06-17T12:43:56.101Z] User found: {"_id":"6669b99762b7153c33c22f43","clientType":"individual","firstName":"sdfsdf","lastName":"sdfsdf","companyName":"victorum","country":"United Arab Emirates","phoneNumber":"453425435","city":"moscow","dateOfBirth":"2024-06-02T21:00:00.000Z","fullAddress":"moscow","nationality":"Afghanistan","postalCode":"03434","securityQuestion1":"What was your first pet's name?","securityQuestion2":"What is your favorite color?","securityQuestion3":"What is your favorite movie?","securityQuestion4":"What is the name of your best friend?","securityQuestion5":"What is your dream job?","securityQuestion6":"What is your favorite vacation destination?","securityQuestion7":"What is your favorite fruit?","securityQuestion8":"What is your favorite animal?","securityQuestion9":"What is your favorite TV show?","securityQuestion10":"What is your favorite holiday?","email":"te32102323230@example.com","password":"wssssdf#sdf3434jn@#WW"}
+[2024-06-17T12:44:01.816Z] {"user":{"email":"te32102323230@example.com","id":"6669b99762b7153c33c22f43"},"expires":"2024-07-17T12:44:01.815Z"} backend session
+[2024-06-17T12:44:01.952Z] User found: {"_id":"6669b99762b7153c33c22f43","clientType":"individual","firstName":"sdfsdf","lastName":"sdfsdf","companyName":"victorum","country":"United Arab Emirates","phoneNumber":"453425435","city":"moscow","dateOfBirth":"2024-06-02T21:00:00.000Z","fullAddress":"moscow","nationality":"Afghanistan","postalCode":"03434","securityQuestion1":"What was your first pet's name?","securityQuestion2":"What is your favorite color?","securityQuestion3":"What is your favorite movie?","securityQuestion4":"What is the name of your best friend?","securityQuestion5":"What is your dream job?","securityQuestion6":"What is your favorite vacation destination?","securityQuestion7":"What is your favorite fruit?","securityQuestion8":"What is your favorite animal?","securityQuestion9":"What is your favorite TV show?","securityQuestion10":"What is your favorite holiday?","email":"te32102323230@example.com","password":"wssssdf#sdf3434jn@#WW"}
+[2024-06-17T12:45:55.651Z] {"user":{"email":"te32102323230@example.com","id":"6669b99762b7153c33c22f43"},"expires":"2024-07-17T12:45:55.648Z"} backend session
+[2024-06-17T12:45:56.724Z] User found: {"_id":"6669b99762b7153c33c22f43","clientType":"individual","firstName":"sdfsdf","lastName":"sdfsdf","companyName":"victorum","country":"United Arab Emirates","phoneNumber":"453425435","city":"moscow","dateOfBirth":"2024-06-02T21:00:00.000Z","fullAddress":"moscow","nationality":"Afghanistan","postalCode":"03434","securityQuestion1":"What was your first pet's name?","securityQuestion2":"What is your favorite color?","securityQuestion3":"What is your favorite movie?","securityQuestion4":"What is the name of your best friend?","securityQuestion5":"What is your dream job?","securityQuestion6":"What is your favorite vacation destination?","securityQuestion7":"What is your favorite fruit?","securityQuestion8":"What is your favorite animal?","securityQuestion9":"What is your favorite TV show?","securityQuestion10":"What is your favorite holiday?","email":"te32102323230@example.com","password":"wssssdf#sdf3434jn@#WW"}
+[2024-06-17T12:46:27.343Z] {"user":{"email":"te32100@example.com","id":"6669b6f5756d40ac2c7ea451"},"expires":"2024-07-17T12:46:27.338Z"} backend session
+[2024-06-17T12:46:28.387Z] User found: {"_id":"6669b6f5756d40ac2c7ea451","name":"test test","phone":"+79153403785","email":"te32100@example.com","password":"wssssdf#sdf3434jn@#WW"}
+[2024-06-17T12:46:28.610Z] {"user":{"email":"te32100@example.com","id":"6669b6f5756d40ac2c7ea451"},"expires":"2024-07-17T12:46:28.608Z"} backend session
+[2024-06-17T12:46:28.703Z] User found: {"_id":"6669b6f5756d40ac2c7ea451","name":"test test","phone":"+79153403785","email":"te32100@example.com","password":"wssssdf#sdf3434jn@#WW"}
+[2024-06-17T14:20:15.180Z] {"user":{"email":"te32100@example.com","id":"6669b6f5756d40ac2c7ea451"},"expires":"2024-07-17T14:20:15.178Z"} backend session
+[2024-06-17T14:20:16.135Z] User found: {"_id":"6669b6f5756d40ac2c7ea451","name":"test test","phone":"+79153403785","email":"te32100@example.com","password":"wssssdf#sdf3434jn@#WW"}
+[2024-06-17T14:20:50.370Z] {"user":{"email":"te32100@example.com","id":"6669b6f5756d40ac2c7ea451"},"expires":"2024-07-17T14:20:50.366Z"} backend session
+[2024-06-17T14:20:50.441Z] User found: {"_id":"6669b6f5756d40ac2c7ea451","name":"test test","phone":"+79153403785","email":"te32100@example.com","password":"wssssdf#sdf3434jn@#WW"}
+[2024-06-17T15:20:56.410Z] {"user":{"email":"te32100@example.com","id":"6669b6f5756d40ac2c7ea451"},"expires":"2024-07-17T15:20:56.408Z"} backend session
+[2024-06-17T15:20:57.368Z] User found: {"_id":"6669b6f5756d40ac2c7ea451","name":"test test","phone":"+79153403785","email":"te32100@example.com","password":"wssssdf#sdf3434jn@#WW"}
+[2024-06-17T17:28:10.510Z] {"user":{"email":"te32100@example.com","id":"6669b6f5756d40ac2c7ea451"},"expires":"2024-07-17T17:26:54.592Z"} backend session
+[2024-06-17T17:28:30.681Z] {"user":{"email":"te32100@example.com","id":"6669b6f5756d40ac2c7ea451"},"expires":"2024-07-17T17:28:30.677Z"} backend session
+[2024-06-17T17:28:32.985Z] {"user":{"email":"te32100@example.com","id":"6669b6f5756d40ac2c7ea451"},"expires":"2024-07-17T17:28:32.981Z"} backend session
+[2024-06-17T17:28:40.601Z] Error fetching user: 806006F101000000:error:0A000438:SSL routines:ssl3_read_bytes:tlsv1 alert internal error:../deps/openssl/openssl/ssl/record/rec_layer_s3.c:1590:SSL alert number 80
+
+[2024-06-17T17:28:40.603Z] Error fetching user: 806006F101000000:error:0A000438:SSL routines:ssl3_read_bytes:tlsv1 alert internal error:../deps/openssl/openssl/ssl/record/rec_layer_s3.c:1590:SSL alert number 80
+
+[2024-06-17T17:28:40.605Z] Error fetching user: 806006F101000000:error:0A000438:SSL routines:ssl3_read_bytes:tlsv1 alert internal error:../deps/openssl/openssl/ssl/record/rec_layer_s3.c:1590:SSL alert number 80
+
+[2024-06-17T17:30:51.939Z] {"user":{"email":"te32100@example.com","id":"6669b6f5756d40ac2c7ea451"},"expires":"2024-07-17T17:30:51.937Z"} backend session
+[2024-06-17T17:30:55.230Z] {"user":{"email":"te32100@example.com","id":"6669b6f5756d40ac2c7ea451"},"expires":"2024-07-17T17:30:55.228Z"} backend session
+[2024-06-17T17:31:21.980Z] Error fetching user: 806006F101000000:error:0A000438:SSL routines:ssl3_read_bytes:tlsv1 alert internal error:../deps/openssl/openssl/ssl/record/rec_layer_s3.c:1590:SSL alert number 80
+
+[2024-06-17T17:31:21.981Z] Error fetching user: 806006F101000000:error:0A000438:SSL routines:ssl3_read_bytes:tlsv1 alert internal error:../deps/openssl/openssl/ssl/record/rec_layer_s3.c:1590:SSL alert number 80
+
+[2024-06-17T17:34:20.550Z] {"user":{"email":"te32100@example.com","id":"6669b6f5756d40ac2c7ea451"},"expires":"2024-07-17T17:34:20.549Z"} backend session
+[2024-06-17T17:34:21.517Z] User found: {"_id":"6669b6f5756d40ac2c7ea451","name":"test test","phone":"+79153403785","email":"te32100@example.com","password":"wssssdf#sdf3434jn@#WW"}
+[2024-06-17T17:34:24.517Z] {"user":{"email":"te32100@example.com","id":"6669b6f5756d40ac2c7ea451"},"expires":"2024-07-17T17:34:24.515Z"} backend session
+[2024-06-17T17:34:24.673Z] User found: {"_id":"6669b6f5756d40ac2c7ea451","name":"test test","phone":"+79153403785","email":"te32100@example.com","password":"wssssdf#sdf3434jn@#WW"}
+[2024-06-17T17:36:04.930Z] {"user":{"email":"te32100@example.com","id":"6669b6f5756d40ac2c7ea451"},"expires":"2024-07-17T17:35:03.149Z"} backend session
+[2024-06-17T17:36:05.157Z] User found: {"_id":"6669b6f5756d40ac2c7ea451","name":"test test","phone":"+79153403785","email":"te32100@example.com","password":"wssssdf#sdf3434jn@#WW"}
+[2024-06-17T17:36:05.234Z] {"user":{"email":"te32100@example.com","id":"6669b6f5756d40ac2c7ea451"},"expires":"2024-07-17T17:36:05.229Z"} backend session
+[2024-06-17T17:36:05.352Z] User found: {"_id":"6669b6f5756d40ac2c7ea451","name":"test test","phone":"+79153403785","email":"te32100@example.com","password":"wssssdf#sdf3434jn@#WW"}
+[2024-06-17T17:36:05.784Z] {"user":{"email":"te32100@example.com","id":"6669b6f5756d40ac2c7ea451"},"expires":"2024-07-17T17:36:05.780Z"} backend session
+[2024-06-17T17:36:07.253Z] User found: {"_id":"6669b6f5756d40ac2c7ea451","name":"test test","phone":"+79153403785","email":"te32100@example.com","password":"wssssdf#sdf3434jn@#WW"}
+[2024-06-17T17:38:53.400Z] {"user":{"email":"de1@example.com","id":"6670748c1d3e76b8261bd8be"},"expires":"2024-07-17T17:38:53.397Z"} backend session
+[2024-06-17T17:38:54.416Z] User found: {"_id":"6670748c1d3e76b8261bd8be","clientType":"corporate","companyName":"victorum","country":"Afghanistan","phoneNumber":"987798798","email":"de1@example.com","password":"wssssdf#sdf3434jn@#WW"}
+[2024-06-17T17:44:52.966Z] {"user":{"email":"de1@example.com","id":"6670748c1d3e76b8261bd8be"},"expires":"2024-07-17T17:44:52.964Z"} backend session
+[2024-06-17T17:44:54.290Z] User found: {"_id":"6670748c1d3e76b8261bd8be","clientType":"corporate","companyName":"victorum","country":"Afghanistan","phoneNumber":"987798798","email":"de1@example.com","password":"wssssdf#sdf3434jn@#WW"}
+[2024-06-17T17:44:56.728Z] {"user":{"email":"de1@example.com","id":"6670748c1d3e76b8261bd8be"},"expires":"2024-07-17T17:44:56.726Z"} backend session
+[2024-06-17T17:44:56.821Z] User found: {"_id":"6670748c1d3e76b8261bd8be","clientType":"corporate","companyName":"victorum","country":"Afghanistan","phoneNumber":"987798798","email":"de1@example.com","password":"wssssdf#sdf3434jn@#WW"}
+[2024-06-17T17:45:03.844Z] {"user":{"email":"de1@example.com","id":"6670748c1d3e76b8261bd8be"},"expires":"2024-07-17T17:45:03.842Z"} backend session
+[2024-06-17T17:45:03.946Z] User found: {"_id":"6670748c1d3e76b8261bd8be","clientType":"corporate","companyName":"victorum","country":"Afghanistan","phoneNumber":"987798798","email":"de1@example.com","password":"wssssdf#sdf3434jn@#WW"}
+[2024-06-17T17:45:58.549Z] {"user":{"email":"de1@example.com","id":"6670748c1d3e76b8261bd8be"},"expires":"2024-07-17T17:45:58.538Z"} backend session
+[2024-06-17T17:45:58.680Z] User found: {"_id":"6670748c1d3e76b8261bd8be","clientType":"corporate","companyName":"victorum","country":"Afghanistan","phoneNumber":"987798798","email":"de1@example.com","password":"wssssdf#sdf3434jn@#WW"}
+[2024-06-17T17:46:32.651Z] {"user":{"email":"de1@example.com","id":"6670748c1d3e76b8261bd8be"},"expires":"2024-07-17T17:46:32.649Z"} backend session
+[2024-06-17T17:46:32.723Z] User found: {"_id":"6670748c1d3e76b8261bd8be","clientType":"corporate","companyName":"victorum","country":"Afghanistan","phoneNumber":"987798798","email":"de1@example.com","password":"wssssdf#sdf3434jn@#WW"}
+[2024-06-17T17:53:08.949Z] {"user":{"email":"de1@example.com","id":"6670748c1d3e76b8261bd8be"},"expires":"2024-07-17T17:53:08.944Z"} backend session
+[2024-06-17T17:53:09.045Z] User found: {"_id":"6670748c1d3e76b8261bd8be","clientType":"corporate","companyName":"victorum","country":"Afghanistan","phoneNumber":"987798798","email":"de1@example.com","password":"wssssdf#sdf3434jn@#WW"}
+[2024-06-17T17:54:00.927Z] {"user":{"email":"de1@example.com","id":"6670748c1d3e76b8261bd8be"},"expires":"2024-07-17T17:54:00.924Z"} backend session
+[2024-06-17T17:54:01.017Z] User found: {"_id":"6670748c1d3e76b8261bd8be","clientType":"corporate","companyName":"victorum","country":"Afghanistan","phoneNumber":"987798798","email":"de1@example.com","password":"wssssdf#sdf3434jn@#WW"}
+[2024-06-17T17:54:29.960Z] {"user":{"email":"de1@example.com","id":"6670748c1d3e76b8261bd8be"},"expires":"2024-07-17T17:54:29.957Z"} backend session
+[2024-06-17T17:54:30.054Z] User found: {"_id":"6670748c1d3e76b8261bd8be","clientType":"corporate","companyName":"victorum","country":"Afghanistan","phoneNumber":"987798798","email":"de1@example.com","password":"wssssdf#sdf3434jn@#WW"}
+[2024-06-17T17:54:42.767Z] {"user":{"email":"de1@example.com","id":"6670748c1d3e76b8261bd8be"},"expires":"2024-07-17T17:54:42.766Z"} backend session
+[2024-06-17T17:54:42.846Z] User found: {"_id":"6670748c1d3e76b8261bd8be","clientType":"corporate","companyName":"victorum","country":"Afghanistan","phoneNumber":"987798798","email":"de1@example.com","password":"wssssdf#sdf3434jn@#WW"}
+[2024-06-17T17:55:27.416Z] {"user":{"email":"de1@example.com","id":"6670748c1d3e76b8261bd8be"},"expires":"2024-07-17T17:55:27.414Z"} backend session
+[2024-06-17T17:55:27.518Z] User found: {"_id":"6670748c1d3e76b8261bd8be","clientType":"corporate","companyName":"victorum","country":"Afghanistan","phoneNumber":"987798798","email":"de1@example.com","password":"wssssdf#sdf3434jn@#WW"}
+[2024-06-17T17:55:41.585Z] {"user":{"email":"de1@example.com","id":"6670748c1d3e76b8261bd8be"},"expires":"2024-07-17T17:55:41.583Z"} backend session
+[2024-06-17T17:55:41.671Z] User found: {"_id":"6670748c1d3e76b8261bd8be","clientType":"corporate","companyName":"victorum","country":"Afghanistan","phoneNumber":"987798798","email":"de1@example.com","password":"wssssdf#sdf3434jn@#WW"}
+[2024-06-17T17:56:08.906Z] {"user":{"email":"de1@example.com","id":"6670748c1d3e76b8261bd8be"},"expires":"2024-07-17T17:56:08.903Z"} backend session
+[2024-06-17T17:56:09.012Z] User found: {"_id":"6670748c1d3e76b8261bd8be","clientType":"corporate","companyName":"victorum","country":"Afghanistan","phoneNumber":"987798798","email":"de1@example.com","password":"wssssdf#sdf3434jn@#WW"}
+[2024-06-17T17:56:50.067Z] {"user":{"email":"de1@example.com","id":"6670748c1d3e76b8261bd8be"},"expires":"2024-07-17T17:56:50.065Z"} backend session
+[2024-06-17T17:56:50.144Z] User found: {"_id":"6670748c1d3e76b8261bd8be","clientType":"corporate","companyName":"victorum","country":"Afghanistan","phoneNumber":"987798798","email":"de1@example.com","password":"wssssdf#sdf3434jn@#WW"}
+[2024-06-17T17:57:06.190Z] {"user":{"email":"de1@example.com","id":"6670748c1d3e76b8261bd8be"},"expires":"2024-07-17T17:57:06.185Z"} backend session
+[2024-06-17T17:57:06.280Z] User found: {"_id":"6670748c1d3e76b8261bd8be","clientType":"corporate","companyName":"victorum","country":"Afghanistan","phoneNumber":"987798798","email":"de1@example.com","password":"wssssdf#sdf3434jn@#WW"}
+[2024-06-17T17:57:33.747Z] {"user":{"email":"de1@example.com","id":"6670748c1d3e76b8261bd8be"},"expires":"2024-07-17T17:57:33.744Z"} backend session
+[2024-06-17T17:57:34.644Z] User found: {"_id":"6670748c1d3e76b8261bd8be","clientType":"corporate","companyName":"victorum","country":"Afghanistan","phoneNumber":"987798798","email":"de1@example.com","password":"wssssdf#sdf3434jn@#WW"}
+[2024-06-17T21:02:50.052Z] {"user":{"email":"de1@example.com","id":"6670748c1d3e76b8261bd8be"},"expires":"2024-07-17T21:02:50.048Z"} backend session
+[2024-06-17T21:02:50.514Z] User found: {"_id":"6670748c1d3e76b8261bd8be","clientType":"corporate","companyName":"victorum","country":"Afghanistan","phoneNumber":"987798798","email":"de1@example.com","password":"wssssdf#sdf3434jn@#WW"}
+[2024-06-17T21:02:54.636Z] {"user":{"email":"de1@example.com","id":"6670748c1d3e76b8261bd8be"},"expires":"2024-07-17T21:02:54.626Z"} backend session
+[2024-06-17T21:02:54.694Z] User found: {"_id":"6670748c1d3e76b8261bd8be","clientType":"corporate","companyName":"victorum","country":"Afghanistan","phoneNumber":"987798798","email":"de1@example.com","password":"wssssdf#sdf3434jn@#WW"}
+[2024-06-17T21:03:07.278Z] {"user":{"email":"de1@example.com","id":"6670748c1d3e76b8261bd8be"},"expires":"2024-07-17T21:03:07.275Z"} backend session
+[2024-06-17T21:03:42.143Z] Error fetching user: querySrv ETIMEOUT _mongodb._tcp.cluster0.rosrr3n.mongodb.net
+[2024-06-17T21:06:38.209Z] {"user":{"email":"de1@example.com","id":"6670748c1d3e76b8261bd8be"},"expires":"2024-07-17T21:06:38.206Z"} backend session
+[2024-06-17T21:07:05.829Z] {"user":{"email":"de1@example.com","id":"6670748c1d3e76b8261bd8be"},"expires":"2024-07-17T21:07:05.826Z"} backend session
+[2024-06-17T21:07:09.483Z] User found: {"_id":"6670748c1d3e76b8261bd8be","clientType":"corporate","companyName":"victorum","country":"Afghanistan","phoneNumber":"987798798","email":"de1@example.com","password":"wssssdf#sdf3434jn@#WW"}
+[2024-06-17T21:07:47.153Z] {"user":{"email":"de1@example.com","id":"6670748c1d3e76b8261bd8be"},"expires":"2024-07-17T21:07:47.150Z"} backend session
+[2024-06-17T21:07:47.799Z] User found: {"_id":"6670748c1d3e76b8261bd8be","clientType":"corporate","companyName":"victorum","country":"Afghanistan","phoneNumber":"987798798","email":"de1@example.com","password":"wssssdf#sdf3434jn@#WW"}
+[2024-06-17T21:09:42.700Z] {"user":{"email":"de1@example.com","id":"6670748c1d3e76b8261bd8be"},"expires":"2024-07-17T21:09:42.694Z"} backend session
+[2024-06-17T21:09:42.749Z] User found: {"_id":"6670748c1d3e76b8261bd8be","clientType":"corporate","companyName":"victorum","country":"Afghanistan","phoneNumber":"987798798","email":"de1@example.com","password":"wssssdf#sdf3434jn@#WW"}
+[2024-06-17T21:12:40.174Z] {"user":{"email":"de1@example.com","id":"6670748c1d3e76b8261bd8be"},"expires":"2024-07-17T21:12:40.173Z"} backend session
+[2024-06-17T21:12:40.221Z] User found: {"_id":"6670748c1d3e76b8261bd8be","clientType":"corporate","companyName":"victorum","country":"Afghanistan","phoneNumber":"987798798","email":"de1@example.com","password":"wssssdf#sdf3434jn@#WW"}
+[2024-06-17T21:12:53.084Z] {"user":{"email":"de1@example.com","id":"6670748c1d3e76b8261bd8be"},"expires":"2024-07-17T21:12:53.081Z"} backend session
+[2024-06-17T21:12:53.136Z] User found: {"_id":"6670748c1d3e76b8261bd8be","clientType":"corporate","companyName":"victorum","country":"Afghanistan","phoneNumber":"987798798","email":"de1@example.com","password":"wssssdf#sdf3434jn@#WW"}
+[2024-06-17T21:13:00.328Z] {"user":{"email":"de1@example.com","id":"6670748c1d3e76b8261bd8be"},"expires":"2024-07-17T21:13:00.325Z"} backend session
+[2024-06-17T21:13:00.377Z] User found: {"_id":"6670748c1d3e76b8261bd8be","clientType":"corporate","companyName":"victorum","country":"Afghanistan","phoneNumber":"987798798","email":"de1@example.com","password":"wssssdf#sdf3434jn@#WW"}
+[2024-06-17T21:13:27.215Z] {"user":{"email":"de1@example.com","id":"6670748c1d3e76b8261bd8be"},"expires":"2024-07-17T21:13:27.209Z"} backend session
+[2024-06-17T21:13:27.897Z] User found: {"_id":"6670748c1d3e76b8261bd8be","clientType":"corporate","companyName":"victorum","country":"Afghanistan","phoneNumber":"987798798","email":"de1@example.com","password":"wssssdf#sdf3434jn@#WW"}
+[2024-06-17T21:14:09.417Z] {"user":{"email":"de1@example.com","id":"6670748c1d3e76b8261bd8be"},"expires":"2024-07-17T21:14:09.416Z"} backend session
+[2024-06-17T21:14:10.107Z] User found: {"_id":"6670748c1d3e76b8261bd8be","clientType":"corporate","companyName":"victorum","country":"Afghanistan","phoneNumber":"987798798","email":"de1@example.com","password":"wssssdf#sdf3434jn@#WW"}
+[2024-06-17T21:16:06.345Z] {"user":{"email":"de1@example.com","id":"6670748c1d3e76b8261bd8be"},"expires":"2024-07-17T21:16:06.342Z"} backend session
+[2024-06-17T21:16:06.405Z] User found: {"_id":"6670748c1d3e76b8261bd8be","clientType":"corporate","companyName":"victorum","country":"Afghanistan","phoneNumber":"987798798","email":"de1@example.com","password":"wssssdf#sdf3434jn@#WW"}
+[2024-06-17T21:16:33.446Z] {"user":{"email":"de1@example.com","id":"6670748c1d3e76b8261bd8be"},"expires":"2024-07-17T21:16:33.441Z"} backend session
+[2024-06-17T21:16:34.069Z] User found: {"_id":"6670748c1d3e76b8261bd8be","clientType":"corporate","companyName":"victorum","country":"Afghanistan","phoneNumber":"987798798","email":"de1@example.com","password":"wssssdf#sdf3434jn@#WW"}
+[2024-06-17T21:17:30.284Z] {"user":{"email":"de1@example.com","id":"6670748c1d3e76b8261bd8be"},"expires":"2024-07-17T21:17:30.280Z"} backend session
+[2024-06-17T21:17:30.983Z] User found: {"_id":"6670748c1d3e76b8261bd8be","clientType":"corporate","companyName":"victorum","country":"Afghanistan","phoneNumber":"987798798","email":"de1@example.com","password":"wssssdf#sdf3434jn@#WW"}
+[2024-06-17T21:17:40.958Z] {"user":{"email":"de1@example.com","id":"6670748c1d3e76b8261bd8be"},"expires":"2024-07-17T21:17:40.956Z"} backend session
+[2024-06-17T21:17:41.016Z] User found: {"_id":"6670748c1d3e76b8261bd8be","clientType":"corporate","companyName":"victorum","country":"Afghanistan","phoneNumber":"987798798","email":"de1@example.com","password":"wssssdf#sdf3434jn@#WW"}
+[2024-06-17T21:17:45.423Z] {"user":{"email":"de1@example.com","id":"6670748c1d3e76b8261bd8be"},"expires":"2024-07-17T21:17:45.422Z"} backend session
+[2024-06-17T21:17:46.061Z] User found: {"_id":"6670748c1d3e76b8261bd8be","clientType":"corporate","companyName":"victorum","country":"Afghanistan","phoneNumber":"987798798","email":"de1@example.com","password":"wssssdf#sdf3434jn@#WW"}
+[2024-06-17T21:17:46.276Z] {"user":{"email":"de1@example.com","id":"6670748c1d3e76b8261bd8be"},"expires":"2024-07-17T21:17:46.275Z"} backend session
+[2024-06-17T21:17:46.326Z] User found: {"_id":"6670748c1d3e76b8261bd8be","clientType":"corporate","companyName":"victorum","country":"Afghanistan","phoneNumber":"987798798","email":"de1@example.com","password":"wssssdf#sdf3434jn@#WW"}
+[2024-06-17T21:18:25.595Z] {"user":{"email":"de1@example.com","id":"6670748c1d3e76b8261bd8be"},"expires":"2024-07-17T21:18:25.594Z"} backend session
+[2024-06-17T21:18:26.181Z] User found: {"_id":"6670748c1d3e76b8261bd8be","clientType":"corporate","companyName":"victorum","country":"Afghanistan","phoneNumber":"987798798","email":"de1@example.com","password":"wssssdf#sdf3434jn@#WW"}
+[2024-06-17T21:18:30.621Z] {"user":{"email":"de1@example.com","id":"6670748c1d3e76b8261bd8be"},"expires":"2024-07-17T21:18:30.618Z"} backend session
+[2024-06-17T21:18:30.668Z] User found: {"_id":"6670748c1d3e76b8261bd8be","clientType":"corporate","companyName":"victorum","country":"Afghanistan","phoneNumber":"987798798","email":"de1@example.com","password":"wssssdf#sdf3434jn@#WW"}
+[2024-06-17T21:18:46.231Z] {"user":{"email":"de1@example.com","id":"6670748c1d3e76b8261bd8be"},"expires":"2024-07-17T21:18:46.227Z"} backend session
+[2024-06-17T21:18:46.287Z] User found: {"_id":"6670748c1d3e76b8261bd8be","clientType":"corporate","companyName":"victorum","country":"Afghanistan","phoneNumber":"987798798","email":"de1@example.com","password":"wssssdf#sdf3434jn@#WW"}
+[2024-06-17T21:18:51.449Z] {"user":{"email":"de1@example.com","id":"6670748c1d3e76b8261bd8be"},"expires":"2024-07-17T21:18:51.447Z"} backend session
+[2024-06-17T21:18:51.500Z] User found: {"_id":"6670748c1d3e76b8261bd8be","clientType":"corporate","companyName":"victorum","country":"Afghanistan","phoneNumber":"987798798","email":"de1@example.com","password":"wssssdf#sdf3434jn@#WW"}
+[2024-06-17T21:19:29.753Z] {"user":{"email":"de1@example.com","id":"6670748c1d3e76b8261bd8be"},"expires":"2024-07-17T21:19:29.716Z"} backend session
+[2024-06-17T21:19:33.514Z] User found: {"_id":"6670748c1d3e76b8261bd8be","clientType":"corporate","companyName":"victorum","country":"Afghanistan","phoneNumber":"987798798","email":"de1@example.com","password":"wssssdf#sdf3434jn@#WW"}
+[2024-06-17T21:19:33.531Z] {"user":{"email":"de1@example.com","id":"6670748c1d3e76b8261bd8be"},"expires":"2024-07-17T21:19:33.530Z"} backend session
+[2024-06-17T21:19:33.650Z] User found: {"_id":"6670748c1d3e76b8261bd8be","clientType":"corporate","companyName":"victorum","country":"Afghanistan","phoneNumber":"987798798","email":"de1@example.com","password":"wssssdf#sdf3434jn@#WW"}
+[2024-06-17T21:20:16.608Z] {"user":{"email":"de1@example.com","id":"6670748c1d3e76b8261bd8be"},"expires":"2024-07-17T21:20:16.607Z"} backend session
+[2024-06-17T21:20:17.181Z] User found: {"_id":"6670748c1d3e76b8261bd8be","clientType":"corporate","companyName":"victorum","country":"Afghanistan","phoneNumber":"987798798","email":"de1@example.com","password":"wssssdf#sdf3434jn@#WW"}
+[2024-06-17T21:21:27.660Z] {"user":{"email":"de1@example.com","id":"6670748c1d3e76b8261bd8be"},"expires":"2024-07-17T21:21:27.658Z"} backend session
+[2024-06-17T21:21:29.834Z] User found: {"_id":"6670748c1d3e76b8261bd8be","clientType":"corporate","companyName":"victorum","country":"Afghanistan","phoneNumber":"987798798","email":"de1@example.com","password":"wssssdf#sdf3434jn@#WW"}
+[2024-06-17T21:21:36.957Z] {"user":{"email":"de1@example.com","id":"6670748c1d3e76b8261bd8be"},"expires":"2024-07-17T21:21:36.956Z"} backend session
+[2024-06-17T21:21:37.788Z] User found: {"_id":"6670748c1d3e76b8261bd8be","clientType":"corporate","companyName":"victorum","country":"Afghanistan","phoneNumber":"987798798","email":"de1@example.com","password":"wssssdf#sdf3434jn@#WW"}
+[2024-06-17T21:21:43.863Z] {"user":{"email":"de1@example.com","id":"6670748c1d3e76b8261bd8be"},"expires":"2024-07-17T21:21:43.858Z"} backend session
+[2024-06-17T21:21:43.911Z] User found: {"_id":"6670748c1d3e76b8261bd8be","clientType":"corporate","companyName":"victorum","country":"Afghanistan","phoneNumber":"987798798","email":"de1@example.com","password":"wssssdf#sdf3434jn@#WW"}
+[2024-06-17T21:24:35.061Z] {"user":{"email":"de1@example.com","id":"6670748c1d3e76b8261bd8be"},"expires":"2024-07-17T21:24:35.058Z"} backend session
+[2024-06-17T21:24:56.777Z] {"user":{"email":"de1@example.com","id":"6670748c1d3e76b8261bd8be"},"expires":"2024-07-17T21:24:56.773Z"} backend session
+[2024-06-17T21:24:59.056Z] User found: {"_id":"6670748c1d3e76b8261bd8be","clientType":"corporate","companyName":"victorum","country":"Afghanistan","phoneNumber":"987798798","email":"de1@example.com","password":"wssssdf#sdf3434jn@#WW"}
+[2024-06-17T21:27:00.233Z] {"user":{"email":"de1@example.com","id":"6670748c1d3e76b8261bd8be"},"expires":"2024-07-17T21:27:00.228Z"} backend session
+[2024-06-17T21:27:08.155Z] User found: {"_id":"6670748c1d3e76b8261bd8be","clientType":"corporate","companyName":"victorum","country":"Afghanistan","phoneNumber":"987798798","email":"de1@example.com","password":"wssssdf#sdf3434jn@#WW"}
+[2024-06-17T21:27:08.181Z] {"user":{"email":"de1@example.com","id":"6670748c1d3e76b8261bd8be"},"expires":"2024-07-17T21:27:08.179Z"} backend session
+[2024-06-17T21:27:08.800Z] User found: {"_id":"6670748c1d3e76b8261bd8be","clientType":"corporate","companyName":"victorum","country":"Afghanistan","phoneNumber":"987798798","email":"de1@example.com","password":"wssssdf#sdf3434jn@#WW"}
+[2024-06-17T21:27:08.819Z] {"user":{"email":"de1@example.com","id":"6670748c1d3e76b8261bd8be"},"expires":"2024-07-17T21:27:08.816Z"} backend session
+[2024-06-17T21:27:08.866Z] User found: {"_id":"6670748c1d3e76b8261bd8be","clientType":"corporate","companyName":"victorum","country":"Afghanistan","phoneNumber":"987798798","email":"de1@example.com","password":"wssssdf#sdf3434jn@#WW"}
+[2024-06-17T21:28:50.848Z] {"user":{"email":"de1@example.com","id":"6670748c1d3e76b8261bd8be"},"expires":"2024-07-17T21:28:50.843Z"} backend session
+[2024-06-17T21:28:57.746Z] User found: {"_id":"6670748c1d3e76b8261bd8be","clientType":"corporate","companyName":"victorum","country":"Afghanistan","phoneNumber":"987798798","email":"de1@example.com","password":"wssssdf#sdf3434jn@#WW"}
+[2024-06-17T21:28:57.777Z] {"user":{"email":"de1@example.com","id":"6670748c1d3e76b8261bd8be"},"expires":"2024-07-17T21:28:57.774Z"} backend session
+[2024-06-17T21:28:58.382Z] User found: {"_id":"6670748c1d3e76b8261bd8be","clientType":"corporate","companyName":"victorum","country":"Afghanistan","phoneNumber":"987798798","email":"de1@example.com","password":"wssssdf#sdf3434jn@#WW"}
+[2024-06-17T21:29:13.590Z] {"user":{"email":"de1@example.com","id":"6670748c1d3e76b8261bd8be"},"expires":"2024-07-17T21:29:13.588Z"} backend session
+[2024-06-17T21:29:13.604Z] Error fetching user: queryTxt ESERVFAIL cluster0.rosrr3n.mongodb.net
+[2024-06-17T21:29:20.562Z] {"user":{"email":"de1@example.com","id":"6670748c1d3e76b8261bd8be"},"expires":"2024-07-17T21:29:20.560Z"} backend session
+[2024-06-17T21:29:20.573Z] Error fetching user: queryTxt ESERVFAIL cluster0.rosrr3n.mongodb.net
+[2024-06-17T21:29:25.527Z] {"user":{"email":"de1@example.com","id":"6670748c1d3e76b8261bd8be"},"expires":"2024-07-17T21:29:25.525Z"} backend session
+[2024-06-17T21:29:25.537Z] Error fetching user: queryTxt ESERVFAIL cluster0.rosrr3n.mongodb.net
+[2024-06-17T21:29:26.667Z] {"user":{"email":"de1@example.com","id":"6670748c1d3e76b8261bd8be"},"expires":"2024-07-17T21:29:26.665Z"} backend session
+[2024-06-17T21:29:26.679Z] Error fetching user: queryTxt ESERVFAIL cluster0.rosrr3n.mongodb.net
+[2024-06-17T21:29:28.901Z] {"user":{"email":"de1@example.com","id":"6670748c1d3e76b8261bd8be"},"expires":"2024-07-17T21:29:28.899Z"} backend session
+[2024-06-17T21:29:29.264Z] Error fetching user: queryTxt ESERVFAIL cluster0.rosrr3n.mongodb.net
+[2024-06-17T21:29:32.185Z] {"user":{"email":"de1@example.com","id":"6670748c1d3e76b8261bd8be"},"expires":"2024-07-17T21:29:32.183Z"} backend session
+[2024-06-17T21:29:32.197Z] Error fetching user: queryTxt ESERVFAIL cluster0.rosrr3n.mongodb.net
+[2024-06-17T21:29:37.642Z] {"user":{"email":"de1@example.com","id":"6670748c1d3e76b8261bd8be"},"expires":"2024-07-17T21:29:37.639Z"} backend session
+[2024-06-17T21:29:37.649Z] Error fetching user: queryTxt ESERVFAIL cluster0.rosrr3n.mongodb.net
+[2024-06-17T21:29:43.673Z] {"user":{"email":"de1@example.com","id":"6670748c1d3e76b8261bd8be"},"expires":"2024-07-17T21:29:43.672Z"} backend session
+[2024-06-17T21:29:43.681Z] Error fetching user: queryTxt ESERVFAIL cluster0.rosrr3n.mongodb.net
+[2024-06-17T21:30:21.732Z] {"user":{"email":"de1@example.com","id":"6670748c1d3e76b8261bd8be"},"expires":"2024-07-17T21:30:21.731Z"} backend session
+[2024-06-17T21:30:33.118Z] User found: {"_id":"6670748c1d3e76b8261bd8be","clientType":"corporate","companyName":"victorum","country":"Afghanistan","phoneNumber":"987798798","email":"de1@example.com","password":"wssssdf#sdf3434jn@#WW"}
+[2024-06-17T21:30:33.156Z] {"user":{"email":"de1@example.com","id":"6670748c1d3e76b8261bd8be"},"expires":"2024-07-17T21:30:33.152Z"} backend session
+[2024-06-17T21:30:33.175Z] Error fetching user: queryTxt ESERVFAIL cluster0.rosrr3n.mongodb.net
+[2024-06-17T21:30:33.191Z] {"user":{"email":"de1@example.com","id":"6670748c1d3e76b8261bd8be"},"expires":"2024-07-17T21:30:33.189Z"} backend session
+[2024-06-17T21:30:33.204Z] Error fetching user: queryTxt ESERVFAIL cluster0.rosrr3n.mongodb.net
+[2024-06-17T21:30:46.136Z] {"user":{"email":"de1@example.com","id":"6670748c1d3e76b8261bd8be"},"expires":"2024-07-17T21:30:46.133Z"} backend session
+[2024-06-17T21:30:46.142Z] Error fetching user: queryTxt ESERVFAIL cluster0.rosrr3n.mongodb.net
+[2024-06-17T21:31:03.192Z] {"user":{"email":"de1@example.com","id":"6670748c1d3e76b8261bd8be"},"expires":"2024-07-17T21:31:03.191Z"} backend session
+[2024-06-17T21:31:03.201Z] Error fetching user: queryTxt ESERVFAIL cluster0.rosrr3n.mongodb.net
+[2024-06-17T21:32:11.328Z] {"user":{"email":"de1@example.com","id":"6670748c1d3e76b8261bd8be"},"expires":"2024-07-17T21:32:11.326Z"} backend session
+[2024-06-17T21:32:23.811Z] Error fetching user: queryTxt ESERVFAIL cluster0.rosrr3n.mongodb.net
+[2024-06-17T21:33:19.279Z] {"user":{"email":"de1@example.com","id":"6670748c1d3e76b8261bd8be"},"expires":"2024-07-17T21:33:19.275Z"} backend session
+[2024-06-17T21:33:26.023Z] User found: {"_id":"6670748c1d3e76b8261bd8be","clientType":"corporate","companyName":"victorum","country":"Afghanistan","phoneNumber":"987798798","email":"de1@example.com","password":"wssssdf#sdf3434jn@#WW"}
+[2024-06-17T21:34:52.325Z] {"user":{"email":"de1@example.com","id":"6670748c1d3e76b8261bd8be"},"expires":"2024-07-17T21:34:52.322Z"} backend session
+[2024-06-17T21:35:02.854Z] User found: {"_id":"6670748c1d3e76b8261bd8be","clientType":"corporate","companyName":"victorum","country":"Afghanistan","phoneNumber":"987798798","email":"de1@example.com","password":"wssssdf#sdf3434jn@#WW"}
+[2024-06-17T21:35:02.906Z] {"user":{"email":"de1@example.com","id":"6670748c1d3e76b8261bd8be"},"expires":"2024-07-17T21:35:02.900Z"} backend session
+[2024-06-17T21:35:04.584Z] User found: {"_id":"6670748c1d3e76b8261bd8be","clientType":"corporate","companyName":"victorum","country":"Afghanistan","phoneNumber":"987798798","email":"de1@example.com","password":"wssssdf#sdf3434jn@#WW"}
+[2024-06-17T21:36:31.661Z] {"user":{"email":"de1@example.com","id":"6670748c1d3e76b8261bd8be"},"expires":"2024-07-17T21:36:31.658Z"} backend session
+[2024-06-17T21:36:37.681Z] User found: {"_id":"6670748c1d3e76b8261bd8be","clientType":"corporate","companyName":"victorum","country":"Afghanistan","phoneNumber":"987798798","email":"de1@example.com","password":"wssssdf#sdf3434jn@#WW"}
+[2024-06-17T21:38:57.890Z] {"user":{"email":"de1@example.com","id":"6670748c1d3e76b8261bd8be"},"expires":"2024-07-17T21:38:57.886Z"} backend session
+[2024-06-17T21:38:57.941Z] User found: {"_id":"6670748c1d3e76b8261bd8be","clientType":"corporate","companyName":"victorum","country":"Afghanistan","phoneNumber":"987798798","email":"de1@example.com","password":"wssssdf#sdf3434jn@#WW"}
+[2024-06-17T21:41:34.048Z] {"user":{"email":"de1@example.com","id":"6670748c1d3e76b8261bd8be"},"expires":"2024-07-17T21:41:34.045Z"} backend session
+[2024-06-17T21:41:39.170Z] User found: {"_id":"6670748c1d3e76b8261bd8be","clientType":"corporate","companyName":"victorum","country":"Afghanistan","phoneNumber":"987798798","email":"de1@example.com","password":"wssssdf#sdf3434jn@#WW"}
+[2024-06-17T21:44:08.459Z] {"user":{"email":"de1@example.com","id":"6670748c1d3e76b8261bd8be"},"expires":"2024-07-17T21:44:08.456Z"} backend session
+[2024-06-17T21:44:10.493Z] User found: {"_id":"6670748c1d3e76b8261bd8be","clientType":"corporate","companyName":"victorum","country":"Afghanistan","phoneNumber":"987798798","email":"de1@example.com","password":"wssssdf#sdf3434jn@#WW"}
+[2024-06-17T21:49:12.744Z] {"user":{"email":"de1@example.com","id":"6670748c1d3e76b8261bd8be"},"expires":"2024-07-17T21:49:12.742Z"} backend session
+[2024-06-17T21:49:20.075Z] User found: {"_id":"6670748c1d3e76b8261bd8be","clientType":"corporate","companyName":"victorum","country":"Afghanistan","phoneNumber":"987798798","email":"de1@example.com","password":"wssssdf#sdf3434jn@#WW"}
+[2024-06-17T21:49:52.872Z] {"user":{"email":"de1@example.com","id":"6670748c1d3e76b8261bd8be"},"expires":"2024-07-17T21:49:52.870Z"} backend session
+[2024-06-17T21:49:52.883Z] Error fetching user: querySrv ESERVFAIL _mongodb._tcp.cluster0.rosrr3n.mongodb.net
+[2024-06-17T21:49:52.906Z] {"user":{"email":"de1@example.com","id":"6670748c1d3e76b8261bd8be"},"expires":"2024-07-17T21:49:52.904Z"} backend session
+[2024-06-17T21:49:52.920Z] Error fetching user: querySrv ESERVFAIL _mongodb._tcp.cluster0.rosrr3n.mongodb.net
+[2024-06-17T21:51:41.736Z] {"user":{"email":"de1@example.com","id":"6670748c1d3e76b8261bd8be"},"expires":"2024-07-17T21:51:41.731Z"} backend session
+[2024-06-17T21:51:54.838Z] User found: {"_id":"6670748c1d3e76b8261bd8be","clientType":"corporate","companyName":"victorum","country":"Afghanistan","phoneNumber":"987798798","email":"de1@example.com","password":"wssssdf#sdf3434jn@#WW"}
+[2024-06-17T21:51:54.871Z] {"user":{"email":"de1@example.com","id":"6670748c1d3e76b8261bd8be"},"expires":"2024-07-17T21:51:54.868Z"} backend session
+[2024-06-17T21:51:54.876Z] Error fetching user: querySrv ESERVFAIL _mongodb._tcp.cluster0.rosrr3n.mongodb.net
+[2024-06-17T21:52:16.820Z] {"user":{"email":"de1@example.com","id":"6670748c1d3e76b8261bd8be"},"expires":"2024-07-17T21:52:16.817Z"} backend session
+[2024-06-17T21:52:16.827Z] Error fetching user: querySrv ESERVFAIL _mongodb._tcp.cluster0.rosrr3n.mongodb.net
+[2024-06-17T21:52:28.946Z] {"user":{"email":"de1@example.com","id":"6670748c1d3e76b8261bd8be"},"expires":"2024-07-17T21:52:28.944Z"} backend session
+[2024-06-17T21:52:29.045Z] Error fetching user: querySrv ESERVFAIL _mongodb._tcp.cluster0.rosrr3n.mongodb.net
+[2024-06-17T21:52:48.161Z] {"user":{"email":"de1@example.com","id":"6670748c1d3e76b8261bd8be"},"expires":"2024-07-17T21:52:48.158Z"} backend session
+[2024-06-17T21:52:48.165Z] Error fetching user: querySrv ESERVFAIL _mongodb._tcp.cluster0.rosrr3n.mongodb.net
+[2024-06-17T21:52:50.360Z] {"user":{"email":"de1@example.com","id":"6670748c1d3e76b8261bd8be"},"expires":"2024-07-17T21:52:50.351Z"} backend session
+[2024-06-17T21:52:50.374Z] Error fetching user: querySrv ESERVFAIL _mongodb._tcp.cluster0.rosrr3n.mongodb.net
+[2024-06-17T21:53:22.561Z] {"user":{"email":"de1@example.com","id":"6670748c1d3e76b8261bd8be"},"expires":"2024-07-17T21:53:22.559Z"} backend session
+[2024-06-17T21:53:23.138Z] User found: {"_id":"6670748c1d3e76b8261bd8be","clientType":"corporate","companyName":"victorum","country":"Afghanistan","phoneNumber":"987798798","email":"de1@example.com","password":"wssssdf#sdf3434jn@#WW"}
+[2024-06-17T21:53:24.003Z] {"user":{"email":"de1@example.com","id":"6670748c1d3e76b8261bd8be"},"expires":"2024-07-17T21:53:24.002Z"} backend session
+[2024-06-17T21:53:24.055Z] User found: {"_id":"6670748c1d3e76b8261bd8be","clientType":"corporate","companyName":"victorum","country":"Afghanistan","phoneNumber":"987798798","email":"de1@example.com","password":"wssssdf#sdf3434jn@#WW"}
+[2024-06-17T21:53:34.029Z] {"user":{"email":"de1@example.com","id":"6670748c1d3e76b8261bd8be"},"expires":"2024-07-17T21:53:34.028Z"} backend session
+[2024-06-17T21:53:34.074Z] User found: {"_id":"6670748c1d3e76b8261bd8be","clientType":"corporate","companyName":"victorum","country":"Afghanistan","phoneNumber":"987798798","email":"de1@example.com","password":"wssssdf#sdf3434jn@#WW"}
+[2024-06-17T21:57:34.121Z] {"user":{"email":"de1@example.com","id":"6670748c1d3e76b8261bd8be"},"expires":"2024-07-17T21:57:34.119Z"} backend session
+[2024-06-17T21:57:52.007Z] User found: {"_id":"6670748c1d3e76b8261bd8be","clientType":"corporate","companyName":"victorum","country":"Afghanistan","phoneNumber":"987798798","email":"de1@example.com","password":"wssssdf#sdf3434jn@#WW"}
+[2024-06-17T22:03:22.124Z] {"user":{"email":"de1@example.com","id":"6670748c1d3e76b8261bd8be"},"expires":"2024-07-17T22:03:22.120Z"} backend session
+[2024-06-17T22:03:31.067Z] User found: {"_id":"6670748c1d3e76b8261bd8be","clientType":"corporate","companyName":"victorum","country":"Afghanistan","phoneNumber":"987798798","email":"de1@example.com","password":"wssssdf#sdf3434jn@#WW"}
+[2024-06-17T22:04:22.157Z] {"user":{"email":"de1@example.com","id":"6670748c1d3e76b8261bd8be"},"expires":"2024-07-17T22:04:22.125Z"} backend session
+[2024-06-17T22:04:22.811Z] User found: {"_id":"6670748c1d3e76b8261bd8be","clientType":"corporate","companyName":"victorum","country":"Afghanistan","phoneNumber":"987798798","email":"de1@example.com","password":"wssssdf#sdf3434jn@#WW"}
+[2024-06-17T22:04:23.681Z] {"user":{"email":"de1@example.com","id":"6670748c1d3e76b8261bd8be"},"expires":"2024-07-17T22:04:23.679Z"} backend session
+[2024-06-17T22:04:24.308Z] User found: {"_id":"6670748c1d3e76b8261bd8be","clientType":"corporate","companyName":"victorum","country":"Afghanistan","phoneNumber":"987798798","email":"de1@example.com","password":"wssssdf#sdf3434jn@#WW"}
+[2024-06-17T22:09:58.981Z] {"user":{"email":"de1@example.com","id":"6670748c1d3e76b8261bd8be"},"expires":"2024-07-17T22:09:58.977Z"} backend session
+[2024-06-17T22:10:31.957Z] {"user":{"email":"de1@example.com","id":"6670748c1d3e76b8261bd8be"},"expires":"2024-07-17T22:10:31.950Z"} backend session
+[2024-06-17T22:11:03.871Z] {"user":{"email":"de1@example.com","id":"6670748c1d3e76b8261bd8be"},"expires":"2024-07-17T22:11:03.869Z"} backend session
+[2024-06-17T22:11:04.589Z] User found: {"_id":"6670748c1d3e76b8261bd8be","clientType":"corporate","companyName":"victorum","country":"Afghanistan","phoneNumber":"987798798","email":"de1@example.com","password":"wssssdf#sdf3434jn@#WW"}
+[2024-06-17T22:11:36.104Z] {"user":{"email":"de1@example.com","id":"6670748c1d3e76b8261bd8be"},"expires":"2024-07-17T22:11:36.100Z"} backend session
+[2024-06-17T22:11:36.162Z] User found: {"_id":"6670748c1d3e76b8261bd8be","clientType":"corporate","companyName":"victorum","country":"Afghanistan","phoneNumber":"987798798","email":"de1@example.com","password":"wssssdf#sdf3434jn@#WW"}
+[2024-06-17T22:12:38.197Z] User found: {"_id":"6670748c1d3e76b8261bd8be","clientType":"corporate","companyName":"victorum","country":"Afghanistan","phoneNumber":"987798798","email":"de1@example.com","password":"wssssdf#sdf3434jn@#WW"}
+[2024-06-17T22:12:38.220Z] User found: {"_id":"6670748c1d3e76b8261bd8be","clientType":"corporate","companyName":"victorum","country":"Afghanistan","phoneNumber":"987798798","email":"de1@example.com","password":"wssssdf#sdf3434jn@#WW"}
+[2024-06-17T22:14:11.341Z] {"user":{"email":"de1@example.com","id":"6670748c1d3e76b8261bd8be"},"expires":"2024-07-17T22:14:11.337Z"} backend session
+[2024-06-17T22:14:16.742Z] User found: {"_id":"6670748c1d3e76b8261bd8be","clientType":"corporate","companyName":"victorum","country":"Afghanistan","phoneNumber":"987798798","email":"de1@example.com","password":"wssssdf#sdf3434jn@#WW"}
+[2024-06-17T22:17:28.577Z] {"user":{"email":"de1@example.com","id":"6670748c1d3e76b8261bd8be"},"expires":"2024-07-17T22:17:28.573Z"} backend session
+[2024-06-17T22:17:29.188Z] User found: {"_id":"6670748c1d3e76b8261bd8be","clientType":"corporate","companyName":"victorum","country":"Afghanistan","phoneNumber":"987798798","email":"de1@example.com","password":"wssssdf#sdf3434jn@#WW"}
+[2024-06-17T22:27:52.176Z] {"user":{"email":"de1@example.com","id":"6670748c1d3e76b8261bd8be"},"expires":"2024-07-17T22:27:52.173Z"} backend session
+[2024-06-17T22:27:55.800Z] User found: {"_id":"6670748c1d3e76b8261bd8be","clientType":"corporate","companyName":"victorum","country":"Afghanistan","phoneNumber":"987798798","email":"de1@example.com","password":"wssssdf#sdf3434jn@#WW"}
+[2024-06-17T22:27:55.854Z] {"user":{"email":"de1@example.com","id":"6670748c1d3e76b8261bd8be"},"expires":"2024-07-17T22:27:55.852Z"} backend session
+[2024-06-17T22:27:55.901Z] User found: {"_id":"6670748c1d3e76b8261bd8be","clientType":"corporate","companyName":"victorum","country":"Afghanistan","phoneNumber":"987798798","email":"de1@example.com","password":"wssssdf#sdf3434jn@#WW"}
+[2024-06-17T22:27:55.919Z] {"user":{"email":"de1@example.com","id":"6670748c1d3e76b8261bd8be"},"expires":"2024-07-17T22:27:55.917Z"} backend session
+[2024-06-17T22:27:55.965Z] User found: {"_id":"6670748c1d3e76b8261bd8be","clientType":"corporate","companyName":"victorum","country":"Afghanistan","phoneNumber":"987798798","email":"de1@example.com","password":"wssssdf#sdf3434jn@#WW"}
+[2024-06-17T22:28:28.842Z] {"user":{"email":"de1@example.com","id":"6670748c1d3e76b8261bd8be"},"expires":"2024-07-17T22:28:28.837Z"} backend session
+[2024-06-17T22:28:28.889Z] User found: {"_id":"6670748c1d3e76b8261bd8be","clientType":"corporate","companyName":"victorum","country":"Afghanistan","phoneNumber":"987798798","email":"de1@example.com","password":"wssssdf#sdf3434jn@#WW"}
+[2024-06-17T22:29:05.310Z] {"user":{"email":"de1@example.com","id":"6670748c1d3e76b8261bd8be"},"expires":"2024-07-17T22:29:05.303Z"} backend session
+[2024-06-17T22:29:05.909Z] User found: {"_id":"6670748c1d3e76b8261bd8be","clientType":"corporate","companyName":"victorum","country":"Afghanistan","phoneNumber":"987798798","email":"de1@example.com","password":"wssssdf#sdf3434jn@#WW"}
+[2024-06-17T22:29:49.854Z] {"user":{"email":"de1@example.com","id":"6670748c1d3e76b8261bd8be"},"expires":"2024-07-17T22:29:49.850Z"} backend session
+[2024-06-17T22:29:49.905Z] User found: {"_id":"6670748c1d3e76b8261bd8be","clientType":"corporate","companyName":"victorum","country":"Afghanistan","phoneNumber":"987798798","email":"de1@example.com","password":"wssssdf#sdf3434jn@#WW"}
+[2024-06-17T22:33:39.214Z] {"user":{"email":"de1@example.com","id":"6670748c1d3e76b8261bd8be"},"expires":"2024-07-17T22:33:39.209Z"} backend session
+[2024-06-17T22:33:47.445Z] User found: {"_id":"6670748c1d3e76b8261bd8be","clientType":"corporate","companyName":"victorum","country":"Afghanistan","phoneNumber":"987798798","email":"de1@example.com","password":"wssssdf#sdf3434jn@#WW"}
+[2024-06-17T22:33:53.284Z] {"user":{"email":"de1@example.com","id":"6670748c1d3e76b8261bd8be"},"expires":"2024-07-17T22:33:53.280Z"} backend session
+[2024-06-17T22:33:53.333Z] User found: {"_id":"6670748c1d3e76b8261bd8be","clientType":"corporate","companyName":"victorum","country":"Afghanistan","phoneNumber":"987798798","email":"de1@example.com","password":"wssssdf#sdf3434jn@#WW"}
+[2024-06-17T22:38:33.373Z] {"user":{"email":"de1@example.com","id":"6670748c1d3e76b8261bd8be"},"expires":"2024-07-17T22:38:33.371Z"} backend session
+[2024-06-17T22:38:33.419Z] User found: {"_id":"6670748c1d3e76b8261bd8be","clientType":"corporate","companyName":"victorum","country":"Afghanistan","phoneNumber":"987798798","email":"de1@example.com","password":"wssssdf#sdf3434jn@#WW"}
+[2024-06-17T22:42:30.615Z] {"user":{"email":"de1@example.com","id":"6670748c1d3e76b8261bd8be"},"expires":"2024-07-17T22:42:30.598Z"} backend session
+[2024-06-17T22:42:40.996Z] {"user":{"email":"de1@example.com","id":"6670748c1d3e76b8261bd8be"},"expires":"2024-07-17T22:42:40.993Z"} backend session
+[2024-06-17T22:42:41.002Z] Error fetching user: querySrv ESERVFAIL _mongodb._tcp.cluster0.rosrr3n.mongodb.net
+[2024-06-17T22:42:41.522Z] User found: {"_id":"6670748c1d3e76b8261bd8be","clientType":"corporate","companyName":"victorum","country":"Afghanistan","phoneNumber":"987798798","email":"de1@example.com","password":"wssssdf#sdf3434jn@#WW"}
+[2024-06-17T22:43:06.763Z] {"user":{"email":"de1@example.com","id":"6670748c1d3e76b8261bd8be"},"expires":"2024-07-17T22:43:06.760Z"} backend session
+[2024-06-17T22:43:06.768Z] Error fetching user: querySrv ESERVFAIL _mongodb._tcp.cluster0.rosrr3n.mongodb.net
+[2024-06-17T22:44:12.082Z] {"user":{"email":"de1@example.com","id":"6670748c1d3e76b8261bd8be"},"expires":"2024-07-17T22:44:12.077Z"} backend session
+[2024-06-17T22:44:18.164Z] User found: {"_id":"6670748c1d3e76b8261bd8be","clientType":"corporate","companyName":"victorum","country":"Afghanistan","phoneNumber":"987798798","email":"de1@example.com","password":"wssssdf#sdf3434jn@#WW"}
+[2024-06-17T22:44:22.595Z] {"user":{"email":"de1@example.com","id":"6670748c1d3e76b8261bd8be"},"expires":"2024-07-17T22:44:22.590Z"} backend session
+[2024-06-17T22:44:22.644Z] User found: {"_id":"6670748c1d3e76b8261bd8be","clientType":"corporate","companyName":"victorum","country":"Afghanistan","phoneNumber":"987798798","email":"de1@example.com","password":"wssssdf#sdf3434jn@#WW"}
+[2024-06-17T22:45:10.104Z] {"user":{"email":"de1@example.com","id":"6670748c1d3e76b8261bd8be"},"expires":"2024-07-17T22:45:10.096Z"} backend session
+[2024-06-17T22:45:10.693Z] User found: {"_id":"6670748c1d3e76b8261bd8be","clientType":"corporate","companyName":"victorum","country":"Afghanistan","phoneNumber":"987798798","email":"de1@example.com","password":"wssssdf#sdf3434jn@#WW"}
+[2024-06-17T22:45:31.160Z] {"user":{"email":"de1@example.com","id":"6670748c1d3e76b8261bd8be"},"expires":"2024-07-17T22:45:31.157Z"} backend session
+[2024-06-17T22:45:31.207Z] User found: {"_id":"6670748c1d3e76b8261bd8be","clientType":"corporate","companyName":"victorum","country":"Afghanistan","phoneNumber":"987798798","email":"de1@example.com","password":"wssssdf#sdf3434jn@#WW"}
+[2024-06-17T22:45:46.130Z] {"user":{"email":"de1@example.com","id":"6670748c1d3e76b8261bd8be"},"expires":"2024-07-17T22:45:46.125Z"} backend session
+[2024-06-17T22:45:46.186Z] User found: {"_id":"6670748c1d3e76b8261bd8be","clientType":"corporate","companyName":"victorum","country":"Afghanistan","phoneNumber":"987798798","email":"de1@example.com","password":"wssssdf#sdf3434jn@#WW"}
+[2024-06-17T22:46:09.097Z] {"user":{"email":"de1@example.com","id":"6670748c1d3e76b8261bd8be"},"expires":"2024-07-17T22:46:09.094Z"} backend session
+[2024-06-17T22:46:09.148Z] User found: {"_id":"6670748c1d3e76b8261bd8be","clientType":"corporate","companyName":"victorum","country":"Afghanistan","phoneNumber":"987798798","email":"de1@example.com","password":"wssssdf#sdf3434jn@#WW"}
+[2024-06-17T22:47:57.516Z] {"user":{"email":"de1@example.com","id":"6670748c1d3e76b8261bd8be"},"expires":"2024-07-17T22:47:57.512Z"} backend session
+[2024-06-17T22:47:57.570Z] User found: {"_id":"6670748c1d3e76b8261bd8be","clientType":"corporate","companyName":"victorum","country":"Afghanistan","phoneNumber":"987798798","email":"de1@example.com","password":"wssssdf#sdf3434jn@#WW"}
+[2024-06-17T22:48:17.104Z] {"user":{"email":"de1@example.com","id":"6670748c1d3e76b8261bd8be"},"expires":"2024-07-17T22:48:17.097Z"} backend session
+[2024-06-17T22:48:17.150Z] User found: {"_id":"6670748c1d3e76b8261bd8be","clientType":"corporate","companyName":"victorum","country":"Afghanistan","phoneNumber":"987798798","email":"de1@example.com","password":"wssssdf#sdf3434jn@#WW"}
+[2024-06-17T22:49:31.971Z] {"user":{"email":"de1@example.com","id":"6670748c1d3e76b8261bd8be"},"expires":"2024-07-17T22:49:31.967Z"} backend session
+[2024-06-17T22:49:32.016Z] User found: {"_id":"6670748c1d3e76b8261bd8be","clientType":"corporate","companyName":"victorum","country":"Afghanistan","phoneNumber":"987798798","email":"de1@example.com","password":"wssssdf#sdf3434jn@#WW"}
+[2024-06-17T22:49:37.106Z] {"user":{"email":"de1@example.com","id":"6670748c1d3e76b8261bd8be"},"expires":"2024-07-17T22:49:37.102Z"} backend session
+[2024-06-17T22:49:37.159Z] User found: {"_id":"6670748c1d3e76b8261bd8be","clientType":"corporate","companyName":"victorum","country":"Afghanistan","phoneNumber":"987798798","email":"de1@example.com","password":"wssssdf#sdf3434jn@#WW"}
+[2024-06-17T22:51:26.436Z] {"user":{"email":"de1@example.com","id":"6670748c1d3e76b8261bd8be"},"expires":"2024-07-17T22:51:26.430Z"} backend session
+[2024-06-17T22:51:26.486Z] User found: {"_id":"6670748c1d3e76b8261bd8be","clientType":"corporate","companyName":"victorum","country":"Afghanistan","phoneNumber":"987798798","email":"de1@example.com","password":"wssssdf#sdf3434jn@#WW"}
+[2024-06-17T22:51:28.770Z] {"user":{"email":"de1@example.com","id":"6670748c1d3e76b8261bd8be"},"expires":"2024-07-17T22:51:28.742Z"} backend session
+[2024-06-17T22:51:28.843Z] User found: {"_id":"6670748c1d3e76b8261bd8be","clientType":"corporate","companyName":"victorum","country":"Afghanistan","phoneNumber":"987798798","email":"de1@example.com","password":"wssssdf#sdf3434jn@#WW"}
+[2024-06-17T22:51:33.002Z] {"user":{"email":"de1@example.com","id":"6670748c1d3e76b8261bd8be"},"expires":"2024-07-17T22:51:32.996Z"} backend session
+[2024-06-17T22:51:33.049Z] User found: {"_id":"6670748c1d3e76b8261bd8be","clientType":"corporate","companyName":"victorum","country":"Afghanistan","phoneNumber":"987798798","email":"de1@example.com","password":"wssssdf#sdf3434jn@#WW"}
+[2024-06-17T22:52:56.233Z] {"user":{"email":"de1@example.com","id":"6670748c1d3e76b8261bd8be"},"expires":"2024-07-17T22:52:56.227Z"} backend session
+[2024-06-17T22:52:56.319Z] User found: {"_id":"6670748c1d3e76b8261bd8be","clientType":"corporate","companyName":"victorum","country":"Afghanistan","phoneNumber":"987798798","email":"de1@example.com","password":"wssssdf#sdf3434jn@#WW"}
+[2024-06-17T22:52:59.716Z] {"user":{"email":"de1@example.com","id":"6670748c1d3e76b8261bd8be"},"expires":"2024-07-17T22:52:59.711Z"} backend session
+[2024-06-17T22:52:59.763Z] User found: {"_id":"6670748c1d3e76b8261bd8be","clientType":"corporate","companyName":"victorum","country":"Afghanistan","phoneNumber":"987798798","email":"de1@example.com","password":"wssssdf#sdf3434jn@#WW"}
+[2024-06-17T22:53:07.319Z] {"user":{"email":"de1@example.com","id":"6670748c1d3e76b8261bd8be"},"expires":"2024-07-17T22:53:07.317Z"} backend session
+[2024-06-17T22:53:16.647Z] User found: {"_id":"6670748c1d3e76b8261bd8be","clientType":"corporate","companyName":"victorum","country":"Afghanistan","phoneNumber":"987798798","email":"de1@example.com","password":"wssssdf#sdf3434jn@#WW"}

@@ -41,8 +41,8 @@ export default async function handler(req, res) {
         }
 
         const file = files[0];
-        await bucket.delete(file._id);
-
+        let result = await bucket.delete(file._id);
+        
         res.status(200).json({ message: 'File deleted successfully' });
     } catch (error) {
         console.error('Error deleting file:', error);
