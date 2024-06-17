@@ -1,5 +1,5 @@
 import React from 'react';
-import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Typography, Box, useTheme } from '@mui/material';
+import { Table, TableBody, TableCell, TableContainer, TableHead, useMediaQuery, TableRow, Paper, Typography, Box, useTheme, Grid } from '@mui/material';
 import { styled } from '@mui/system';
 
 const events = [
@@ -28,6 +28,7 @@ const events = [
 
 const EconomicCalendar = () => {
     const theme = useTheme();
+    const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
 
     const AnimatedTableRow = styled(TableRow)({
         transition: 'background-color 0.3s, transform 0.3s',
@@ -38,30 +39,21 @@ const EconomicCalendar = () => {
     });
 
     return (
-        <Box sx={{ marginTop: 4, marginLeft: 30, maxWidth: '80%', textAlign: 'center'}}>
-            <TableContainer component={Paper} sx={{ borderRadius: 4, boxShadow: 3 }}>
-                <Typography variant="h6" component="div" sx={{ padding: 2, textAlign: 'center', backgroundColor: '#f5f5f5', borderTopLeftRadius: 4, borderTopRightRadius: 4 }}>
-                    Economic Calendar
-                </Typography>
-                <Table sx={{ minWidth: 650 }} aria-label="economic calendar">
-                    <TableHead>
-                        <TableRow sx={{ backgroundColor: '#e0e0e0' }}>
-                            <TableCell><Typography variant="subtitle1" fontWeight="bold">Date</Typography></TableCell>
-                            <TableCell><Typography variant="subtitle1" fontWeight="bold">Event</Typography></TableCell>
-                            <TableCell><Typography variant="subtitle1" fontWeight="bold">Impact</Typography></TableCell>
-                        </TableRow>
-                    </TableHead>
-                    <TableBody>
-                        {events.map((event, index) => (
-                            <AnimatedTableRow key={index}>
-                                <TableCell>{event.date}</TableCell>
-                                <TableCell>{event.event}</TableCell>
-                                <TableCell>{event.impact}</TableCell>
-                            </AnimatedTableRow>
-                        ))}
-                    </TableBody>
-                </Table>
-            </TableContainer>
+        <Box sx={{ marginTop: 20, mx: 'auto', maxWidth: '90%', textAlign: 'center', marginLeft: isMobile ? 0 : 30 }}>
+            <Typography variant="h6" component="div" sx={{ padding: 2, textAlign: 'center', backgroundColor: '#f5f5f5', borderRadius: 2, boxShadow: 3 }}>
+                Economic Calendar
+            </Typography>
+            <Grid container spacing={2} sx={{ marginTop: 2 }}>
+                {events.map((event, index) => (
+                    <Grid item xs={12} sm={6} md={4} lg={3} key={index}>
+                        <Paper sx={{ padding: 2, borderRadius: 2, boxShadow: 3, transition: 'transform 0.3s', '&:hover': { transform: 'scale(1.02)' } }}>
+                            <Typography variant="subtitle1" fontWeight="bold">{event.date}</Typography>
+                            <Typography variant="body1">{event.event}</Typography>
+                            <Typography variant="body2" color={event.impact === 'High' ? 'error' : event.impact === 'Medium' ? 'warning' : 'textSecondary'}>{event.impact}</Typography>
+                        </Paper>
+                    </Grid>
+                ))}
+            </Grid>
         </Box>
     );
 };
