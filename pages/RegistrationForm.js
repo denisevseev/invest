@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Box, Stepper, Step, StepLabel, Button, Typography, useMediaQuery, useTheme } from '@mui/material';
 import StepOne from '../components/hardSignUp/StepOne';
 import StepTwo from '../components/hardSignUp/StepTwo';
@@ -11,21 +11,11 @@ import { useSession } from "next-auth/react";
 
 const steps = ['Individual Client', 'Corporate Client', 'Finish'];
 
-const RegistrationForm = () => {
+const RegistrationFormContent = ({ session }) => {
     const theme = useTheme();
     const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
     const [activeStep, setActiveStep] = useState(0);
-    const { data: session } = useSession();
     const router = useRouter();
-    if (!session) {
-        return (
-            <div style={{ textAlign: 'center' }}>
-                <h1>Please sign in</h1>
-                <Button onClick={() => router.push('/login')}>Login</Button>
-            </div>
-        );
-    }
-
 
     const phoneRegExp = /^(\+?\d{1,4}|\d{1,4})?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}$/;
 
@@ -76,7 +66,6 @@ const RegistrationForm = () => {
                     password: values.password,
                 }
                 : values;
-
 
             try {
                 const response = await fetch('/api/auth/register', {
@@ -211,6 +200,23 @@ const RegistrationForm = () => {
             </Box>
         </div>
     );
+};
+
+const RegistrationForm = () => {
+    const { data: session, status } = useSession();
+    const router = useRouter();
+
+    useEffect(() => {
+        if (status === 'unauthenticated') {
+            router.push('/login');
+        }
+    }, [status]);
+
+    if (status === 'unauthenticated') {
+        return null; // Return null while redirecting to prevent rendering
+    }
+
+    return <RegistrationFormContent session={session} />;
 };
 
 export default RegistrationForm;
