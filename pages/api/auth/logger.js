@@ -1,7 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 
-const logFilePath = path.join(__dirname, 'nextauth.txt');
+const logFilePath = path.join(__dirname, 'nextauth.log');
 console.log(logFilePath,  'logFilePath');
 
 function logToFile(message) {

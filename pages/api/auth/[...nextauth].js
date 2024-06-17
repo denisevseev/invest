@@ -47,6 +47,14 @@ export default NextAuth({
       }
     })
   ],
+  session: {
+    jwt: true,
+  },
+  jwt: {
+    encryption: true,
+    secret: process.env.JWT_SECRET,
+    encryptionKey: process.env.JWT_ENCRYPTION_KEY,
+  },
   callbacks: {
     async session({ session, token }) {
       logToFile('Session callback invoked'); // Логгирование вызова колбэка сессии

@@ -1,17 +1,19 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Box, Typography, Button, Grid, IconButton } from '@mui/material';
 import { useDropzone } from 'react-dropzone';
 import CloudUploadIcon from '@mui/icons-material/CloudUpload';
 import DeleteIcon from '@mui/icons-material/Delete';
+import { useSession } from 'next-auth/react';
 
 const UploadScansComponent = () => {
+    const { data: session } = useSession();
     const [files, setFiles] = useState([]);
 
     const { getRootProps, getInputProps } = useDropzone({
         accept: 'image/*',
         onDrop: acceptedFiles => {
             if (files.length + acceptedFiles.length <= 3) {
-                setFiles([...files, ...acceptedFiles.map(file => Object.assign(file, {
+                setFiles(prevFiles => [...prevFiles, ...acceptedFiles.map(file => Object.assign(file, {
                     preview: URL.createObjectURL(file)
                 }))]);
             } else {
@@ -20,14 +22,60 @@ const UploadScansComponent = () => {
         }
     });
 
-    const removeFile = file => () => {
-        const newFiles = [...files];
-        newFiles.splice(newFiles.indexOf(file), 1);
-        setFiles(newFiles);
+    const fetchFiles = async () => {
+        if (session) {
+            const response = await fetch('/api/getFiles');
+            const data = await response.json();
+            setFiles(data.map(file => ({
+                ...file,
+                preview: `/api/getFile?filename=${file.filename}`
+            })));
+        }
+    };
+
+    useEffect(() => {
+        fetchFiles();
+    }, [session]);
+
+    const removeFile = async (file) => {
+        const response = await fetch('/api/deleteFile', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${session.jwt}` // Добавляем токен сессии в заголовок
+            },
+            body: JSON.stringify({ filename: file.filename })
+        });
+
+        if (response.ok) {
+            setFiles(prevFiles => prevFiles.filter(f => f.filename !== file.filename));
+            fetchFiles();
+        } else {
+            alert('Error deleting file');
+        }
+    };
+
+    const handleUpload = async () => {
+        const formData = new FormData();
+        files.forEach(file => formData.append('files', file));
+
+        const response = await fetch('/api/upload', {
+            method: 'POST',
+            headers: {
+                'Authorization': `Bearer ${session.jwt}` // Добавляем токен сессии в заголовок
+            },
+            body: formData
+        });
+
+        if (response.ok) {
+            fetchFiles();
+        } else {
+            alert('Error uploading files');
+        }
     };
 
     const thumbs = files.map(file => (
-        <Grid item xs={12} sm={4} key={file.name}>
+        <Grid item xs={12} sm={4} key={file.filename || file.name}>
             <Box
                 sx={{
                     display: 'flex',
@@ -43,11 +91,11 @@ const UploadScansComponent = () => {
             >
                 <img
                     src={file.preview}
-                    alt={file.name}
+                    alt={file.filename || file.name}
                     style={{ width: '100%', height: 'auto', borderRadius: '4px' }}
                 />
                 <IconButton
-                    onClick={removeFile(file)}
+                    onClick={() => removeFile(file)}
                     sx={{ position: 'absolute', top: 8, right: 8, backgroundColor: 'white' }}
                 >
                     <DeleteIcon />
@@ -57,7 +105,7 @@ const UploadScansComponent = () => {
     ));
 
     return (
-        <Box  sx={{ maxWidth: 900,  mx: 'auto', mt: 20, padding: 3 }}>
+        <Box sx={{ maxWidth: 900, mx: 'auto', mt: 20, padding: 3 }}>
             <Typography variant="h5" gutterBottom>
                 Upload Your Passport Scans
             </Typography>
@@ -69,14 +117,13 @@ const UploadScansComponent = () => {
                     padding: '16px',
                     textAlign: 'center',
                     cursor: 'pointer',
-                    backgroundColor: '#f9f9f9',
-                    fontSize: 200
+                    backgroundColor: '#f9f9f9'
                 }}
             >
                 <input {...getInputProps()} />
                 <CloudUploadIcon sx={{ fontSize: 200, color: '#3f51b5' }} />
                 <Typography>Drag & drop some files here, or click to select files</Typography>
-                <Typography  variant="body1" color="textSecondary">
+                <Typography variant="body1" color="textSecondary">
                     (Only *.jpeg, *.png images will be accepted)
                 </Typography>
             </Box>
@@ -87,7 +134,7 @@ const UploadScansComponent = () => {
                 variant="contained"
                 color="primary"
                 sx={{ mt: 2 }}
-                onClick={() => console.log('Uploading files:', files)}
+                onClick={handleUpload}
                 disabled={files.length === 0}
             >
                 Upload
