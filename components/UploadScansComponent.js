@@ -1,13 +1,16 @@
 import React, { useState, useEffect } from 'react';
-import { Box, Typography, Button, Grid, IconButton } from '@mui/material';
+import { Box, Typography, Button, Grid, IconButton, Modal } from '@mui/material';
 import { useDropzone } from 'react-dropzone';
 import CloudUploadIcon from '@mui/icons-material/CloudUpload';
 import DeleteIcon from '@mui/icons-material/Delete';
 import { useSession } from 'next-auth/react';
+import 'react-modal';
 
 const UploadScansComponent = () => {
     const { data: session } = useSession();
     const [files, setFiles] = useState([]);
+    const [selectedFile, setSelectedFile] = useState(null);
+    const [isModalOpen, setIsModalOpen] = useState(false);
 
     const { getRootProps, getInputProps } = useDropzone({
         accept: 'image/*',
@@ -79,6 +82,16 @@ const UploadScansComponent = () => {
         }
     };
 
+    const handleImageClick = (file) => {
+        setSelectedFile(file);
+        setIsModalOpen(true);
+    };
+
+    const closeModal = () => {
+        setSelectedFile(null);
+        setIsModalOpen(false);
+    };
+
     const thumbs = files.map(file => (
         <Grid item xs={12} sm={4} key={file.filename || file.name}>
             <Box
@@ -93,14 +106,18 @@ const UploadScansComponent = () => {
                     margin: '8px',
                     position: 'relative'
                 }}
+                onClick={() => handleImageClick(file)}
             >
                 <img
                     src={file.preview}
                     alt={file.filename || file.name}
-                    style={{ width: '100%', height: 'auto', borderRadius: '4px' }}
+                    style={{ width: '100%', height: 'auto', borderRadius: '4px', cursor: 'pointer' }}
                 />
                 <IconButton
-                    onClick={() => removeFile(file)}
+                    onClick={(e) => {
+                        e.stopPropagation();
+                        removeFile(file);
+                    }}
                     sx={{ position: 'absolute', top: 8, right: 8, backgroundColor: 'white' }}
                 >
                     <DeleteIcon />
@@ -144,6 +161,36 @@ const UploadScansComponent = () => {
             >
                 Save
             </Button>
+
+            {selectedFile && (
+                <Modal
+                    open={isModalOpen}
+                    onClose={closeModal}
+                    sx={{
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center'
+                    }}
+                >
+                    <Box
+                        sx={{
+                            maxWidth: '90%',
+                            maxHeight: '90%',
+                            backgroundColor: 'white',
+                            borderRadius: '8px',
+                            p: 2,
+                            outline: 'none'
+                        }}
+                    >
+                        <img
+                            src={selectedFile.preview}
+                            alt={selectedFile.filename || selectedFile.name}
+                            style={{ width: '100%', height: 'auto' }}
+                        />
+                        <Button onClick={closeModal} sx={{ mt: 2 }} variant="contained" color="primary">Close</Button>
+                    </Box>
+                </Modal>
+            )}
         </Box>
     );
 };
