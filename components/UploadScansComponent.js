@@ -24,7 +24,11 @@ const UploadScansComponent = () => {
 
     const fetchFiles = async () => {
         if (session) {
-            const response = await fetch('/api/getFiles');
+            const response = await fetch('/api/getFiles', {
+                headers: {
+                    'Authorization': `Bearer ${session.jwt}` // Используем JWT для авторизации
+                }
+            });
             const data = await response.json();
             setFiles(data.map(file => ({
                 ...file,
@@ -42,14 +46,13 @@ const UploadScansComponent = () => {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
-                'Authorization': `Bearer ${session.jwt}` // Добавляем токен сессии в заголовок
+                'Authorization': `Bearer ${session.jwt}` // Используем JWT для авторизации
             },
             body: JSON.stringify({ filename: file.filename })
         });
 
         if (response.ok) {
             setFiles(prevFiles => prevFiles.filter(f => f.filename !== file.filename));
-            fetchFiles();
         } else {
             alert('Error deleting file');
         }
@@ -62,7 +65,7 @@ const UploadScansComponent = () => {
         const response = await fetch('/api/upload', {
             method: 'POST',
             headers: {
-                'Authorization': `Bearer ${session.jwt}` // Добавляем токен сессии в заголовок
+                'Authorization': `Bearer ${session.jwt}` // Используем JWT для авторизации
             },
             body: formData
         });

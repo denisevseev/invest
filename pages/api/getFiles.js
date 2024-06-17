@@ -2,16 +2,17 @@ import { MongoClient, GridFSBucket } from 'mongodb';
 import { getSession } from 'next-auth/react';
 
 const uri = process.env.MONGODB_URI;
-const client = new MongoClient(uri, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-});
+let cachedClient = null;
 
 async function connectToDatabase() {
-    if (!client.topology || !client.topology.isConnected()) {
-        await client.connect();
+    if (!cachedClient) {
+        cachedClient = new MongoClient(uri, {
+            useNewUrlParser: true,
+            useUnifiedTopology: true,
+        });
+        await cachedClient.connect();
     }
-    return client.db('victorum-portal');
+    return cachedClient.db('victorum-portal');
 }
 
 export default async function handler(req, res) {
