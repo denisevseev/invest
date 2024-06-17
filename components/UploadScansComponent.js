@@ -24,16 +24,16 @@ const UploadScansComponent = () => {
 
     const fetchFiles = async () => {
         if (session) {
-            const response = await fetch('/api/getFiles', {
-                headers: {
-                    'Authorization': `Bearer ${session.jwt}` // Используем JWT для авторизации
-                }
-            });
+            const response = await fetch('/api/getFiles');
             const data = await response.json();
-            setFiles(data?.map(file => ({
-                ...file,
-                preview: `/api/getFile?filename=${file.filename}`
-            })));
+            if (Array.isArray(data)) {
+                setFiles(data.map(file => ({
+                    ...file,
+                    preview: `/api/getFile?filename=${file.filename}`
+                })));
+            } else {
+                setFiles([]);
+            }
         }
     };
 
