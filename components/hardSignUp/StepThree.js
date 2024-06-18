@@ -1,118 +1,116 @@
 import React from 'react';
-import { Box, TextField, Button, MenuItem, FormControl, FormLabel, Select, InputLabel } from '@mui/material';
+import { Box, Button, FormControl, Select, MenuItem, FormHelperText, Typography, TextField } from '@mui/material';
+import { useFormik } from 'formik';
+import * as Yup from 'yup';
 
-const StepThree = ({ formik }) => {
+const StepThree = () => {
+    const options = {
+        employmentStatus: ["Employed", "Self-Employed", "Unemployed", "Retired"],
+        sourceOfFunds: ["Salary", "Business", "Savings", "Investments", "Other"],
+        netWorth: ["Less than $50,000", "$50,000 - $100,000", "$100,000 - $500,000", "More than $500,000"],
+        annualIncome: ["Less than $50,000", "$50,000 - $100,000", "$100,000 - $500,000", "More than $500,000"],
+        anticipatedAnnualDeposit: ["Less than $50,000", "$50,000 - $100,000", "$100,000 - $500,000", "More than $500,000"],
+        intendedPurpose: ["Investment", "Savings", "Retirement", "Other"],
+        creditFundAccount: ["Bank Transfer", "Credit Card", "Debit Card", "Other"],
+        politicallyExposedPerson: ["Yes", "No"]
+    };
 
-    const questions = [
-        {
-            label: "Security Question 1",
-            name: "securityQuestion1",
-            options: [
-                "What is your mother's maiden name?",
-                "What was your first pet's name?",
-                "What was the name of your elementary school?"
-            ]
+    const validationSchema = Yup.object().shape({
+        employmentStatus: Yup.string().required('Employment Status is required'),
+        sourceOfFunds: Yup.string().required('Source of Funds is required'),
+        netWorth: Yup.string().required('Net Worth is required'),
+        annualIncome: Yup.string().required('Annual Income is required'),
+        anticipatedAnnualDeposit: Yup.string().required('Anticipated Annual Deposit is required'),
+        foreseeableExpenses: Yup.number().required('Foreseeable Expenses is required'),
+        intendedPurpose: Yup.string().required('Intended Purpose is required'),
+        creditFundAccount: Yup.string().required('Credit/Fund Account is required'),
+        politicallyExposedPerson: Yup.string().required('Politically Exposed Person is required')
+    });
+
+    const formik = useFormik({
+        initialValues: {
+            employmentStatus: '',
+            sourceOfFunds: '',
+            netWorth: '',
+            annualIncome: '',
+            anticipatedAnnualDeposit: '',
+            foreseeableExpenses: '',
+            intendedPurpose: '',
+            creditFundAccount: '',
+            politicallyExposedPerson: ''
         },
-        {
-            label: "Security Question 2",
-            name: "securityQuestion2",
-            options: [
-                "What is your favorite book?",
-                "What city were you born in?",
-                "What is your favorite color?"
-            ]
+        validationSchema: validationSchema,
+        onSubmit: async (values) => {
+            console.log(values);
         },
-        {
-            label: "Security Question 3",
-            name: "securityQuestion3",
-            options: [
-                "What is your favorite movie?",
-                "What is your father's middle name?",
-                "What was the make of your first car?"
-            ]
-        },
-        {
-            label: "Security Question 4",
-            name: "securityQuestion4",
-            options: [
-                "What is your favorite food?",
-                "What is the name of your best friend?",
-                "What is your favorite hobby?"
-            ]
-        },
-        {
-            label: "Security Question 5",
-            name: "securityQuestion5",
-            options: [
-                "What is the name of your first employer?",
-                "What is your dream job?",
-                "What was your high school mascot?"
-            ]
-        },
-        {
-            label: "Security Question 6",
-            name: "securityQuestion6",
-            options: [
-                "What is your favorite sport?",
-                "What is your favorite vacation destination?",
-                "What is the name of your first teacher?"
-            ]
-        },
-        {
-            label: "Security Question 7",
-            name: "securityQuestion7",
-            options: [
-                "What is your favorite fruit?",
-                "What is your favorite season?",
-                "What is the name of your favorite childhood friend?"
-            ]
-        },
-        {
-            label: "Security Question 8",
-            name: "securityQuestion8",
-            options: [
-                "What is your favorite animal?",
-                "What is your favorite subject in school?",
-                "What is your favorite quote?"
-            ]
-        },
-        {
-            label: "Security Question 9",
-            name: "securityQuestion9",
-            options: [
-                "What is your favorite TV show?",
-                "What is your favorite genre of music?",
-                "What was your first job?"
-            ]
-        },
-        {
-            label: "Security Question 10",
-            name: "securityQuestion10",
-            options: [
-                "What is your favorite dessert?",
-                "What is your favorite holiday?",
-                "What was your favorite toy as a child?"
-            ]
-        },
-    ];
+    });
 
     return (
         <Box component="form" onSubmit={formik.handleSubmit}>
-            {questions.map((question, index) => (
-                <FormControl key={index} fullWidth margin="normal">
-                    <InputLabel>{question.label}</InputLabel>
+            <Typography variant="h6" gutterBottom>Employment & Financial Info</Typography>
+            
+            {Object.keys(options).map((key, index) => (
+                <FormControl
+                    fullWidth
+                    margin="normal"
+                    key={index}
+                    error={formik.touched[key] && Boolean(formik.errors[key])}
+                    sx={{ mb: 2 }}
+                >
+                    <Box sx={{ mb: 1 }}>
+                        <Typography variant="body1">
+                            {key.split(/(?=[A-Z])/).join(' ').replace(/^\w/, c => c.toUpperCase())} *
+                        </Typography>
+                    </Box>
                     <Select
-                        name={question.name}
-                        value={formik.values[question.name]}
+                        displayEmpty
+                        name={key}
+                        value={formik.values[key]}
                         onChange={formik.handleChange}
-                        label={question.label}
+                        onBlur={formik.handleBlur}
+                        renderValue={(selected) => {
+                            if (selected.length === 0) {
+                                return <em>Please select</em>;
+                            }
+                            return selected;
+                        }}
                     >
-                        {question.options.map((option, idx) => (
+                        <MenuItem disabled value="">
+                            <em>Please select</em>
+                        </MenuItem>
+                        {options[key].map((option, idx) => (
                             <MenuItem key={idx} value={option}>{option}</MenuItem>
                         ))}
                     </Select>
+                    {formik.touched[key] && formik.errors[key] && (
+                        <FormHelperText>{formik.errors[key]}</FormHelperText>
+                    )}
                 </FormControl>
             ))}
+
+            <FormControl
+                fullWidth
+                margin="normal"
+                error={formik.touched.foreseeableExpenses && Boolean(formik.errors.foreseeableExpenses)}
+                sx={{ mb: 2 }}
+            >
+                <Box sx={{ mb: 1 }}>
+                    <Typography variant="body1">
+                        What are your foreseeable expenses over the next 12 months (EUR)? *
+                    </Typography>
+                </Box>
+                <TextField
+                    name="foreseeableExpenses"
+                    type="number"
+                    value={formik.values.foreseeableExpenses}
+                    onChange={formik.handleChange}
+                    onBlur={formik.handleBlur}
+                />
+                {formik.touched.foreseeableExpenses && formik.errors.foreseeableExpenses && (
+                    <FormHelperText>{formik.errors.foreseeableExpenses}</FormHelperText>
+                )}
+            </FormControl>
+
             <Button type="submit" variant="contained" color="primary" fullWidth sx={{ mt: 2 }}>
                 Continue
             </Button>

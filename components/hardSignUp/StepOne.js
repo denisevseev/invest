@@ -121,7 +121,7 @@ const StepOne = ({ formik }) => {
                 />
             )}
             <FormControl fullWidth margin="normal" sx={{ width: '100%', mb: 2 }}>
-                <FormLabel>Country of Residence</FormLabel>
+                <FormLabel>Country of Residence *</FormLabel>
                 <CountrySelect
                     value={formik.values.country}
                     onChange={country => formik.setFieldValue('country', country)}

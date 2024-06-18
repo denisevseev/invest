@@ -5,7 +5,7 @@ import {observer} from "mobx-react-lite";
 import store from './../stores/userStore';
 
 const UserSurveyResults = ({}) => {
-
+debugger
     let user = store.user;
 
     // Создаем массив вопросов и ответов из объекта user

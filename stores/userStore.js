@@ -9,12 +9,16 @@ class UserStore {
   user = null;
   regForm = true;
   routeLink = "/"
+  modalOpen = false
+  messageModal = null
 
   constructor() {
     makeAutoObservable(this, {
       user: observable,
       regForm: observable,
       routeLink: observable,
+      modalOpen: observable,
+      messageModal: observable
     });
   }
 
@@ -22,6 +26,11 @@ class UserStore {
     runInAction(() => {
       this.user = user;
     });
+  }
+
+  handleModal (message, open){
+    this.messageModal = message
+    this.modalOpen = open
   }
 
   setRegForm() {

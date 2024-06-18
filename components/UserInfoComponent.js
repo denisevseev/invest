@@ -89,7 +89,6 @@ const UserInfoComponent = ({}) => {
     }
 
     if(link === "Individual Questionnaire"){
-        debugger
         return (
             <div>
                 <AppBarComponent/>

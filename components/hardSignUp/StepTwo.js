@@ -1,36 +1,42 @@
-import React from 'react';
-import { Box, TextField, Typography, FormControl, FormLabel } from '@mui/material';
+import * as React from 'react';
+import { Box, TextField, Typography, FormControl, FormLabel, Button } from '@mui/material';
 import CountrySelect from './../CountrySelect'; // Импортируем компонент для выбора страны
-import DatePicker from 'react-datepicker';
-import 'react-datepicker/dist/react-datepicker.css';
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 
-const StepTwo = ({ formik }) => {
+const StepTwo = ({ formik, handleNext, handleBack }) => {
     const handleDateChange = date => {
         formik.setFieldValue('dateOfBirth', date);
     };
 
     return (
-        <Box>
+        <Box component="form" onSubmit={formik.handleSubmit}>
             <Typography variant="h6" gutterBottom>
                 Personal Information
             </Typography>
             <FormControl fullWidth margin="normal">
                 <FormLabel>Date of Birth</FormLabel>
-                <DatePicker
-                    selected={formik.values.dateOfBirth}
-                    onChange={handleDateChange}
-                    dateFormat="dd.MM.yyyy"
-                    placeholderText="ДД.ММ.ГГГГ"
-                    className="MuiInputBase-input MuiOutlinedInput-input MuiInputBase-inputAdornedEnd"
-                    wrapperClassName="MuiFormControl-root MuiTextField-root"
-                />
+                <LocalizationProvider dateAdapter={AdapterDayjs}>
+                    <DatePicker
+                        value={formik.values.dateOfBirth}
+                        onChange={handleDateChange}
+                        renderInput={(params) => <TextField {...params} />}
+                    />
+                </LocalizationProvider>
+                {formik.touched.dateOfBirth && formik.errors.dateOfBirth && (
+                    <Typography variant="caption" color="error">{formik.errors.dateOfBirth}</Typography>
+                )}
             </FormControl>
-            <FormControl fullWidth margin="normal">
+            <FormControl fullWidth margin="normal" error={formik.touched.nationality && Boolean(formik.errors.nationality)}>
                 <FormLabel>Nationality</FormLabel>
                 <CountrySelect
                     value={formik.values.nationality}
                     onChange={value => formik.setFieldValue('nationality', value)}
                 />
+                {formik.touched.nationality && formik.errors.nationality && (
+                    <Typography variant="caption" color="error">{formik.errors.nationality}</Typography>
+                )}
             </FormControl>
             <Typography variant="h6" gutterBottom>
                 Residence Address
@@ -43,13 +49,18 @@ const StepTwo = ({ formik }) => {
                 fullWidth
                 margin="normal"
                 required
+                error={formik.touched.fullAddress && Boolean(formik.errors.fullAddress)}
+                helperText={formik.touched.fullAddress && formik.errors.fullAddress}
             />
-            <FormControl fullWidth margin="normal">
+            <FormControl fullWidth margin="normal" error={formik.touched.country && Boolean(formik.errors.country)}>
                 <FormLabel>Country</FormLabel>
                 <CountrySelect
                     value={formik.values.country}
                     onChange={value => formik.setFieldValue('country', value)}
                 />
+                {formik.touched.country && formik.errors.country && (
+                    <Typography variant="caption" color="error">{formik.errors.country}</Typography>
+                )}
             </FormControl>
             <TextField
                 label="City/Town"
@@ -59,6 +70,8 @@ const StepTwo = ({ formik }) => {
                 fullWidth
                 margin="normal"
                 required
+                error={formik.touched.city && Boolean(formik.errors.city)}
+                helperText={formik.touched.city && formik.errors.city}
             />
             <TextField
                 label="Postal/ZIP Code"
@@ -68,7 +81,10 @@ const StepTwo = ({ formik }) => {
                 fullWidth
                 margin="normal"
                 required
+                error={formik.touched.postalCode && Boolean(formik.errors.postalCode)}
+                helperText={formik.touched.postalCode && formik.errors.postalCode}
             />
+        
         </Box>
     );
 };

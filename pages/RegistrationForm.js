@@ -8,6 +8,9 @@ import * as Yup from 'yup';
 import AppBarComponent from "../components/AppBar";
 import { useRouter } from "next/router";
 import { useSession } from "next-auth/react";
+import ModalComponent from '../components/Modal';
+import CheckCircleIcon from '@mui/icons-material/CheckCircle';
+import Paper from '@mui/material/Paper';
 
 const steps = ['Individual Client', 'Corporate Client', 'Finish'];
 
@@ -15,6 +18,8 @@ const RegistrationFormContent = ({ session }) => {
     const theme = useTheme();
     const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
     const [activeStep, setActiveStep] = useState(0);
+    const [modalOpen, setModalOpen] = useState(false);
+    const [modalMessage, setModalMessage] = useState('');
     const router = useRouter();
 
     const phoneRegExp = /^(\+?\d{1,4}|\d{1,4})?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}$/;
@@ -26,6 +31,11 @@ const RegistrationFormContent = ({ session }) => {
         phoneNumber: Yup.string().matches(phoneRegExp, 'Invalid phone number').required('Required'),
         email: Yup.string().email('Invalid email').required('Required'),
         password: Yup.string().required('Required'),
+        dateOfBirth: Yup.date().required('Required').nullable(),
+        nationality: Yup.string().required('Required'),
+        fullAddress: Yup.string().required('Required'),
+        city: Yup.string().required('Required'),
+        postalCode: Yup.string().required('Required'),
     });
 
     const corporateValidationSchema = Yup.object().shape({
@@ -46,11 +56,18 @@ const RegistrationFormContent = ({ session }) => {
             phoneNumber: '',
             email: '',
             password: '',
-            nationality: 'fdf',
+            nationality: '',
             dateOfBirth: null,
             fullAddress: '',
             city: '',
             postalCode: '',
+            employmentStatus: '',
+            sourceOfFunds: '',
+            netWorth: '',
+            annualIncome: '',
+            anticipatedAnnualDeposit: '',
+            intendedPurpose: '',
+            creditFundAccount: '',
         },
         validationSchema: Yup.lazy(values =>
             values.clientType === 'individual' ? individualValidationSchema : corporateValidationSchema
@@ -83,8 +100,8 @@ const RegistrationFormContent = ({ session }) => {
                     alert('User registered successfully');
                     router.push('/login');
                 } else {
-                    console.error('Error registering user:', data);
-                    alert('Error registering user');
+                    setModalMessage(data.message);
+                    setModalOpen(true);
                 }
             } catch (error) {
                 console.error('Error:', error);
@@ -100,17 +117,38 @@ const RegistrationFormContent = ({ session }) => {
     };
 
     const validateForm = () => {
-        const { values } = formik;
-        const requiredFields = values.clientType === 'corporate'
-            ? ['companyName', 'country', 'phoneNumber', 'email', 'password']
-            : ['firstName', 'lastName', 'country', 'phoneNumber', 'email', 'password'];
+        const { values, errors, touched } = formik;
 
-        const allValuesPresent = requiredFields.every(field => values[field] !== '' && values[field] !== null && values[field] !== undefined);
-
-        if (!allValuesPresent) {
-            alert('Please fill in all required fields.');
-            return false;
+        if (activeStep === 0 && values.clientType === 'individual') {
+            const requiredFields = ['firstName', 'lastName', 'country', 'phoneNumber', 'email', 'password'];
+            const allValuesPresent = requiredFields.every(field => values[field] !== '' && values[field] !== null && values[field] !== undefined);
+            if (!allValuesPresent) {
+                alert('Please fill in all required fields.');
+                return false;
+            }
+        } else if (activeStep === 1 && values.clientType === 'individual') {
+            const requiredFields = ['dateOfBirth', 'nationality', 'fullAddress', 'country', 'city', 'postalCode'];
+            const allValuesPresent = requiredFields.every(field => values[field] !== '' && values[field] !== null && values[field] !== undefined);
+            if (!allValuesPresent) {
+                alert('Please fill in all required fields.');
+                return false;
+            }
+        } else if (activeStep === 0 && values.clientType === 'corporate') {
+            const requiredFields = ['companyName', 'country', 'phoneNumber', 'email', 'password'];
+            const allValuesPresent = requiredFields.every(field => values[field] !== '' && values[field] !== null && values[field] !== undefined);
+            if (!allValuesPresent) {
+                alert('Please fill in all required fields.');
+                return false;
+            }
+        } else if (activeStep === 2) {
+            const requiredFields = ['employmentStatus', 'sourceOfFunds', 'netWorth', 'annualIncome', 'anticipatedAnnualDeposit', 'intendedPurpose', 'creditFundAccount'];
+            const allValuesPresent = requiredFields.every(field => values[field] !== '' && values[field] !== null && values[field] !== undefined);
+            if (!allValuesPresent) {
+                alert('Please fill in all required fields.');
+                return false;
+            }
         }
+
         return true;
     };
 
@@ -134,6 +172,7 @@ const RegistrationFormContent = ({ session }) => {
     return (
         <div>
             <AppBarComponent />
+            <ModalComponent open={modalOpen} message={modalMessage} handleClose={() => setModalOpen(false)} />
             <Box
                 sx={{
                     maxWidth: 500,
@@ -146,10 +185,12 @@ const RegistrationFormContent = ({ session }) => {
                     backgroundColor: '#fff',
                 }}
             >
+                 <Typography sx={{ textAlign: 'center', display: 'inline-block' }} variant="h5" gutterBottom>
+                             Register in minutes <CheckCircleIcon style={{ color: 'blue', fontSize: 25, verticalAlign: 'middle' }} />
+                </Typography>
+
                 <Box sx={{ maxWidth: 500, mx: 'auto', mt: 4 }}>
-                    <Typography variant="h4" gutterBottom>
-                        Register in minutes
-                    </Typography>
+            
                     {formik.values.clientType !== 'corporate' && (
                         <Stepper activeStep={activeStep}>
                             {steps.map((label, index) => (
@@ -163,36 +204,22 @@ const RegistrationFormContent = ({ session }) => {
                         {getStepContent(activeStep)}
                     </Box>
                     <Box sx={{ display: 'flex', flexDirection: 'row', pt: 2 }}>
-                        {formik.values.clientType !== 'corporate' && (
-                            <>
-                                <Button
-                                    color="inherit"
-                                    disabled={activeStep === 0}
-                                    onClick={handleBack}
-                                    sx={{ mr: 1 }}
-                                >
-                                    Back
-                                </Button>
-                                <Box sx={{ flex: '1 1 auto' }} />
-                                {activeStep === steps.length - 1 ? (
-                                    <Button onClick={formik.handleSubmit}>
-                                        Finish
-                                    </Button>
-                                ) : (
-                                    <Button onClick={handleNext}>
-                                        Next
-                                    </Button>
-                                )}
-                            </>
-                        )}
-                        {formik.values.clientType === 'corporate' && (
-                            <Button
-                                variant="contained"
-                                color="primary"
-                                onClick={formik.handleSubmit}
-                                fullWidth
-                            >
-                                Continue
+                        <Button
+                            color="inherit"
+                            disabled={activeStep === 0}
+                            onClick={handleBack}
+                            sx={{ mr: 1 }}
+                        >
+                            Back
+                        </Button>
+                        <Box sx={{ flex: '1 1 auto' }} />
+                        {activeStep === steps.length - 1 ? (
+                            <Button onClick={formik.handleSubmit}>
+                                Finish
+                            </Button>
+                        ) : (
+                            <Button onClick={handleNext}>
+                                Next
                             </Button>
                         )}
                     </Box>
