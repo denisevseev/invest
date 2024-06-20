@@ -84,6 +84,7 @@ const StepTwo = ({ formik }) => {
                     <Typography variant="caption" color="error">{formik.errors.country}</Typography>
                 )}
             </FormControl>
+        
             <TextField
                 label="City/Town"
                 name="city"

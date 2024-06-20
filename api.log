@@ -809,3 +809,167 @@
 [2024-06-20T19:05:24.285Z] User found: {"_id":"66747cfe3c3507ec9686e72d","clientType":"individual","firstName":"sdfsdf","lastName":"sdf","country":"Antigua and Barbuda","phoneNumber":"97787987","email":"tv_bb633745@mail.ru","password":"UbOewIcBrU79","dateOfBirth":"2024-06-12","fullAddress":"длодлодло","city":"moscow","nationality":"United Arab Emirates","postalCode":"03434","securityQuestion1":null,"securityQuestion2":null,"securityQuestion3":null,"securityQuestion4":null,"securityQuestion5":null,"securityQuestion6":null,"securityQuestion7":null,"securityQuestion8":null,"securityQuestion9":null,"securityQuestion10":null}
 [2024-06-20T19:28:59.524Z] {"user":{"email":"45@mail.ru","id":"667482f03c3507ec9686e72f"},"expires":"2024-07-20T19:28:59.517Z"} backend session
 [2024-06-20T19:29:00.125Z] User found: {"_id":"667482f03c3507ec9686e72f","annualIncome":"$100,000 - $500,000","anticipatedAnnualDeposit":"$100,000 - $500,000","city":"moscow","clientType":"individual","companyName":"","country":"United Arab Emirates","creditFundAccount":"Credit Card","dateOfBirth":"2024-06-11","email":"45@mail.ru","employmentStatus":"Employed","firstName":"Денис","fullAddress":"moscow","intendedPurpose":"Savings","lastName":"Алексеев","nationality":"Afghanistan","netWorth":"$100,000 - $500,000","password":"UbOewIcBrU79","phoneNumber":"234234234","politicallyExposedPerson":"No","postalCode":"03434","sourceOfFunds":"Business"}
+[2024-06-20T22:40:22.069Z] {"user":{"email":"tv_bb65@mail.ru","id":"6670cf47e164782842d374ec"},"expires":"2024-07-20T22:40:22.067Z"} backend session
+[2024-06-20T22:40:25.343Z] User found: {"_id":"6670cf47e164782842d374ec","clientType":"corporate","companyName":"victorum","country":"Germany","phoneNumber":"5464656568","email":"tv_bb65@mail.ru","password":"UbOewIcBrU79@"}
+[2024-06-20T22:42:43.290Z] {"user":{"email":"tv_bb65@mail.ru","id":"6670cf47e164782842d374ec"},"expires":"2024-07-20T22:42:43.286Z"} backend session
+[2024-06-20T22:42:43.342Z] User found: {"_id":"6670cf47e164782842d374ec","clientType":"corporate","companyName":"victorum","country":"Germany","phoneNumber":"5464656568","email":"tv_bb65@mail.ru","password":"UbOewIcBrU79@"}
+[2024-06-20T22:43:38.847Z] {"user":{"email":"tv_bb65@mail.ru","id":"6670cf47e164782842d374ec"},"expires":"2024-07-20T22:43:38.844Z"} backend session
+[2024-06-20T22:43:40.425Z] User found: {"_id":"6670cf47e164782842d374ec","clientType":"corporate","companyName":"victorum","country":"Germany","phoneNumber":"5464656568","email":"tv_bb65@mail.ru","password":"UbOewIcBrU79@"}
+[2024-06-20T22:43:42.067Z] {"user":{"email":"tv_bb65@mail.ru","id":"6670cf47e164782842d374ec"},"expires":"2024-07-20T22:43:42.062Z"} backend session
+[2024-06-20T22:43:44.573Z] User found: {"_id":"6670cf47e164782842d374ec","clientType":"corporate","companyName":"victorum","country":"Germany","phoneNumber":"5464656568","email":"tv_bb65@mail.ru","password":"UbOewIcBrU79@"}
+[2024-06-20T22:43:45.382Z] {"user":{"email":"tv_bb65@mail.ru","id":"6670cf47e164782842d374ec"},"expires":"2024-07-20T22:43:45.376Z"} backend session
+[2024-06-20T22:43:58.075Z] User found: {"_id":"6670cf47e164782842d374ec","clientType":"corporate","companyName":"victorum","country":"Germany","phoneNumber":"5464656568","email":"tv_bb65@mail.ru","password":"UbOewIcBrU79@"}
+[2024-06-20T22:43:58.105Z] {"user":{"email":"tv_bb65@mail.ru","id":"6670cf47e164782842d374ec"},"expires":"2024-07-20T22:43:58.102Z"} backend session
+[2024-06-20T22:44:10.167Z] User found: {"_id":"6670cf47e164782842d374ec","clientType":"corporate","companyName":"victorum","country":"Germany","phoneNumber":"5464656568","email":"tv_bb65@mail.ru","password":"UbOewIcBrU79@"}
+[2024-06-20T22:44:10.205Z] {"user":{"email":"tv_bb65@mail.ru","id":"6670cf47e164782842d374ec"},"expires":"2024-07-20T22:44:10.203Z"} backend session
+[2024-06-20T22:44:15.536Z] User found: {"_id":"6670cf47e164782842d374ec","clientType":"corporate","companyName":"victorum","country":"Germany","phoneNumber":"5464656568","email":"tv_bb65@mail.ru","password":"UbOewIcBrU79@"}
+[2024-06-20T22:44:23.265Z] {"user":{"email":"tv_bb65@mail.ru","id":"6670cf47e164782842d374ec"},"expires":"2024-07-20T22:44:23.261Z"} backend session
+[2024-06-20T22:44:24.251Z] User found: {"_id":"6670cf47e164782842d374ec","clientType":"corporate","companyName":"victorum","country":"Germany","phoneNumber":"5464656568","email":"tv_bb65@mail.ru","password":"UbOewIcBrU79@"}
+[2024-06-20T22:44:28.062Z] {"user":{"email":"tv_bb65@mail.ru","id":"6670cf47e164782842d374ec"},"expires":"2024-07-20T22:44:28.061Z"} backend session
+[2024-06-20T22:44:35.391Z] User found: {"_id":"6670cf47e164782842d374ec","clientType":"corporate","companyName":"victorum","country":"Germany","phoneNumber":"5464656568","email":"tv_bb65@mail.ru","password":"UbOewIcBrU79@"}
+[2024-06-20T22:44:38.638Z] {"user":{"email":"tv_bb65@mail.ru","id":"6670cf47e164782842d374ec"},"expires":"2024-07-20T22:44:38.636Z"} backend session
+[2024-06-20T22:44:40.594Z] User found: {"_id":"6670cf47e164782842d374ec","clientType":"corporate","companyName":"victorum","country":"Germany","phoneNumber":"5464656568","email":"tv_bb65@mail.ru","password":"UbOewIcBrU79@"}
+[2024-06-20T22:44:40.610Z] {"user":{"email":"tv_bb65@mail.ru","id":"6670cf47e164782842d374ec"},"expires":"2024-07-20T22:44:40.609Z"} backend session
+[2024-06-20T22:44:41.905Z] User found: {"_id":"6670cf47e164782842d374ec","clientType":"corporate","companyName":"victorum","country":"Germany","phoneNumber":"5464656568","email":"tv_bb65@mail.ru","password":"UbOewIcBrU79@"}
+[2024-06-20T22:44:44.426Z] {"user":{"email":"tv_bb65@mail.ru","id":"6670cf47e164782842d374ec"},"expires":"2024-07-20T22:44:44.425Z"} backend session
+[2024-06-20T22:44:45.708Z] User found: {"_id":"6670cf47e164782842d374ec","clientType":"corporate","companyName":"victorum","country":"Germany","phoneNumber":"5464656568","email":"tv_bb65@mail.ru","password":"UbOewIcBrU79@"}
+[2024-06-20T22:44:53.092Z] {"user":{"email":"tv_bb65@mail.ru","id":"6670cf47e164782842d374ec"},"expires":"2024-07-20T22:44:53.089Z"} backend session
+[2024-06-20T22:44:55.123Z] User found: {"_id":"6670cf47e164782842d374ec","clientType":"corporate","companyName":"victorum","country":"Germany","phoneNumber":"5464656568","email":"tv_bb65@mail.ru","password":"UbOewIcBrU79@"}
+[2024-06-20T22:44:57.277Z] {"user":{"email":"tv_bb65@mail.ru","id":"6670cf47e164782842d374ec"},"expires":"2024-07-20T22:44:57.275Z"} backend session
+[2024-06-20T22:44:59.697Z] User found: {"_id":"6670cf47e164782842d374ec","clientType":"corporate","companyName":"victorum","country":"Germany","phoneNumber":"5464656568","email":"tv_bb65@mail.ru","password":"UbOewIcBrU79@"}
+[2024-06-20T22:45:31.013Z] {"user":{"email":"tv_bb65@mail.ru","id":"6670cf47e164782842d374ec"},"expires":"2024-07-20T22:45:31.010Z"} backend session
+[2024-06-20T22:45:33.662Z] User found: {"_id":"6670cf47e164782842d374ec","clientType":"corporate","companyName":"victorum","country":"Germany","phoneNumber":"5464656568","email":"tv_bb65@mail.ru","password":"UbOewIcBrU79@"}
+[2024-06-20T22:45:44.907Z] {"user":{"email":"tv_bb65@mail.ru","id":"6670cf47e164782842d374ec"},"expires":"2024-07-20T22:45:44.904Z"} backend session
+[2024-06-20T22:45:46.824Z] User found: {"_id":"6670cf47e164782842d374ec","clientType":"corporate","companyName":"victorum","country":"Germany","phoneNumber":"5464656568","email":"tv_bb65@mail.ru","password":"UbOewIcBrU79@"}
+[2024-06-20T22:45:46.853Z] {"user":{"email":"tv_bb65@mail.ru","id":"6670cf47e164782842d374ec"},"expires":"2024-07-20T22:45:46.851Z"} backend session
+[2024-06-20T22:46:04.858Z] User found: {"_id":"6670cf47e164782842d374ec","clientType":"corporate","companyName":"victorum","country":"Germany","phoneNumber":"5464656568","email":"tv_bb65@mail.ru","password":"UbOewIcBrU79@"}
+[2024-06-20T22:46:04.892Z] {"user":{"email":"tv_bb65@mail.ru","id":"6670cf47e164782842d374ec"},"expires":"2024-07-20T22:46:04.890Z"} backend session
+[2024-06-20T22:46:09.799Z] User found: {"_id":"6670cf47e164782842d374ec","clientType":"corporate","companyName":"victorum","country":"Germany","phoneNumber":"5464656568","email":"tv_bb65@mail.ru","password":"UbOewIcBrU79@"}
+[2024-06-20T22:46:17.524Z] {"user":{"email":"tv_bb65@mail.ru","id":"6670cf47e164782842d374ec"},"expires":"2024-07-20T22:46:17.522Z"} backend session
+[2024-06-20T22:46:19.481Z] User found: {"_id":"6670cf47e164782842d374ec","clientType":"corporate","companyName":"victorum","country":"Germany","phoneNumber":"5464656568","email":"tv_bb65@mail.ru","password":"UbOewIcBrU79@"}
+[2024-06-20T22:46:38.557Z] {"user":{"email":"tv_bb65@mail.ru","id":"6670cf47e164782842d374ec"},"expires":"2024-07-20T22:46:38.556Z"} backend session
+[2024-06-20T22:47:24.117Z] User found: {"_id":"6670cf47e164782842d374ec","clientType":"corporate","companyName":"victorum","country":"Germany","phoneNumber":"5464656568","email":"tv_bb65@mail.ru","password":"UbOewIcBrU79@"}
+[2024-06-20T22:49:00.977Z] {"user":{"email":"tv_bb65@mail.ru","id":"6670cf47e164782842d374ec"},"expires":"2024-07-20T22:49:00.975Z"} backend session
+[2024-06-20T22:49:17.322Z] User found: {"_id":"6670cf47e164782842d374ec","clientType":"corporate","companyName":"victorum","country":"Germany","phoneNumber":"5464656568","email":"tv_bb65@mail.ru","password":"UbOewIcBrU79@"}
+[2024-06-20T22:51:49.245Z] {"user":{"email":"tv_bb65@mail.ru","id":"6670cf47e164782842d374ec"},"expires":"2024-07-20T22:51:49.241Z"} backend session
+[2024-06-20T22:52:06.066Z] User found: {"_id":"6670cf47e164782842d374ec","clientType":"corporate","companyName":"victorum","country":"Germany","phoneNumber":"5464656568","email":"tv_bb65@mail.ru","password":"UbOewIcBrU79@"}
+[2024-06-20T23:00:17.203Z] {"user":{"email":"tv_bb65@mail.ru","id":"6670cf47e164782842d374ec"},"expires":"2024-07-20T23:00:17.200Z"} backend session
+[2024-06-20T23:01:07.968Z] {"user":{"email":"tv_bb65@mail.ru","id":"6670cf47e164782842d374ec"},"expires":"2024-07-20T23:01:07.966Z"} backend session
+[2024-06-20T23:01:10.259Z] Error fetching user: querySrv ETIMEOUT _mongodb._tcp.cluster0.rosrr3n.mongodb.net
+[2024-06-20T23:01:10.271Z] {"user":{"email":"tv_bb65@mail.ru","id":"6670cf47e164782842d374ec"},"expires":"2024-07-20T23:01:10.270Z"} backend session
+[2024-06-20T23:01:21.374Z] {"user":{"email":"tv_bb65@mail.ru","id":"6670cf47e164782842d374ec"},"expires":"2024-07-20T23:01:21.372Z"} backend session
+[2024-06-20T23:01:45.376Z] {"user":{"email":"tv_bb65@mail.ru","id":"6670cf47e164782842d374ec"},"expires":"2024-07-20T23:01:45.374Z"} backend session
+[2024-06-20T23:01:53.369Z] {"user":{"email":"tv_bb65@mail.ru","id":"6670cf47e164782842d374ec"},"expires":"2024-07-20T23:01:53.361Z"} backend session
+[2024-06-20T23:01:59.331Z] Error fetching user: querySrv ETIMEOUT _mongodb._tcp.cluster0.rosrr3n.mongodb.net
+[2024-06-20T23:01:59.342Z] Error fetching user: querySrv ETIMEOUT _mongodb._tcp.cluster0.rosrr3n.mongodb.net
+[2024-06-20T23:01:59.333Z] Error fetching user: querySrv ETIMEOUT _mongodb._tcp.cluster0.rosrr3n.mongodb.net
+[2024-06-20T23:01:59.373Z] {"user":{"email":"tv_bb65@mail.ru","id":"6670cf47e164782842d374ec"},"expires":"2024-07-20T23:01:59.372Z"} backend session
+[2024-06-20T23:02:38.372Z] Error fetching user: querySrv ETIMEOUT _mongodb._tcp.cluster0.rosrr3n.mongodb.net
+[2024-06-20T23:02:38.378Z] Error fetching user: querySrv ETIMEOUT _mongodb._tcp.cluster0.rosrr3n.mongodb.net
+[2024-06-20T23:02:38.385Z] Error fetching user: querySrv ETIMEOUT _mongodb._tcp.cluster0.rosrr3n.mongodb.net
+[2024-06-20T23:03:36.450Z] {"user":{"email":"tv_bb65@mail.ru","id":"6670cf47e164782842d374ec"},"expires":"2024-07-20T23:03:36.447Z"} backend session
+[2024-06-20T23:03:58.513Z] {"user":{"email":"tv_bb65@mail.ru","id":"6670cf47e164782842d374ec"},"expires":"2024-07-20T23:03:58.510Z"} backend session
+[2024-06-20T23:04:05.206Z] {"user":{"email":"tv_bb65@mail.ru","id":"6670cf47e164782842d374ec"},"expires":"2024-07-20T23:04:05.203Z"} backend session
+[2024-06-20T23:04:06.336Z] {"user":{"email":"tv_bb65@mail.ru","id":"6670cf47e164782842d374ec"},"expires":"2024-07-20T23:04:06.331Z"} backend session
+[2024-06-20T23:04:18.338Z] {"user":{"email":"tv_bb65@mail.ru","id":"6670cf47e164782842d374ec"},"expires":"2024-07-20T23:04:18.335Z"} backend session
+[2024-06-20T23:04:20.329Z] Error fetching user: querySrv ETIMEOUT _mongodb._tcp.cluster0.rosrr3n.mongodb.net
+[2024-06-20T23:04:20.354Z] {"user":{"email":"tv_bb65@mail.ru","id":"6670cf47e164782842d374ec"},"expires":"2024-07-20T23:04:20.352Z"} backend session
+[2024-06-20T23:04:24.641Z] {"user":{"email":"tv_bb65@mail.ru","id":"6670cf47e164782842d374ec"},"expires":"2024-07-20T23:04:24.638Z"} backend session
+[2024-06-20T23:04:51.381Z] Error fetching user: querySrv ETIMEOUT _mongodb._tcp.cluster0.rosrr3n.mongodb.net
+[2024-06-20T23:04:51.387Z] Error fetching user: querySrv ETIMEOUT _mongodb._tcp.cluster0.rosrr3n.mongodb.net
+[2024-06-20T23:04:51.878Z] {"user":{"email":"tv_bb65@mail.ru","id":"6670cf47e164782842d374ec"},"expires":"2024-07-20T23:04:51.876Z"} backend session
+[2024-06-20T23:04:52.380Z] Error fetching user: querySrv ETIMEOUT _mongodb._tcp.cluster0.rosrr3n.mongodb.net
+[2024-06-20T23:04:53.543Z] {"user":{"email":"tv_bb65@mail.ru","id":"6670cf47e164782842d374ec"},"expires":"2024-07-20T23:04:53.536Z"} backend session
+[2024-06-20T23:05:03.392Z] Error fetching user: querySrv ETIMEOUT _mongodb._tcp.cluster0.rosrr3n.mongodb.net
+[2024-06-20T23:05:06.393Z] Error fetching user: querySrv ETIMEOUT _mongodb._tcp.cluster0.rosrr3n.mongodb.net
+[2024-06-20T23:05:06.394Z] Error fetching user: querySrv ETIMEOUT _mongodb._tcp.cluster0.rosrr3n.mongodb.net
+[2024-06-20T23:05:06.396Z] Error fetching user: querySrv ETIMEOUT _mongodb._tcp.cluster0.rosrr3n.mongodb.net
+[2024-06-20T23:05:10.397Z] Error fetching user: querySrv ETIMEOUT _mongodb._tcp.cluster0.rosrr3n.mongodb.net
+[2024-06-20T23:05:35.966Z] {"user":{"email":"tv_bb65@mail.ru","id":"6670cf47e164782842d374ec"},"expires":"2024-07-20T23:05:35.961Z"} backend session
+[2024-06-20T23:06:25.010Z] Error fetching user: querySrv ETIMEOUT _mongodb._tcp.cluster0.rosrr3n.mongodb.net
+[2024-06-20T23:07:33.725Z] {"user":{"email":"tv_bb65@mail.ru","id":"6670cf47e164782842d374ec"},"expires":"2024-07-20T23:07:33.722Z"} backend session
+[2024-06-20T23:08:03.273Z] {"user":{"email":"tv_bb65@mail.ru","id":"6670cf47e164782842d374ec"},"expires":"2024-07-20T23:08:03.270Z"} backend session
+[2024-06-20T23:08:04.699Z] {"user":{"email":"tv_bb65@mail.ru","id":"6670cf47e164782842d374ec"},"expires":"2024-07-20T23:08:04.697Z"} backend session
+[2024-06-20T23:08:07.230Z] {"user":{"email":"tv_bb65@mail.ru","id":"6670cf47e164782842d374ec"},"expires":"2024-07-20T23:08:07.229Z"} backend session
+[2024-06-20T23:08:10.417Z] {"user":{"email":"tv_bb65@mail.ru","id":"6670cf47e164782842d374ec"},"expires":"2024-07-20T23:08:10.416Z"} backend session
+[2024-06-20T23:08:11.469Z] {"user":{"email":"tv_bb65@mail.ru","id":"6670cf47e164782842d374ec"},"expires":"2024-07-20T23:08:11.469Z"} backend session
+[2024-06-20T23:08:18.807Z] Error fetching user: querySrv ETIMEOUT _mongodb._tcp.cluster0.rosrr3n.mongodb.net
+[2024-06-20T23:08:47.832Z] Error fetching user: querySrv ETIMEOUT _mongodb._tcp.cluster0.rosrr3n.mongodb.net
+[2024-06-20T23:08:47.835Z] Error fetching user: querySrv ETIMEOUT _mongodb._tcp.cluster0.rosrr3n.mongodb.net
+[2024-06-20T23:08:47.836Z] Error fetching user: querySrv ETIMEOUT _mongodb._tcp.cluster0.rosrr3n.mongodb.net
+[2024-06-20T23:08:47.836Z] Error fetching user: querySrv ETIMEOUT _mongodb._tcp.cluster0.rosrr3n.mongodb.net
+[2024-06-20T23:08:47.836Z] Error fetching user: querySrv ETIMEOUT _mongodb._tcp.cluster0.rosrr3n.mongodb.net
+[2024-06-20T23:08:54.866Z] {"user":{"email":"tv_bb65@mail.ru","id":"6670cf47e164782842d374ec"},"expires":"2024-07-20T23:08:54.863Z"} backend session
+[2024-06-20T23:09:38.955Z] Error fetching user: querySrv ETIMEOUT _mongodb._tcp.cluster0.rosrr3n.mongodb.net
+[2024-06-20T23:12:02.431Z] {"user":{"email":"tv_bb65@mail.ru","id":"6670cf47e164782842d374ec"},"expires":"2024-07-20T23:12:02.429Z"} backend session
+[2024-06-20T23:12:03.527Z] User found: {"_id":"6670cf47e164782842d374ec","clientType":"corporate","companyName":"victorum","country":"Germany","phoneNumber":"5464656568","email":"tv_bb65@mail.ru","password":"UbOewIcBrU79@"}
+[2024-06-20T23:12:18.843Z] {"user":{"email":"tv_bb65@mail.ru","id":"6670cf47e164782842d374ec"},"expires":"2024-07-20T23:12:18.838Z"} backend session
+[2024-06-20T23:12:19.817Z] User found: {"_id":"6670cf47e164782842d374ec","clientType":"corporate","companyName":"victorum","country":"Germany","phoneNumber":"5464656568","email":"tv_bb65@mail.ru","password":"UbOewIcBrU79@"}
+[2024-06-20T23:12:24.204Z] {"user":{"email":"tv_bb65@mail.ru","id":"6670cf47e164782842d374ec"},"expires":"2024-07-20T23:12:24.200Z"} backend session
+[2024-06-20T23:12:25.164Z] User found: {"_id":"6670cf47e164782842d374ec","clientType":"corporate","companyName":"victorum","country":"Germany","phoneNumber":"5464656568","email":"tv_bb65@mail.ru","password":"UbOewIcBrU79@"}
+[2024-06-20T23:12:49.106Z] {"user":{"email":"tv_bb65@mail.ru","id":"6670cf47e164782842d374ec"},"expires":"2024-07-20T23:12:49.103Z"} backend session
+[2024-06-20T23:12:50.107Z] User found: {"_id":"6670cf47e164782842d374ec","clientType":"corporate","companyName":"victorum","country":"Germany","phoneNumber":"5464656568","email":"tv_bb65@mail.ru","password":"UbOewIcBrU79@"}
+[2024-06-20T23:12:53.922Z] {"user":{"email":"tv_bb65@mail.ru","id":"6670cf47e164782842d374ec"},"expires":"2024-07-20T23:12:53.921Z"} backend session
+[2024-06-20T23:12:54.819Z] User found: {"_id":"6670cf47e164782842d374ec","clientType":"corporate","companyName":"victorum","country":"Germany","phoneNumber":"5464656568","email":"tv_bb65@mail.ru","password":"UbOewIcBrU79@"}
+[2024-06-20T23:13:12.299Z] {"user":{"email":"tv_bb65@mail.ru","id":"6670cf47e164782842d374ec"},"expires":"2024-07-20T23:13:12.296Z"} backend session
+[2024-06-20T23:13:13.234Z] User found: {"_id":"6670cf47e164782842d374ec","clientType":"corporate","companyName":"victorum","country":"Germany","phoneNumber":"5464656568","email":"tv_bb65@mail.ru","password":"UbOewIcBrU79@"}
+[2024-06-20T23:13:14.303Z] {"user":{"email":"tv_bb65@mail.ru","id":"6670cf47e164782842d374ec"},"expires":"2024-07-20T23:13:14.301Z"} backend session
+[2024-06-20T23:13:15.314Z] User found: {"_id":"6670cf47e164782842d374ec","clientType":"corporate","companyName":"victorum","country":"Germany","phoneNumber":"5464656568","email":"tv_bb65@mail.ru","password":"UbOewIcBrU79@"}
+[2024-06-20T23:13:17.350Z] {"user":{"email":"tv_bb65@mail.ru","id":"6670cf47e164782842d374ec"},"expires":"2024-07-20T23:13:17.344Z"} backend session
+[2024-06-20T23:13:18.435Z] User found: {"_id":"6670cf47e164782842d374ec","clientType":"corporate","companyName":"victorum","country":"Germany","phoneNumber":"5464656568","email":"tv_bb65@mail.ru","password":"UbOewIcBrU79@"}
+[2024-06-20T23:13:21.852Z] {"user":{"email":"tv_bb65@mail.ru","id":"6670cf47e164782842d374ec"},"expires":"2024-07-20T23:13:21.850Z"} backend session
+[2024-06-20T23:13:22.836Z] User found: {"_id":"6670cf47e164782842d374ec","clientType":"corporate","companyName":"victorum","country":"Germany","phoneNumber":"5464656568","email":"tv_bb65@mail.ru","password":"UbOewIcBrU79@"}
+[2024-06-20T23:14:13.939Z] {"user":{"email":"tv_bb65@mail.ru","id":"6670cf47e164782842d374ec"},"expires":"2024-07-20T23:14:13.931Z"} backend session
+[2024-06-20T23:14:14.845Z] User found: {"_id":"6670cf47e164782842d374ec","clientType":"corporate","companyName":"victorum","country":"Germany","phoneNumber":"5464656568","email":"tv_bb65@mail.ru","password":"UbOewIcBrU79@"}
+[2024-06-20T23:14:30.962Z] {"user":{"email":"tv_bb65@mail.ru","id":"6670cf47e164782842d374ec"},"expires":"2024-07-20T23:14:30.959Z"} backend session
+[2024-06-20T23:14:31.931Z] User found: {"_id":"6670cf47e164782842d374ec","clientType":"corporate","companyName":"victorum","country":"Germany","phoneNumber":"5464656568","email":"tv_bb65@mail.ru","password":"UbOewIcBrU79@"}
+[2024-06-20T23:14:32.848Z] {"user":{"email":"tv_bb65@mail.ru","id":"6670cf47e164782842d374ec"},"expires":"2024-07-20T23:14:32.846Z"} backend session
+[2024-06-20T23:14:33.755Z] User found: {"_id":"6670cf47e164782842d374ec","clientType":"corporate","companyName":"victorum","country":"Germany","phoneNumber":"5464656568","email":"tv_bb65@mail.ru","password":"UbOewIcBrU79@"}
+[2024-06-20T23:14:34.204Z] {"user":{"email":"tv_bb65@mail.ru","id":"6670cf47e164782842d374ec"},"expires":"2024-07-20T23:14:34.203Z"} backend session
+[2024-06-20T23:14:35.182Z] User found: {"_id":"6670cf47e164782842d374ec","clientType":"corporate","companyName":"victorum","country":"Germany","phoneNumber":"5464656568","email":"tv_bb65@mail.ru","password":"UbOewIcBrU79@"}
+[2024-06-20T23:14:41.161Z] {"user":{"email":"tv_bb65@mail.ru","id":"6670cf47e164782842d374ec"},"expires":"2024-07-20T23:14:41.159Z"} backend session
+[2024-06-20T23:14:42.159Z] User found: {"_id":"6670cf47e164782842d374ec","clientType":"corporate","companyName":"victorum","country":"Germany","phoneNumber":"5464656568","email":"tv_bb65@mail.ru","password":"UbOewIcBrU79@"}
+[2024-06-20T23:15:14.624Z] {"user":{"email":"tv_bb65@mail.ru","id":"6670cf47e164782842d374ec"},"expires":"2024-07-20T23:15:14.622Z"} backend session
+[2024-06-20T23:15:15.563Z] User found: {"_id":"6670cf47e164782842d374ec","clientType":"corporate","companyName":"victorum","country":"Germany","phoneNumber":"5464656568","email":"tv_bb65@mail.ru","password":"UbOewIcBrU79@"}
+[2024-06-20T23:15:32.363Z] {"user":{"email":"tv_bb65@mail.ru","id":"6670cf47e164782842d374ec"},"expires":"2024-07-20T23:15:32.361Z"} backend session
+[2024-06-20T23:15:33.333Z] User found: {"_id":"6670cf47e164782842d374ec","clientType":"corporate","companyName":"victorum","country":"Germany","phoneNumber":"5464656568","email":"tv_bb65@mail.ru","password":"UbOewIcBrU79@"}
+[2024-06-20T23:15:47.693Z] {"user":{"email":"tv_bb65@mail.ru","id":"6670cf47e164782842d374ec"},"expires":"2024-07-20T23:15:47.691Z"} backend session
+[2024-06-20T23:15:48.682Z] User found: {"_id":"6670cf47e164782842d374ec","clientType":"corporate","companyName":"victorum","country":"Germany","phoneNumber":"5464656568","email":"tv_bb65@mail.ru","password":"UbOewIcBrU79@"}
+[2024-06-20T23:15:56.314Z] {"user":{"email":"tv_bb65@mail.ru","id":"6670cf47e164782842d374ec"},"expires":"2024-07-20T23:15:56.310Z"} backend session
+[2024-06-20T23:15:57.379Z] User found: {"_id":"6670cf47e164782842d374ec","clientType":"corporate","companyName":"victorum","country":"Germany","phoneNumber":"5464656568","email":"tv_bb65@mail.ru","password":"UbOewIcBrU79@"}
+[2024-06-20T23:18:14.342Z] {"user":{"email":"te32102323230@example.com","id":"6669b99762b7153c33c22f43"},"expires":"2024-07-20T23:18:14.339Z"} backend session
+[2024-06-20T23:18:14.432Z] User found: {"_id":"6669b99762b7153c33c22f43","clientType":"individual","firstName":"sdfsdf","lastName":"sdfsdf","companyName":"victorum","country":"United Arab Emirates","phoneNumber":"453425435","city":"moscow","dateOfBirth":"2024-06-02T21:00:00.000Z","fullAddress":"moscow","nationality":"Afghanistan","postalCode":"03434","securityQuestion1":"What was your first pet's name?","securityQuestion2":"What is your favorite color?","securityQuestion3":"What is your favorite movie?","securityQuestion4":"What is the name of your best friend?","securityQuestion5":"What is your dream job?","securityQuestion6":"What is your favorite vacation destination?","securityQuestion7":"What is your favorite fruit?","securityQuestion8":"What is your favorite animal?","securityQuestion9":"What is your favorite TV show?","securityQuestion10":"What is your favorite holiday?","email":"te32102323230@example.com","password":"wssssdf#sdf3434jn@#WW"}
+[2024-06-20T23:18:15.604Z] {"user":{"email":"te32102323230@example.com","id":"6669b99762b7153c33c22f43"},"expires":"2024-07-20T23:18:15.603Z"} backend session
+[2024-06-20T23:18:15.688Z] User found: {"_id":"6669b99762b7153c33c22f43","clientType":"individual","firstName":"sdfsdf","lastName":"sdfsdf","companyName":"victorum","country":"United Arab Emirates","phoneNumber":"453425435","city":"moscow","dateOfBirth":"2024-06-02T21:00:00.000Z","fullAddress":"moscow","nationality":"Afghanistan","postalCode":"03434","securityQuestion1":"What was your first pet's name?","securityQuestion2":"What is your favorite color?","securityQuestion3":"What is your favorite movie?","securityQuestion4":"What is the name of your best friend?","securityQuestion5":"What is your dream job?","securityQuestion6":"What is your favorite vacation destination?","securityQuestion7":"What is your favorite fruit?","securityQuestion8":"What is your favorite animal?","securityQuestion9":"What is your favorite TV show?","securityQuestion10":"What is your favorite holiday?","email":"te32102323230@example.com","password":"wssssdf#sdf3434jn@#WW"}
+[2024-06-20T23:19:35.504Z] {"user":{"email":"te3@example.com","id":"6665ca3924de05ff45b4963f"},"expires":"2024-07-20T23:19:35.502Z"} backend session
+[2024-06-20T23:19:35.586Z] User found: {"_id":"6665ca3924de05ff45b4963f","name":"test test","phone":"+79153403785","email":"te3@example.com","password":"wssssdf#sdf3434"}
+[2024-06-20T23:19:36.807Z] {"user":{"email":"te3@example.com","id":"6665ca3924de05ff45b4963f"},"expires":"2024-07-20T23:19:36.801Z"} backend session
+[2024-06-20T23:19:36.900Z] User found: {"_id":"6665ca3924de05ff45b4963f","name":"test test","phone":"+79153403785","email":"te3@example.com","password":"wssssdf#sdf3434"}
+[2024-06-20T23:30:13.516Z] {"user":{"email":"te3@example.com","id":"6665ca3924de05ff45b4963f"},"expires":"2024-07-20T23:30:13.501Z"} backend session
+[2024-06-20T23:30:13.625Z] User found: {"_id":"6665ca3924de05ff45b4963f","email":"te3@example.com","password":"wssssdf#sdf3434","firstName":"test test","phoneNumber":"+79153403785"}
+[2024-06-20T23:33:26.060Z] {"user":{"email":"te3@example.com","id":"6665ca3924de05ff45b4963f"},"expires":"2024-07-20T23:33:26.059Z"} backend session
+[2024-06-20T23:33:27.036Z] User found: {"_id":"6665ca3924de05ff45b4963f","email":"te3@example.com","password":"wssssdf#sdf3434","firstName":"test test","phoneNumber":"+79153403785"}
+[2024-06-20T23:33:35.704Z] {"user":{"email":"te3@example.com","id":"6665ca3924de05ff45b4963f"},"expires":"2024-07-20T23:33:35.703Z"} backend session
+[2024-06-20T23:33:36.699Z] User found: {"_id":"6665ca3924de05ff45b4963f","email":"te3@example.com","password":"wssssdf#sdf3434","firstName":"test test","phoneNumber":"+79153403785"}
+[2024-06-20T23:33:46.855Z] {"user":{"email":"te3@example.com","id":"6665ca3924de05ff45b4963f"},"expires":"2024-07-20T23:33:46.853Z"} backend session
+[2024-06-20T23:33:47.807Z] User found: {"_id":"6665ca3924de05ff45b4963f","email":"te3@example.com","password":"wssssdf#sdf3434","firstName":"test test","phoneNumber":"+79153403785"}
+[2024-06-20T23:33:49.369Z] {"user":{"email":"te3@example.com","id":"6665ca3924de05ff45b4963f"},"expires":"2024-07-20T23:33:49.368Z"} backend session
+[2024-06-20T23:33:50.313Z] User found: {"_id":"6665ca3924de05ff45b4963f","email":"te3@example.com","password":"wssssdf#sdf3434","firstName":"test test","phoneNumber":"+79153403785"}
+[2024-06-20T23:33:52.633Z] {"user":{"email":"te3@example.com","id":"6665ca3924de05ff45b4963f"},"expires":"2024-07-20T23:33:52.630Z"} backend session
+[2024-06-20T23:33:53.568Z] User found: {"_id":"6665ca3924de05ff45b4963f","email":"te3@example.com","password":"wssssdf#sdf3434","firstName":"test test","phoneNumber":"+79153403785"}
+[2024-06-20T23:34:35.746Z] {"user":{"email":"te3@example.com","id":"6665ca3924de05ff45b4963f"},"expires":"2024-07-20T23:34:35.744Z"} backend session
+[2024-06-20T23:34:36.812Z] User found: {"_id":"6665ca3924de05ff45b4963f","email":"te3@example.com","password":"wssssdf#sdf3434","firstName":"test test","phoneNumber":"+79153403785"}
+[2024-06-20T23:36:19.826Z] {"user":{"email":"te3@example.com","id":"6665ca3924de05ff45b4963f"},"expires":"2024-07-20T23:36:19.823Z"} backend session
+[2024-06-20T23:36:20.796Z] User found: {"_id":"6665ca3924de05ff45b4963f","email":"te3@example.com","password":"wssssdf#sdf3434","firstName":"test test","phoneNumber":"+79153403785"}
+[2024-06-20T23:37:42.985Z] {"user":{"email":"te3@example.com","id":"6665ca3924de05ff45b4963f"},"expires":"2024-07-20T23:37:42.981Z"} backend session
+[2024-06-20T23:37:43.900Z] User found: {"_id":"6665ca3924de05ff45b4963f","email":"te3@example.com","password":"wssssdf#sdf3434","firstName":"test test","phoneNumber":"+79153403785"}
+[2024-06-20T23:37:43.908Z] {"user":{"email":"te3@example.com","id":"6665ca3924de05ff45b4963f"},"expires":"2024-07-20T23:37:43.908Z"} backend session
+[2024-06-20T23:37:44.853Z] User found: {"_id":"6665ca3924de05ff45b4963f","email":"te3@example.com","password":"wssssdf#sdf3434","firstName":"test test","phoneNumber":"+79153403785"}
+[2024-06-20T23:37:45.347Z] {"user":{"email":"te3@example.com","id":"6665ca3924de05ff45b4963f"},"expires":"2024-07-20T23:37:45.344Z"} backend session
+[2024-06-20T23:37:46.454Z] User found: {"_id":"6665ca3924de05ff45b4963f","email":"te3@example.com","password":"wssssdf#sdf3434","firstName":"test test","phoneNumber":"+79153403785"}
+[2024-06-20T23:37:46.459Z] {"user":{"email":"te3@example.com","id":"6665ca3924de05ff45b4963f"},"expires":"2024-07-20T23:37:46.459Z"} backend session
+[2024-06-20T23:37:46.546Z] User found: {"_id":"6665ca3924de05ff45b4963f","email":"te3@example.com","password":"wssssdf#sdf3434","firstName":"test test","phoneNumber":"+79153403785"}
+[2024-06-20T23:39:13.631Z] {"user":{"email":"te3@example.com","id":"6665ca3924de05ff45b4963f"},"expires":"2024-07-20T23:39:13.628Z"} backend session
+[2024-06-20T23:39:14.639Z] User found: {"_id":"6665ca3924de05ff45b4963f","email":"te3@example.com","password":"wssssdf#sdf3434","firstName":"test test","phoneNumber":"+79153403785"}
+[2024-06-20T23:39:16.927Z] {"user":{"email":"te3@example.com","id":"6665ca3924de05ff45b4963f"},"expires":"2024-07-20T23:39:16.926Z"} backend session
+[2024-06-20T23:39:17.851Z] User found: {"_id":"6665ca3924de05ff45b4963f","email":"te3@example.com","password":"wssssdf#sdf3434","firstName":"test test","phoneNumber":"+79153403785"}

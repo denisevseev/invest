@@ -178,6 +178,7 @@ const StepOne = ({ formik }) => {
                 error={formik.touched.email && Boolean(formik.errors.email)}
                 helperText={formik.touched.email && formik.errors.email}
             />
+            
             <TextField
                 label="Password"
                 name="password"
@@ -213,6 +214,7 @@ const StepOne = ({ formik }) => {
                     sx={{ flex: '0 0 calc(40% - 10px)', mr: '10px' }}
                     component={CustomFormControlLabel}
                 />
+               
                 <FormControlLabel
                     control={<CustomCheckbox checked={passwordCriteria.uppercase} />}
                     label="One uppercase character"

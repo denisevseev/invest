@@ -1,13 +1,18 @@
 import React, { useState } from "react";
-import { Box, Button, IconButton, Toolbar, AppBar, useTheme, useMediaQuery, Drawer } from "@mui/material";
+import { Box, Button, IconButton, Toolbar, AppBar, useTheme, useMediaQuery, Drawer, Typography, Avatar, Divider } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
+import LogoutIcon from "@mui/icons-material/Logout";
+import AccountCircleIcon from "@mui/icons-material/AccountCircle";
+import MailIcon from "@mui/icons-material/Mail";
+import HeadsetMicIcon from "@mui/icons-material/HeadsetMic";
+import FlagIcon from "@mui/icons-material/Flag";
 import Logo from "./Logo";
 import Link from "next/link";
-import { signIn, signOut, useSession } from 'next-auth/react';
+import { signOut, useSession } from 'next-auth/react';
 import { useRouter } from "next/router";
 import CustomSideBar from "./../pages/CustomSideBar";
 import store from "../stores/userStore";
-import {observer} from "mobx-react-lite";
+import { observer } from "mobx-react-lite";
 import DefaultSideBar from "./DefaultSideBar";
 
 const AppBarComponent = () => {
@@ -26,8 +31,6 @@ const AppBarComponent = () => {
         await signOut({ redirect: false });
         router.reload();
     };
-
-
 
     return (
         <div>
@@ -56,12 +59,46 @@ const AppBarComponent = () => {
                         <Logo />
                     </Box>
                     {session ? (
-                        <Button sx={{ color: 'black', textShadow: '1px 1px 2px rgba(0,0,0,0.4)' }} onClick={handleLogout}>Logout</Button>
+                        <>
+                            {!isMobile && (
+                                <Box sx={{ display: 'flex', alignItems: 'center', mr: 2 }}>
+                                    <AccountCircleIcon sx={{ mr: 1 }} />
+                                    <Typography variant="body1" sx={{ color: 'black', textShadow: '1px 1px 2px rgba(0,0,0,0.4)', mr: 2 }}>
+                                        {user?.companyName ? user.companyName : user?.firstName} {user?.companyName ? user.country : user?.lastName}
+                                    </Typography>
+                                </Box>
+                            )}
+                            {!isMobile && <Divider orientation="vertical" flexItem sx={{ mx: 1 }} />}
+                            {!isMobile && (
+                                <IconButton>
+                                    <FlagIcon />
+                                </IconButton>
+                            )}
+                            {!isMobile && <Divider orientation="vertical" flexItem sx={{ mx: 1 }} />}
+                            <IconButton>
+                                <MailIcon />
+                                {!isMobile && <Typography variant="body1" sx={{ ml: 1 }}>Messages</Typography>}
+                            </IconButton>
+                            <Divider orientation="vertical" flexItem sx={{ mx: 1 }} />
+                            <IconButton>
+                                <HeadsetMicIcon />
+                                {!isMobile && <Typography variant="body1" sx={{ ml: 1 }}>Help Desk</Typography>}
+                            </IconButton>
+                            <Divider orientation="vertical" flexItem sx={{ mx: 1 }} />
+                            <Button sx={{ color: 'black', textShadow: '1px 1px 2px rgba(0,0,0,0.4)' }} onClick={handleLogout}>
+                                <LogoutIcon sx={{ mr: 1 }} />
+                                {!isMobile && 'Logout'}
+                            </Button>
+                        </>
                     ) : (
                         <>
-                            <Button sx={{ color: 'black', textShadow: '1px 1px 2px rgba(0,0,0,0.4)' }} onClick={() => router.push('/login')}>Login</Button>
+                            <Button sx={{ color: 'black', textShadow: '1px 1px 2px rgba(0,0,0,0.4)' }} onClick={() => router.push('/login')}>
+                                Login
+                            </Button>
                             <Link href="/signup" passHref>
-                                <Button sx={{ color: 'black', textShadow: '1px 1px 2px rgba(0,0,0,0.4)' }}>Sign Up</Button>
+                                <Button sx={{ color: 'black', textShadow: '1px 1px 2px rgba(0,0,0,0.4)' }}>
+                                    Sign Up
+                                </Button>
                             </Link>
                         </>
                     )}
@@ -80,10 +117,11 @@ const AppBarComponent = () => {
                         '& .MuiDrawer-paper': { boxSizing: 'border-box', width: 240 },
                     }}
                 >
-                    {user?.phone ? <DefaultSideBar/> : <CustomSideBar mobileOpen={mobileOpen} />}
+                    {user?.phoneNumber ? <DefaultSideBar /> : <CustomSideBar mobileOpen={mobileOpen} />}
                 </Drawer>
             )}
         </div>
     );
 }
+
 export default observer(AppBarComponent);

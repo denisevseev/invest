@@ -49,7 +49,7 @@ const UserInfoComponent = ({}) => {
     }, [session, router]);
 
 
-    if(user?.phone) { //если юзер с первичной регистрацией
+    if(user?.phoneNumber) { //если юзер с первичной регистрацией
         return (
             <Layout>
                 <Layout/>
