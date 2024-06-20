@@ -1,4 +1,4 @@
-import { makeAutoObservable, configure, observable, runInAction } from "mobx";
+import { makeAutoObservable, configure, observable, runInAction, toJS } from "mobx";
 
 configure({
   useProxies: "never",
@@ -11,6 +11,7 @@ class UserStore {
   routeLink = "/"
   modalOpen = false
   messageModal = null
+  arr = []
 
   constructor() {
     makeAutoObservable(this, {
@@ -18,7 +19,8 @@ class UserStore {
       regForm: observable,
       routeLink: observable,
       modalOpen: observable,
-      messageModal: observable
+      messageModal: observable,
+      arr: observable
     });
   }
 
@@ -26,6 +28,19 @@ class UserStore {
     runInAction(() => {
       this.user = user;
     });
+  }
+
+  handleArr(formData) {
+    const keys = Object.keys(formData);
+    keys.forEach(key => {
+      const existingIndex = this.arr.findIndex(item => item.name === key);
+      if (existingIndex !== -1) {
+        this.arr[existingIndex].value = formData[key];
+      } else {
+        this.arr.push({ name: key, value: formData[key] });
+      }
+    });
+    console.log("Данные в store:", toJS(this.arr));
   }
 
   handleModal (message, open){

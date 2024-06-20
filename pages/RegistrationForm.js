@@ -10,7 +10,7 @@ import { useRouter } from "next/router";
 import { useSession } from "next-auth/react";
 import ModalComponent from '../components/Modal';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
-import Paper from '@mui/material/Paper';
+import store from '../stores/userStore';
 
 const steps = ['Individual Client', 'Corporate Client', 'Finish'];
 
@@ -112,7 +112,11 @@ const RegistrationFormContent = ({ session }) => {
 
     const handleNext = () => {
         if (validateForm()) {
-            setActiveStep((prevActiveStep) => prevActiveStep + 1);
+            if (activeStep === steps.length - 1) {
+                formik.handleSubmit();
+            } else {
+                setActiveStep((prevActiveStep) => prevActiveStep + 1);
+            }
         }
     };
 
@@ -185,12 +189,11 @@ const RegistrationFormContent = ({ session }) => {
                     backgroundColor: '#fff',
                 }}
             >
-                 <Typography sx={{ textAlign: 'center', display: 'inline-block' }} variant="h5" gutterBottom>
-                             Register in minutes <CheckCircleIcon style={{ color: 'blue', fontSize: 25, verticalAlign: 'middle' }} />
+                <Typography sx={{ textAlign: 'center', display: 'inline-block' }} variant="h5" gutterBottom>
+                    Register in minutes <CheckCircleIcon style={{ color: 'blue', fontSize: 25, verticalAlign: 'middle' }} />
                 </Typography>
 
                 <Box sx={{ maxWidth: 500, mx: 'auto', mt: 4 }}>
-            
                     {formik.values.clientType !== 'corporate' && (
                         <Stepper activeStep={activeStep}>
                             {steps.map((label, index) => (
@@ -213,15 +216,13 @@ const RegistrationFormContent = ({ session }) => {
                             Back
                         </Button>
                         <Box sx={{ flex: '1 1 auto' }} />
-                        {activeStep === steps.length - 1 ? (
-                            <Button onClick={formik.handleSubmit}>
-                                Finish
-                            </Button>
-                        ) : (
-                            <Button onClick={handleNext}>
-                                Next
-                            </Button>
-                        )}
+                        <Button
+                            variant="contained"
+                            onClick={handleNext}
+                            sx={{ mt: 3, ml: 1 }}
+                        >
+                            {activeStep === steps.length - 1 ? 'Finish' : 'Next'}
+                        </Button>
                     </Box>
                 </Box>
             </Box>

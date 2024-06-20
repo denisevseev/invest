@@ -4,6 +4,7 @@ import PhoneInput from 'react-phone-input-2';
 import 'react-phone-input-2/lib/material.css';
 import CountrySelect from './../CountrySelect';
 import store from './../../stores/userStore';
+import { toJS } from 'mobx';
 
 const CustomCheckbox = styled(Checkbox)(({ theme }) => ({
     color: 'green',
@@ -46,9 +47,26 @@ const StepOne = ({ formik }) => {
         specialChar: false,
     });
 
-    const handleStore = async (e) => {
-        store.setUser()
-    }
+    const [formData, setFormData] = useState({});
+
+    const handleChange = (event) => {
+        const { name, value } = event.target;
+        setFormData(prevData => ({ ...prevData, [name]: value }));
+        formik.handleChange(event);
+        store.handleArr(formData);
+    };
+
+    const handleCountryChange = (country) => {
+        setFormData(prevData => ({ ...prevData, country }));
+        formik.setFieldValue('country', country);
+        store.handleArr(formData);
+    };
+
+    const handlePhoneNumberChange = (phone) => {
+        setFormData(prevData => ({ ...prevData, phoneNumber: phone }));
+        formik.setFieldValue('phoneNumber', phone);
+        store.handleArr(formData);
+    };
 
     const handlePasswordChange = (e) => {
         const { value } = e.target;
@@ -60,6 +78,10 @@ const StepOne = ({ formik }) => {
             specialChar: /[!@#$%^&*(),.?":{}|<>]/.test(value),
         });
         formik.handleChange(e);
+        setFormData(prevData => ({ ...prevData, password: value }));
+        formik.setFieldValue('password', value);
+        // console.log(formData)
+        store.handleArr(formData);
     };
 
     return (
@@ -82,7 +104,7 @@ const StepOne = ({ formik }) => {
                         label="First Name"
                         name="firstName"
                         value={formik.values.firstName}
-                        onChange={formik.handleChange}
+                        onChange={handleChange}
                         onBlur={formik.handleBlur}
                         fullWidth
                         margin="normal"
@@ -95,7 +117,7 @@ const StepOne = ({ formik }) => {
                         label="Last Name"
                         name="lastName"
                         value={formik.values.lastName}
-                        onChange={formik.handleChange}
+                        onChange={handleChange}
                         onBlur={formik.handleBlur}
                         fullWidth
                         margin="normal"
@@ -110,7 +132,7 @@ const StepOne = ({ formik }) => {
                     label="Company Name"
                     name="companyName"
                     value={formik.values.companyName}
-                    onChange={formik.handleChange}
+                    onChange={handleChange}
                     onBlur={formik.handleBlur}
                     fullWidth
                     margin="normal"
@@ -124,7 +146,7 @@ const StepOne = ({ formik }) => {
                 <FormLabel>Country of Residence *</FormLabel>
                 <CountrySelect
                     value={formik.values.country}
-                    onChange={country => formik.setFieldValue('country', country)}
+                    onChange={handleCountryChange}
                 />
                 {formik.touched.country && formik.errors.country && (
                     <Typography color="error">{formik.errors.country}</Typography>
@@ -134,7 +156,7 @@ const StepOne = ({ formik }) => {
                 <PhoneInput
                     country={formik.values.country.toLowerCase()}
                     value={formik.values.phoneNumber}
-                    onChange={phone => formik.setFieldValue('phoneNumber', phone)}
+                    onChange={handlePhoneNumberChange}
                     enableSearch
                     inputStyle={{ width: '100%' }}
                 />
@@ -147,7 +169,7 @@ const StepOne = ({ formik }) => {
                 name="email"
                 type="email"
                 value={formik.values.email}
-                onChange={formik.handleChange}
+                onChange={handleChange}
                 onBlur={formik.handleBlur}
                 fullWidth
                 margin="normal"

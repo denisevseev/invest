@@ -1,9 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Box, Button, FormControl, Select, MenuItem, FormHelperText, Typography, TextField } from '@mui/material';
-import { useFormik } from 'formik';
-import * as Yup from 'yup';
+import { observer } from 'mobx-react-lite';
+import store from '../../stores/userStore';
 
-const StepThree = () => {
+const StepThree = ({ formik }) => {
     const options = {
         employmentStatus: ["Employed", "Self-Employed", "Unemployed", "Retired"],
         sourceOfFunds: ["Salary", "Business", "Savings", "Investments", "Other"],
@@ -15,35 +15,11 @@ const StepThree = () => {
         politicallyExposedPerson: ["Yes", "No"]
     };
 
-    const validationSchema = Yup.object().shape({
-        employmentStatus: Yup.string().required('Employment Status is required'),
-        sourceOfFunds: Yup.string().required('Source of Funds is required'),
-        netWorth: Yup.string().required('Net Worth is required'),
-        annualIncome: Yup.string().required('Annual Income is required'),
-        anticipatedAnnualDeposit: Yup.string().required('Anticipated Annual Deposit is required'),
-        foreseeableExpenses: Yup.number().required('Foreseeable Expenses is required'),
-        intendedPurpose: Yup.string().required('Intended Purpose is required'),
-        creditFundAccount: Yup.string().required('Credit/Fund Account is required'),
-        politicallyExposedPerson: Yup.string().required('Politically Exposed Person is required')
-    });
-
-    const formik = useFormik({
-        initialValues: {
-            employmentStatus: '',
-            sourceOfFunds: '',
-            netWorth: '',
-            annualIncome: '',
-            anticipatedAnnualDeposit: '',
-            foreseeableExpenses: '',
-            intendedPurpose: '',
-            creditFundAccount: '',
-            politicallyExposedPerson: ''
-        },
-        validationSchema: validationSchema,
-        onSubmit: async (values) => {
-            console.log(values);
-        },
-    });
+    const handleChange = (event) => {
+        const { name, value } = event.target;
+        formik.setFieldValue(name, value);
+        store.handleArr({ name, value });
+    };
 
     return (
         <Box component="form" onSubmit={formik.handleSubmit}>
@@ -66,10 +42,10 @@ const StepThree = () => {
                         displayEmpty
                         name={key}
                         value={formik.values[key]}
-                        onChange={formik.handleChange}
+                        onChange={handleChange}
                         onBlur={formik.handleBlur}
                         renderValue={(selected) => {
-                            if (selected.length === 0) {
+                            if (!selected || selected.length === 0) {
                                 return <em>Please select</em>;
                             }
                             return selected;
@@ -112,10 +88,10 @@ const StepThree = () => {
             </FormControl>
 
             <Button type="submit" variant="contained" color="primary" fullWidth sx={{ mt: 2 }}>
-                Continue
+                Finish
             </Button>
         </Box>
     );
 };
 
-export default StepThree;
+export default observer(StepThree);

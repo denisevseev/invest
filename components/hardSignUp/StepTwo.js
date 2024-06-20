@@ -1,13 +1,34 @@
-import * as React from 'react';
-import { Box, TextField, Typography, FormControl, FormLabel, Button } from '@mui/material';
-import CountrySelect from './../CountrySelect'; // Импортируем компонент для выбора страны
+import React, { useState, useEffect } from 'react';
+import { Box, TextField, Typography, FormControl, FormLabel } from '@mui/material';
+import CountrySelect from './../CountrySelect';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
+import store from './../../stores/userStore';
+import dayjs from 'dayjs';
 
 const StepTwo = ({ formik, handleNext, handleBack }) => {
+    const [formData, setFormData] = useState(formik.values);
+
+    useEffect(() => {
+        store.handleArr(formData);
+    }, [formData]);
+
     const handleDateChange = date => {
-        formik.setFieldValue('dateOfBirth', date);
+        const formattedDate = date ? dayjs(date).format('YYYY-MM-DD') : null;
+        formik.setFieldValue('dateOfBirth', formattedDate);
+        setFormData(prevData => ({ ...prevData, dateOfBirth: formattedDate }));
+    };
+
+    const handleCountryChange = (value) => {
+        formik.setFieldValue('nationality', value);
+        setFormData(prevData => ({ ...prevData, nationality: value }));
+    };
+
+    const handleChange = (event) => {
+        const { name, value } = event.target;
+        setFormData(prevData => ({ ...prevData, [name]: value }));
+        formik.handleChange(event);
     };
 
     return (
@@ -19,7 +40,7 @@ const StepTwo = ({ formik, handleNext, handleBack }) => {
                 <FormLabel>Date of Birth</FormLabel>
                 <LocalizationProvider dateAdapter={AdapterDayjs}>
                     <DatePicker
-                        value={formik.values.dateOfBirth}
+                        value={formik.values.dateOfBirth ? dayjs(formik.values.dateOfBirth) : null}
                         onChange={handleDateChange}
                         renderInput={(params) => <TextField {...params} />}
                     />
@@ -32,7 +53,7 @@ const StepTwo = ({ formik, handleNext, handleBack }) => {
                 <FormLabel>Nationality</FormLabel>
                 <CountrySelect
                     value={formik.values.nationality}
-                    onChange={value => formik.setFieldValue('nationality', value)}
+                    onChange={handleCountryChange}
                 />
                 {formik.touched.nationality && formik.errors.nationality && (
                     <Typography variant="caption" color="error">{formik.errors.nationality}</Typography>
@@ -45,7 +66,7 @@ const StepTwo = ({ formik, handleNext, handleBack }) => {
                 label="Full Address"
                 name="fullAddress"
                 value={formik.values.fullAddress}
-                onChange={formik.handleChange}
+                onChange={handleChange}
                 fullWidth
                 margin="normal"
                 required
@@ -56,7 +77,10 @@ const StepTwo = ({ formik, handleNext, handleBack }) => {
                 <FormLabel>Country</FormLabel>
                 <CountrySelect
                     value={formik.values.country}
-                    onChange={value => formik.setFieldValue('country', value)}
+                    onChange={value => {
+                        formik.setFieldValue('country', value);
+                        setFormData(prevData => ({ ...prevData, country: value }));
+                    }}
                 />
                 {formik.touched.country && formik.errors.country && (
                     <Typography variant="caption" color="error">{formik.errors.country}</Typography>
@@ -66,7 +90,7 @@ const StepTwo = ({ formik, handleNext, handleBack }) => {
                 label="City/Town"
                 name="city"
                 value={formik.values.city}
-                onChange={formik.handleChange}
+                onChange={handleChange}
                 fullWidth
                 margin="normal"
                 required
@@ -77,7 +101,7 @@ const StepTwo = ({ formik, handleNext, handleBack }) => {
                 label="Postal/ZIP Code"
                 name="postalCode"
                 value={formik.values.postalCode}
-                onChange={formik.handleChange}
+                onChange={handleChange}
                 fullWidth
                 margin="normal"
                 required
