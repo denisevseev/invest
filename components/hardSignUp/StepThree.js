@@ -1,7 +1,6 @@
-import React, { useState } from 'react';
-import { Box, Button, FormControl, Select, MenuItem, FormHelperText, Typography, TextField } from '@mui/material';
+import React from 'react';
+import { Box, FormControl, Select, Button, MenuItem, FormHelperText, Typography, TextField } from '@mui/material';
 import { observer } from 'mobx-react-lite';
-import store from '../../stores/userStore';
 
 const StepThree = ({ formik }) => {
     const options = {
@@ -12,13 +11,7 @@ const StepThree = ({ formik }) => {
         anticipatedAnnualDeposit: ["Less than $50,000", "$50,000 - $100,000", "$100,000 - $500,000", "More than $500,000"],
         intendedPurpose: ["Investment", "Savings", "Retirement", "Other"],
         creditFundAccount: ["Bank Transfer", "Credit Card", "Debit Card", "Other"],
-        politicallyExposedPerson: ["Yes", "No"]
-    };
-
-    const handleChange = (event) => {
-        const { name, value } = event.target;
-        formik.setFieldValue(name, value);
-        store.handleArr({ name, value });
+        politicallyExposedPerson: ["Yes", "No"],
     };
 
     return (
@@ -42,7 +35,7 @@ const StepThree = ({ formik }) => {
                         displayEmpty
                         name={key}
                         value={formik.values[key]}
-                        onChange={handleChange}
+                        onChange={formik.handleChange}
                         onBlur={formik.handleBlur}
                         renderValue={(selected) => {
                             if (!selected || selected.length === 0) {
@@ -64,32 +57,7 @@ const StepThree = ({ formik }) => {
                 </FormControl>
             ))}
 
-            <FormControl
-                fullWidth
-                margin="normal"
-                error={formik.touched.foreseeableExpenses && Boolean(formik.errors.foreseeableExpenses)}
-                sx={{ mb: 2 }}
-            >
-                <Box sx={{ mb: 1 }}>
-                    <Typography variant="body1">
-                        What are your foreseeable expenses over the next 12 months (EUR)? *
-                    </Typography>
-                </Box>
-                <TextField
-                    name="foreseeableExpenses"
-                    type="number"
-                    value={formik.values.foreseeableExpenses}
-                    onChange={formik.handleChange}
-                    onBlur={formik.handleBlur}
-                />
-                {formik.touched.foreseeableExpenses && formik.errors.foreseeableExpenses && (
-                    <FormHelperText>{formik.errors.foreseeableExpenses}</FormHelperText>
-                )}
-            </FormControl>
-
-            <Button type="submit" variant="contained" color="primary" fullWidth sx={{ mt: 2 }}>
-                Finish
-            </Button>
+        
         </Box>
     );
 };

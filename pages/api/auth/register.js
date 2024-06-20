@@ -6,7 +6,30 @@ const client = new MongoClient(uri);
 export default async function handler(req, res) {
     if (req.method === 'POST') {
         console.log(req.body);
-        const { clientType, firstName, lastName, companyName, country, phoneNumber, city, email, password, dateOfBirth, fullAddress, nationality, postalCode, securityQuestion1, securityQuestion2, securityQuestion3, securityQuestion4, securityQuestion5, securityQuestion6, securityQuestion7, securityQuestion8, securityQuestion9, securityQuestion10, name, phone } = req.body;
+        const { 
+            annualIncome,
+            anticipatedAnnualDeposit,
+            city,
+            clientType,
+            companyName,
+            country,
+            creditFundAccount,
+            dateOfBirth,
+            email,
+            employmentStatus,
+            firstName,
+            fullAddress,
+            intendedPurpose,
+            lastName,
+            nationality,
+            netWorth,
+            password,
+            phoneNumber,
+            politicallyExposedPerson,
+            postalCode,
+            sourceOfFunds
+        } = req.body;
+        
         const isCorporate = clientType === 'corporate';
         const isIndividual = clientType === 'individual';
 
@@ -32,28 +55,27 @@ export default async function handler(req, res) {
                 };
             } else if (isIndividual) {
                 newUser = {
-                    clientType,
-                    firstName,
-                    lastName,
-                    country,
-                    phoneNumber,
-                    email,
-                    password,
-                    dateOfBirth,
-                    fullAddress,
+                    annualIncome,
+                    anticipatedAnnualDeposit,
                     city,
+                    clientType,
+                    companyName,
+                    country,
+                    creditFundAccount,
+                    dateOfBirth,
+                    email,
+                    employmentStatus,
+                    firstName,
+                    fullAddress,
+                    intendedPurpose,
+                    lastName,
                     nationality,
+                    netWorth,
+                    password,
+                    phoneNumber,
+                    politicallyExposedPerson,
                     postalCode,
-                    securityQuestion1,
-                    securityQuestion2,
-                    securityQuestion3,
-                    securityQuestion4,
-                    securityQuestion5,
-                    securityQuestion6,
-                    securityQuestion7,
-                    securityQuestion8,
-                    securityQuestion9,
-                    securityQuestion10,
+                    sourceOfFunds
                 };
             } else {
                 newUser = {

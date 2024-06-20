@@ -12,7 +12,7 @@ import ModalComponent from '../components/Modal';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import store from '../stores/userStore';
 
-const steps = ['Individual Client', 'Corporate Client', 'Finish'];
+const steps = ['', '', ''];
 
 const RegistrationFormContent = ({ session }) => {
     const theme = useTheme();
@@ -36,6 +36,13 @@ const RegistrationFormContent = ({ session }) => {
         fullAddress: Yup.string().required('Required'),
         city: Yup.string().required('Required'),
         postalCode: Yup.string().required('Required'),
+        employmentStatus: Yup.string().required('Required'),
+        sourceOfFunds: Yup.string().required('Required'),
+        netWorth: Yup.string().required('Required'),
+        annualIncome: Yup.string().required('Required'),
+        anticipatedAnnualDeposit: Yup.string().required('Required'),
+        intendedPurpose: Yup.string().required('Required'),
+        creditFundAccount: Yup.string().required('Required'),
     });
 
     const corporateValidationSchema = Yup.object().shape({
@@ -96,16 +103,19 @@ const RegistrationFormContent = ({ session }) => {
                 const data = await response.json();
 
                 if (response.ok) {
-                    console.log('User registered successfully:', data);
-                    alert('User registered successfully');
-                    router.push('/login');
+                    setModalMessage('User registered successfully');
+                    setModalOpen(true);
+                    setTimeout(() => {
+                        setModalOpen(false);
+                        router.push('/login');
+                    }, 2000);
                 } else {
                     setModalMessage(data.message);
                     setModalOpen(true);
                 }
             } catch (error) {
-                console.error('Error:', error);
-                alert('Error registering user');
+                setModalMessage('Error registering user');
+                setModalOpen(true);
             }
         },
     });
@@ -121,36 +131,21 @@ const RegistrationFormContent = ({ session }) => {
     };
 
     const validateForm = () => {
-        const { values, errors, touched } = formik;
+        const { values } = formik;
 
-        if (activeStep === 0 && values.clientType === 'individual') {
-            const requiredFields = ['firstName', 'lastName', 'country', 'phoneNumber', 'email', 'password'];
-            const allValuesPresent = requiredFields.every(field => values[field] !== '' && values[field] !== null && values[field] !== undefined);
-            if (!allValuesPresent) {
-                alert('Please fill in all required fields.');
-                return false;
-            }
-        } else if (activeStep === 1 && values.clientType === 'individual') {
-            const requiredFields = ['dateOfBirth', 'nationality', 'fullAddress', 'country', 'city', 'postalCode'];
-            const allValuesPresent = requiredFields.every(field => values[field] !== '' && values[field] !== null && values[field] !== undefined);
-            if (!allValuesPresent) {
-                alert('Please fill in all required fields.');
-                return false;
-            }
-        } else if (activeStep === 0 && values.clientType === 'corporate') {
-            const requiredFields = ['companyName', 'country', 'phoneNumber', 'email', 'password'];
-            const allValuesPresent = requiredFields.every(field => values[field] !== '' && values[field] !== null && values[field] !== undefined);
-            if (!allValuesPresent) {
-                alert('Please fill in all required fields.');
-                return false;
-            }
-        } else if (activeStep === 2) {
-            const requiredFields = ['employmentStatus', 'sourceOfFunds', 'netWorth', 'annualIncome', 'anticipatedAnnualDeposit', 'intendedPurpose', 'creditFundAccount'];
-            const allValuesPresent = requiredFields.every(field => values[field] !== '' && values[field] !== null && values[field] !== undefined);
-            if (!allValuesPresent) {
-                alert('Please fill in all required fields.');
-                return false;
-            }
+        const requiredFields = {
+            0: values.clientType === 'individual' ? ['firstName', 'lastName', 'country', 'phoneNumber', 'email', 'password']
+                : ['companyName', 'country', 'phoneNumber', 'email', 'password'],
+            1: ['dateOfBirth', 'nationality', 'fullAddress', 'country', 'city', 'postalCode'],
+            2: ['employmentStatus', 'sourceOfFunds', 'netWorth', 'annualIncome', 'anticipatedAnnualDeposit', 'intendedPurpose', 'creditFundAccount']
+        };
+
+        const allValuesPresent = requiredFields[activeStep].every(field => values[field] !== '' && values[field] !== null && values[field] !== undefined);
+
+        if (!allValuesPresent) {
+            <ModalComponent/>
+            alert('Please fill in all required fields.');
+            return false;
         }
 
         return true;
@@ -211,13 +206,13 @@ const RegistrationFormContent = ({ session }) => {
                             color="inherit"
                             disabled={activeStep === 0}
                             onClick={handleBack}
-                            sx={{ mr: 1 }}
+                            sx={{ mt: 3, ml: 1 }}
                         >
                             Back
                         </Button>
                         <Box sx={{ flex: '1 1 auto' }} />
                         <Button
-                            variant="contained"
+                            variant="text"
                             onClick={handleNext}
                             sx={{ mt: 3, ml: 1 }}
                         >

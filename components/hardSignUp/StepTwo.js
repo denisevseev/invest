@@ -7,27 +7,27 @@ import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import store from './../../stores/userStore';
 import dayjs from 'dayjs';
 
-const StepTwo = ({ formik, handleNext, handleBack }) => {
+const StepTwo = ({ formik }) => {
     const [formData, setFormData] = useState(formik.values);
 
     useEffect(() => {
         store.handleArr(formData);
     }, [formData]);
 
-    const handleDateChange = date => {
+    const handleDateChange = (date) => {
         const formattedDate = date ? dayjs(date).format('YYYY-MM-DD') : null;
         formik.setFieldValue('dateOfBirth', formattedDate);
-        setFormData(prevData => ({ ...prevData, dateOfBirth: formattedDate }));
+        setFormData((prevData) => ({ ...prevData, dateOfBirth: formattedDate }));
     };
 
     const handleCountryChange = (value) => {
         formik.setFieldValue('nationality', value);
-        setFormData(prevData => ({ ...prevData, nationality: value }));
+        setFormData((prevData) => ({ ...prevData, nationality: value }));
     };
 
     const handleChange = (event) => {
         const { name, value } = event.target;
-        setFormData(prevData => ({ ...prevData, [name]: value }));
+        setFormData((prevData) => ({ ...prevData, [name]: value }));
         formik.handleChange(event);
     };
 
@@ -59,27 +59,25 @@ const StepTwo = ({ formik, handleNext, handleBack }) => {
                     <Typography variant="caption" color="error">{formik.errors.nationality}</Typography>
                 )}
             </FormControl>
-            <Typography variant="h6" gutterBottom>
-                Residence Address
-            </Typography>
-            <TextField
-                label="Full Address"
-                name="fullAddress"
-                value={formik.values.fullAddress}
-                onChange={handleChange}
-                fullWidth
-                margin="normal"
-                required
-                error={formik.touched.fullAddress && Boolean(formik.errors.fullAddress)}
-                helperText={formik.touched.fullAddress && formik.errors.fullAddress}
-            />
+            <FormControl fullWidth margin="normal" error={formik.touched.fullAddress && Boolean(formik.errors.fullAddress)}>
+                <FormLabel>Residence Address</FormLabel>
+                <TextField
+                    name="fullAddress"
+                    value={formik.values.fullAddress}
+                    onChange={handleChange}
+                    fullWidth
+                    required
+                    error={formik.touched.fullAddress && Boolean(formik.errors.fullAddress)}
+                    helperText={formik.touched.fullAddress && formik.errors.fullAddress}
+                />
+            </FormControl>
             <FormControl fullWidth margin="normal" error={formik.touched.country && Boolean(formik.errors.country)}>
                 <FormLabel>Country</FormLabel>
                 <CountrySelect
                     value={formik.values.country}
-                    onChange={value => {
+                    onChange={(value) => {
                         formik.setFieldValue('country', value);
-                        setFormData(prevData => ({ ...prevData, country: value }));
+                        setFormData((prevData) => ({ ...prevData, country: value }));
                     }}
                 />
                 {formik.touched.country && formik.errors.country && (
@@ -108,7 +106,6 @@ const StepTwo = ({ formik, handleNext, handleBack }) => {
                 error={formik.touched.postalCode && Boolean(formik.errors.postalCode)}
                 helperText={formik.touched.postalCode && formik.errors.postalCode}
             />
-        
         </Box>
     );
 };
