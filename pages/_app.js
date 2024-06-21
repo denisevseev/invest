@@ -6,6 +6,9 @@ import UserInfoComponent from "../components/UserInfoComponent";
 import RegistrationForm from "./RegistrationForm";
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import Head from 'next/head';
+import ResetPassword from './ResetPassword';
+import { dividerClasses } from '@mui/material';
+import ResetPasswordForm from './ResetPasswordForm';
 
 const theme = createTheme({
     typography: {
@@ -16,8 +19,14 @@ const theme = createTheme({
 const MyApp = ({ Component, pageProps }) => {
     let isSignUpPage = false;
 
+
     if (Component.name === "SignUp" || Component.name === "Login" || Component.name === "RegistrationForm") {
         isSignUpPage = true;
+    }
+    if(Component.name == 'ResetPasswordForm'){
+       return (<div>
+        <ResetPasswordForm/>
+       </div>)
     }
 
     if(Component.name === "RegistrationForm"){
@@ -32,6 +41,16 @@ const MyApp = ({ Component, pageProps }) => {
             </SessionProvider>
         )
     }
+
+    if (Component.name === 'ResetPassword'){
+        return (<>
+        <Head>
+                    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" />
+                </Head>
+                <ResetPassword/>
+        </>)
+    }
+
     if(Component.name === "Home"){
         return (
             <SessionProvider session={pageProps.session}>

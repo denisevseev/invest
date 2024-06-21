@@ -14,6 +14,7 @@ import * as storage from "mobx";
 import Layout from "./Layout";
 import EconomicCalendar from "../pages/EconomicCalendar";
 import Login from "../pages/login";
+import ResetPassword from '../pages/ResetPassword';
 
 const UserInfoComponent = ({}) => {
     const link = store.routeLink
@@ -47,6 +48,13 @@ const UserInfoComponent = ({}) => {
     useEffect(() => {
         fetchUser();
     }, [session, router]);
+
+    // if(!session){
+    //     debugger
+    //     return (<div>
+    //         <ResetPassword/>
+    //     </div>)
+    // }
 
 
     if(user?.phoneNumber) {
@@ -97,6 +105,8 @@ const UserInfoComponent = ({}) => {
             </div>
         );
     }
+
+   
 
     if(!session){
         return (
