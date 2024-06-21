@@ -1,16 +1,15 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import { Container, TextField, Button, Typography, Box, Link } from '@mui/material';
 import { signIn } from 'next-auth/react';
 import Logo from '../components/Logo';
 import { useSession } from 'next-auth/react';
-import { useEffect } from 'react';
 
 const SignUp = () => {
+  const [firstName, setFirstName] = useState('');
+  const [phoneNumber, setPhoneNumber] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [name, setName] = useState('');
-  const [phone, setPhone] = useState('');
   const [error, setError] = useState('');
   const router = useRouter();
   const { data: session } = useSession();
@@ -26,7 +25,7 @@ const SignUp = () => {
     setError('');
 
     // Валидация полей
-    if (!name || !phone || !email || !password) {
+    if (!firstName || !phoneNumber || !email || !password) {
       setError('Please fill in all fields');
       return;
     }
@@ -37,7 +36,7 @@ const SignUp = () => {
     }
 
     // Проверка формата телефона (добавьте проверку, соответствующую вашему региону)
-    if (!/^\+?\d{10,15}$/.test(phone)) {
+    if (!/^\+?\d{10,15}$/.test(phoneNumber)) {
       setError('Please enter a valid phone number');
       return;
     }
@@ -46,7 +45,7 @@ const SignUp = () => {
       const response = await fetch('/api/auth/register', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ name, phone, email, password }),
+        body: JSON.stringify({ firstName, phoneNumber, email, password }),
       });
 
       if (response.ok) {
@@ -79,61 +78,61 @@ const SignUp = () => {
   };
 
   return (
-      <Container>
-        <Logo />
-        <Box style={{ paddingTop: '8rem' }}>
-          <Typography variant="h4" align="center" gutterBottom>
+    <Container>
+      <Logo />
+      <Box style={{ paddingTop: '8rem' }}>
+        <Typography variant="h4" align="center" gutterBottom>
+          Sign Up
+        </Typography>
+        <form onSubmit={handleSubmit}>
+          <TextField
+            label="First Name"
+            value={firstName}
+            onChange={(e) => setFirstName(e.target.value)}
+            fullWidth
+            margin="normal"
+          />
+          <TextField
+            label="Phone Number"
+            value={phoneNumber}
+            onChange={(e) => setPhoneNumber(e.target.value)}
+            fullWidth
+            margin="normal"
+          />
+          <TextField
+            label="Email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            fullWidth
+            margin="normal"
+          />
+          <TextField
+            label="Password"
+            type="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            fullWidth
+            margin="normal"
+          />
+          <Button type="submit" variant="contained" color="primary" fullWidth>
             Sign Up
+          </Button>
+        </form>
+        {error && (
+          <Typography color="error" align="center" mt={2}>
+            {error}
           </Typography>
-          <form onSubmit={handleSubmit}>
-            <TextField
-                label="Name"
-                value={name}
-                onChange={(e) => setName(e.target.value)}
-                fullWidth
-                margin="normal"
-            />
-            <TextField
-                label="Phone"
-                value={phone}
-                onChange={(e) => setPhone(e.target.value)}
-                fullWidth
-                margin="normal"
-            />
-            <TextField
-                label="Email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                fullWidth
-                margin="normal"
-            />
-            <TextField
-                label="Password"
-                type="password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                fullWidth
-                margin="normal"
-            />
-            <Button type="submit" variant="contained" color="primary" fullWidth>
-              Sign Up
-            </Button>
-          </form>
-          {error && (
-              <Typography color="error" align="center" mt={2}>
-                {error}
-              </Typography>
-          )}
-          <Box mt={5} textAlign="center">
-            <Typography>
-              Already have an account?{' '}
-              <Link href="/login" underline="hover">
-                Log in
-              </Link>
-            </Typography>
-          </Box>
+        )}
+        <Box mt={5} textAlign="center">
+          <Typography>
+            Already have an account?{' '}
+            <Link href="/login" underline="hover">
+              Log in
+            </Link>
+          </Typography>
         </Box>
-      </Container>
+      </Box>
+    </Container>
   );
 };
 

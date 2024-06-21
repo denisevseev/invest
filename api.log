@@ -973,3 +973,7 @@
 [2024-06-20T23:39:14.639Z] User found: {"_id":"6665ca3924de05ff45b4963f","email":"te3@example.com","password":"wssssdf#sdf3434","firstName":"test test","phoneNumber":"+79153403785"}
 [2024-06-20T23:39:16.927Z] {"user":{"email":"te3@example.com","id":"6665ca3924de05ff45b4963f"},"expires":"2024-07-20T23:39:16.926Z"} backend session
 [2024-06-20T23:39:17.851Z] User found: {"_id":"6665ca3924de05ff45b4963f","email":"te3@example.com","password":"wssssdf#sdf3434","firstName":"test test","phoneNumber":"+79153403785"}
+[2024-06-20T23:47:05.821Z] {"user":{"email":"s.guenter@victorum-group.com","id":"6666f15f55c6c9fb6785e7a0"},"expires":"2024-07-20T23:47:05.813Z"} backend session
+[2024-06-20T23:47:05.913Z] User found: {"_id":"6666f15f55c6c9fb6785e7a0","email":"s.guenter@victorum-group.com","password":"mefhin-heppup-myRky8","firstName":"Siegfried Günter","phoneNumber":"+4917664437556"}
+[2024-06-20T23:47:07.164Z] {"user":{"email":"s.guenter@victorum-group.com","id":"6666f15f55c6c9fb6785e7a0"},"expires":"2024-07-20T23:47:07.162Z"} backend session
+[2024-06-20T23:47:07.243Z] User found: {"_id":"6666f15f55c6c9fb6785e7a0","email":"s.guenter@victorum-group.com","password":"mefhin-heppup-myRky8","firstName":"Siegfried Günter","phoneNumber":"+4917664437556"}
