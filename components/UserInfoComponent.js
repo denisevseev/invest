@@ -49,7 +49,8 @@ const UserInfoComponent = ({}) => {
     }, [session, router]);
 
 
-    if(user?.phoneNumber) { //если юзер с первичной регистрацией
+    if(user?.phoneNumber) {
+        debugger
         return (
             <Layout>
                 <Layout/>
@@ -83,7 +84,6 @@ const UserInfoComponent = ({}) => {
                 <AppBarComponent/>
                 {isMobile === false && (<CustomSideBar/>)}
                 <UploadScansComponent />
-                {/*{user && (<UserSurveyResults user={user}/>)}*/}
             </div>
         );
     }
