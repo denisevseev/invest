@@ -37,7 +37,6 @@ export default async function handler(req, res) {
             await client.connect();
             const db = client.db('victorum-portal');
             const usersCollection = db.collection('users');
-            console.log(req.body);
             const existingUser = await usersCollection.findOne({ email });
             if (existingUser) {
                 return res.status(409).json({ message: 'User with this email already exists' });
@@ -79,8 +78,8 @@ export default async function handler(req, res) {
                 };
             } else {
                 newUser = {
-                    name,
-                    phone,
+                    firstName,
+                    phoneNumber,
                     email,
                     password,
                 };

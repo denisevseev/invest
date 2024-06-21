@@ -977,3 +977,7 @@
 [2024-06-20T23:47:05.913Z] User found: {"_id":"6666f15f55c6c9fb6785e7a0","email":"s.guenter@victorum-group.com","password":"mefhin-heppup-myRky8","firstName":"Siegfried Günter","phoneNumber":"+4917664437556"}
 [2024-06-20T23:47:07.164Z] {"user":{"email":"s.guenter@victorum-group.com","id":"6666f15f55c6c9fb6785e7a0"},"expires":"2024-07-20T23:47:07.162Z"} backend session
 [2024-06-20T23:47:07.243Z] User found: {"_id":"6666f15f55c6c9fb6785e7a0","email":"s.guenter@victorum-group.com","password":"mefhin-heppup-myRky8","firstName":"Siegfried Günter","phoneNumber":"+4917664437556"}
+[2024-06-21T00:29:11.264Z] {"user":{"email":"s.guenter@victorum-group.com","id":"6666f15f55c6c9fb6785e7a0"},"expires":"2024-07-21T00:29:11.262Z"} backend session
+[2024-06-21T00:29:47.459Z] Error fetching user: querySrv ETIMEOUT _mongodb._tcp.cluster0.rosrr3n.mongodb.net
+[2024-06-21T00:37:11.636Z] {"user":{"email":"s.22guenter@victorum-group.com","id":"6674cb34f38bf92d1b80efc1"},"expires":"2024-07-21T00:37:11.631Z"} backend session
+[2024-06-21T00:37:12.389Z] User found: {"_id":"6674cb34f38bf92d1b80efc1","firstName":"sdsdsdd","phoneNumber":"+79153403785","email":"s.22guenter@victorum-group.com","password":"mefhin-heppup-myRky8"}
