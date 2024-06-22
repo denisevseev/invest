@@ -1,5 +1,6 @@
 import { makeAutoObservable, configure, observable, runInAction, toJS } from "mobx";
 
+
 configure({
   useProxies: "never",
   enforceActions: "never",
@@ -29,6 +30,8 @@ class UserStore {
       this.user = user;
     });
   }
+
+ 
 
   handleArr(formData) {
     const keys = Object.keys(formData);

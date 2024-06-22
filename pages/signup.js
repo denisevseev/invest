@@ -2,8 +2,8 @@ import { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import { Container, TextField, Button, Typography, Box, Link } from '@mui/material';
 import { signIn } from 'next-auth/react';
-import Logo from '../components/Logo';
 import { useSession } from 'next-auth/react';
+import useIsMobile from '../stores/hooks/useIsMobile';
 
 const SignUp = () => {
   const [firstName, setFirstName] = useState('');
@@ -13,6 +13,7 @@ const SignUp = () => {
   const [error, setError] = useState('');
   const router = useRouter();
   const { data: session } = useSession();
+  const isMobile = useIsMobile();
 
   useEffect(() => {
     if (session) {
@@ -78,7 +79,7 @@ const SignUp = () => {
   };
 
   return (
-    <Container>
+    <Container sx={{mt: isMobile ? -10: 0}}>
       <Box>
         <Typography variant="h4" align="center" gutterBottom>
           Sign Up
