@@ -49,16 +49,10 @@ const UserInfoComponent = ({}) => {
         fetchUser();
     }, [session, router]);
 
-    // if(!session){
-    //     debugger
-    //     return (<div>
-    //         <ResetPassword/>
-    //     </div>)
-    // }
+    
 
 
-    if(user?.phoneNumber) {
-        debugger
+    if(user?.phoneNumber && !user?.clientType) {
         return (
             <Layout>
                 <Layout/>
@@ -66,7 +60,7 @@ const UserInfoComponent = ({}) => {
         );
     }
 
-    if(link === 'Economic Calendar'){
+    if(link === 'Economic Calendar'  && user?.clientType){
             return (<div>
                 <AppBarComponent/>
                 {isMobile === false && (<CustomSideBar/>)}
@@ -76,7 +70,7 @@ const UserInfoComponent = ({}) => {
 
 
 
-    if (link === '/' && user?.clientType === 'corporate') {
+    if (link === '/' && user?.clientType) {
         return (
             <div>
                 <AppBarComponent/>
@@ -85,8 +79,10 @@ const UserInfoComponent = ({}) => {
             )
     }
 
+    
 
-    if(link === "Upload Documents"){
+
+    if(link === "Upload Documents"  && user?.clientType){
         return (
             <div>
                 <AppBarComponent/>
@@ -96,7 +92,7 @@ const UserInfoComponent = ({}) => {
         );
     }
 
-    if(link === "Individual Questionnaire"){
+    if(link === "Individual Questionnaire" &&  user?.clientType){
         return (
             <div>
                 <AppBarComponent/>

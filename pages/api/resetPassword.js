@@ -1,10 +1,9 @@
-// pages/api/resetPassword.js
 import dbConnect from '../../lib/dbConnect';
 import ResetToken from '../../models/ResetToken';
 import User from '../../models/User';
 
 export default async (req, res) => {
-  await dbConnect(); // Подключение к базе данных
+  await dbConnect(); // Connect to the database
 
   if (req.method === 'POST') {
     const { token, email, password } = req.body;
@@ -13,20 +12,20 @@ export default async (req, res) => {
       const resetToken = await ResetToken.findOne({ email, token });
 
       if (!resetToken) {
-        return res.status(400).json({ error: 'Недействительный или истекший токен' });
+        return res.status(400).json({ error: 'Invalid or expired token' });
       }
 
-      // Обновление пароля пользователя без хеширования
+      // Update user password (without hashing for demonstration)
       await User.findOneAndUpdate({ email }, { password });
 
-      // Удаление использованного токена
+      // Delete the used token
       await ResetToken.findOneAndDelete({ email, token });
 
-      res.status(200).json({ message: 'Пароль успешно сброшен' });
+      res.status(200).json({ message: 'Password successfully reset' });
     } catch (error) {
-      res.status(500).json({ error: 'Ошибка при сбросе пароля' });
+      res.status(500).json({ error: 'Error resetting password' });
     }
   } else {
-    res.status(405).json({ error: 'Метод не разрешен' });
+    res.status(405).json({ error: 'Method Not Allowed' });
   }
 };

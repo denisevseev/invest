@@ -1,4 +1,3 @@
-// pages/api/sendResetPasswordEmail.js
 import nodemailer from 'nodemailer';
 import crypto from 'crypto';
 import dbConnect from '../../lib/dbConnect';
@@ -11,14 +10,14 @@ export default async (req, res) => {
     const { email } = req.body;
     const url = process.env.NEXTAUTH_URL;
 
-    // Генерация уникального токена
+    // Generate unique token
     const token = crypto.randomBytes(32).toString('hex');
 
     try {
-      // Сохранение токена в базе данных
+      // Save token to the database
       await new ResetToken({ email, token }).save();
 
-      // Настройка транспортера для отправки письма
+      // Setup transporter to send email
       const transporter = nodemailer.createTransport({
         host: process.env.MAIL_HOST,
         port: process.env.MAIL_PORT,
@@ -34,18 +33,18 @@ export default async (req, res) => {
       const mailOptions = {
         from: process.env.MAIL_USERNAME,
         to: email,
-        subject: 'Восстановление пароля',
-        text: `Перейдите по следующей ссылке для сброса пароля: ${resetLink}`,
-        html: `<p>Перейдите по следующей ссылке для сброса пароля: <a href="${resetLink}">Сбросить пароль</a></p>`
+        subject: 'Password Reset',
+        text: `Please follow the link to reset your password: ${resetLink}`,
+        html: `<p>Please follow the link to reset your password: <a href="${resetLink}">Reset Password</a></p>`
       };
 
       await transporter.sendMail(mailOptions);
 
-      res.status(200).json({ message: 'Письмо отправлено' });
+      res.status(200).json({ message: 'Email sent' });
     } catch (error) {
-      res.status(500).json({ error: 'Ошибка при отправке письма' });
+      res.status(500).json({ error: 'Error sending email' });
     }
   } else {
-    res.status(405).json({ error: 'Метод не разрешен' });
+    res.status(405).json({ error: 'Method Not Allowed' });
   }
 };

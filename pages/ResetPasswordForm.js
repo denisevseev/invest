@@ -2,9 +2,9 @@ import { useState } from 'react';
 import { useRouter } from 'next/router';
 import { Container, Typography, TextField, Button, Grid, Paper } from '@mui/material';
 
-const ResetPasswordForm = () => {
+const ResetPasswordForm = ({}) => {
   const router = useRouter();
-  const { token, email } = router.query; // Получение токена и email из параметров запроса
+  const { token, email } = router.query; // Getting token and email from query parameters
 
   const [password, setPassword] = useState('');
   const [message, setMessage] = useState('');
@@ -32,7 +32,7 @@ const ResetPasswordForm = () => {
         setMessage('');
       }
     } catch (error) {
-      setError('Ошибка при отправке запроса');
+      setError('Error sending request');
       setMessage('');
     }
   };
@@ -40,7 +40,7 @@ const ResetPasswordForm = () => {
   return (
     <Container component={Paper} maxWidth="xs" sx={{ padding: '2rem', marginTop: '2rem' }}>
       <Typography variant="h4" gutterBottom align="center">
-        Сброс пароля
+        Password Reset
       </Typography>
       {message && (
         <Typography variant="body1" color="primary" align="center" sx={{ marginBottom: '1rem' }}>
@@ -57,7 +57,7 @@ const ResetPasswordForm = () => {
           <Grid item xs={12}>
             <TextField
               type="password"
-              label="Новый пароль"
+              label="New Password"
               variant="outlined"
               fullWidth
               value={password}
@@ -67,7 +67,7 @@ const ResetPasswordForm = () => {
           </Grid>
           <Grid item xs={12}>
             <Button type="submit" variant="contained" color="primary" fullWidth>
-              Сбросить пароль
+              Reset Password
             </Button>
           </Grid>
         </Grid>

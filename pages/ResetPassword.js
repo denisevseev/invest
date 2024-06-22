@@ -28,7 +28,7 @@ const ResetPassword = () => {
                 setMessage('');
             }
         } catch (error) {
-            setError('Ошибка при отправке запроса');
+            setError('Error sending request');
             setMessage('');
         }
     };
@@ -36,7 +36,7 @@ const ResetPassword = () => {
     return (
         <Container component={Paper} maxWidth="xs" sx={{ padding: '2rem', marginTop: '2rem' }}>
             <Typography variant="h4" gutterBottom align="center">
-                Восстановление пароля
+                Password Reset
             </Typography>
             {message && (
                 <Typography variant="body1" color="primary" align="center" sx={{ marginBottom: '1rem' }}>
@@ -56,12 +56,12 @@ const ResetPassword = () => {
                     fullWidth
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
-                    placeholder="Введите ваш email"
+                    placeholder="Enter your email"
                     required
                     sx={{ marginBottom: '1rem' }}
                 />
                 <Button type="submit" variant="contained" color="primary" fullWidth>
-                    Отправить письмо
+                    Send Email
                 </Button>
             </form>
         </Container>
