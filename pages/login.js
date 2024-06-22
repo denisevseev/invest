@@ -40,8 +40,7 @@ const Login = () => {
     };
 
     return (
-        <Container  style={{paddingTop: '8rem'}} >
-            <Logo/>
+        <Container>
             <form onSubmit={handleSubmit}>
                 <TextField
                     label="Email"
