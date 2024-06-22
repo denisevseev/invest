@@ -18,9 +18,11 @@ import ResetPassword from '../pages/ResetPassword';
 import Footer from './Footer';
 import OpenDemoAccount from '../pages/OpenDemoAccount';
 import OpenLiveAccount from '../pages/OpenLiveAccount';
+import SignUp from '../pages/signup';
 
 const UserInfoComponent = ({}) => {
     const link = store.routeLink
+    debugger
     const { data: session, status } = useSession();
     const [user, setUser] = useState(null);
     const [loading, setLoading] = useState(true);
@@ -63,6 +65,10 @@ const UserInfoComponent = ({}) => {
             </Layout>
         );
     }
+   
+
+
+
 
     if(link === 'Economic Calendar'  && user?.clientType){
             return (<div>

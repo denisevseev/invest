@@ -79,7 +79,7 @@ const SignUp = () => {
 
   return (
     <Container>
-      <Box style={{ paddingTop: '8rem' }}>
+      <Box>
         <Typography variant="h4" align="center" gutterBottom>
           Sign Up
         </Typography>
