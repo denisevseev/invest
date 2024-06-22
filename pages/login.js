@@ -1,12 +1,14 @@
 import { useState } from 'react';
 import { signIn } from 'next-auth/react';
-import { Container, TextField, Button, Typography, Link, Box } from '@mui/material';
+import { Container, TextField, useMediaQuery, useTheme, Button, Typography, Link, Box } from '@mui/material';
 import Logo from '../components/Logo';
 
 const Login = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
+    const theme = useTheme();
+    const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -40,7 +42,7 @@ const Login = () => {
     };
 
     return (
-        <Container>
+        <Container sx={{mt: 15}} >
             <form onSubmit={handleSubmit}>
                 <TextField
                     label="Email"

@@ -22,7 +22,6 @@ import SignUp from '../pages/signup';
 
 const UserInfoComponent = ({}) => {
     const link = store.routeLink
-    debugger
     const { data: session, status } = useSession();
     const [user, setUser] = useState(null);
     const [loading, setLoading] = useState(true);

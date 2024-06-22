@@ -10,6 +10,7 @@ const Footer = () => {
       left: 0,
       width: '100%',
       textAlign: 'center',
+      zIndex: 9999
     }}>
       <Typography variant="body2" align="center" color="textSecondary">
         © All rights reserved. 2024 Victorum Capital Inc.
