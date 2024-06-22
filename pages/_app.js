@@ -17,6 +17,7 @@ const theme = createTheme({
 });
 
 const MyApp = ({ Component, pageProps }) => {
+    
 
     const isSignUpPage = ["SignUp", "Login", "RegistrationForm",  "ResetPassword", "ResetPasswordForm"].includes(Component.name); 
    
@@ -40,7 +41,7 @@ const MyApp = ({ Component, pageProps }) => {
                 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" />
             </Head>
             <ThemeProvider theme={theme}>
-                {isSignUpPage ? (
+                {isSignUpPage  ? (
                     <AppBarLayout>
                          <Component {...pageProps} />
                     </AppBarLayout>
