@@ -24,6 +24,7 @@ const CustomSideBar = ({ mobileOpen }) => {
     const [openAccounts, setOpenAccounts] = useState(false);
     const [openFunds, setOpenFunds] = useState(false);
     const [openProfile, setOpenProfile] = useState(false);
+    const [activeMenuItem, setActiveMenuItem] = useState(''); // Add this line
 
     const handleClickAccounts = () => {
         setOpenAccounts(!openAccounts);
@@ -39,7 +40,8 @@ const CustomSideBar = ({ mobileOpen }) => {
 
     const handleText = (text) => {
         console.log('Clicked text:', text);
-        store.routeLink = text
+        setActiveMenuItem(text);
+        store.routeLink = text;
         // Perform any actions with the clicked text here
     };
 
@@ -60,7 +62,7 @@ const CustomSideBar = ({ mobileOpen }) => {
                         </ListSubheader>
                     }
                 >
-                    <ListItem button onClick={handleClickAccounts}>
+                    <ListItem button onClick={handleClickAccounts} selected={activeMenuItem.startsWith('Account')}>
                         <ListItemIcon>
                             <AccountBalanceIcon />
                         </ListItemIcon>
@@ -69,15 +71,19 @@ const CustomSideBar = ({ mobileOpen }) => {
                     </ListItem>
                     <Collapse in={openAccounts} timeout="auto" unmountOnExit>
                         <List component="div" disablePadding>
-                            {[...Array(5)].map((_, index) => (
-                                <ListItem button sx={{ pl: 4 }} key={index} onClick={() => handleText(`Account ${index + 1}`)}>
-                                    <ListItemText primary={`Account ${index + 1}`} />
-                                </ListItem>
-                            ))}
+                            <ListItem button sx={{ pl: 4 }} onClick={() => handleText('Open Demo Account')} selected={activeMenuItem === 'Open Demo Account'}>
+                                <ListItemText primary="Open Demo Account" />
+                            </ListItem>
+                            <ListItem button sx={{ pl: 4 }} onClick={() => handleText('Open Live Account')} selected={activeMenuItem === 'Open Live Account'}>
+                                <ListItemText primary="Open Live Account" />
+                            </ListItem>
+                            <ListItem button sx={{ pl: 4 }} onClick={() => handleText('Accounts Overview')} selected={activeMenuItem === 'Accounts Overview'}>
+                                <ListItemText primary="Accounts Overview" />
+                            </ListItem>
                         </List>
                     </Collapse>
 
-                    <ListItem button onClick={handleClickFunds}>
+                    <ListItem button onClick={handleClickFunds} selected={activeMenuItem.startsWith('Fund')}>
                         <ListItemIcon>
                             <FolderIcon />
                         </ListItemIcon>
@@ -86,15 +92,25 @@ const CustomSideBar = ({ mobileOpen }) => {
                     </ListItem>
                     <Collapse in={openFunds} timeout="auto" unmountOnExit>
                         <List component="div" disablePadding>
-                            {[...Array(5)].map((_, index) => (
-                                <ListItem button sx={{ pl: 4 }} key={index} onClick={() => handleText(`Fund ${index + 1}`)}>
-                                    <ListItemText primary={`Fund ${index + 1}`} />
-                                </ListItem>
-                            ))}
+                            <ListItem button sx={{ pl: 4 }} onClick={() => handleText('Deposit Funds')} selected={activeMenuItem === 'Deposit Funds'}>
+                                <ListItemText primary="Deposit Funds" />
+                            </ListItem>
+                            <ListItem button sx={{ pl: 4 }} onClick={() => handleText('Withdraw Funds')} selected={activeMenuItem === 'Withdraw Funds'}>
+                                <ListItemText primary="Withdraw Funds" />
+                            </ListItem>
+                            <ListItem button sx={{ pl: 4 }} onClick={() => handleText('Transfer Funds')} selected={activeMenuItem === 'Transfer Funds'}>
+                                <ListItemText primary="Transfer Funds" />
+                            </ListItem>
+                            <ListItem button sx={{ pl: 4 }} onClick={() => handleText('Transactions History')} selected={activeMenuItem === 'Transactions History'}>
+                                <ListItemText primary="Transactions History" />
+                            </ListItem>
+                            <ListItem button sx={{ pl: 4 }} onClick={() => handleText('Payment Details')} selected={activeMenuItem === 'Payment Details'}>
+                                <ListItemText primary="Payment Details" />
+                            </ListItem>
                         </List>
                     </Collapse>
 
-                    <ListItem button onClick={handleClickProfile}>
+                    <ListItem button onClick={handleClickProfile} selected={activeMenuItem.startsWith('Profile')}>
                         <ListItemIcon>
                             <AccountBoxIcon />
                         </ListItemIcon>
@@ -104,20 +120,20 @@ const CustomSideBar = ({ mobileOpen }) => {
                     <Collapse in={openProfile} timeout="auto" unmountOnExit>
                         <List component="div" disablePadding>
                             {['Profile', 'Upload Documents', 'My Agreements', 'Messages', 'Help Desk', 'Two-factor authentication', 'Instant Message', 'Personal Information', 'Individual Questionnaire'].map((text, index) => (
-                                <ListItem button sx={{ pl: 4 }} key={index} onClick={() => handleText(text)}>
+                                <ListItem button sx={{ pl: 4 }} key={index} onClick={() => handleText(text)} selected={activeMenuItem === text}>
                                     <ListItemText primary={text} />
                                 </ListItem>
                             ))}
                         </List>
                     </Collapse>
 
-                    <ListItem button onClick={() => handleText('Downloads')}>
+                    <ListItem button onClick={() => handleText('Downloads')} selected={activeMenuItem === 'Downloads'}>
                         <ListItemIcon>
                             <CloudDownloadIcon />
                         </ListItemIcon>
                         <ListItemText primary="Downloads" />
                     </ListItem>
-                    <ListItem button onClick={() => handleText('Economic Calendar')}>
+                    <ListItem button onClick={() => handleText('Economic Calendar')} selected={activeMenuItem === 'Economic Calendar'}>
                         <ListItemIcon>
                             <CalendarTodayIcon />
                         </ListItemIcon>

@@ -18,7 +18,7 @@ const theme = createTheme({
 
 const MyApp = ({ Component, pageProps }) => {
 
-    const isSignUpPage = ["SignUp", "Login", "RegistrationForm", "ResetPassword", "ResetPasswordForm"].includes(Component.name); 
+    const isSignUpPage = ["SignUp", "Login", "RegistrationForm",  "ResetPassword", "ResetPasswordForm"].includes(Component.name); 
    
 
     if(Component.name === "Home"){

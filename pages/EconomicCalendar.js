@@ -39,7 +39,7 @@ const EconomicCalendar = () => {
     });
 
     return (
-        <Box sx={{ marginTop: 20, mx: 'auto', maxWidth: '90%', textAlign: 'center', marginLeft: isMobile ? 0 : 30 }}>
+        <Box sx={{ marginTop: 15, mx: 'auto', maxWidth: '90%', textAlign: 'center', marginLeft: isMobile ? 3 : 30 }}>
             <Typography variant="h6" component="div" sx={{ padding: 2, textAlign: 'center', backgroundColor: '#f5f5f5', borderRadius: 2, boxShadow: 3 }}>
                 Economic Calendar
             </Typography>

@@ -16,6 +16,8 @@ import EconomicCalendar from "../pages/EconomicCalendar";
 import Login from "../pages/login";
 import ResetPassword from '../pages/ResetPassword';
 import Footer from './Footer';
+import OpenDemoAccount from '../pages/OpenDemoAccount';
+import OpenLiveAccount from '../pages/OpenLiveAccount';
 
 const UserInfoComponent = ({}) => {
     const link = store.routeLink
@@ -96,6 +98,30 @@ const UserInfoComponent = ({}) => {
             </div>
         );
     }
+
+    if(link === "Open Demo Account"  && user?.clientType){
+        return (
+            <div>
+                <AppBarComponent/>
+                {isMobile === false && (<CustomSideBar/>)}
+                <OpenDemoAccount/>
+                <Footer/>
+            </div>
+        );
+    }
+
+    if(link === "Open Live Account"  && user?.clientType){
+        return (
+            <div>
+                <AppBarComponent/>
+                {isMobile === false && (<CustomSideBar/>)}
+                <OpenLiveAccount/>
+                <Footer/>
+            </div>
+        );
+    }
+
+
 
     if(link === "Individual Questionnaire" &&  user?.clientType){
         return (
