@@ -15,6 +15,7 @@ import Layout from "./Layout";
 import EconomicCalendar from "../pages/EconomicCalendar";
 import Login from "../pages/login";
 import ResetPassword from '../pages/ResetPassword';
+import Footer from './Footer';
 
 const UserInfoComponent = ({}) => {
     const link = store.routeLink
@@ -56,6 +57,7 @@ const UserInfoComponent = ({}) => {
         return (
             <Layout>
                 <Layout/>
+                <Footer/>
             </Layout>
         );
     }
@@ -65,6 +67,7 @@ const UserInfoComponent = ({}) => {
                 <AppBarComponent/>
                 {isMobile === false && (<CustomSideBar/>)}
                 <EconomicCalendar/>
+                <Footer/>
             </div>)
     }
 
@@ -75,6 +78,7 @@ const UserInfoComponent = ({}) => {
             <div>
                 <AppBarComponent/>
                 {isMobile === false && (<CustomSideBar/>)}
+                <Footer/>
             </div>
             )
     }
@@ -88,6 +92,7 @@ const UserInfoComponent = ({}) => {
                 <AppBarComponent/>
                 {isMobile === false && (<CustomSideBar/>)}
                 <UploadScansComponent />
+                <Footer/>
             </div>
         );
     }
@@ -98,6 +103,7 @@ const UserInfoComponent = ({}) => {
                 <AppBarComponent/>
                 {isMobile === false && (<CustomSideBar/>)}
                 {user && (<UserSurveyResults user={user}/>)}
+                <Footer/>
             </div>
         );
     }
@@ -108,6 +114,7 @@ const UserInfoComponent = ({}) => {
         return (
             <div>
                 <Login/>
+                <Footer/>
             </div>
         )
     }
@@ -117,6 +124,7 @@ const UserInfoComponent = ({}) => {
         <div>
             <AppBarComponent/>
             {isMobile === false && (<CustomSideBar/>)}
+            <Footer/>
         </div>
     )
 
