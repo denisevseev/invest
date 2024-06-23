@@ -19,6 +19,7 @@ import store from '../stores/userStore';
 
 
 const UserInfoComponent = () => {
+    
   const link = store.routeLink;
   const { data: session, status } = useSession();
   const { user, loading } = useFetchUser();
@@ -26,7 +27,7 @@ const UserInfoComponent = () => {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
 
-  if (loading) {
+  if (loading && user) {
     return <div style={{textAlign: 'center', marginTop: '30rem'}}> <h1>Loading...</h1> </div>;
   }
 
