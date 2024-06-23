@@ -5,8 +5,8 @@ import Layout from '../components/Layout';
 import UserInfoComponent from "../components/UserInfoComponent";
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import Head from 'next/head';
-import AppBarComponent from './../components/AppBar'
 import AppBarLayout from '../components/AppBarLayout';
+import Notification from './../components/Notification'
 
 
 
@@ -29,11 +29,25 @@ const MyApp = ({ Component, pageProps }) => {
                     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" />
                 </Head>
                 <ThemeProvider theme={theme}>
+                    <Notification/>
                     <UserInfoComponent {...pageProps} />
                 </ThemeProvider>
             </SessionProvider>
         )
     }
+
+    // if(Component.name === "SignUp" || Component.name === 'Login'){
+    //     return (
+    //         <SessionProvider session={pageProps.session}>
+    //             <Head>
+    //                 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" />
+    //             </Head>
+    //             <ThemeProvider theme={theme}>
+    //                 <Component {...pageProps} />
+    //             </ThemeProvider>
+    //         </SessionProvider>
+    //     )
+    // }
 
     return (
         <SessionProvider session={pageProps.session}>
