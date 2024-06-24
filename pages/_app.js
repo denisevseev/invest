@@ -26,6 +26,7 @@ const MyApp = ({ Component, pageProps }) => {
         return (
             <SessionProvider session={pageProps.session}>
                 <Head>
+                    <link rel="icon" href="/public/favicon.ico" />
                     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" />
                 </Head>
                 <ThemeProvider theme={theme}>
@@ -52,6 +53,7 @@ const MyApp = ({ Component, pageProps }) => {
     return (
         <SessionProvider session={pageProps.session}>
             <Head>
+                <link rel="icon" href="/public/favicon.ico" />
                 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" />
             </Head>
             <ThemeProvider theme={theme}>
