@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { Modal, Box, Typography, TextField, Button, CircularProgress, IconButton } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
 import { styled } from '@mui/system';
+import { useRouter } from 'next/router';
 
 const StyledModal = styled(Box)(({ theme }) => ({
   position: 'absolute',
@@ -34,6 +35,7 @@ const VerificationModal = ({ open, handleClose, confirmationText, user }) => {
   const [error, setError] = useState('');
   const [isCodeSent, setIsCodeSent] = useState(false);
   const [isVerified, setIsVerified] = useState(false);
+  const router = useRouter();
 
   useEffect(() => {
     let timerInterval;
@@ -112,6 +114,9 @@ const VerificationModal = ({ open, handleClose, confirmationText, user }) => {
     setError('');
     setIsVerified(false);
     handleClose();
+    if (isVerified) {
+      router.push('/');
+    }
   };
 
   return (

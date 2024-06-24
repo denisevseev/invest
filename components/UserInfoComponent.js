@@ -21,6 +21,7 @@ import store from '../stores/userStore';
 const UserInfoComponent = () => {
     
   const link = store.routeLink;
+
   const { data: session, status } = useSession();
   const { user, loading } = useFetchUser();
   const router = useRouter();
