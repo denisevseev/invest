@@ -33,6 +33,7 @@ const VerificationModal = ({ open, handleClose, confirmationText, user }) => {
   const [code, setCode] = useState('');
   const [error, setError] = useState('');
   const [isCodeSent, setIsCodeSent] = useState(false);
+  const [isVerified, setIsVerified] = useState(false);
 
   useEffect(() => {
     let timerInterval;
@@ -97,7 +98,7 @@ const VerificationModal = ({ open, handleClose, confirmationText, user }) => {
       if (!response.ok) {
         setError(data.error);
       } else {
-        handleModalClose();
+        setIsVerified(true);
       }
     } catch (error) {
       setError('Failed to verify code. Please try again.');
@@ -109,6 +110,7 @@ const VerificationModal = ({ open, handleClose, confirmationText, user }) => {
     setTimer(0);
     setCode('');
     setError('');
+    setIsVerified(false);
     handleClose();
   };
 
@@ -123,42 +125,50 @@ const VerificationModal = ({ open, handleClose, confirmationText, user }) => {
             <CloseIcon />
           </IconButton>
         </Header>
-        {isCodeSent ? (
-          <>
-            <Typography variant="subtitle1" color="textSecondary">
-              Please enter the verification code sent to your {confirmationText}. Resend code in {timer} seconds.
-            </Typography>
-            <TextField
-              label="Verification Code"
-              value={code}
-              onChange={(e) => setCode(e.target.value)}
-              fullWidth
-              margin="normal"
-            />
-            <Button
-              variant="contained"
-              color="primary"
-              onClick={handleSubmitCode}
-              sx={{ mt: 2 }}
-            >
-              Submit Code
-            </Button>
-          </>
-        ) : (
-          <Button
-            variant="contained"
-            color="primary"
-            onClick={handleSendCode}
-            disabled={isLoading}
-            sx={{ mt: 2 }}
-          >
-            {isLoading ? <CircularProgress size={24} /> : 'Send Verification Code'}
-          </Button>
-        )}
-        {error && (
-          <Typography color="error" variant="body2" sx={{ mt: 2 }}>
-            {error}
+        {isVerified ? (
+          <Typography variant="h6" color="success.main">
+            Verification successful!
           </Typography>
+        ) : (
+          <>
+            {isCodeSent ? (
+              <>
+                <Typography variant="subtitle1" color="textSecondary">
+                  Please enter the verification code sent to your {confirmationText}. Resend code in {timer} seconds.
+                </Typography>
+                <TextField
+                  label="Verification Code"
+                  value={code}
+                  onChange={(e) => setCode(e.target.value)}
+                  fullWidth
+                  margin="normal"
+                />
+                <Button
+                  variant="contained"
+                  color="primary"
+                  onClick={handleSubmitCode}
+                  sx={{ mt: 2 }}
+                >
+                  Submit Code
+                </Button>
+              </>
+            ) : (
+              <Button
+                variant="contained"
+                color="primary"
+                onClick={handleSendCode}
+                disabled={isLoading}
+                sx={{ mt: 2 }}
+              >
+                {isLoading ? <CircularProgress size={24} /> : 'Send Verification Code'}
+              </Button>
+            )}
+            {error && (
+              <Typography color="error" variant="body2" sx={{ mt: 2 }}>
+                {error}
+              </Typography>
+            )}
+          </>
         )}
       </StyledModal>
     </Modal>
