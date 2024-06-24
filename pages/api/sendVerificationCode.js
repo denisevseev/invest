@@ -25,7 +25,9 @@ export default async function handler(req, res) {
     if (type === 'email') {
       await sendEmail(user.email, verificationCode);
     } else if (type === 'phone') {
-      await sendSMS(user.phoneNumber, verificationCode);
+      let result = await sendSMS(user.phoneNumber, verificationCode);
+      console.log('result sms', result)
+      console.log('userphone', user.phoneNumber)
     }
     res.status(200).json({ message: 'Verification code sent' });
   } catch (error) {
