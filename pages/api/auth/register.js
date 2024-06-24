@@ -5,7 +5,6 @@ const client = new MongoClient(uri);
 
 export default async function handler(req, res) {
     if (req.method === 'POST') {
-        console.log(req.body);
         const { 
             annualIncome,
             anticipatedAnnualDeposit,
@@ -38,7 +37,7 @@ export default async function handler(req, res) {
             const db = client.db('victorum-portal');
             const usersCollection = db.collection('users');
             const existingUser = await usersCollection.findOne({ email });
-            if (existingUser) {
+            if (existingUser && existingUser.clientType) {
                 return res.status(409).json({ message: 'User with this email already exists' });
             }
 
@@ -85,9 +84,11 @@ export default async function handler(req, res) {
                 };
             }
 
-            console.log('New User:', newUser);
-
             await usersCollection.insertOne(newUser);
+            
+            if(existingUser){
+                usersCollection.deleteOne({ email: existingUser.email})
+            }
 
             res.status(200).json({ message: 'User registered successfully!' });
         } catch (error) {

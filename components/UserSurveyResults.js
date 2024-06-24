@@ -14,9 +14,9 @@ const UserSurveyResults = ({}) => {
     }));
 
     return (
-        <Card sx={{ maxWidth: 1200,  mx: 'auto', mt: 20 }}>
+        <Card sx={{ maxWidth: 1200,  mx: 'auto', mt: 7 }}>
             <CardContent>
-                <Typography variant="h3" gutterBottom>My questions and answers</Typography>
+                <Typography variant="h5" gutterBottom>My questions and answers</Typography>
                 <Grid container spacing={2}>
                     {questions.map((question, index) => (
                         <Grid item xs={12} sm={6} md={3} lg={3} key={index}>

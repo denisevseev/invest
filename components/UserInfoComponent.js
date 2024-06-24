@@ -16,6 +16,7 @@ import useFetchUser from './../stores/hooks/useFetchUser';
 import { observer } from "mobx-react-lite";
 import { useSession } from 'next-auth/react';
 import store from '../stores/userStore';
+import Logo from './Logo';
 
 
 const UserInfoComponent = () => {
@@ -109,11 +110,13 @@ const UserInfoComponent = () => {
   if (!session) {
     return (
       <div>
-        <Login />
+        <AppBarComponent/>
+            <Login />
         <Footer />
       </div>
     );
   }
+  
 
   return (
     <div>
