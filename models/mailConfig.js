@@ -2,7 +2,6 @@
 
 const nodemailer = require('nodemailer');
 
-// Параметры для подключения к SMTP серверу Mail.ru
 const transporter = nodemailer.createTransport({
     host: process.env.MAIL_HOST,
     port: process.env.MAIL_PORT,

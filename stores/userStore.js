@@ -21,7 +21,8 @@ class UserStore {
       routeLink: observable,
       modalOpen: observable,
       messageModal: observable,
-      arr: observable
+      arr: observable,
+
     });
   }
 
@@ -31,6 +32,7 @@ class UserStore {
     });
   }
 
+  
  
 
   handleArr(formData) {
