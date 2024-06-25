@@ -44,7 +44,7 @@ const AppBarComponent = () => {
                 }}
             >
                 <Toolbar>
-                    {isMobile && (
+                    {session ? isMobile && (
                         <IconButton
                             color="black"
                             aria-label="open drawer"
@@ -54,7 +54,7 @@ const AppBarComponent = () => {
                         >
                             <MenuIcon />
                         </IconButton>
-                    )}
+                    ):''}
                     <Box sx={{ display: 'flex', alignItems: 'center', flexGrow: 1 }}>
                         <Logo />
                     </Box>
