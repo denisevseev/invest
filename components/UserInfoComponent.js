@@ -17,6 +17,8 @@ import { observer } from "mobx-react-lite";
 import { useSession } from 'next-auth/react';
 import store from '../stores/userStore';
 import Logo from './Logo';
+import InvestorAgreement from "../pages/InvestorAgreement";
+import Notification from "./Notification";
 
 
 const UserInfoComponent = () => {
@@ -34,6 +36,7 @@ const UserInfoComponent = () => {
   }
 
   if (user?.phoneNumber && !user?.clientType) {
+      debugger
     return (
       <Layout>
         <Layout />
@@ -41,6 +44,8 @@ const UserInfoComponent = () => {
       </Layout>
     );
   }
+
+
 
   if (link === 'Economic Calendar' && user?.clientType) {
     return (
@@ -57,6 +62,7 @@ const UserInfoComponent = () => {
     return (
       <div>
         <AppBarComponent />
+          <Notification/>
         {!isMobile && <CustomSideBar />}
         <Footer />
       </div>
@@ -67,6 +73,7 @@ const UserInfoComponent = () => {
     return (
       <div>
         <AppBarComponent />
+          <Notification/>
         {!isMobile && <CustomSideBar />}
         <UploadScansComponent />
         <Footer />
@@ -78,6 +85,7 @@ const UserInfoComponent = () => {
     return (
       <div>
         <AppBarComponent />
+          <Notification/>
         {!isMobile && <CustomSideBar />}
         <OpenDemoAccount />
         <Footer />
@@ -116,15 +124,17 @@ const UserInfoComponent = () => {
       </div>
     );
   }
+
+
   
 
-  return (
-    <div>
-      <AppBarComponent />
-      {!isMobile && <CustomSideBar />}
-      <Footer />
-    </div>
-  );
+  // return (
+  //   <div>
+  //     <AppBarComponent />
+  //     {!isMobile && <CustomSideBar />}
+  //     <Footer />
+  //   </div>
+  // );
 };
 
 export default observer(UserInfoComponent);

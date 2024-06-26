@@ -117,7 +117,7 @@ const AppBarComponent = () => {
                         '& .MuiDrawer-paper': { boxSizing: 'border-box', width: 240 },
                     }}
                 >
-                    {user?.phoneNumber ? <CustomSideBar mobileOpen={mobileOpen} /> : <DefaultSideBar />}
+                    {user?.clientType ? <CustomSideBar mobileOpen={mobileOpen} /> : <DefaultSideBar />}
                 </Drawer>
             )}
         </div>

@@ -64,15 +64,28 @@ const Layout = () => {
               <InvestmentCalculator />
               <Box sx={{ display: 'flex', justifyContent: 'center', mt: 2 }}>
                 <AnimatedButton
-                  onClick={() => router.push('/RegistrationForm')}
+                  // onClick={() => router.push('/RegistrationForm')}
+                  onClick={() => router.push('/InvestorAgreement')}
                   variant="outlined"
                   sx={{
                     mt: 2,
                   }}
                 >
-                  Become an investor
+                  Investor Agreement
                 </AnimatedButton>
               </Box>
+                <Box sx={{ display: 'flex', justifyContent: 'center', mt: 2 }}>
+                    <AnimatedButton
+                        onClick={() => router.push('/RegistrationForm')}
+                        // onClick={() => router.push('/InvestorAgreement')}
+                        variant="outlined"
+                        sx={{
+                            mt: 2,
+                        }}
+                    >
+                        Become an investor
+                    </AnimatedButton>
+                </Box>
             </>
           ) : (
             <Box

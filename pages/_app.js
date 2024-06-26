@@ -6,7 +6,12 @@ import UserInfoComponent from "../components/UserInfoComponent";
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import Head from 'next/head';
 import AppBarLayout from '../components/AppBarLayout';
-import Notification from './../components/Notification'
+import Notification from '../components/Notification';
+import TestSignature from './test-signature';
+import InvestorAgreement from './InvestorAgreement';
+import AppBarComponent from "../components/AppBar";
+import Footer from "../components/Footer";
+import Logo from "../components/Logo";
 
 
 
@@ -18,6 +23,7 @@ const theme = createTheme({
 
 const MyApp = ({ Component, pageProps }) => {
     
+ 
 
     const isSignUpPage = ["SignUp", "Login", "RegistrationForm",  "ResetPassword", "ResetPasswordForm"].includes(Component.name); 
    
@@ -26,14 +32,30 @@ const MyApp = ({ Component, pageProps }) => {
         return (
             <SessionProvider session={pageProps.session}>
                 <Head>
-                    <link rel="icon" href="/public/favicon.ico" />
                     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" />
                 </Head>
                 <ThemeProvider theme={theme}>
-                    <Notification/>
+                    {/*<InvestorAgreement />*/}
                     <UserInfoComponent {...pageProps} />
                 </ThemeProvider>
             </SessionProvider>
+        )
+    }
+
+    if(Component.name  === 'InvestorAgreement'){
+        return (
+            <SessionProvider session={pageProps.session}>
+                <Head>
+                    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" />
+                </Head>
+                <ThemeProvider theme={theme}>
+                    <Logo/>
+                    <InvestorAgreement />
+                    {/*<Footer/>*/}
+                </ThemeProvider>
+            </SessionProvider>
+
+
         )
     }
 
@@ -53,7 +75,6 @@ const MyApp = ({ Component, pageProps }) => {
     return (
         <SessionProvider session={pageProps.session}>
             <Head>
-                <link rel="icon" href="/public/favicon.ico" />
                 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" />
             </Head>
             <ThemeProvider theme={theme}>
