@@ -28,7 +28,7 @@ const UserInfoComponent = () => {
   const { data: session, status } = useSession();
   const { user, loading } = useFetchUser();
   const router = useRouter();
-  debugger
+  // debugger
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
 
@@ -59,7 +59,6 @@ const UserInfoComponent = () => {
   }
 
   if (link === '/' && user?.clientType) {
-      debugger
     return (
       <div>
         <AppBarComponent />

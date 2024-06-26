@@ -12,6 +12,7 @@ import InvestorAgreement from './InvestorAgreement';
 import AppBarComponent from "../components/AppBar";
 import Footer from "../components/Footer";
 import Logo from "../components/Logo";
+import SignaturePad from "./SignaturePad";
 
 
 
@@ -51,6 +52,7 @@ const MyApp = ({ Component, pageProps }) => {
                 <ThemeProvider theme={theme}>
                     <Logo/>
                     <InvestorAgreement />
+                    {/*<SignaturePad/>*/}
                     {/*<Footer/>*/}
                 </ThemeProvider>
             </SessionProvider>

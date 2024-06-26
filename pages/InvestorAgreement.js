@@ -1,7 +1,7 @@
 import React, { useState, useRef } from 'react';
 import { Box, Button, Stepper, Step, StepLabel, Typography, Paper, Container, Checkbox, FormControlLabel } from '@mui/material';
 import { useRouter } from 'next/router';
-import SignaturePad from './../components/SignaturePad';
+import SignatureCanvas from 'react-signature-canvas';
 import Documents from './../components/Documents';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { useTheme } from '@mui/material/styles';
@@ -28,12 +28,12 @@ const DocumentStep = ({ title, content, onAgree, scrolledToEnd, isLastStep, onNe
   };
 
   return (
-      <Paper elevation={3} sx={{ p: 2, mb: 2, width: '100vh', mx: 'auto' }}>
+      <Paper elevation={3} sx={{ p: 2, mb: 2, width: isMobile ? '100%' : '100vh', mx: 'auto' }}>
         <Typography variant="h6" gutterBottom>{title}</Typography>
         <Box
             ref={contentRef}
             onScroll={handleScroll}
-            sx={{ maxHeight: '100vh', overflowY: 'auto', mb: 2 }}
+            sx={{ maxHeight: '50vh', overflowY: 'auto', mb: 2 }}
         >
           <Typography variant="body1">{content}</Typography>
         </Box>
@@ -41,7 +41,7 @@ const DocumentStep = ({ title, content, onAgree, scrolledToEnd, isLastStep, onNe
             <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
               <FormControlLabel
                   control={<Checkbox checked={checked} onChange={() => setChecked(!checked)} />}
-                  label="I have read and agree to the terms"
+                  label="Я прочитал и согласен с условиями"
               />
               <Button
                   variant="contained"
@@ -49,7 +49,7 @@ const DocumentStep = ({ title, content, onAgree, scrolledToEnd, isLastStep, onNe
                   onClick={handleNextClick}
                   disabled={!checked}
               >
-                Next
+                Далее
               </Button>
             </Box>
         )}
@@ -58,29 +58,62 @@ const DocumentStep = ({ title, content, onAgree, scrolledToEnd, isLastStep, onNe
 };
 
 const SignatureStep = ({ onSaveSignature, onFinish, canFinish }) => {
+  const [canProceed, setCanProceed] = useState(false); // Добавлено состояние canProceed
+  const sigCanvas = useRef(null);
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
 
+  const clear = () => {
+    console.log("Очистка холста");
+    sigCanvas.current.clear();
+  };
+
+  const save = () => {
+    if (sigCanvas.current.isEmpty()) {
+      alert('Пожалуйста, сначала поставьте подпись.');
+      return;
+    }
+    const dataURL = sigCanvas.current.getTrimmedCanvas().toDataURL('image/png');
+    console.log("Подпись сохранена:", dataURL);
+    onSaveSignature(dataURL);
+    setCanProceed(true); // Устанавливаем canProceed в true после сохранения подписи
+  };
+
   return (
-      <Paper elevation={3} sx={{ p: 2, mb: 2, width: '100vh', mx: 'auto' }}>
-        <Typography variant="h6" gutterBottom>Signature</Typography>
+      <Paper elevation={3} sx={{ p: 2, mb: 2, width: isMobile ? '100%' : '100vh', mx: 'auto' }}>
+        <Typography variant="h6" gutterBottom>Подпись</Typography>
         <Typography variant="body1" sx={{ mb: 2 }}>
-          Please sign below to agree to the documents.
+          Пожалуйста, подпишите ниже, чтобы согласиться с документами.
         </Typography>
-        <SignaturePad onSave={onSaveSignature} documentTitle="Signature" />
+        <Box sx={{ p: 2, mb: 2, width: '100%', height: isMobile ? '50vh' : '80vh', mx: 'auto' }}>
+          <SignatureCanvas
+              penColor='black'
+              canvasProps={{ width: isMobile ? '350%' : '700%', height: isMobile ? '600%' : '1000%', className: 'sigCanvas' }}
+              ref={sigCanvas}
+          />
+        </Box>
+        <Box sx={{ display: 'flex', justifyContent: 'center', gap: 2 }}>
+          <Button variant="contained" color="secondary" onClick={clear}>
+            clear
+          </Button>
+          <Button variant="contained" color="primary" onClick={save}>
+            save
+          </Button>
+        </Box>
         <Box sx={{ display: 'flex', justifyContent: 'center', mt: 2 }}>
           <Button
               variant="contained"
               color="primary"
               onClick={onFinish}
-              disabled={!canFinish}
+              disabled={!canProceed} // Используем !canProceed для отключения кнопки finish
           >
-            Finish
+            finish
           </Button>
         </Box>
       </Paper>
   );
 };
+
 
 const InvestorAgreement = () => {
   const documents = Documents;
@@ -94,7 +127,7 @@ const InvestorAgreement = () => {
   const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
 
   const handleAgree = () => {
-    console.log("Agreed to document:", documents[activeStep].title);
+    console.log("Согласие с документом:", documents[activeStep].title);
     const newCompletedSteps = [...completedSteps];
     newCompletedSteps[activeStep] = true;
     setCompletedSteps(newCompletedSteps);
@@ -103,18 +136,18 @@ const InvestorAgreement = () => {
 
   const handleNext = () => {
     if (activeStep < documents.length - 1) {
-      console.log("Proceeding to next document");
+      console.log("Переход к следующему документу");
       setActiveStep(prevStep => prevStep + 1);
       setChecked(false); // Сброс состояния checked на false
     } else {
-      console.log("Proceeding to signature step");
+      console.log("Переход к шагу подписи");
       setActiveStep(prevStep => prevStep + 1);
       setCanProceed(true);
     }
   };
 
   const handleSaveSignature = (signature) => {
-    console.log("Signature received:", signature);
+    console.log("Подпись получена:", signature);
     setSignatures(prev => ({
       ...prev,
       signature,
@@ -125,9 +158,10 @@ const InvestorAgreement = () => {
     setCanProceed(true);
   };
 
+
   const handleFinish = async () => {
-    console.log("Finishing agreement process");
-    // Save signatures and documents to the server
+    console.log("Завершение процесса согласования");
+    // Сохранение подписей и документов на сервере
     try {
       const response = await fetch('/api/saveDocuments', {
         method: 'POST',
@@ -138,27 +172,27 @@ const InvestorAgreement = () => {
       });
 
       if (!response.ok) {
-        throw new Error('Failed to save documents');
+        throw new Error('Не удалось сохранить документы');
       }
 
-      alert('Thank you for agreeing to all documents and providing necessary information.');
+      alert('Спасибо за согласие с документами и предоставление необходимой информации.');
       router.push('/');
     } catch (error) {
       console.error(error);
-      alert('An error occurred while saving documents.');
+      alert('Произошла ошибка при сохранении документов.');
     }
   };
 
   return (
-      <Container sx={{ mt: isMobile ? 4 : 12, width: '100vh' }}>
+      <Container sx={{ mt: isMobile ? 4 : 12, width: isMobile ? '100%' : '100vh' }}>
         <Stepper activeStep={activeStep} alternativeLabel>
           {documents.map((doc, index) => (
               <Step key={doc.title} completed={completedSteps[index]}>
                 <StepLabel>{doc.title}</StepLabel>
               </Step>
           ))}
-          <Step key="Signature" completed={completedSteps[documents.length]}>
-            <StepLabel>Signature</StepLabel>
+          <Step key="Подпись" completed={completedSteps[documents.length]}>
+            <StepLabel>Подпись</StepLabel>
           </Step>
         </Stepper>
         <Box sx={{ mt: 4 }}>
@@ -186,3 +220,4 @@ const InvestorAgreement = () => {
 };
 
 export default InvestorAgreement;
+

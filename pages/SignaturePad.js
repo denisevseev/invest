@@ -1,9 +1,9 @@
 import React, { useRef } from 'react';
 import SignatureCanvas from 'react-signature-canvas';
-import {Box, Button, Container, Paper, Typography, useMediaQuery} from '@mui/material';
+import { Box, Button, Paper, useMediaQuery } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
 
-const SignaturePad = ({ onSave, documentTitle }) => {
+const SignaturePad = ({ onSave }) => {
     const sigCanvas = useRef(null);
     const theme = useTheme();
     const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
@@ -25,24 +25,20 @@ const SignaturePad = ({ onSave, documentTitle }) => {
 
     return (
         <>
-            <Paper elevation={3} sx={{ p: 2, mb: 2, width: '80vh', height: isMobile? '150vh': '',  mx: 'auto' }}>
                 <SignatureCanvas
                     penColor='black'
-                    canvasProps={{ width: 900, height: 900, className: 'sigCanvas' }}
+                    canvasProps={{ width: isMobile ? window.innerWidth * 0.9 : 900, height: isMobile ? 400 : 900, className: 'sigCanvas' }}
                     ref={sigCanvas}
                 />
-
-            </Paper>
             <Box sx={{ display: 'flex', justifyContent: 'center', gap: 2 }}>
-            <Button variant="contained" color="secondary" onClick={clear}>
-                Clear
-            </Button>
-            <Button variant="contained" color="primary" onClick={save}>
-                Save
-            </Button>
-        </Box>
+                <Button variant="contained" color="secondary" onClick={clear}>
+                    Clear
+                </Button>
+                <Button variant="contained" color="primary" onClick={save}>
+                    Save
+                </Button>
+            </Box>
         </>
-
     );
 };
 
