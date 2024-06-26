@@ -28,6 +28,7 @@ const UserInfoComponent = () => {
   const { data: session, status } = useSession();
   const { user, loading } = useFetchUser();
   const router = useRouter();
+  debugger
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
 
@@ -36,7 +37,6 @@ const UserInfoComponent = () => {
   }
 
   if (user?.phoneNumber && !user?.clientType) {
-      debugger
     return (
       <Layout>
         <Layout />
@@ -59,6 +59,7 @@ const UserInfoComponent = () => {
   }
 
   if (link === '/' && user?.clientType) {
+      debugger
     return (
       <div>
         <AppBarComponent />
@@ -128,13 +129,13 @@ const UserInfoComponent = () => {
 
   
 
-  // return (
-  //   <div>
-  //     <AppBarComponent />
-  //     {!isMobile && <CustomSideBar />}
-  //     <Footer />
-  //   </div>
-  // );
+  return (
+    <div>
+      <AppBarComponent />
+      {!isMobile && <CustomSideBar />}
+      <Footer />
+    </div>
+  );
 };
 
 export default observer(UserInfoComponent);

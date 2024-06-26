@@ -4,7 +4,7 @@ const Footer = () => {
   return (
     <Container component="footer" maxWidth="xxl" sx={{
       backgroundColor: '#f0f0f0',
-      padding: '0.5rem',
+      padding: '0rem',
       position: 'fixed',
       bottom: 0,
       left: 0,
@@ -12,9 +12,9 @@ const Footer = () => {
       textAlign: 'center',
       zIndex: 9999
     }}>
-      <Typography variant="body2" align="center" color="textSecondary">
-        © All rights reserved. 2024 Victorum Capital Inc.
-      </Typography>
+      {/*<Typography variant="body2" align="center" color="textSecondary">*/}
+      {/*  © All rights reserved. 2024 Victorum Capital Inc.*/}
+      {/*</Typography>*/}
     </Container>
   );
 };
