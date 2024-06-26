@@ -41,7 +41,7 @@ const DocumentStep = ({ title, content, onAgree, scrolledToEnd, isLastStep, onNe
             <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
               <FormControlLabel
                   control={<Checkbox checked={checked} onChange={() => setChecked(!checked)} />}
-                  label="Я прочитал и согласен с условиями"
+                  label="I have read and agree to the terms and conditions"
               />
               <Button
                   variant="contained"
@@ -70,7 +70,7 @@ const SignatureStep = ({ onSaveSignature, onFinish, canFinish }) => {
 
   const save = () => {
     if (sigCanvas.current.isEmpty()) {
-      alert('Пожалуйста, сначала поставьте подпись.');
+      alert('Please sign first.');
       return;
     }
     const dataURL = sigCanvas.current.getTrimmedCanvas().toDataURL('image/png');
@@ -81,9 +81,9 @@ const SignatureStep = ({ onSaveSignature, onFinish, canFinish }) => {
 
   return (
       <Paper elevation={3} sx={{ p: 2, mb: 2, width: isMobile ? '100%' : '100vh', mx: 'auto' }}>
-        <Typography variant="h6" gutterBottom>Подпись</Typography>
+        <Typography variant="h6" gutterBottom>Signature</Typography>
         <Typography variant="body1" sx={{ mb: 2 }}>
-          Пожалуйста, подпишите ниже, чтобы согласиться с документами.
+          Please sign below to agree to the documents.
         </Typography>
         <Box sx={{ p: 2, mb: 2, width: '100%', height: isMobile ? '50vh' : '80vh', mx: 'auto' }}>
           <SignatureCanvas
@@ -160,6 +160,7 @@ const InvestorAgreement = () => {
 
 
   const handleFinish = async () => {
+    debugger
     console.log("Завершение процесса согласования");
     // Сохранение подписей и документов на сервере
     try {
@@ -184,7 +185,7 @@ const InvestorAgreement = () => {
   };
 
   return (
-      <Container sx={{ mt: isMobile ? 4 : 12, width: isMobile ? '100%' : '100vh' }}>
+      <Container sx={{ mt: isMobile ? 4 : 0, width: isMobile ? '100%' : '200vh' }}>
         <Stepper activeStep={activeStep} alternativeLabel>
           {documents.map((doc, index) => (
               <Step key={doc.title} completed={completedSteps[index]}>
@@ -192,7 +193,7 @@ const InvestorAgreement = () => {
               </Step>
           ))}
           <Step key="Подпись" completed={completedSteps[documents.length]}>
-            <StepLabel>Подпись</StepLabel>
+            <StepLabel>Signature</StepLabel>
           </Step>
         </Stepper>
         <Box sx={{ mt: 4 }}>
