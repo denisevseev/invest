@@ -7,7 +7,6 @@ import { ThemeProvider, createTheme } from '@mui/material/styles';
 import Head from 'next/head';
 import AppBarLayout from '../components/AppBarLayout';
 import Notification from '../components/Notification';
-import TestSignature from './test-signature';
 import InvestorAgreement from './InvestorAgreement';
 import AppBarComponent from "../components/AppBar";
 import Footer from "../components/Footer";
