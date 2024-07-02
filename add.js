@@ -28,3 +28,12 @@
     };
 
     addUser();
+
+    db.createUser({
+        user: 'denis',
+        pwd: 'uk78Alch1ROlgbaR',
+        roles: [
+          { role: 'readWrite', db: 'victory-portal' } 
+        ]
+      });
+      

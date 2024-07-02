@@ -12,6 +12,8 @@ import AppBarComponent from "../components/AppBar";
 import Footer from "../components/Footer";
 import Logo from "../components/Logo";
 import SignaturePad from "./SignaturePad";
+import LicenseAgreement from './LicenseAgreement';
+import AdminDashboard from './AdminDashboard';
 
 
 
@@ -51,8 +53,25 @@ const MyApp = ({ Component, pageProps }) => {
                 <ThemeProvider theme={theme}>
                     <Logo/>
                     <InvestorAgreement />
-                    {/*<SignaturePad/>*/}
-                    {/*<Footer/>*/}
+                    {/* <LicenseAgreement/> */}
+                    <SignaturePad/>
+                    <Footer/>
+                </ThemeProvider>
+            </SessionProvider>
+
+
+        )
+    }
+    if(Component.name  === 'AdminDashboard'){
+        return (
+            <SessionProvider session={pageProps.session}>
+                <Head>
+                    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" />
+                </Head>
+                <ThemeProvider theme={theme}>
+                    <Logo/>
+                        <AdminDashboard/>
+                    <Footer/>
                 </ThemeProvider>
             </SessionProvider>
 

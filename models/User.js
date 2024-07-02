@@ -1,4 +1,3 @@
-// models/User.js
 import mongoose from 'mongoose';
 
 const UserSchema = new mongoose.Schema({
@@ -8,6 +7,9 @@ const UserSchema = new mongoose.Schema({
   emailVerified: { type: Boolean, default: false },
   phoneVerified: { type: Boolean, default: false },
   verificationCode: { type: String },
-});
+  signedDocuments: { type: Buffer },
+  role: { type: String, enum: ['admin', 'manager', 'employee', 'investor'], required: true },
+  assignedTo: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
+}, { timestamps: true });
 
 export default mongoose.models.User || mongoose.model('User', UserSchema);
