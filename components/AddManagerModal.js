@@ -27,14 +27,24 @@ const AddManagerModal = ({ open, handleClose }) => {
 
   return (
     <Modal open={open} onClose={handleClose}>
-      <Box sx={{ p: 4, backgroundColor: 'white', borderRadius: 2, boxShadow: 24 }}>
+      <Box sx={{ p: 4, backgroundColor: 'white', borderRadius: 2, boxShadow: 24, maxWidth: 500, mx: 'auto', mt: '10%' }}>
         <Typography variant="h6" gutterBottom>Add Manager</Typography>
         <form onSubmit={handleSubmit}>
-          <TextField label="First Name" fullWidth value={firstName} onChange={(e) => setFirstName(e.target.value)} required />
-          <TextField label="Last Name" fullWidth value={lastName} onChange={(e) => setLastName(e.target.value)} required />
-          <TextField label="Email" type="email" fullWidth value={email} onChange={(e) => setEmail(e.target.value)} required />
-          <TextField label="Password" type="password" fullWidth value={password} onChange={(e) => setPassword(e.target.value)} required />
-          <TextField label="Phone Number" fullWidth value={phoneNumber} onChange={(e) => setPhoneNumber(e.target.value)} required />
+          <Box mb={2}>
+            <TextField label="First Name" fullWidth value={firstName} onChange={(e) => setFirstName(e.target.value)} required />
+          </Box>
+          <Box mb={2}>
+            <TextField label="Last Name" fullWidth value={lastName} onChange={(e) => setLastName(e.target.value)} required />
+          </Box>
+          <Box mb={2}>
+            <TextField label="Email" type="email" fullWidth value={email} onChange={(e) => setEmail(e.target.value)} required />
+          </Box>
+          <Box mb={2}>
+            <TextField label="Password" type="password" fullWidth value={password} onChange={(e) => setPassword(e.target.value)} required />
+          </Box>
+          <Box mb={2}>
+            <TextField label="Phone Number" fullWidth value={phoneNumber} onChange={(e) => setPhoneNumber(e.target.value)} required />
+          </Box>
           <Box mt={2} display="flex" justifyContent="space-between">
             <Button type="submit" variant="contained" color="primary">Save</Button>
             <Button onClick={handleClose} variant="outlined">Cancel</Button>

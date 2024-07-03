@@ -14,12 +14,15 @@ export default async function handler(req, res) {
         email,
         password: password,
         phoneNumber,
+        firstName, 
+        lastName,
         role: 'manager',
         emailVerified: false,
         phoneVerified: false,
       });
 
       await newUser.save();
+      console.log(newUser)
       res.status(201).json({ message: 'Manager created successfully' });
     } catch (error) {
       res.status(400).json({ message: 'Error creating manager', error });

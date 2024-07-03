@@ -48,7 +48,7 @@ const AppBarComponent = () => {
                     {session ? isMobile && (
                         <IconButton
                             color="black"
-                            aria-label="open drawer"
+                            aria-label="open drwer"
                             edge="start"
                             onClick={handleDrawerToggle}
                             sx={{ mr: 2 }}
@@ -61,6 +61,15 @@ const AppBarComponent = () => {
                     </Box>
                     {session ? (
                         <>
+
+                            {!isMobile && (
+                                <Box sx={{ display: 'flex', alignItems: 'left', mr: 50 }}>
+                                    <AccountCircleIcon sx={{ mr: 1 }} />
+                                    <Typography variant="body1" sx={{ color: 'black', textShadow: '1px 1px 2px rgba(0,0,0,0.4)', mr: 2 }}>
+                                        {store?.roleTitle}
+                                    </Typography>
+                                </Box>
+                            )}
                             {!isMobile && (
                                 <Box sx={{ display: 'flex', alignItems: 'center', mr: 2 }}>
                                     <AccountCircleIcon sx={{ mr: 1 }} />

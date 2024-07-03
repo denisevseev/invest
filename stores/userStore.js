@@ -13,6 +13,7 @@ class UserStore {
   modalOpen = false
   messageModal = null
   arr = []
+  roleTitle = null
 
   constructor() {
     makeAutoObservable(this, {
@@ -22,7 +23,7 @@ class UserStore {
       modalOpen: observable,
       messageModal: observable,
       arr: observable,
-
+      roleTitle: observable
     });
   }
 

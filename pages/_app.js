@@ -69,7 +69,7 @@ const MyApp = ({ Component, pageProps }) => {
                     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" />
                 </Head>
                 <ThemeProvider theme={theme}>
-                    <Logo/>
+                    <AppBarComponent/>
                         <AdminDashboard/>
                     <Footer/>
                 </ThemeProvider>
