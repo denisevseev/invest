@@ -412,7 +412,6 @@ const InvestorAgreement = () => {
 
 
   const handleFinish = async () => {
-    debugger
     console.log("Завершение процесса согласования");
     // Сохранение подписей и документов на сервере
     try {

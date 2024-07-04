@@ -62,22 +62,22 @@ const MyApp = ({ Component, pageProps }) => {
 
         )
     }
-    if(Component.name  === 'AdminDashboard'){
-        return (
-            <SessionProvider session={pageProps.session}>
-                <Head>
-                    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" />
-                </Head>
-                <ThemeProvider theme={theme}>
-                    <AppBarComponent/>
-                        <AdminDashboard/>
-                    <Footer/>
-                </ThemeProvider>
-            </SessionProvider>
+    // if(Component.name  === 'AdminDashboard'){
+    //     return (
+    //         <SessionProvider session={pageProps.session}>
+    //             <Head>
+    //                 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" />
+    //             </Head>
+    //             <ThemeProvider theme={theme}>
+    //                 <AppBarComponent/>
+    //                     <AdminDashboard/>
+    //                 <Footer/>
+    //             </ThemeProvider>
+    //         </SessionProvider>
 
 
-        )
-    }
+    //     )
+    // }
 
     // if(Component.name === "SignUp" || Component.name === 'Login'){
     //     return (

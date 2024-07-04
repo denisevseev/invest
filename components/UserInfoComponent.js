@@ -19,6 +19,7 @@ import store from '../stores/userStore';
 import Logo from './Logo';
 import InvestorAgreement from "../pages/InvestorAgreement";
 import Notification from "./Notification";
+import AdminDashboard from '../pages/AdminDashboard';
 
 
 const UserInfoComponent = () => {
@@ -28,7 +29,6 @@ const UserInfoComponent = () => {
   const { data: session, status } = useSession();
   const { user, loading } = useFetchUser();
   const router = useRouter();
-  // debugger
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
 
@@ -36,13 +36,23 @@ const UserInfoComponent = () => {
     return <div style={{textAlign: 'center', marginTop: '30rem'}}> <h1>Loading...</h1> </div>;
   }
 
-  if (user?.phoneNumber && !user?.clientType) {
+  if (user?.phoneNumber && !user?.clientType && !user.role) {
     return (
       <Layout>
         <Layout />
         <Footer />
       </Layout>
     );
+  }
+
+  if(user?.role){
+    return(
+      <div>
+        <AppBarComponent/>
+          <AdminDashboard/>
+        <Footer/>
+      </div>
+    )
   }
 
 
