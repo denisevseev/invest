@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Modal, Box, Typography, TextField, Button } from '@mui/material';
+import store from './../stores/userStore'
 
 const AddManagerModal = ({ open, handleClose }) => {
   const [email, setEmail] = useState('');
@@ -18,7 +19,7 @@ const AddManagerModal = ({ open, handleClose }) => {
     });
 
     if (response.ok) {
-      alert('Manager added successfully');
+      store.isAdedRole  = true
       handleClose();
     } else {
       alert('Error adding manager');
