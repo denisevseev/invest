@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { Button, Container, Typography, Box, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper } from '@mui/material';
-import AddManagerModal from '../components/AddManagerModal';
-import store from "../stores/userStore";
+import AddManagerModal from '../../components/AddManagerModal';
+import store from "../../stores/userStore";
 import {observer} from "mobx-react-lite";
 
-const AdminDashboard = () => {
+const AdminDashboard = ({role}) => {
   const [open, setOpen] = useState(false);
   const [managers, setManagers] = useState([]);
 
@@ -18,7 +18,6 @@ const AdminDashboard = () => {
   const fetchManagers = async () => {
     const response = await fetch('/api/admin/getUsers');
     const data = await response.json();
-    debugger
     setManagers(data.filter(user => user.role === 'manager'));
   };
   if(store.isAdedRole){

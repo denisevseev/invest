@@ -2,20 +2,20 @@
 import React from 'react';
 import { SessionProvider } from 'next-auth/react';
 import Layout from '../components/Layout';
-import UserInfoComponent from "../components/UserInfoComponent";
+import UserInfoComponent from '../components/UserInfoComponent';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import Head from 'next/head';
 import AppBarLayout from '../components/AppBarLayout';
 import Notification from '../components/Notification';
 import InvestorAgreement from './InvestorAgreement';
-import AppBarComponent from "../components/AppBar";
-import Footer from "../components/Footer";
-import Logo from "../components/Logo";
-import SignaturePad from "./SignaturePad";
+import AppBarComponent from '../components/AppBar';
+import Footer from '../components/Footer';
+import Logo from '../components/Logo';
+import SignaturePad from './SignaturePad';
 import LicenseAgreement from './LicenseAgreement';
-import AdminDashboard from './AdminDashboard';
-
-
+import AdminDashboard from './roles/AdminDashboard';
+import StatisticsChart from './roles/StatisticsChart';
+import { Container } from '@mui/material';
 
 const theme = createTheme({
     typography: {
@@ -24,85 +24,53 @@ const theme = createTheme({
 });
 
 const MyApp = ({ Component, pageProps }) => {
-    
- 
 
-    const isSignUpPage = ["SignUp", "Login", "RegistrationForm",  "ResetPassword", "ResetPasswordForm"].includes(Component.name); 
-   
+    const isSignUpPage = [
+        'SignUp',
+        'Login',
+        'RegistrationForm',
+        'ResetPassword',
+        'ResetPasswordForm',
+    ].includes(Component.name);
+    const other = ['Home', 'Managers'].includes(Component.name);
+    debugger
 
-    if(Component.name === "Home"){
+
+    if (Component.name === 'InvestorAgreement') {
         return (
             <SessionProvider session={pageProps.session}>
                 <Head>
-                    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" />
+                    <link
+                        rel="stylesheet"
+                        href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap"
+                    />
                 </Head>
                 <ThemeProvider theme={theme}>
-                    {/*<InvestorAgreement />*/}
-                    <UserInfoComponent {...pageProps} />
-                </ThemeProvider>
-            </SessionProvider>
-        )
-    }
-
-    if(Component.name  === 'InvestorAgreement'){
-        return (
-            <SessionProvider session={pageProps.session}>
-                <Head>
-                    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" />
-                </Head>
-                <ThemeProvider theme={theme}>
-                    <Logo/>
+                    <Logo />
                     <InvestorAgreement />
                     {/* <LicenseAgreement/> */}
-                    <SignaturePad/>
-                    <Footer/>
+                    <SignaturePad />
+                    <Footer />
                 </ThemeProvider>
             </SessionProvider>
-
-
-        )
+        );
     }
-    // if(Component.name  === 'AdminDashboard'){
-    //     return (
-    //         <SessionProvider session={pageProps.session}>
-    //             <Head>
-    //                 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" />
-    //             </Head>
-    //             <ThemeProvider theme={theme}>
-    //                 <AppBarComponent/>
-    //                     <AdminDashboard/>
-    //                 <Footer/>
-    //             </ThemeProvider>
-    //         </SessionProvider>
-
-
-    //     )
-    // }
-
-    // if(Component.name === "SignUp" || Component.name === 'Login'){
-    //     return (
-    //         <SessionProvider session={pageProps.session}>
-    //             <Head>
-    //                 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" />
-    //             </Head>
-    //             <ThemeProvider theme={theme}>
-    //                 <Component {...pageProps} />
-    //             </ThemeProvider>
-    //         </SessionProvider>
-    //     )
-    // }
 
     return (
         <SessionProvider session={pageProps.session}>
             <Head>
-                <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" />
+                <link
+                    rel="stylesheet"
+                    href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap"
+                />
             </Head>
             <ThemeProvider theme={theme}>
-                {isSignUpPage  ? (
+                {isSignUpPage ? (
                     <AppBarLayout>
-                         <Component {...pageProps} />
+                        <Component {...pageProps} />
                     </AppBarLayout>
-                
+                ) : other ? (
+                    <UserInfoComponent rout = {Component.name} {...pageProps} />
                 ) : (
                     <Layout>
                         <Component {...pageProps} />

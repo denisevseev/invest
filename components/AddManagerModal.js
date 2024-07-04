@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Modal, Box, Typography, TextField, Button } from '@mui/material';
 import store from './../stores/userStore'
+import {observer} from "mobx-react-lite";
 
 const AddManagerModal = ({ open, handleClose }) => {
   const [email, setEmail] = useState('');
@@ -26,10 +27,12 @@ const AddManagerModal = ({ open, handleClose }) => {
     }
   };
 
+
+
   return (
     <Modal open={open} onClose={handleClose}>
       <Box sx={{ p: 4, backgroundColor: 'white', borderRadius: 2, boxShadow: 24, maxWidth: 500, mx: 'auto', mt: '10%' }}>
-        <Typography variant="h6" gutterBottom>Add Manager</Typography>
+        <Typography variant="h6" gutterBottom>Add {store.roleTitle}</Typography>
         <form onSubmit={handleSubmit}>
           <Box mb={2}>
             <TextField label="First Name" fullWidth value={firstName} onChange={(e) => setFirstName(e.target.value)} required />
@@ -56,4 +59,4 @@ const AddManagerModal = ({ open, handleClose }) => {
   );
 };
 
-export default AddManagerModal;
+export default observer(AddManagerModal);

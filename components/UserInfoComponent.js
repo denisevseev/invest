@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box, Typography, IconButton, useMediaQuery, useTheme } from '@mui/material';
+import {Box, Typography, IconButton, useMediaQuery, useTheme, Container} from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
 import { useRouter } from 'next/router';
 import AppBarComponent from "./AppBar";
@@ -19,13 +19,15 @@ import store from '../stores/userStore';
 import Logo from './Logo';
 import InvestorAgreement from "../pages/InvestorAgreement";
 import Notification from "./Notification";
-import AdminDashboard from '../pages/AdminDashboard';
+import AdminDashboard from '../pages/roles/AdminDashboard';
+import StatisticsChart from "../pages/roles/StatisticsChart";
+import Employees from "../pages/roles/Employees";
+import Investors from "../pages/roles/Investors";
 
 
-const UserInfoComponent = () => {
-    
+const UserInfoComponent = ({rout}) => {
   const link = store.routeLink;
-
+  debugger
   const { data: session, status } = useSession();
   const { user, loading } = useFetchUser();
   const router = useRouter();
@@ -44,13 +46,46 @@ const UserInfoComponent = () => {
       </Layout>
     );
   }
+  debugger
 
-  if(user?.role){
+
+    if(user?.role &&  link === 'Managers'){
+        return(
+            <div>
+                <AppBarComponent/>
+                <AdminDashboard/>
+            </div>
+        )
+    }
+    if(user?.role &&  link === 'Employees'){
+        return(
+            <div>
+                <AppBarComponent/>
+                <Employees/>
+            </div>
+        )
+    }
+    if(user?.role &&  link === 'Investors'){
+        return(
+            <div>
+                <AppBarComponent/>
+                <Investors/>
+            </div>
+        )
+    }
+
+
+
+
+
+  if(user?.role &&  link === '/' || link === 'Statistics'){
     return(
       <div>
-        <AppBarComponent/>
-          <AdminDashboard/>
-        <Footer/>
+          <AppBarComponent/>
+          <Container  sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+              <StatisticsChart/>
+          </Container>
+          <Footer/>
       </div>
     )
   }
