@@ -23,11 +23,11 @@ import AdminDashboard from '../pages/roles/AdminDashboard';
 import StatisticsChart from "../pages/roles/StatisticsChart";
 import Employees from "../pages/roles/Employees";
 import Investors from "../pages/roles/Investors";
+import LinkGenerator from "./LinkGenerator";
 
 
 const UserInfoComponent = ({rout}) => {
   const link = store.routeLink;
-  debugger
   const { data: session, status } = useSession();
   const { user, loading } = useFetchUser();
   const router = useRouter();
@@ -46,7 +46,6 @@ const UserInfoComponent = ({rout}) => {
       </Layout>
     );
   }
-  debugger
 
 
     if(user?.role &&  link === 'Managers'){
@@ -73,6 +72,17 @@ const UserInfoComponent = ({rout}) => {
             </div>
         )
     }
+
+    if(user?.role &&  link === 'Link Generator'){
+        return(
+            <div>
+                <AppBarComponent/>
+                <LinkGenerator/>
+            </div>
+        )
+    }
+
+
 
 
 

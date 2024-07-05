@@ -74,7 +74,7 @@ const AppBarComponent = () => {
                                 <Box sx={{ display: 'flex', alignItems: 'center', mr: 2 }}>
                                     <AccountCircleIcon sx={{ mr: 1 }} />
                                     <Typography variant="body1" sx={{ color: 'black', textShadow: '1px 1px 2px rgba(0,0,0,0.4)', mr: 2 }}>
-                                        {user?.companyName ? user.companyName : user?.firstName} {user?.companyName ? user.country : user?.lastName}
+                                        {user?.companyName ? user.companyName : user?.firstName} {user?.companyName ? user.country : user?.lastName} / {user?.email}
                                     </Typography>
                                 </Box>
                             )}

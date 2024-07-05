@@ -39,7 +39,7 @@ const SideMenu = ({ role }) => {
   return (
       <Box sx={{ width: 240 }}>
         <List>
-          {items.map((item, index) => (
+          {items?.map((item, index) => (
               <ListItem
                   button
                   key={index}

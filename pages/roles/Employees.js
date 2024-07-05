@@ -1,28 +1,36 @@
+// pages/roles/Employees.js
 import React, { useState, useEffect } from 'react';
-import { Button, Container, Typography, Box, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper } from '@mui/material';
+import { Button, Container, Typography, Box, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Collapse, IconButton } from '@mui/material';
 import AddManagerModal from '../../components/AddManagerModal';
+import { observer } from "mobx-react-lite";
+import { ExpandMore, ExpandLess } from '@mui/icons-material';
 import store from "../../stores/userStore";
-import {observer} from "mobx-react-lite";
 
-const Employees = ({role}) => {
+const Employees = () => {
     const [open, setOpen] = useState(false);
-    const [managers, setManagers] = useState([]);
+    const [employees, setEmployees] = useState([]);
+    const [expanded, setExpanded] = useState({});
 
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
 
     useEffect(() => {
-        fetchManagers();
+        fetchEmployees();
     }, []);
 
-    const fetchManagers = async () => {
+    const fetchEmployees = async () => {
         const response = await fetch('/api/admin/getUsers');
         const data = await response.json();
-        setManagers(data.filter(user => user.role === 'employee'));
+        setEmployees(data.filter(user => user.role === 'employee'));
     };
-    if(store.isAdedRole){
+
+    const handleExpandClick = (id) => {
+        setExpanded(prev => ({ ...prev, [id]: !prev[id] }));
+    };
+
+    if (store.isAdedRole) {
         store.isAdedRole = !store.isAdedRole;
-        fetchManagers()
+        fetchEmployees();
     }
 
     return (
@@ -32,9 +40,9 @@ const Employees = ({role}) => {
             </Typography>
             <Box>
                 <Button variant="contained" color="primary" onClick={handleOpen}>
-                    Add employee
+                    Add Employee
                 </Button>
-                <AddManagerModal open={open} handleClose={handleClose}  />
+                <AddManagerModal open={open} handleClose={handleClose} />
                 <Box mt={4}>
                     <TableContainer component={Paper}>
                         <Table>
@@ -44,16 +52,55 @@ const Employees = ({role}) => {
                                     <TableCell>Last Name</TableCell>
                                     <TableCell>Email</TableCell>
                                     <TableCell>Phone Number</TableCell>
+                                    <TableCell>Investors</TableCell>
                                 </TableRow>
                             </TableHead>
                             <TableBody>
-                                {managers.map(manager => (
-                                    <TableRow key={manager._id}>
-                                        <TableCell>{manager.firstName}</TableCell>
-                                        <TableCell>{manager.lastName}</TableCell>
-                                        <TableCell>{manager.email}</TableCell>
-                                        <TableCell>{manager.phoneNumber}</TableCell>
-                                    </TableRow>
+                                {employees.map(employee => (
+                                    <React.Fragment key={employee._id}>
+                                        <TableRow>
+                                            <TableCell>{employee.firstName}</TableCell>
+                                            <TableCell>{employee.lastName}</TableCell>
+                                            <TableCell>{employee.email}</TableCell>
+                                            <TableCell>{employee.phoneNumber}</TableCell>
+                                            <TableCell>
+                                                <IconButton onClick={() => handleExpandClick(employee._id)}>
+                                                    {expanded[employee._id] ? <ExpandLess /> : <ExpandMore />}
+                                                </IconButton>
+                                            </TableCell>
+                                        </TableRow>
+                                        <TableRow>
+                                            <TableCell colSpan={5}>
+                                                <Collapse in={expanded[employee._id]} timeout="auto" unmountOnExit>
+                                                    <Box margin={1}>
+                                                        <Typography variant="h6" gutterBottom component="div">
+                                                            Investors
+                                                        </Typography>
+                                                        <Table size="small" aria-label="investors">
+                                                            <TableHead>
+                                                                <TableRow>
+                                                                    <TableCell>First Name</TableCell>
+                                                                    <TableCell>Last Name</TableCell>
+                                                                    <TableCell>phone</TableCell>
+                                                                    <TableCell>email</TableCell>
+                                                                </TableRow>
+                                                            </TableHead>
+                                                            <TableBody>
+                                                                {employee.assignedInvestors?.map(investor => (
+                                                                    <TableRow key={investor._id}>
+                                                                        <TableCell>{investor.firstName}</TableCell>
+                                                                        <TableCell>{investor.lastName}</TableCell>
+                                                                        <TableCell>{investor.phoneNumber}</TableCell>
+                                                                        <TableCell>{investor.email}</TableCell>
+                                                                    </TableRow>
+                                                                ))}
+                                                            </TableBody>
+                                                        </Table>
+                                                    </Box>
+                                                </Collapse>
+                                            </TableCell>
+                                        </TableRow>
+                                    </React.Fragment>
                                 ))}
                             </TableBody>
                         </Table>
