@@ -38,7 +38,7 @@ const UserInfoComponent = ({rout}) => {
     return <div style={{textAlign: 'center', marginTop: '30rem'}}> <h1>Loading...</h1> </div>;
   }
 
-  if (user?.phoneNumber && !user?.clientType && !user.role) {
+  if (user?.phoneNumber && !user?.clientType && user.role === 'investor') {
     return (
       <Layout>
         <Layout />

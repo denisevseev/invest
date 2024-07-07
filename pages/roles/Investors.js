@@ -31,9 +31,9 @@ const Investors = ({role}) => {
                 Investors
             </Typography>
             <Box>
-                <Button variant="contained" color="primary" onClick={handleOpen}>
-                    Add investor
-                </Button>
+                {/*<Button variant="contained" color="primary" onClick={handleOpen}>*/}
+                {/*    Add investor*/}
+                {/*</Button>*/}
                 <AddManagerModal open={open} handleClose={handleClose}  />
                 <Box mt={4}>
                     <TableContainer component={Paper}>
@@ -65,3 +65,22 @@ const Investors = ({role}) => {
 };
 
 export default observer(Investors);
+
+// const result = await db.users.updateMany(
+//     { "role": { "$exists": false } },
+//     { "$set": { "role": 'investor' } }
+// );
+
+// {
+//     "_id": {
+//     "$oid": "6666f15f55c6c9fb6785e7a0"
+// },
+//     "email": "s.guenter@victorum-group.com",
+//     "password": "mefhin-heppup-myRky8",
+//     "firstName": "Siegfried Günter",
+//     "phoneNumber": "+4917664437556",
+//     "emailVerified": true,
+//     "phoneVerified": true,
+//     "verificationCode": "",
+//     "role": "investor"
+// }

@@ -123,10 +123,15 @@ const AppBarComponent = () => {
                     keepMounted: true,
                 }}
                 sx={{
-                    '& .MuiDrawer-paper': { boxSizing: 'border-box', width: 240, mt: isMobile ? '60px' : '80px' },
+                    '& .MuiDrawer-paper': { boxSizing: 'border-box',  width: isMobile && 240, mt: isMobile ? '60px' : '80px' },
                 }}
             >
-                {user?.role ? <SideMenu role={user?.role} /> : <DefaultSideBar />}
+                {user && user.role ? (
+                    user.role === 'investor' ? <DefaultSideBar /> : <SideMenu role={user.role} />
+                ) : (
+                    <DefaultSideBar />
+                )}
+
             </Drawer>
         </Box>
     );
