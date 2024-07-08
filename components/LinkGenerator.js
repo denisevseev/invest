@@ -8,10 +8,10 @@ const LinkGenerator = () => {
     const { data: session } = useSession();
     const { user, loading } = useFetchUser();
     const [referralLink, setReferralLink] = useState('');
-
+    let link = user?.role === "employee" ? 'RegisterInvestor' :  'register'
     useEffect(() => {
         if (user?.referralCode) {
-            setReferralLink(`${window.location.origin}/register?referralCode=${user.referralCode}`);
+            setReferralLink(`${window.location.origin}/${link}?referralCode=${user.referralCode}`);
         }
     }, [user]);
 
@@ -23,7 +23,7 @@ const LinkGenerator = () => {
         });
 
         const data = await response.json();
-        setReferralLink(`${window.location.origin}/register?referralCode=${data.referralCode}`);
+        setReferralLink(`${window.location.origin}/${link}?referralCode=${data.referralCode}`);
     };
 
     return (
