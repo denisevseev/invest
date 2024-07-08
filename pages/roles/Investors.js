@@ -1,29 +1,35 @@
+// pages/roles/Investors.js
 import React, { useState, useEffect } from 'react';
-import { Button, Container, Typography, Box, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper } from '@mui/material';
-import AddManagerModal from '../../components/AddManagerModal';
-import store from "../../stores/userStore";
-import {observer} from "mobx-react-lite";
+import { Container, Typography, Box, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, IconButton, Collapse } from '@mui/material';
+import { observer } from "mobx-react-lite";
+import { ExpandMore, ExpandLess } from '@mui/icons-material';
+import useFetchUser from '../../stores/hooks/useFetchUser';
 
-const Investors = ({role}) => {
-    const [open, setOpen] = useState(false);
-    const [managers, setManagers] = useState([]);
+const Investors = () => {
+    const [investors, setInvestors] = useState([]);
+    const [expanded, setExpanded] = useState({});
+    const { user } = useFetchUser();
 
-    const handleOpen = () => setOpen(true);
-    const handleClose = () => setOpen(false);
+    const handleExpandClick = (id) => {
+        setExpanded(prev => ({ ...prev, [id]: !prev[id] }));
+    };
 
     useEffect(() => {
-        fetchManagers();
-    }, []);
+        if (user && user.role === 'admin') {
+            fetchInvestors();
+        }
+    }, [user]);
 
-    const fetchManagers = async () => {
-        const response = await fetch('/api/admin/getUsers');
+    const fetchInvestors = async () => {
+        const response = await fetch('/api/admin/getAllInvestorFiles');
         const data = await response.json();
-        setManagers(data.filter(user => user.role === 'investor'));
+        console.log('Fetched investors:', data);
+        if (Array.isArray(data)) {
+            setInvestors(data);
+        } else {
+            setInvestors([]);
+        }
     };
-    if(store.isAdedRole){
-        store.isAdedRole = !store.isAdedRole;
-        fetchManagers()
-    }
 
     return (
         <Container sx={{ mt: '6rem', marginLeft: 'auto', marginRight: 'auto', maxWidth: '800px', flexGrow: 1 }}>
@@ -31,10 +37,6 @@ const Investors = ({role}) => {
                 Investors
             </Typography>
             <Box>
-                {/*<Button variant="contained" color="primary" onClick={handleOpen}>*/}
-                {/*    Add investor*/}
-                {/*</Button>*/}
-                <AddManagerModal open={open} handleClose={handleClose}  />
                 <Box mt={4}>
                     <TableContainer component={Paper}>
                         <Table>
@@ -44,16 +46,57 @@ const Investors = ({role}) => {
                                     <TableCell>Last Name</TableCell>
                                     <TableCell>Email</TableCell>
                                     <TableCell>Phone Number</TableCell>
+                                    <TableCell>Files</TableCell>
                                 </TableRow>
                             </TableHead>
                             <TableBody>
-                                {managers.map(manager => (
-                                    <TableRow key={manager._id}>
-                                        <TableCell>{manager.firstName}</TableCell>
-                                        <TableCell>{manager.lastName}</TableCell>
-                                        <TableCell>{manager.email}</TableCell>
-                                        <TableCell>{manager.phoneNumber}</TableCell>
-                                    </TableRow>
+                                {investors?.map(investor => (
+                                    <React.Fragment key={investor._id}>
+                                        <TableRow>
+                                            <TableCell>{investor.firstName || 'N/A'}</TableCell>
+                                            <TableCell>{investor.lastName || 'N/A'}</TableCell>
+                                            <TableCell>{investor.email || 'N/A'}</TableCell>
+                                            <TableCell>{investor.phoneNumber || 'N/A'}</TableCell>
+                                            <TableCell>
+                                                <IconButton onClick={() => handleExpandClick(investor._id)}>
+                                                    {expanded[investor._id] ? <ExpandLess /> : <ExpandMore />}
+                                                </IconButton>
+                                            </TableCell>
+                                        </TableRow>
+                                        <TableRow>
+                                            <TableCell colSpan={5}>
+                                                <Collapse in={expanded[investor._id]} timeout="auto" unmountOnExit>
+                                                    <Box margin={1}>
+                                                        <Typography variant="h6" gutterBottom component="div">
+                                                            Files
+                                                        </Typography>
+                                                        <Table size="small" aria-label="files">
+                                                            <TableHead>
+                                                                <TableRow>
+                                                                    <TableCell>Filename</TableCell>
+                                                                    <TableCell>Type</TableCell>
+                                                                    <TableCell>Preview</TableCell>
+                                                                </TableRow>
+                                                            </TableHead>
+                                                            <TableBody>
+                                                                {investor.files?.map(file => (
+                                                                    <TableRow key={file._id}>
+                                                                        <TableCell>{file.filename}</TableCell>
+                                                                        <TableCell>{file.metadata?.type || 'N/A'}</TableCell>
+                                                                        <TableCell>
+                                                                            <a href={`/api/getFile?filename=${file.filename}`} target="_blank" rel="noopener noreferrer">
+                                                                                View
+                                                                            </a>
+                                                                        </TableCell>
+                                                                    </TableRow>
+                                                                ))}
+                                                            </TableBody>
+                                                        </Table>
+                                                    </Box>
+                                                </Collapse>
+                                            </TableCell>
+                                        </TableRow>
+                                    </React.Fragment>
                                 ))}
                             </TableBody>
                         </Table>
@@ -65,22 +108,3 @@ const Investors = ({role}) => {
 };
 
 export default observer(Investors);
-
-// const result = await db.users.updateMany(
-//     { "role": { "$exists": false } },
-//     { "$set": { "role": 'investor' } }
-// );
-
-// {
-//     "_id": {
-//     "$oid": "6666f15f55c6c9fb6785e7a0"
-// },
-//     "email": "s.guenter@victorum-group.com",
-//     "password": "mefhin-heppup-myRky8",
-//     "firstName": "Siegfried Günter",
-//     "phoneNumber": "+4917664437556",
-//     "emailVerified": true,
-//     "phoneVerified": true,
-//     "verificationCode": "",
-//     "role": "investor"
-// }

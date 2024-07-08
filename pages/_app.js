@@ -24,7 +24,6 @@ const theme = createTheme({
 });
 
 const MyApp = ({ Component, pageProps }) => {
-    debugger
 
     const isSignUpPage = [
         'SignUp',

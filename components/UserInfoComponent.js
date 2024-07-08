@@ -33,12 +33,14 @@ const UserInfoComponent = ({rout}) => {
   const router = useRouter();
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
+  // debugger
 
   if (loading && user) {
     return <div style={{textAlign: 'center', marginTop: '30rem'}}> <h1>Loading...</h1> </div>;
   }
 
   if (user?.phoneNumber && !user?.clientType && user.role === 'investor') {
+      console.log(1)
     return (
       <Layout>
         <Layout />
@@ -83,12 +85,10 @@ const UserInfoComponent = ({rout}) => {
     }
 
 
-
-
-
-
-
-  if(user?.role &&  link === '/' || link === 'Statistics'){
+    let inc =  ['investor' , ''].includes(user?.role);
+  if(user?.role !== 'investor' &&  link === '/' || link === 'Statistics' && user.role !== 'investor'){
+      // debugger
+      console.log(2)
     return(
       <div>
           <AppBarComponent/>
@@ -113,7 +113,10 @@ const UserInfoComponent = ({rout}) => {
     );
   }
 
-  if (link === '/' && user?.clientType) {
+
+  if (link === '/' && user?.clientType && user.role === 'investor') {
+      console.log(3)
+      debugger
     return (
       <div>
         <AppBarComponent />

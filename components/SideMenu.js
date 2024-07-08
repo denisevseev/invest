@@ -29,6 +29,7 @@ const menuItems = {
 };
 
 const SideMenu = ({ role }) => {
+  console.log('call side menu', role)
   const router = useRouter();
   const items = menuItems[role];
   const handleRoute = (item)=>{

@@ -23,7 +23,9 @@ const AppBarComponent = () => {
     const { data: session } = useSession();
     const router = useRouter();
     const { user, loading } = useFetchUser();
-    // debugger
+
+
+
 
     const handleDrawerToggle = () => {
         setMobileOpen(!mobileOpen);
@@ -123,7 +125,7 @@ const AppBarComponent = () => {
                     keepMounted: true,
                 }}
                 sx={{
-                    '& .MuiDrawer-paper': { boxSizing: 'border-box',  width: isMobile && 240, mt: isMobile ? '60px' : '80px' },
+                    '& .MuiDrawer-paper': { boxSizing: 'border-box',  width: isMobile && user?.role !== 'admin' ? 240:240, mt: isMobile ? '60px' : '80px' },
                 }}
             >
                 {user && user.role ? (
