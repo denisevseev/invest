@@ -5,7 +5,7 @@ const client = new MongoClient(uri);
 
 export default async function handler(req, res) {
     if (req.method === 'POST') {
-        const { 
+        const {
             annualIncome,
             anticipatedAnnualDeposit,
             city,
@@ -28,7 +28,7 @@ export default async function handler(req, res) {
             postalCode,
             sourceOfFunds
         } = req.body;
-        
+
         const isCorporate = clientType === 'corporate';
         const isIndividual = clientType === 'individual';
 
@@ -37,13 +37,10 @@ export default async function handler(req, res) {
             const db = client.db('victorum-portal');
             const usersCollection = db.collection('users');
             const existingUser = await usersCollection.findOne({ email });
-            if (existingUser && existingUser.clientType) {
-                return res.status(409).json({ message: 'User with this email already exists' });
-            }
 
-            let newUser;
+            let updateData = {};
             if (isCorporate) {
-                newUser = {
+                updateData = {
                     clientType,
                     companyName,
                     country,
@@ -52,7 +49,7 @@ export default async function handler(req, res) {
                     password,
                 };
             } else if (isIndividual) {
-                newUser = {
+                updateData = {
                     annualIncome,
                     anticipatedAnnualDeposit,
                     city,
@@ -76,7 +73,7 @@ export default async function handler(req, res) {
                     sourceOfFunds
                 };
             } else {
-                newUser = {
+                updateData = {
                     firstName,
                     phoneNumber,
                     email,
@@ -84,13 +81,15 @@ export default async function handler(req, res) {
                 };
             }
 
-            await usersCollection.insertOne(newUser);
-            
-            if(existingUser){
-                usersCollection.deleteOne({ email: existingUser.email})
+            if (existingUser) {
+                // Обновление существующего пользователя
+                await usersCollection.updateOne({ email }, { $set: updateData });
+                return res.status(200).json({ message: 'User updated successfully!' });
+            } else {
+                // Создание нового пользователя
+                await usersCollection.insertOne(updateData);
+                return res.status(200).json({ message: 'User registered successfully!' });
             }
-
-            res.status(200).json({ message: 'User registered successfully!' });
         } catch (error) {
             console.error('Error registering user:', error);
             res.status(500).json({ message: 'Internal server error' });

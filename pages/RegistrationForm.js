@@ -170,13 +170,13 @@ const RegistrationFormContent = ({ session }) => {
 
     return (
         <div>
-            <AppBarComponent />
+            {/*<AppBarComponent />*/}
             <ModalComponent open={modalOpen} message={modalMessage} handleClose={() => setModalOpen(false)} />
             <Box
                 sx={{
                     maxWidth: 500,
                     mx: 'auto',
-                    mt: 17,
+                    // mt: 17,
                     border: '1px solid #e0e0e0',
                     borderRadius: '8px',
                     boxShadow: '0px 4px 8px rgba(0, 0, 0, 0.1)',

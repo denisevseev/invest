@@ -27,9 +27,13 @@ const Employees = () => {
         const data = await response.json();
 
         if (user.role === 'manager') {
-            // debugger
-            // data.map(employee => {console.log(employee?.assignedTo?._id)})
-            setEmployees(data.filter(emp => emp?.assignedTo?._id === user._id));
+            const filteredEmployees = data.filter(emp => emp?.assignedTo?._id === user._id);
+            for (const emp of filteredEmployees) {
+                const investorResponse = await fetch(`/api/admin/getInvestors?employeeId=${emp._id}`);
+                const investors = await investorResponse.json();
+                emp.assignedInvestors = investors;
+            }
+            setEmployees(filteredEmployees);
         } else if (user.role === 'admin') {
             setEmployees(data.filter(emp => emp.role === 'employee'));
         }
@@ -68,8 +72,8 @@ const Employees = () => {
                             </TableHead>
                             <TableBody>
                                 {employees.map(employee => (
-                                    <>
-                                        <TableRow key={employee._id}>
+                                    <React.Fragment key={employee._id}>
+                                        <TableRow>
                                             <TableCell>{employee.firstName}</TableCell>
                                             <TableCell>{employee.lastName}</TableCell>
                                             <TableCell>{employee.email}</TableCell>
@@ -90,15 +94,25 @@ const Employees = () => {
                                                         <Table size="small" aria-label="investors">
                                                             <TableHead>
                                                                 <TableRow>
+                                                                    <TableCell>ID</TableCell>
                                                                     <TableCell>First Name</TableCell>
                                                                     <TableCell>Last Name</TableCell>
+                                                                    <TableCell>Email</TableCell>
+                                                                    <TableCell>Phone Number</TableCell>
+                                                                    <TableCell>Email Verified</TableCell>
+                                                                    <TableCell>Phone Verified</TableCell>
                                                                 </TableRow>
                                                             </TableHead>
                                                             <TableBody>
                                                                 {employee.assignedInvestors?.map(investor => (
                                                                     <TableRow key={investor._id}>
+                                                                        <TableCell>{investor._id}</TableCell>
                                                                         <TableCell>{investor.firstName}</TableCell>
                                                                         <TableCell>{investor.lastName}</TableCell>
+                                                                        <TableCell>{investor.email}</TableCell>
+                                                                        <TableCell>{investor.phoneNumber}</TableCell>
+                                                                        <TableCell>{investor.emailVerified ? 'Verified' : 'Not Verified'}</TableCell>
+                                                                        <TableCell>{investor.phoneVerified ? 'Verified' : 'Not Verified'}</TableCell>
                                                                     </TableRow>
                                                                 ))}
                                                             </TableBody>
@@ -107,7 +121,7 @@ const Employees = () => {
                                                 </Collapse>
                                             </TableCell>
                                         </TableRow>
-                                    </>
+                                    </React.Fragment>
                                 ))}
                             </TableBody>
                         </Table>
@@ -119,4 +133,3 @@ const Employees = () => {
 };
 
 export default observer(Employees);
-
