@@ -15,7 +15,7 @@ const Investors = () => {
     };
 
     useEffect(() => {
-        if (user && user.role === 'admin') {
+        if (user) {
             fetchInvestors();
         }
     }, [user]);
@@ -23,12 +23,7 @@ const Investors = () => {
     const fetchInvestors = async () => {
         const response = await fetch('/api/admin/getAllInvestorFiles');
         const data = await response.json();
-        console.log('Fetched investors:', data);
-        if (Array.isArray(data)) {
-            setInvestors(data);
-        } else {
-            setInvestors([]);
-        }
+        setInvestors(data);
     };
 
     return (
@@ -50,13 +45,13 @@ const Investors = () => {
                                 </TableRow>
                             </TableHead>
                             <TableBody>
-                                {investors?.map(investor => (
+                                {investors.map(investor => (
                                     <React.Fragment key={investor._id}>
                                         <TableRow>
-                                            <TableCell>{investor.firstName || 'N/A'}</TableCell>
-                                            <TableCell>{investor.lastName || 'N/A'}</TableCell>
-                                            <TableCell>{investor.email || 'N/A'}</TableCell>
-                                            <TableCell>{investor.phoneNumber || 'N/A'}</TableCell>
+                                            <TableCell>{investor.firstName}</TableCell>
+                                            <TableCell>{investor.lastName}</TableCell>
+                                            <TableCell>{investor.email}</TableCell>
+                                            <TableCell>{investor.phoneNumber}</TableCell>
                                             <TableCell>
                                                 <IconButton onClick={() => handleExpandClick(investor._id)}>
                                                     {expanded[investor._id] ? <ExpandLess /> : <ExpandMore />}
@@ -79,10 +74,10 @@ const Investors = () => {
                                                                 </TableRow>
                                                             </TableHead>
                                                             <TableBody>
-                                                                {investor.files?.map(file => (
+                                                                {investor.files.map(file => (
                                                                     <TableRow key={file._id}>
                                                                         <TableCell>{file.filename}</TableCell>
-                                                                        <TableCell>{file.metadata?.type || 'N/A'}</TableCell>
+                                                                        <TableCell>{file.metadata?.type}</TableCell>
                                                                         <TableCell>
                                                                             <a href={`/api/getFile?filename=${file.filename}`} target="_blank" rel="noopener noreferrer">
                                                                                 View

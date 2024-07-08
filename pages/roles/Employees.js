@@ -4,24 +4,35 @@ import { Button, Container, Typography, Box, Table, TableBody, TableCell, TableC
 import AddManagerModal from '../../components/AddManagerModal';
 import { observer } from "mobx-react-lite";
 import { ExpandMore, ExpandLess } from '@mui/icons-material';
-import store from "../../stores/userStore";
+import useFetchUser from '../../stores/hooks/useFetchUser';
+import store from './../../stores/userStore';
 
 const Employees = () => {
     const [open, setOpen] = useState(false);
     const [employees, setEmployees] = useState([]);
     const [expanded, setExpanded] = useState({});
+    const { user } = useFetchUser();
 
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
 
     useEffect(() => {
-        fetchEmployees();
-    }, []);
+        if (user) {
+            fetchEmployees();
+        }
+    }, [user]);
 
     const fetchEmployees = async () => {
         const response = await fetch('/api/admin/getUsers');
         const data = await response.json();
-        setEmployees(data.filter(user => user.role === 'employee'));
+
+        if (user.role === 'manager') {
+            // debugger
+            // data.map(employee => {console.log(employee?.assignedTo?._id)})
+            setEmployees(data.filter(emp => emp?.assignedTo?._id === user._id));
+        } else if (user.role === 'admin') {
+            setEmployees(data.filter(emp => emp.role === 'employee'));
+        }
     };
 
     const handleExpandClick = (id) => {
@@ -39,9 +50,9 @@ const Employees = () => {
                 Employees
             </Typography>
             <Box>
-                {/*<Button variant="contained" color="primary" onClick={handleOpen}>*/}
-                {/*    Add Employee*/}
-                {/*</Button>*/}
+                <Button variant="contained" color="primary" onClick={handleOpen}>
+                    Add Employee
+                </Button>
                 <AddManagerModal open={open} handleClose={handleClose} />
                 <Box mt={4}>
                     <TableContainer component={Paper}>
@@ -57,8 +68,8 @@ const Employees = () => {
                             </TableHead>
                             <TableBody>
                                 {employees.map(employee => (
-                                    <React.Fragment key={employee._id}>
-                                        <TableRow>
+                                    <>
+                                        <TableRow key={employee._id}>
                                             <TableCell>{employee.firstName}</TableCell>
                                             <TableCell>{employee.lastName}</TableCell>
                                             <TableCell>{employee.email}</TableCell>
@@ -81,8 +92,6 @@ const Employees = () => {
                                                                 <TableRow>
                                                                     <TableCell>First Name</TableCell>
                                                                     <TableCell>Last Name</TableCell>
-                                                                    <TableCell>phone</TableCell>
-                                                                    <TableCell>email</TableCell>
                                                                 </TableRow>
                                                             </TableHead>
                                                             <TableBody>
@@ -90,8 +99,6 @@ const Employees = () => {
                                                                     <TableRow key={investor._id}>
                                                                         <TableCell>{investor.firstName}</TableCell>
                                                                         <TableCell>{investor.lastName}</TableCell>
-                                                                        <TableCell>{investor.phoneNumber}</TableCell>
-                                                                        <TableCell>{investor.email}</TableCell>
                                                                     </TableRow>
                                                                 ))}
                                                             </TableBody>
@@ -100,7 +107,7 @@ const Employees = () => {
                                                 </Collapse>
                                             </TableCell>
                                         </TableRow>
-                                    </React.Fragment>
+                                    </>
                                 ))}
                             </TableBody>
                         </Table>
@@ -112,3 +119,4 @@ const Employees = () => {
 };
 
 export default observer(Employees);
+

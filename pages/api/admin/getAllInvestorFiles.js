@@ -25,40 +25,44 @@ export default async function handler(req, res) {
         return res.status(401).json({ message: 'Unauthorized' });
     }
 
-    // Проверяем, является ли пользователь администратором
-    const user = await User.findOne({ email: session.user.email });
+    const email = session.user.email;
+    const user = await User.findOne({ email });
 
-    if (!user || user.role !== 'admin') {
+    if (!user) {
         return res.status(403).json({ message: 'Forbidden' });
     }
 
     await dbConnect();
 
-    if (req.method === 'GET') {
-        try {
-            const db = await connectToDatabase();
-            const bucket = new GridFSBucket(db, {
-                bucketName: 'uploads',
-            });
+    try {
+        const db = await connectToDatabase();
+        const bucket = new GridFSBucket(db, {
+            bucketName: 'uploads',
+        });
 
-            // Получаем всех инвесторов
-            const investors = await User.find({ role: 'investor' }).lean();
-
-            // Получаем все файлы для инвесторов
-            const files = await bucket.find({}).toArray();
-
-            // Присоединяем файлы к соответствующим инвесторам
-            const investorsWithFiles = investors.map(investor => {
-                investor.files = files.filter(file => file.metadata?.email === investor.email);
-                return investor;
-            });
-
-            res.status(200).json(investorsWithFiles);
-        } catch (error) {
-            console.error('Error fetching investors and files:', error);
-            res.status(500).json({ message: 'Internal server error' });
+        let investors;
+        if (user.role === 'admin') {
+            investors = await User.find({ role: 'investor' }).lean();
+        } else if (user.role === 'manager') {
+            const employees = await User.find({ assignedTo: user._id });
+            const employeeIds = employees.map(emp => emp._id);
+            investors = await User.find({ assignedTo: { $in: employeeIds } }).lean();
+        } else if (user.role === 'employee') {
+            investors = await User.find({ assignedTo: user._id }).lean();
+        } else {
+            return res.status(403).json({ message: 'Forbidden' });
         }
-    } else {
-        res.status(405).json({ message: 'Method not allowed' });
+
+        const files = await bucket.find({}).toArray();
+
+        const investorsWithFiles = investors.map(investor => {
+            investor.files = files.filter(file => file.metadata?.email === investor.email);
+            return investor;
+        });
+
+        res.status(200).json(investorsWithFiles);
+    } catch (error) {
+        console.error('Error fetching investors and files:', error);
+        res.status(500).json({ message: 'Internal server error' });
     }
 }
