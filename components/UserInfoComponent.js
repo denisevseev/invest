@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import {Box, Typography, IconButton, useMediaQuery, useTheme, Container} from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
 import { useRouter } from 'next/router';
@@ -24,6 +24,7 @@ import StatisticsChart from "../pages/roles/StatisticsChart";
 import Employees from "../pages/roles/Employees";
 import Investors from "../pages/roles/Investors";
 import LinkGenerator from "./LinkGenerator";
+import RiskAcceptanceModal from "./RiskAcceptance/RiskAcceptanceModal";
 
 
 const UserInfoComponent = ({rout}) => {
@@ -33,6 +34,14 @@ const UserInfoComponent = ({rout}) => {
   const router = useRouter();
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
+    const [open, setOpen] = useState(false);
+    useEffect(() => {
+        setOpen(true);
+    }, []);
+
+    const handleClose = () => {
+        setOpen(false);
+    };
   // debugger
 
   if (loading && user) {
@@ -181,6 +190,7 @@ const UserInfoComponent = ({rout}) => {
       <div>
         <AppBarComponent/>
             <Login />
+          <RiskAcceptanceModal open={open} onClose={handleClose}/>
         <Footer />
       </div>
     );

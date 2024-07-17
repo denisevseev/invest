@@ -13,9 +13,8 @@ const theme = createTheme({
 const RiskAcceptanceModal = () => {
     const [open, setOpen] = useState(false);
     const [accepted, setAccepted] = useState(false);
-    const isModalShown = localStorage.getItem('riskModalShown');
-
     useEffect(() => {
+        const isModalShown = localStorage.getItem('riskModalShown');
         if (!isModalShown) {
             setOpen(true);
         }
@@ -23,8 +22,13 @@ const RiskAcceptanceModal = () => {
 
     const handleClose = () => {
         setOpen(false);
-        localStorage.setItem('riskModalShown', 'true');
     };
+
+    const handleAccept = ()=> {
+        localStorage.setItem('riskModalShown', 'true');
+        setOpen(false);
+    }
+
 
     const handleAcceptChange = (event) => {
         setAccepted(event.target.checked);
@@ -56,7 +60,7 @@ const RiskAcceptanceModal = () => {
                         src="/images/top_img.png"
                         alt="Top Image"
                         style={{
-                            width: '100%',
+                            width: '60%',
                             height: 'auto',
                             marginBottom: '20px',
                         }}
@@ -333,7 +337,7 @@ const RiskAcceptanceModal = () => {
                 <Button
                     variant="contained"
                     color="primary"
-                    onClick={handleClose}
+                    onClick={handleAccept}
                     disabled={!accepted}
                     sx={{ mt: 2}}
                 >

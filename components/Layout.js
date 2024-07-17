@@ -33,27 +33,11 @@ const Layout = () => {
     setMobileOpen(!mobileOpen);
   };
 
-    const [open, setOpen] = useState(false);
-
-    useEffect(() => {
-        const timer = setTimeout(() => {
-            setOpen(true);
-        }, 3000);
-
-        return () => clearTimeout(timer);
-    }, []);
-
-    const handleClose = () => {
-        setOpen(false);
-    };
-
-
 
   return (
     <Box sx={{ display: 'flex' }}>
       <CssBaseline />
       <AppBarComponent />
-        <RiskAcceptanceModal open={open} onClose={handleClose}/>
       <Drawer
         variant={isMobile ? "temporary" : "permanent"}
         open={isMobile ? mobileOpen : true}
