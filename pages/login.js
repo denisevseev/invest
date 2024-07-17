@@ -63,12 +63,12 @@ const Login = () => {
             </form>
             {error && <Typography color="error">{error}</Typography>}
              <Box mt={5} sx={{ display: 'flex', justifyContent: 'center' }}>
-            <Typography sx={{ marginRight: '1rem' }}>
-                No account?{' '}
-                <Link href="/signup" underline="hover">
-                    Sign up
-                </Link>
-            </Typography>
+            {/*<Typography sx={{ marginRight: '1rem' }}>*/}
+            {/*    No account?{' '}*/}
+            {/*    <Link href="/signup" underline="hover">*/}
+            {/*        Sign up*/}
+            {/*    </Link>*/}
+            {/*</Typography>*/}
 
             <Typography sx={{ marginLeft: '1rem' }}>
                 <Link href="/ResetPassword" underline="hover">

@@ -85,8 +85,8 @@ const UserInfoComponent = ({rout}) => {
     }
 
 
-    let inc =  ['investor' , ''].includes(user?.role);
-  if(user?.role !== 'investor' &&  link === '/' || link === 'Statistics' && user.role !== 'investor'){
+    // let inc =  ['investor' , ''].includes(user?.role);
+  if(user && user?.role !== 'investor' &&  link === '/'  || link === 'Statistics' && user.role !== 'investor'){
       // debugger
       console.log(2)
     return(
@@ -115,7 +115,7 @@ const UserInfoComponent = ({rout}) => {
 
 
   if (link === '/' && user?.clientType && user.role === 'investor') {
-      console.log(3)
+      console.log(8)
       debugger
     return (
       <div>
@@ -152,6 +152,7 @@ const UserInfoComponent = ({rout}) => {
   }
 
   if (link === "Open Live Account" && user?.clientType) {
+      console.log(5)
     return (
       <div>
         <AppBarComponent />
@@ -163,6 +164,7 @@ const UserInfoComponent = ({rout}) => {
   }
 
   if (link === "Individual Questionnaire" && user?.clientType) {
+      console.log(4)
     return (
       <div>
         <AppBarComponent />
@@ -174,6 +176,7 @@ const UserInfoComponent = ({rout}) => {
   }
 
   if (!session) {
+      console.log(3)
     return (
       <div>
         <AppBarComponent/>

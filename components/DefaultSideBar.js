@@ -1,12 +1,11 @@
-import React, { useState, useEffect } from 'react';
-import { List, ListItem, ListItemIcon, ListItemText, Box, CssBaseline, Button, useMediaQuery, useTheme, IconButton, styled } from '@mui/material';
+import React, { useState } from 'react';
+import { List, ListItem, ListItemIcon, ListItemText, Box, useMediaQuery, useTheme, Drawer } from '@mui/material';
 import HomeIcon from '@mui/icons-material/Home';
 import AttachMoneyIcon from '@mui/icons-material/AttachMoney';
 import AccountBalanceIcon from '@mui/icons-material/AccountBalance';
-import { signIn, signOut, useSession } from 'next-auth/react';
-import { useRouter } from 'next/router';
-import DownloadButton from './DownloadButton';
+import { useSession } from 'next-auth/react';
 
+const drawerWidth = 240;
 
 const DefaultSideBar = ({ children }) => {
     const theme = useTheme();
@@ -19,7 +18,7 @@ const DefaultSideBar = ({ children }) => {
     ];
     const { data: session } = useSession();
 
-    return (
+    const drawer = (
         <Box sx={{ overflow: 'auto', marginTop: 6, backgroundSize: 'cover', backgroundPosition: 'center', height: '100%' }}>
             <List>
                 {links.map((link, index) => (
@@ -48,9 +47,43 @@ const DefaultSideBar = ({ children }) => {
                     </ListItem>
                 ))}
             </List>
-            {/* <DownloadButton/> */}
+        </Box>
+    );
+
+    return (
+        <Box component="nav" sx={{ width: { sm: drawerWidth }, flexShrink: { sm: 0 } }}>
+            <Drawer
+                variant={isMobile ? "temporary" : "permanent"}
+                open={isMobile ? mobileOpen : true}
+                onClose={() => setMobileOpen(!mobileOpen)}
+                ModalProps={{
+                    keepMounted: true, // Better open performance on mobile.
+                }}
+                sx={{
+                    display: { xs: 'block', sm: 'none' },
+                    '& .MuiDrawer-paper': {
+                        boxSizing: 'border-box',
+                        width: drawerWidth,
+                    },
+                }}
+            >
+                {drawer}
+            </Drawer>
+            <Drawer
+                variant="permanent"
+                sx={{
+                    display: { xs: 'none', sm: 'block' },
+                    '& .MuiDrawer-paper': {
+                        boxSizing: 'border-box',
+                        width: drawerWidth,
+                    },
+                }}
+                open
+            >
+                {drawer}
+            </Drawer>
         </Box>
     );
 };
 
-export default DefaultSideBar
+export default DefaultSideBar;

@@ -36,4 +36,29 @@
           { role: 'readWrite', db: 'victory-portal' } 
         ]
       });
+
+    db.users.insertOne({
+        annualIncome: '$50,000 - $100,000',
+        anticipatedAnnualDeposit: '$50,000 - $100,000',
+        city: 'sdfsdf',
+        clientType: 'individual',
+        companyName: '',
+        country: 'Afghanistan',
+        creditFundAccount: 'Bank Transfer',
+        dateOfBirth: '2024-07-10',
+        email: 'tk_bb1222@mail.ru',
+        employmentStatus: 'Employed',
+        firstName: 'sdfsdf',
+        fullAddress: 'sdfsf',
+        intendedPurpose: 'Other',
+        lastName: 'evseev',
+        nationality: 'United Arab Emirates',
+        netWorth: '$50,000 - $100,000',
+        password: '1223',
+        phoneNumber: '45345345',
+        politicallyExposedPerson: 'No',
+        postalCode: 'sdfsdf',
+        sourceOfFunds: 'Business'
+    });
+
       

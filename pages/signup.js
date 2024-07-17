@@ -43,11 +43,11 @@ const SignUp = () => {
     }
 
     try {
-      const response = await fetch('/api/auth/register', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ firstName, phoneNumber, email, password }),
-      });
+      // const response = await fetch('/api/auth/register', {
+      //   method: 'POST',
+      //   headers: { 'Content-Type': 'application/json' },
+      //   body: JSON.stringify({ firstName, phoneNumber, email, password }),
+      // });
 
       if (response.ok) {
         // Регистрация успешна

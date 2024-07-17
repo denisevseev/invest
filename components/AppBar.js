@@ -140,4 +140,4 @@ const AppBarComponent = () => {
     );
 }
 
-export default observer(AppBarComponent);
+export default observer(AppBarComponent);``
