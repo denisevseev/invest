@@ -63,7 +63,7 @@ const RiskAcceptanceModal = ({show}) => {
                         src="/images/top_img.png"
                         alt="Top Image"
                         style={{
-                            width: '60%',
+                            width: '70%',
                             height: 'auto',
                             marginBottom: '20px',
                         }}
