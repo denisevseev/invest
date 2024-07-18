@@ -169,8 +169,7 @@ const RegistrationFormContent = ({ session }) => {
     };
 
     return (
-        <div>
-            {/*<AppBarComponent />*/}
+        <Box sx={{mt: -20}}>
             <ModalComponent open={modalOpen} message={modalMessage} handleClose={() => setModalOpen(false)} />
             <Box
                 sx={{
@@ -221,7 +220,7 @@ const RegistrationFormContent = ({ session }) => {
                     </Box>
                 </Box>
             </Box>
-        </div>
+        </Box>
     );
 };
 
