@@ -21,6 +21,12 @@ const useFetchUser = () => {
         const data = await response.json();
 
         if (data) {
+          const role = ['admin', 'manager', 'employee'].includes(data.role);
+          debugger
+          if(!role){
+            debugger
+            localStorage.removeItem('riskModalShown');
+          }
           setUser(data);
           store.user = data;
         }
