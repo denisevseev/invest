@@ -1,16 +1,22 @@
 import React, { useState, useEffect } from 'react';
 import { signIn } from 'next-auth/react';
-import { useRouter } from 'next/router'; // Импортируем useRouter
+import { useRouter } from 'next/router';
 import { Container, TextField, useMediaQuery, useTheme, Button, Typography, Link, Box } from '@mui/material';
+import ReCAPTCHA from 'react-google-recaptcha';
 import Logo from '../components/Logo';
 
 const Login = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
+    const [recaptchaValue, setRecaptchaValue] = useState(null);
     const theme = useTheme();
     const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
-    const router = useRouter(); // Инициализируем useRouter
+    const router = useRouter();
+
+    const handleRecaptchaChange = (value) => {
+        setRecaptchaValue(value);
+    };
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -27,16 +33,23 @@ const Login = () => {
             return;
         }
 
+        // Проверяем reCAPTCHA
+        if (!recaptchaValue) {
+            setError('Please complete the reCAPTCHA');
+            return;
+        }
+
         // Проверяем, подтверждены ли риски
         const hasAcceptedRisks = localStorage.getItem('riskModalShown') === 'true';
         if (!hasAcceptedRisks) {
-            location.reload()
+            location.reload();
         }
 
         const result = await signIn('credentials', {
             redirect: false,
             email,
             password,
+            recaptchaValue,  // Передаем значение reCAPTCHA на сервер
         });
 
         if (result.error) {
@@ -49,7 +62,7 @@ const Login = () => {
     };
 
     return (
-        <Container sx={{mt: 15}} >
+        <Container sx={{ mt: 15 }}>
             <form onSubmit={handleSubmit}>
                 <TextField
                     label="Email"
@@ -66,20 +79,22 @@ const Login = () => {
                     fullWidth
                     margin="normal"
                 />
-                <Button type="submit" variant="contained"  color="primary" fullWidth>Sign In</Button>
+                <ReCAPTCHA
+                    sitekey="6LcdaxMqAAAAAPc4GEtNaX3ErR6Wjwitx9FyZKct"  // Замените на ваш сайт-ключ reCAPTCHA
+                    onChange={handleRecaptchaChange}
+                />
+                <Button type="submit" variant="contained" color="primary" fullWidth>
+                    Sign In
+                </Button>
             </form>
             {error && <Typography color="error">{error}</Typography>}
             <Box mt={5} sx={{ display: 'flex', justifyContent: 'center' }}>
-
-
                 <Typography sx={{ marginLeft: '1rem' }}>
                     <Link href="/ResetPassword" underline="hover">
                         forgot password
                     </Link>
                 </Typography>
             </Box>
-
-
         </Container>
     );
 };
