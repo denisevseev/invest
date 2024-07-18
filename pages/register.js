@@ -1,7 +1,8 @@
 // pages/register.js
-import React, { useState } from 'react';
+import React, {useEffect, useState} from 'react';
 import { Container, TextField, Button, Box, Typography } from '@mui/material';
 import { useRouter } from 'next/router';
+import RiskAcceptanceModal from "../components/RiskAcceptance/RiskAcceptanceModal";
 
 const Register = () => {
     const router = useRouter();
@@ -13,6 +14,8 @@ const Register = () => {
         password: '',
         phoneNumber: '',
     });
+
+
 
     const handleChange = (e) => {
         setFormData({ ...formData, [e.target.name]: e.target.value });

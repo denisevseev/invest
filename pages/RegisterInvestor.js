@@ -1,9 +1,11 @@
 // pages/registerInvestor.js
-import React, { useState } from 'react';
+import React, {useEffect, useState} from 'react';
 import { Container, TextField, Button, Box, Typography } from '@mui/material';
 import { useRouter } from 'next/router';
+import RiskAcceptanceModal from "../components/RiskAcceptance/RiskAcceptanceModal";
 
 const RegisterInvestor = () => {
+    const [open, setOpen] = useState(false);
     const router = useRouter();
     const { referralCode } = router.query;
     const [formData, setFormData] = useState({
@@ -14,6 +16,14 @@ const RegisterInvestor = () => {
         phoneNumber: '',
     });
 
+    useEffect(() => {
+        setOpen(true);
+    }, []);
+
+    const handleClose = () => {
+        setOpen(false);
+    };
+
     const handleChange = (e) => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
     };
@@ -21,22 +31,29 @@ const RegisterInvestor = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        const response = await fetch('/api/registerInvestor', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ ...formData, referralCode })
-        });
+        const hasAcceptedRisks = localStorage.getItem('riskModalShown') === 'true';
+        if (!hasAcceptedRisks) {
+            location.reload()
+        }else {
+            const response = await fetch('/api/registerInvestor', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ ...formData, referralCode })
+            });
 
-        if (response.ok) {
-            alert('Investor registered successfully');
-            router.push('/login');
-        } else {
-            alert('Error registering investor');
+            if (response.ok) {
+                alert('Investor registered successfully');
+                router.push('/login');
+            } else {
+                alert('Error registering investor');
+            }
         }
+
     };
 
     return (
         <Container sx={{ mt: '6rem', marginLeft: 'auto', marginRight: 'auto', maxWidth: '800px', flexGrow: 1 }}>
+            <RiskAcceptanceModal open={open} onClose={handleClose}/>
             <Typography variant="h6" align="center" gutterBottom>
                 Investor Registration
             </Typography>
