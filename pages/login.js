@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { signIn } from 'next-auth/react';
 import { useRouter } from 'next/router';
 import { Container, TextField, useMediaQuery, useTheme, Button, Typography, Link, Box } from '@mui/material';
@@ -34,10 +34,10 @@ const Login = () => {
         }
 
         // Проверяем reCAPTCHA
-        if (!recaptchaValue) {
-            setError('Please complete the reCAPTCHA');
-            return;
-        }
+        // if (!recaptchaValue) {
+        //     setError('Please complete the reCAPTCHA');
+        //     return;
+        // }
 
         // Проверяем, подтверждены ли риски
         const hasAcceptedRisks = localStorage.getItem('riskModalShown') === 'true';
@@ -49,7 +49,7 @@ const Login = () => {
             redirect: false,
             email,
             password,
-            recaptchaValue,  // Передаем значение reCAPTCHA на сервер
+            // recaptchaValue,  // Передаем значение reCAPTCHA на сервер
         });
 
         if (result.error) {
@@ -79,10 +79,10 @@ const Login = () => {
                     fullWidth
                     margin="normal"
                 />
-                <ReCAPTCHA
-                    sitekey="6LcdaxMqAAAAAPc4GEtNaX3ErR6Wjwitx9FyZKct"  // Замените на ваш сайт-ключ reCAPTCHA
-                    onChange={handleRecaptchaChange}
-                />
+                {/*<ReCAPTCHA*/}
+                {/*    sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY}  // Use environment variable for site key*/}
+                {/*    onChange={handleRecaptchaChange}*/}
+                {/*/>*/}
                 <Button type="submit" variant="contained" color="primary" fullWidth>
                     Sign In
                 </Button>
