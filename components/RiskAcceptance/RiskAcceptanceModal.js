@@ -10,13 +10,16 @@ const theme = createTheme({
     },
 });
 
-const RiskAcceptanceModal = () => {
+const RiskAcceptanceModal = ({show}) => {
     const [open, setOpen] = useState(false);
     const [accepted, setAccepted] = useState(false);
     useEffect(() => {
         const isModalShown = localStorage.getItem('riskModalShown');
         if (!isModalShown) {
             setOpen(true);
+        }
+        if(show){
+            setOpen(true)
         }
     }, []);
 

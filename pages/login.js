@@ -33,7 +33,6 @@ const Login = () => {
             location.reload()
         }
 
-        // Если валидация прошла успешно, запускаем аутентификацию
         const result = await signIn('credentials', {
             redirect: false,
             email,
@@ -45,7 +44,7 @@ const Login = () => {
             console.error('Login error:', result.error);
         } else {
             console.log('Login successful:', result);
-            router.push('/'); // Используем router.push для перехода на главную страницу
+            router.push('/');
         }
     };
 
