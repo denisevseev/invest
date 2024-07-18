@@ -4,13 +4,15 @@ import HomeIcon from '@mui/icons-material/Home';
 import AttachMoneyIcon from '@mui/icons-material/AttachMoney';
 import AccountBalanceIcon from '@mui/icons-material/AccountBalance';
 import { useSession } from 'next-auth/react';
+import store from './../stores/userStore'
+import {observer} from "mobx-react-lite";
 
 const drawerWidth = 240;
 
-const DefaultSideBar = ({ children }) => {
+const DefaultSideBar = ({}) => {
     const theme = useTheme();
     const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
-    const [mobileOpen, setMobileOpen] = useState(false);
+    // const [mobileOpen, setMobileOpen] = useState(false);
     const links = [
         { text: 'Home', href: 'https://victorum-capital.com', icon: <HomeIcon /> },
         { text: 'Trade', href: 'https://victorum-trade.com', icon: <AttachMoneyIcon /> },
@@ -54,8 +56,8 @@ const DefaultSideBar = ({ children }) => {
         <Box component="nav" sx={{ width: { sm: drawerWidth }, flexShrink: { sm: 0 } }}>
             <Drawer
                 variant={isMobile ? "temporary" : "permanent"}
-                open={isMobile ? mobileOpen : true}
-                onClose={() => setMobileOpen(!mobileOpen)}
+                open={isMobile ? store.isOpenDefaultSideBar : true}
+                onClose={() => store.isOpenDefaultSideBar = !store.isOpenDefaultSideBar}
                 ModalProps={{
                     keepMounted: true, // Better open performance on mobile.
                 }}
@@ -86,4 +88,4 @@ const DefaultSideBar = ({ children }) => {
     );
 };
 
-export default DefaultSideBar;
+export default observer(DefaultSideBar);

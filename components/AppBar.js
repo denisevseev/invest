@@ -30,6 +30,7 @@ const AppBarComponent = () => {
 
     const handleDrawerToggle = () => {
         setMobileOpen(!mobileOpen);
+        store.isOpenDefaultSideBar = !store.isOpenDefaultSideBar;
     };
 
     const handleLogout = async () => {

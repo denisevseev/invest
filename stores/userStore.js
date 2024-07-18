@@ -15,6 +15,7 @@ class UserStore {
   arr = []
   roleTitle = null
   isAdedRole = false
+  isOpenDefaultSideBar = false
 
   constructor() {
     makeAutoObservable(this, {
@@ -26,6 +27,8 @@ class UserStore {
       arr: observable,
       roleTitle: observable,
       isAdedRole: observable,
+      isOpenDefaultSideBar:observable
+
     });
   }
 
