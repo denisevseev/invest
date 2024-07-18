@@ -29,10 +29,10 @@ export default function Contacts(props) {
                     Fax: +1 205-7402-846
                 </Typography>
                 <Typography variant="body2" sx={{ fontSize: '1.3rem' }}>
-                    Email: support@ramford-inc.com
+                    Email: support@victorum-capital.com
                 </Typography>
                 <Typography variant="body2" sx={{ fontSize: '1.3rem' }}>
-                    Internet: www.ramford-inc.com
+                    Internet: www.victorum-capital.com
                 </Typography>
             </Box>
             <Box sx={{ textAlign: 'center', bgcolor: '#d3d3d3', p: 2, borderRadius: '4px', flex: 1, m: 1 }}>
