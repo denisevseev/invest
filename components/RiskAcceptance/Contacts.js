@@ -23,13 +23,13 @@ export default function Contacts(props) {
             </Box>
             <Box sx={{ textAlign: 'center', bgcolor: '#d3d3d3', p: 2, borderRadius: '4px', flex: 1, m: 1 }}>
                 <Typography variant="body2" sx={{ fontWeight: 'bold', fontSize: '1.3rem' }}>
-                    Phone: +1 778-9002-237
+                    Phone: +1 604-260-0738
                 </Typography>
                 <Typography variant="body2" sx={{ fontSize: '1.3rem' }}>
-                    Fax: +1 205-7402-846
+                    Fax: +1 604-260-0738
                 </Typography>
                 <Typography variant="body2" sx={{ fontSize: '1.3rem' }}>
-                    Email: support@victorum-capital.com
+                    Email: contact@victorum-capital.com
                 </Typography>
                 <Typography variant="body2" sx={{ fontSize: '1.3rem' }}>
                     Internet: www.victorum-capital.com
