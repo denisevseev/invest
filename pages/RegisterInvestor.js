@@ -53,7 +53,7 @@ const RegisterInvestor = () => {
 
     return (
         <Container sx={{ mt: '6rem', marginLeft: 'auto', marginRight: 'auto', maxWidth: '800px', flexGrow: 1 }}>
-            <RiskAcceptanceModal open={open} onClose={handleClose}/>
+            <RiskAcceptanceModal open={open} show={true} onClose={handleClose}/>
             <Typography variant="h6" align="center" gutterBottom>
                 Investor Registration
             </Typography>

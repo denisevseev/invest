@@ -1,6 +1,5 @@
 import React, {useEffect, useState} from 'react';
 import {Box, Typography, IconButton, useMediaQuery, useTheme, Container} from '@mui/material';
-import MenuIcon from '@mui/icons-material/Menu';
 import { useRouter } from 'next/router';
 import AppBarComponent from "./AppBar";
 import CustomSideBar from "../pages/CustomSideBar";
@@ -195,9 +194,6 @@ const UserInfoComponent = ({rout}) => {
       </div>
     );
   }
-
-
-  
 
   return (
     <div>
