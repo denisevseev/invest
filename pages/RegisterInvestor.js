@@ -1,12 +1,14 @@
 // pages/registerInvestor.js
 import React, {useEffect, useState} from 'react';
-import { Container, TextField, Button, Box, Typography } from '@mui/material';
+import {Container, TextField, Button, Box, Typography, useTheme, useMediaQuery} from '@mui/material';
 import { useRouter } from 'next/router';
 import RiskAcceptanceModal from "../components/RiskAcceptance/RiskAcceptanceModal";
 
 const RegisterInvestor = () => {
     const [open, setOpen] = useState(false);
     const router = useRouter();
+    const theme = useTheme();
+    const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
     const { referralCode } = router.query;
     const [formData, setFormData] = useState({
         firstName: '',
@@ -52,7 +54,7 @@ const RegisterInvestor = () => {
     };
 
     return (
-        <Container sx={{ mt: '6rem', marginLeft: 'auto', marginRight: 'auto', maxWidth: '800px', flexGrow: 1 }}>
+        <Container sx={{ mt: '6rem', marginLeft: 'auto', marginRight: 'auto', maxWidth: '25rem',  flexGrow: 1 }}>
             <RiskAcceptanceModal open={open} show={true} onClose={handleClose}/>
             <Typography variant="h6" align="center" gutterBottom>
                 Investor Registration

@@ -62,7 +62,7 @@ const Login = () => {
     };
 
     return (
-        <Container sx={{ mt: 15 }}>
+        <Container sx={{ mt: 15, width: !isMobile ? '50%' : '100%' }}>
             <form onSubmit={handleSubmit}>
                 <TextField
                     label="Email"
