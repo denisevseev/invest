@@ -1,6 +1,6 @@
 
 import React, { useState, useEffect } from 'react';
-import { Modal, Box, Typography, Button, Checkbox, FormControlLabel } from '@mui/material';
+import {Modal, Box, Typography, Button, Checkbox, FormControlLabel, useTheme, useMediaQuery} from '@mui/material';
 import { createTheme } from '@mui/material/styles';
 import Contacts from "./Contacts";
 
@@ -13,6 +13,8 @@ const theme = createTheme({
 const RiskAcceptanceModal = ({show}) => {
     const [open, setOpen] = useState(false);
     const [accepted, setAccepted] = useState(false);
+    const theme = useTheme();
+    const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
     useEffect(() => {
         const isModalShown = localStorage.getItem('riskModalShown');
         if (!isModalShown) {
@@ -63,12 +65,14 @@ const RiskAcceptanceModal = ({show}) => {
                         src="/images/top_img.png"
                         alt="Top Image"
                         style={{
-                            width: '70%',
+                            width: '105%', /* Ширина на 5% больше */
                             height: 'auto',
-                            marginBottom: '20px',
+                            marginBottom: '2rem',
+                            marginLeft: '-2.5%', /* Отступ слева на 2.5% влево */
+                            display: 'block'
                         }}
                     />
-                    <Typography variant="h4" component="h2" gutterBottom sx={{ textDecoration: 'underline' }}>
+                    <Typography variant="h4" component="h2" gutterBottom sx={{textDecoration: 'underline'}}>
                         CHANCEN UND RISIKEN BEI EINER KAPITALANLAGE IN VORBÖRSLICHE AKTIEN
                     </Typography>
                     <Box>
@@ -131,10 +135,10 @@ const RiskAcceptanceModal = ({show}) => {
 
                 </Box>
 
-                <Typography variant="h5" gutterBottom sx={{ fontSize: '1.4rem' }}>
+                <Typography variant="h5" gutterBottom sx={{fontSize: '1.4rem'}}>
                     CHANCEN UND RISIKEN BEI EINER KAPITALANLAGE IN VORBÖRSLICHE AKTIEN
                 </Typography>
-                <Typography variant="body1" gutterBottom sx={{ fontSize: '1.5rem' }}>
+                <Typography variant="body1" gutterBottom sx={{fontSize: '1.5rem' }}>
                     (Zusammenfassung der wichtigsten Risiken)
                 </Typography>
                 <Typography variant="body1" gutterBottom sx={{ fontSize: '1.5rem' }}>
