@@ -168,11 +168,12 @@ const StepOne = ({ formik }) => {
                 label="Email"
                 name="email"
                 type="email"
-                value={formik.values.email}
+                value={store.user.email}
                 onChange={handleChange}
                 onBlur={formik.handleBlur}
                 fullWidth
                 margin="normal"
+                disabled
                 required
                 sx={{ width: '100%', mb: 2 }}
                 error={formik.touched.email && Boolean(formik.errors.email)}
