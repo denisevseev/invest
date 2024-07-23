@@ -60,17 +60,7 @@ const RiskAcceptanceModal = ({ show }) => {
                         mb: 4,
                     }}
                 >
-                    <img
-                        src="/images/top_img.png"
-                        alt="Top Image"
-                        style={{
-                            width: '105%', /* Ширина на 5% больше */
-                            height: 'auto',
-                            marginBottom: '2rem',
-                            marginLeft: '-2.5%', /* Отступ слева на 2.5% влево */
-                            display: 'block'
-                        }}
-                    />
+
                     <Typography variant={isMobile ? 'h5' : 'h4'} component="h2" gutterBottom sx={{ textDecoration: 'underline' }}>
                         {isMobile ? 'Chancen und Risiken bei einer Kapitalanlage in vorbörsliche Aktien' : 'CHANCEN UND RISIKEN BEI EINER KAPITALANLAGE IN VORBÖRSLICHE AKTIEN'}
                     </Typography>
