@@ -89,11 +89,11 @@ const AppBarComponent = () => {
                             {/*    </IconButton>*/}
                             {/*)}*/}
                             {/*{!isMobile && <Divider orientation="vertical" flexItem sx={{ mx: 1 }} />}*/}
-                            <IconButton>
-                                <MailIcon />
-                                {!isMobile && <Typography variant="body1" sx={{ ml: 1 }}>Messages</Typography>}
-                            </IconButton>
-                            <Divider orientation="vertical" flexItem sx={{ mx: 1 }} />
+                            {/*<IconButton>*/}
+                                {/*<MailIcon />*/}
+                                {/*{!isMobile && <Typography variant="body1" sx={{ ml: 1 }}>Messages</Typography>}*/}
+                            {/*</IconButton>*/}
+                            {/*<Divider orientation="vertical" flexItem sx={{ mx: 1 }} />*/}
                             <IconButton>
                                 <HeadsetMicIcon />
                                 {!isMobile && <Typography variant="body1" sx={{ ml: 1 }}>Help Desk</Typography>}
