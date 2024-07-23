@@ -91,7 +91,7 @@ const Login = () => {
             <Box mt={5} sx={{ display: 'flex', justifyContent: 'center' }}>
                 <Typography sx={{ marginLeft: '1rem' }}>
                     <Link href="/ResetPassword" underline="hover">
-                        forgot password
+                        Forgot Password
                     </Link>
                 </Typography>
             </Box>

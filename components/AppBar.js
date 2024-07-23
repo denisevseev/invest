@@ -148,7 +148,7 @@ const AppBarComponent = () => {
                 ) : (
                     <CustomSideBar/>
                 )}
-                {user.role && isMobile ? <CustomSideBar/> : ''}
+                {user?.role && isMobile ? <CustomSideBar/> : ''}
 
             </Drawer>
         </Box>
