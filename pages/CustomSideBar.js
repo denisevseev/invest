@@ -1,5 +1,16 @@
 import React, { useState } from 'react';
-import { Drawer, List, ListItem, ListItemIcon, ListItemText, ListSubheader, Collapse, Box, styled } from '@mui/material';
+import {
+    Drawer,
+    List,
+    ListItem,
+    ListItemIcon,
+    ListItemText,
+    ListSubheader,
+    Collapse,
+    Box,
+    styled,
+    useTheme, useMediaQuery
+} from '@mui/material';
 import AccountBoxIcon from '@mui/icons-material/AccountBox';
 import AccountBalanceIcon from '@mui/icons-material/AccountBalance';
 import FolderIcon from '@mui/icons-material/Folder';
@@ -10,10 +21,12 @@ import CalendarTodayIcon from '@mui/icons-material/CalendarToday';
 import TrendingUpIcon from '@mui/icons-material/TrendingUp';
 import { useRouter } from 'next/router';
 import store from "../stores/userStore";
+// const theme = useTheme();
+// const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
 
 const StyledDrawer = styled(Drawer)(({ theme }) => ({
     '& .MuiDrawer-paper': {
-        width: 200,
+        width: 240,
         boxSizing: 'border-box',
         // top: 10
     },
