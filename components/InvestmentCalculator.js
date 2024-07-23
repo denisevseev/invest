@@ -58,7 +58,7 @@ const InvestmentCalculator = () => {
 
 
     return (
-        <Container maxWidth="auto" sx={{mt: isMobile ? 'md' : '2rem'}}>
+        <Container maxWidth="auto" sx={{mt: isMobile ? 'md' : '-15rem'}}>
             <Box display="flex" justifyContent="center" mt={4}>
                 <motion.div
                     initial={{ opacity: 0, y: -20 }}
@@ -75,7 +75,7 @@ const InvestmentCalculator = () => {
                             marginBottom: '1rem', // Отступ от элемента ниже
                         }}
                     >
-                        Investment Calculator
+                        {!isMobile  ? <span>Investment Calculator</span> : ''}
                     </Typography>
                 </motion.div>
             </Box>
