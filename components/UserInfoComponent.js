@@ -198,7 +198,7 @@ const UserInfoComponent = ({rout}) => {
   return (
     <div>
       <AppBarComponent />
-      {!isMobile && <CustomSideBar />}
+      {!session  ?  <Login/>:''}
       <Footer />
     </div>
   );
