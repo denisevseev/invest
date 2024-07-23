@@ -39,6 +39,10 @@ const AppBarComponent = () => {
         router.reload();
     };
     store.roleTitle =  user?.role
+    const capitalizeFirstLetter = (string) => {
+        if (!string) return '';
+        return string.charAt(0).toUpperCase() + string.slice(1).toLowerCase();
+    };
 
     return (
         <Box sx={{ display: 'flex' }}>
@@ -66,10 +70,18 @@ const AppBarComponent = () => {
                     <Box sx={{ display: 'flex', alignItems: 'center', flexGrow: 1 }}>
                         <Logo />
                     </Box>
-                    <Box sx={{ flexGrow: 1, display: 'flex',  justifyContent: 'center' }}>
+                    <Box sx={{ flexGrow: 1, display: 'flex', justifyContent: 'center' }}>
                         {session && !isMobile && (
-                            <Typography variant="body1" sx={{ color: 'black', textShadow: '1px 1px 2px rgba(0,0,0,0.4)' }}>
-                                {store?.roleTitle}
+                            <Typography
+                                variant="body1"
+                                sx={{
+                                    color: 'black',
+                                    // textShadow: '1px 1px 2px rgba(0,0,0,0.4)',
+                                    // fontWeight: 'bold', // Делаем текст жирным
+                                    // fontSize: '1.5rem'
+                                }}
+                            >
+                                {capitalizeFirstLetter(store?.roleTitle)}
                             </Typography>
                         )}
                     </Box>
@@ -78,7 +90,7 @@ const AppBarComponent = () => {
                             {!isMobile && (
                                 <Box sx={{ display: 'flex', alignItems: 'center', mr: 2 }}>
                                     <AccountCircleIcon sx={{ mr: 1 }} />
-                                    <Typography variant="body1" sx={{ color: 'black', textShadow: '1px 1px 2px rgba(0,0,0,0.4)', mr: 2 }}>
+                                    <Typography variant="body1" sx={{ color: 'black',  mr: 2 }}>
                                         {user?.companyName ? user.companyName : user?.firstName} {user?.companyName ? user.country : user?.lastName} / {user?.email}
                                     </Typography>
                                 </Box>
@@ -136,10 +148,11 @@ const AppBarComponent = () => {
                 ) : (
                     <CustomSideBar/>
                 )}
+                {user.role && isMobile ? <CustomSideBar/> : ''}
 
             </Drawer>
         </Box>
     );
 }
 
-export default observer(AppBarComponent);``
+export default observer(AppBarComponent);

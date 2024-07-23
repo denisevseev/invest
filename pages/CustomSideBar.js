@@ -13,9 +13,9 @@ import store from "../stores/userStore";
 
 const StyledDrawer = styled(Drawer)(({ theme }) => ({
     '& .MuiDrawer-paper': {
-        width: 240,
+        width: 200,
         boxSizing: 'border-box',
-        top: 88
+        // top: 10
     },
 }));
 
