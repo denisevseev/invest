@@ -15,6 +15,7 @@ import store from "../stores/userStore";
 import { observer } from "mobx-react-lite";
 import DefaultSideBar from "./DefaultSideBar";
 import useFetchUser from './../stores/hooks/useFetchUser';
+import CustomSideBar from "../pages/CustomSideBar";
 
 const AppBarComponent = () => {
     const theme = useTheme();
@@ -131,9 +132,9 @@ const AppBarComponent = () => {
                 }}
             >
                 {user && user.role ? (
-                    user.role === 'investor' ? <DefaultSideBar /> : <SideMenu role={user.role} />
+                    user.role === 'investor' ? '' : <SideMenu role={user.role} />
                 ) : (
-                    <DefaultSideBar />
+                    <CustomSideBar/>
                 )}
 
             </Drawer>

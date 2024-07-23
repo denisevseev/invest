@@ -9,6 +9,7 @@ import { useRouter } from 'next/router';
 import AppBarComponent from "./AppBar";
 import DefaultSideBar from "./DefaultSideBar";
 import RiskAcceptanceModal from "./RiskAcceptance/RiskAcceptanceModal";
+import CustomSideBar from "../pages/CustomSideBar";
 
 const drawerWidth = 200;
 
@@ -51,7 +52,7 @@ const Layout = () => {
           [`& .MuiDrawer-paper`]: { width: drawerWidth, boxSizing: 'border-box', mt: isMobile ? '60px' : '80px' },
         }}
       >
-        <DefaultSideBar />
+        <CustomSideBar/>
       </Drawer>
 
       <Box
