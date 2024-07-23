@@ -168,7 +168,7 @@ const StepOne = ({ formik }) => {
                 label="Email"
                 name="email"
                 type="email"
-                value={store.user.email}
+                value={store.user?.email}
                 onChange={handleChange}
                 onBlur={formik.handleBlur}
                 fullWidth
