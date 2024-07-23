@@ -146,7 +146,7 @@ const AppBarComponent = () => {
                 {user && user.role ? (
                     user.role === 'investor' ? '' : <SideMenu role={user.role} />
                 ) : (
-                    <CustomSideBar/>
+                    <div></div>
                 )}
                 {user?.role && isMobile ? <CustomSideBar/> : ''}
 

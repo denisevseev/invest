@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Container, TextField, Typography, Box, Paper, Grid, Slider } from '@mui/material';
+import {Container, TextField, Typography, Box, Paper, Grid, Slider, useTheme, useMediaQuery} from '@mui/material';
 import { motion } from 'framer-motion';
 
 const InvestmentCalculator = () => {
@@ -7,6 +7,8 @@ const InvestmentCalculator = () => {
     const [shareholdingPeriod, setShareholdingPeriod] = useState(1); // Default minimum holding period in months
     const [distributedDividend, setDistributedDividend] = useState(6.8); // Default dividend
     const [result, setResult] = useState(null);
+    const theme = useTheme();
+    const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
     const [currencyRates, setCurrencyRates] = useState({
         EUR: 0.7,
         RUB: 55.0,
@@ -53,11 +55,30 @@ const InvestmentCalculator = () => {
         return new Intl.NumberFormat('en-US').format(number);
     };
 
+
+
     return (
-        <Container maxWidth="auto">
-            <Typography variant="h5" align="center" gutterBottom>
-                Investment Calculator
-            </Typography>
+        <Container maxWidth="auto" sx={{mt: isMobile ? 'md' : '2rem'}}>
+            <Box display="flex" justifyContent="center" mt={4}>
+                <motion.div
+                    initial={{ opacity: 0, y: -20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.5 }}
+                >
+                    <Typography
+                        variant="h5"
+                        align="center"
+                        sx={{
+                            // textShadow: '2px 2px 4px rgba(0, 0, 0, 0.5)',  // Тень текста
+                            // fontWeight: 'bold',  // Жирный шрифт
+                            // fontSize: '2.5rem',   // Размер шрифта
+                            marginBottom: '1rem', // Отступ от элемента ниже
+                        }}
+                    >
+                        Investment Calculator
+                    </Typography>
+                </motion.div>
+            </Box>
             <Paper elevation={3} style={{ padding: '30px', marginTop: '20px' }}>
                 <Grid container spacing={2}>
                     <Grid item xs={12} sm={6}>

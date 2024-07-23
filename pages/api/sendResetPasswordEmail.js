@@ -4,7 +4,7 @@ import dbConnect from '../../lib/dbConnect';
 import ResetToken from '../../models/ResetToken';
 
 export default async (req, res) => {
-  await dbConnect(); 
+  await dbConnect();
 
   if (req.method === 'POST') {
     const { email } = req.body;
@@ -24,18 +24,18 @@ export default async (req, res) => {
         secure: true,
         auth: {
           user: process.env.MAIL_USERNAME,
-          pass: process.env.MAIL_PASSWORD
-        }
+          pass: process.env.MAIL_PASSWORD,
+        },
       });
 
       const resetLink = `${url}/ResetPasswordForm?token=${token}&email=${email}`;
 
       const mailOptions = {
-        from: process.env.MAIL_USERNAME,
+        from: `"Victorum Capital Support" <${process.env.MAIL_USERNAME}>`,
         to: email,
         subject: 'Password Reset',
         text: `Please follow the link to reset your password: ${resetLink}`,
-        html: `<p>Please follow the link to reset your password: <a href="${resetLink}">Reset Password</a></p>`
+        html: `<p>Please follow the link to reset your password: <a href="${resetLink}">Reset Password</a></p>`,
       };
 
       await transporter.sendMail(mailOptions);
@@ -48,3 +48,7 @@ export default async (req, res) => {
     res.status(405).json({ error: 'Method Not Allowed' });
   }
 };
+
+
+
+
