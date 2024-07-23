@@ -9,7 +9,8 @@ import {
     Collapse,
     Box,
     styled,
-    useTheme, useMediaQuery
+    useTheme,
+    useMediaQuery
 } from '@mui/material';
 import AccountBoxIcon from '@mui/icons-material/AccountBox';
 import AccountBalanceIcon from '@mui/icons-material/AccountBalance';
@@ -21,19 +22,12 @@ import CalendarTodayIcon from '@mui/icons-material/CalendarToday';
 import TrendingUpIcon from '@mui/icons-material/TrendingUp';
 import { useRouter } from 'next/router';
 import store from "../stores/userStore";
-// const theme = useTheme();
-// const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
-
-const StyledDrawer = styled(Drawer)(({ theme }) => ({
-    '& .MuiDrawer-paper': {
-        width: 240,
-        boxSizing: 'border-box',
-        // top: 10
-    },
-}));
 
 const CustomSideBar = ({ mobileOpen }) => {
     const router = useRouter();
+    const theme = useTheme();
+    const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
+
     const [openAccounts, setOpenAccounts] = useState(false);
     const [openFunds, setOpenFunds] = useState(false);
     const [openProfile, setOpenProfile] = useState(false);
@@ -57,6 +51,13 @@ const CustomSideBar = ({ mobileOpen }) => {
         store.routeLink = text;
         // Perform any actions with the clicked text here
     };
+
+    const StyledDrawer = styled(Drawer)(({ theme }) => ({
+        '& .MuiDrawer-paper': {
+            width: isMobile ? 240 : 200,
+            boxSizing: 'border-box',
+        },
+    }));
 
     return (
         <StyledDrawer
