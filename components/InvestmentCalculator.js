@@ -5,7 +5,7 @@ import { motion } from 'framer-motion';
 const InvestmentCalculator = () => {
     const [investmentAmount, setInvestmentAmount] = useState(2500); // Default minimum investment
     const [shareholdingPeriod, setShareholdingPeriod] = useState(1); // Default minimum holding period in months
-    const [distributedDividend, setDistributedDividend] = useState(6.8); // Default dividend
+    const [distributedDividend, setDistributedDividend] = useState(0); // Default dividend, will be set dynamically
     const [result, setResult] = useState(null);
     const [showResults, setShowResults] = useState(false); // For displaying results
     const theme = useTheme();
@@ -35,15 +35,28 @@ const InvestmentCalculator = () => {
     }, []);
 
     useEffect(() => {
+        // Determine dividend percentage based on the amount of shares
+        let percentage;
+        const amountOfShares = investmentAmount - 75;
+        if (amountOfShares <= 100000) {
+            percentage = 5.6;
+        } else if (amountOfShares <= 250000) {
+            percentage = 7.3;
+        } else if (amountOfShares <= 500000) {
+            percentage = 8.2;
+        } else {
+            percentage = 9.8;
+        }
+        setDistributedDividend(percentage);
+
         if (investmentAmount && shareholdingPeriod) {
-            const amountOfShares = investmentAmount - 75;
-            const period  = shareholdingPeriod * 0.75
-            const dividend = distributedDividend+period
+            const period = shareholdingPeriod * 0.75;
+            const dividend = distributedDividend + period;
             const totalDividend = (amountOfShares * (dividend / 100)) / 12;
             const totalAmount = parseFloat(amountOfShares) + totalDividend;
             setResult(totalAmount.toFixed(2));
         }
-    }, [investmentAmount, shareholdingPeriod, distributedDividend]);
+    }, [investmentAmount, shareholdingPeriod]);
 
     const handleInvestmentChange = (e, newValue) => {
         setInvestmentAmount(newValue);
@@ -129,7 +142,9 @@ const InvestmentCalculator = () => {
                             label="Anticipated distributed dividend (%)"
                             type="number"
                             value={distributedDividend}
-                            onChange={(e) => setDistributedDividend(Number(e.target.value))}
+                            InputProps={{
+                                readOnly: true,
+                            }}
                             fullWidth
                             margin="dense"
                             size="small"
