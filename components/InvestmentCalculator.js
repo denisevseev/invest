@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import {Container, TextField, Typography, Box, Paper, Grid, Slider, useTheme, useMediaQuery} from '@mui/material';
+import { Container, TextField, Typography, Box, Paper, Grid, Slider, useTheme, useMediaQuery } from '@mui/material';
 import { motion } from 'framer-motion';
 
 const InvestmentCalculator = () => {
@@ -33,32 +33,28 @@ const InvestmentCalculator = () => {
         fetchCurrencyRates();
     }, []);
 
-    const calculateResult = () => {
+    useEffect(() => {
         if (investmentAmount && shareholdingPeriod) {
             const totalDividend = (investmentAmount * (distributedDividend / 100)) * (shareholdingPeriod / 12);
             const totalAmount = parseFloat(investmentAmount) + totalDividend;
             setResult(totalAmount.toFixed(2));
         }
-    };
+    }, [investmentAmount, shareholdingPeriod, distributedDividend]);
 
     const handleInvestmentChange = (e, newValue) => {
         setInvestmentAmount(newValue);
-        calculateResult();
     };
 
     const handlePeriodChange = (e, newValue) => {
         setShareholdingPeriod(newValue);
-        calculateResult();
     };
 
     const formatNumber = (number) => {
         return new Intl.NumberFormat('en-US').format(number);
     };
 
-
-
     return (
-        <Container maxWidth="auto" sx={{mt: isMobile ? 'md' : '-15rem'}}>
+        <Container maxWidth="auto" sx={{ mt: isMobile ? 'md' : '-15rem' }}>
             <Box display="flex" justifyContent="center" mt={4}>
                 <motion.div
                     initial={{ opacity: 0, y: -20 }}
@@ -69,13 +65,10 @@ const InvestmentCalculator = () => {
                         variant="h5"
                         align="center"
                         sx={{
-                            // textShadow: '2px 2px 4px rgba(0, 0, 0, 0.5)',  // Тень текста
-                            // fontWeight: 'bold',  // Жирный шрифт
-                            // fontSize: '2.5rem',   // Размер шрифта
-                            marginBottom: '1rem', // Отступ от элемента ниже
+                            marginBottom: '1rem',
                         }}
                     >
-                        {!isMobile  ? <span>Investment Calculator</span> : ''}
+                        {!isMobile ? <span>Investment Calculator</span> : ''}
                     </Typography>
                 </motion.div>
             </Box>
@@ -96,7 +89,7 @@ const InvestmentCalculator = () => {
                         />
                         <TextField
                             value={investmentAmount}
-                            onChange={(e) => handleInvestmentChange(e, Number(e.target.value))}
+                            onChange={(e) => setInvestmentAmount(Number(e.target.value))}
                             fullWidth
                             margin="normal"
                         />
@@ -116,7 +109,7 @@ const InvestmentCalculator = () => {
                         />
                         <TextField
                             value={shareholdingPeriod}
-                            onChange={(e) => handlePeriodChange(e, Number(e.target.value))}
+                            onChange={(e) => setShareholdingPeriod(Number(e.target.value))}
                             fullWidth
                             margin="normal"
                         />
@@ -135,7 +128,7 @@ const InvestmentCalculator = () => {
                         <TextField
                             label="Amount of Shares"
                             type="number"
-                            value={investmentAmount / 1} // Assuming 1 CAD = 1 share
+                            value={investmentAmount} // Assuming 1 CAD = 1 share
                             InputProps={{
                                 readOnly: true,
                             }}
