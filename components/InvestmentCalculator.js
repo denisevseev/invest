@@ -7,6 +7,7 @@ const InvestmentCalculator = () => {
     const [shareholdingPeriod, setShareholdingPeriod] = useState(1); // Default minimum holding period in months
     const [distributedDividend, setDistributedDividend] = useState(6.8); // Default dividend
     const [result, setResult] = useState(null);
+    const [showResults, setShowResults] = useState(false); // For displaying results
     const theme = useTheme();
     const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
     const [currencyRates, setCurrencyRates] = useState({
@@ -35,18 +36,23 @@ const InvestmentCalculator = () => {
 
     useEffect(() => {
         if (investmentAmount && shareholdingPeriod) {
-            const totalDividend = (investmentAmount * (distributedDividend / 100)) * (shareholdingPeriod / 12);
-            const totalAmount = parseFloat(investmentAmount) + totalDividend;
+            const amountOfShares = investmentAmount - 75;
+            const period  = shareholdingPeriod * 0.75
+            const dividend = distributedDividend+period
+            const totalDividend = (amountOfShares * (dividend / 100)) / 12;
+            const totalAmount = parseFloat(amountOfShares) + totalDividend;
             setResult(totalAmount.toFixed(2));
         }
     }, [investmentAmount, shareholdingPeriod, distributedDividend]);
 
     const handleInvestmentChange = (e, newValue) => {
         setInvestmentAmount(newValue);
+        setShowResults(true);
     };
 
     const handlePeriodChange = (e, newValue) => {
         setShareholdingPeriod(newValue);
+        setShowResults(true);
     };
 
     const formatNumber = (number) => {
@@ -133,7 +139,7 @@ const InvestmentCalculator = () => {
                         <TextField
                             label="Amount of Shares"
                             type="number"
-                            value={investmentAmount} // Assuming 1 CAD = 1 share
+                            value={investmentAmount - 75} // Ensuring the value is 75 less than the investment amount
                             InputProps={{
                                 readOnly: true,
                             }}
@@ -143,7 +149,7 @@ const InvestmentCalculator = () => {
                         />
                     </Grid>
                 </Grid>
-                {result && (
+                {showResults && result && (
                     <Box mt={2} display="flex" justifyContent="center">
                         <Box display="flex" flexDirection="column" alignItems="left">
                             <Typography

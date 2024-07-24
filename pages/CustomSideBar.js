@@ -154,20 +154,6 @@ const CustomSideBar = ({ mobileOpen }) => {
                         <ListItemText primary="Economic Calendar" />
                     </ListItem>
                 </List>
-                <List
-                    subheader={
-                        <ListSubheader component="div" id="nested-list-subheader">
-                            TRADE NOW
-                        </ListSubheader>
-                    }
-                >
-                    <ListItem button onClick={() => handleText('MQ WebTrader - MT5')}>
-                        <ListItemIcon>
-                            <TrendingUpIcon />
-                        </ListItemIcon>
-                        <ListItemText primary="MQ WebTrader - MT5" />
-                    </ListItem>
-                </List>
             </Box>
         </StyledDrawer>
     );
