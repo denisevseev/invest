@@ -14,8 +14,8 @@ import CustomSideBar from "../pages/CustomSideBar";
 const drawerWidth = 200;
 
 const AnimatedButton = styled(Button)(({ theme }) => ({
-  minHeight: '6rem',
-  minWidth: '30rem',
+  minHeight: '5rem',
+  minWidth: '22rem',
 }));
 
 const Layout = () => {
