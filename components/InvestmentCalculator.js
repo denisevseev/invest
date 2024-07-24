@@ -54,7 +54,7 @@ const InvestmentCalculator = () => {
     };
 
     return (
-        <Container maxWidth="auto" sx={{ mt: isMobile ? 'md' : '-15rem' }}>
+        <Container maxWidth="auto" sx={{ mt: isMobile ? -2 : -4 }}>
             <Box display="flex" justifyContent="center" mt={4}>
                 <motion.div
                     initial={{ opacity: 0, y: -20 }}
@@ -68,13 +68,13 @@ const InvestmentCalculator = () => {
                             marginBottom: '1rem',
                         }}
                     >
-                        {!isMobile ? <span>Investment Calculator</span> : ''}
+                        Investment Calculator
                     </Typography>
                 </motion.div>
             </Box>
-            <Paper elevation={3} style={{ padding: '30px', marginTop: '20px' }}>
+            <Paper elevation={3} sx={{ padding: { xs: '10px', md: '20px' }, marginTop: '20px' }}>
                 <Grid container spacing={2}>
-                    <Grid item xs={12} sm={6}>
+                    <Grid item xs={12} md={6}>
                         <Typography id="investment-amount-slider" gutterBottom>
                             Investment Amount (CAD)
                         </Typography>
@@ -86,15 +86,17 @@ const InvestmentCalculator = () => {
                             step={500}
                             min={2500}
                             max={1000000}
+                            sx={{ marginBottom: '10px' }}
                         />
                         <TextField
                             value={investmentAmount}
                             onChange={(e) => setInvestmentAmount(Number(e.target.value))}
                             fullWidth
-                            margin="normal"
+                            margin="dense"
+                            size="small"
                         />
                     </Grid>
-                    <Grid item xs={12} sm={6}>
+                    <Grid item xs={12} md={6}>
                         <Typography id="shareholding-period-slider" gutterBottom>
                             Anticipated shareholding period (months)
                         </Typography>
@@ -106,25 +108,28 @@ const InvestmentCalculator = () => {
                             step={1}
                             min={1}
                             max={48}
+                            sx={{ marginBottom: '10px' }}
                         />
                         <TextField
                             value={shareholdingPeriod}
                             onChange={(e) => setShareholdingPeriod(Number(e.target.value))}
                             fullWidth
-                            margin="normal"
+                            margin="dense"
+                            size="small"
                         />
                     </Grid>
-                    <Grid item xs={12} sm={6}>
+                    <Grid item xs={12} md={6}>
                         <TextField
                             label="Anticipated distributed dividend (%)"
                             type="number"
                             value={distributedDividend}
                             onChange={(e) => setDistributedDividend(Number(e.target.value))}
                             fullWidth
-                            margin="normal"
+                            margin="dense"
+                            size="small"
                         />
                     </Grid>
-                    <Grid item xs={12} sm={6}>
+                    <Grid item xs={12} md={6}>
                         <TextField
                             label="Amount of Shares"
                             type="number"
@@ -133,19 +138,20 @@ const InvestmentCalculator = () => {
                                 readOnly: true,
                             }}
                             fullWidth
-                            margin="normal"
+                            margin="dense"
+                            size="small"
                         />
                     </Grid>
                 </Grid>
                 {result && (
-                    <Box mt={4} display="flex" justifyContent="center">
+                    <Box mt={2} display="flex" justifyContent="center">
                         <Box display="flex" flexDirection="column" alignItems="left">
                             <Typography
                                 variant="h6"
                                 align="left"
                                 sx={{
                                     fontWeight: 'bold',
-                                    fontSize: '1.5rem',
+                                    fontSize: '1.2rem',
                                 }}
                             >
                                 CAD: {formatNumber(result)}
@@ -160,7 +166,7 @@ const InvestmentCalculator = () => {
                                     align="left"
                                     sx={{
                                         fontWeight: 'bold',
-                                        fontSize: '1.5rem',
+                                        fontSize: '1.2rem',
                                     }}
                                 >
                                     EUR: {formatNumber((result * currencyRates.EUR).toFixed(2))}
@@ -176,7 +182,7 @@ const InvestmentCalculator = () => {
                                     align="left"
                                     sx={{
                                         fontWeight: 'bold',
-                                        fontSize: '1.5rem',
+                                        fontSize: '1.2rem',
                                     }}
                                 >
                                     RUB: {formatNumber((result * currencyRates.RUB).toFixed(2))}
@@ -189,10 +195,10 @@ const InvestmentCalculator = () => {
                             >
                                 <Typography
                                     variant="h6"
-                                    align="center"
+                                    align="left"
                                     sx={{
                                         fontWeight: 'bold',
-                                        fontSize: '1.5rem',
+                                        fontSize: '1.2rem',
                                     }}
                                 >
                                     NAIRA: {formatNumber((result * currencyRates.NAIRA).toFixed(2))}
