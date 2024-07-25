@@ -22,11 +22,6 @@ const Layout = () => {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
   const [mobileOpen, setMobileOpen] = useState(false);
-  const links = [
-    { text: 'Home', href: 'https://victorum-capital.com', icon: <HomeIcon /> },
-    { text: 'Trade', href: 'https://victorum-trade.com', icon: <AttachMoneyIcon /> },
-    { text: 'Finance', href: 'https://vicpayments.com', icon: <AccountBalanceIcon /> }
-  ];
   const { data: session } = useSession();
   const router = useRouter();
 
@@ -63,18 +58,6 @@ const Layout = () => {
           {session ? (
             <>
               <InvestmentCalculator />
-              <Box sx={{ display: 'flex', justifyContent: 'center', mt: 2 }}>
-                {/*<AnimatedButton*/}
-                {/*  // onClick={() => router.push('/RegistrationForm')}*/}
-                {/*  onClick={() => router.push('/InvestorAgreement')}*/}
-                {/*  variant="outlined"*/}
-                {/*  sx={{*/}
-                {/*    mt: 2,*/}
-                {/*  }}*/}
-                {/*>*/}
-                {/*  Investor Agreement*/}
-                {/*</AnimatedButton>*/}
-              </Box>
                 <Box sx={{ display: 'flex', justifyContent: 'center', mt: 2 }}>
                     <AnimatedButton
                         onClick={() => router.push('/RegistrationForm')}

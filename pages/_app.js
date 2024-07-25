@@ -26,7 +26,7 @@ const theme = createTheme({
 const MyApp = ({ Component, pageProps }) => {
 
     const isSignUpPage = [
-        'SignUp',
+        'Signup',
         'Login',
         'RegistrationForm',
         'ResetPassword',
@@ -35,6 +35,7 @@ const MyApp = ({ Component, pageProps }) => {
         'RegisterInvestor'
     ].includes(Component.name);
     const other = ['Home', 'Managers'].includes(Component.name);
+    debugger
 
 
     if (Component.name === 'InvestorAgreement') {
