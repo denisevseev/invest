@@ -35,7 +35,6 @@ const MyApp = ({ Component, pageProps }) => {
         'RegisterInvestor'
     ].includes(Component.name);
     const other = ['Home', 'Managers'].includes(Component.name);
-    debugger
 
 
     if (Component.name === 'InvestorAgreement') {
