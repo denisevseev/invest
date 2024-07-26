@@ -1,11 +1,13 @@
 import {Box, Button, styled} from "@mui/material";
 import React from "react";
+import { useRouter } from "next/router";
 
 const AnimatedButton = styled(Button)(({ theme }) => ({
     minHeight: '5rem',
     minWidth: '22rem',
 }));
 const ButtonBecome = (props) => {
+    const router = useRouter();
     return(
         <Box sx={{ display: 'flex', justifyContent: 'center', mt: 2 }}>
             <AnimatedButton

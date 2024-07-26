@@ -2,54 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Container, TextField, Typography, Box, Paper, Grid, Slider, Button, useTheme, useMediaQuery, Modal } from '@mui/material';
 import { motion } from 'framer-motion';
 import { useRouter } from 'next/router';
-import ButtonBecome from './ButtonBecome';
-
-const steps = [
-    {
-        title: 'Введение',
-        content: `Мы очень рады вашему интересу к компании Victorum и ее деятельности. 
-        Пожалуйста, учтите, что в настоящее время у нас повышенный объем запросов. 
-        Это обстоятельство в сочетании с ограниченным контингентом ценных бумаг для внешних инвесторов приводит к тому, что, к сожалению, не каждый заинтересованный инвестор может получить ценные бумаги. 
-        Мы держим за вас кулаки и готовы ответить на ваши вопросы по номеру 76998789 или по адресу support@hhjjnbnjjj! 
-        С уважением, команда поддержки Victorum`,
-        image: '/images/calc/1.jpg',
-        finalStep: false
-    },
-    {
-        title: 'Краткая инструкция',
-        content: `Вы квалифицированный, склонный к риску и ориентированный на прибыль инвестор? 
-        Вы ищете динамичные инвестиционные возможности за пределами зоны евро? 
-        Канада для вас ассоциируется не только с кленовым сиропом, но и с одной из самых стабильных и быстрорастущих экономик в мире? 
-        Тогда вы пришли по адресу, и мы надеемся, что вы будете учтены при распределении ценных бумаг! 
-        За три-четыре минуты и в три простых этапа вы можете легко и просто оформить распределение и покупку ценных бумаг. 
-        Если у вас возникнут вопросы или технические трудности, не стесняйтесь обращаться к нам. 
-        Наша команда работает ежедневно с 9:00 до 18:00.`,
-        image: 'https://example.com/image2.jpg',
-        finalStep: false
-    },
-    {
-        title: 'Шаг 1: Выберите количество ценных бумаг',
-        content: '',
-        image: 'https://example.com/image3.jpg',
-        finalStep: false
-    },
-    {
-        title: 'Шаг 2: Рассчитайте срок владения и соответствующие доходы',
-        content: '',
-        image: 'https://example.com/image4.jpg',
-        finalStep: false
-    },
-    {
-        title: 'Шаг 3: Мы в одном шаге от вашей финансовой независимости',
-        content: `Теперь все становится просто, никто не знает ваше имя и ваши личные данные лучше вас самих. 
-        Введите их сюда, и процесс подачи заявки на покупку ценных бумаг будет завершен. 
-        Так просто! 
-        После проверки ваших личных данных вы получите ответ в течение 24 часов о том, была ли принята ваша заявка на покупку. 
-        Пожалуйста, обратите внимание, что после отклонения заявки повторная подача возможна не ранее чем через 90 дней.`,
-        image: 'https://example.com/image5.jpg',
-        finalStep: true
-    }
-];
+import ButtonBecome from "./ButtonBecome";
 
 const InvestmentCalculator = () => {
     const [step, setStep] = useState(0); // For controlling the steps
@@ -110,11 +63,7 @@ const InvestmentCalculator = () => {
     }, [investmentAmount, shareholdingPeriod]);
 
     const handleNextStep = () => {
-        if (steps[step].finalStep) {
-            router.push('/signup');
-        } else {
-            setStep((prevStep) => prevStep + 1);
-        }
+        setStep((prevStep) => prevStep + 1);
     };
 
     const handleInvestmentChange = (e, newValue) => {
@@ -132,27 +81,74 @@ const InvestmentCalculator = () => {
     };
 
     return (
-        <Container maxWidth="md" sx={{ mt: isMobile ? 4 : 8 }}>
-            <Modal open={true} onClose={() => { }}>
-                <Box
-                    display="flex"
-                    alignItems="center"
-                    justifyContent="center"
-                    height="100vh"
-                    p={2}
-                >
-                    <Paper elevation={3} sx={{ padding: { xs: '10px', md: '20px' }, maxWidth: '800px', width: '100%' }}>
-                        <Box display="flex" justifyContent="center" mb={3}>
-                            <img src={steps[step].image} alt={steps[step].title} width="100%" />
+        <Modal open={true} onClose={() => {}} closeAfterTransition>
+            <Box
+                sx={{
+                    position: 'absolute',
+                    top: '50%',
+                    left: '50%',
+                    transform: 'translate(-50%, -50%)',
+                    width: isMobile ? '90%' : '80%',
+                    height: isMobile ? '90%' : '90%',
+                    bgcolor: 'background.paper',
+                    boxShadow: 24,
+                    p: 4,
+                    overflowY: 'auto',
+                }}
+            >
+                <Box sx={{ width: '100%' }}>
+                    {step === 0 && (
+                        <Box>
+                            <Box display="flex" justifyContent="center" mb={3}>
+                                <img src="/images/calc/1.jpg" alt="Введение" style={{ width: '100%', objectFit: 'contain' }} />
+                            </Box>
+                            <Typography variant="body1" align="center">
+                                Мы очень рады вашему интересу к компании Victorum и ее деятельности.
+                                Пожалуйста, учтите, что в настоящее время у нас повышенный объем запросов.
+                                Это обстоятельство в сочетании с ограниченным контингентом ценных бумаг для внешних инвесторов приводит к тому, что, к сожалению, не каждый заинтересованный инвестор может получить ценные бумаги.
+                                Мы держим за вас кулаки и готовы ответить на ваши вопросы по номеру +1 604-260-0738 или по адресу contact@victorum-capital.com!
+                                С уважением, команда поддержки Victorum
+                            </Typography>
+                            <Box display="flex" justifyContent="flex-end" mt={3}>
+                                <Button variant="contained" color="primary" onClick={handleNextStep}>
+                                    Далее
+                                </Button>
+                            </Box>
                         </Box>
-                        <Typography variant="h5" align="center" gutterBottom>
-                            {steps[step].title}
-                        </Typography>
-                        <Typography variant="body1" align="center">
-                            {steps[step].content}
-                        </Typography>
-                        {step === 2 && (
-                            <Box mt={3}>
+                    )}
+                    {step === 1 && (
+                        <Box>
+                            <Box display="flex" justifyContent="center" mb={3}>
+                                <img src="/images/calc/2.jpg" alt="Краткая инструкция" style={{ width: '100%', objectFit: 'contain' }} />
+                            </Box>
+                            <Typography variant="h5" align="center" gutterBottom>
+                                Краткая инструкция
+                            </Typography>
+                            <Typography variant="body1" align="center">
+                                Вы квалифицированный, склонный к риску и ориентированный на прибыль инвестор? <br />
+                                Вы ищете динамичные инвестиционные возможности за пределами зоны евро? <br />
+                                Канада для вас ассоциируется не только с кленовым сиропом, но и с одной из самых стабильных и быстрорастущих экономик в мире? <br />
+                                Тогда вы пришли по адресу, и мы надеемся, что вы будете учтены при распределении ценных бумаг! <br />
+                                За три-четыре минуты и в три простых этапа вы можете легко и просто оформить распределение и покупку ценных бумаг. <br />
+                                Если у вас возникнут вопросы или технические трудности, не стесняйтесь обращаться к нам. <br />
+                                Наша команда работает ежедневно с 9:00 до 18:00.
+                            </Typography>
+                            <Box display="flex" justifyContent="flex-end" mt={3}>
+                                <Button variant="contained" color="primary" onClick={handleNextStep}>
+                                    Далее
+                                </Button>
+                            </Box>
+                        </Box>
+                    )}
+                    {step === 2 && (
+                        <Box>
+                            <Box display="flex" justifyContent="center" mb={3}>
+                                <img src="/images/calc/3.jpg" alt="Шаг 1" style={{ width: '100%', objectFit: 'contain' }} />
+                            </Box>
+                            <Typography variant="h5" align="center" gutterBottom>
+                                Шаг 1: Выберите количество ценных бумаг
+                            </Typography>
+                            <Box>
                                 <Grid container spacing={2} direction="column">
                                     <Grid item xs={12}>
                                         <Typography id="investment-amount-slider" gutterBottom>
@@ -204,11 +200,24 @@ const InvestmentCalculator = () => {
                                     </Grid>
                                 </Grid>
                             </Box>
-                        )}
-                        {step === 3 && (
-                            <Box mt={3}>
+                            <Box display="flex" justifyContent="flex-end" mt={3}>
+                                <Button variant="contained" color="primary" onClick={handleNextStep}>
+                                    Далее
+                                </Button>
+                            </Box>
+                        </Box>
+                    )}
+                    {step === 3 && (
+                        <Box>
+                            <Box display="flex" justifyContent="center" mb={3}>
+                                <img src="/images/calc/handleshake.jpg" alt="Шаг 2" style={{ width: '100%', objectFit: 'contain' }} />
+                            </Box>
+                            <Typography variant="h5" align="center" gutterBottom>
+                                Шаг 2: Рассчитайте срок владения и соответствующие доходы
+                            </Typography>
+                            <Box>
                                 <Grid container spacing={2}>
-                                    <Grid item xs={12} md={6}>
+                                    <Grid item xs={12}>
                                         <Typography id="shareholding-period-slider" gutterBottom>
                                             Ожидаемый срок владения (месяцы)
                                         </Typography>
@@ -232,83 +241,103 @@ const InvestmentCalculator = () => {
                                     </Grid>
                                 </Grid>
                             </Box>
-                        )}
-                        {showResults && result && step < 4 && (
-                            <Box mt={2} display="flex" justifyContent="center">
-                                <Box display="flex" flexDirection="column" alignItems="left">
+                            <Box display="flex" justifyContent="flex-end" mt={3}>
+                                <Button variant="contained" color="primary" onClick={handleNextStep}>
+                                    Далее
+                                </Button>
+                            </Box>
+                        </Box>
+                    )}
+                    {step === 4 && (
+                        <Box>
+                            <Box display="flex" justifyContent="center" mb={3}>
+                                <img src="/images/calc/3.jpg" alt="Шаг 3" style={{ width: '100%', objectFit: 'contain' }} />
+                            </Box>
+                            <Typography variant="h5" align="center" gutterBottom>
+                                Шаг 3: Мы в одном шаге от вашей финансовой независимости
+                            </Typography>
+                            <Box>
+                                <Typography variant="body1">
+                                    Теперь все становится просто, никто не знает ваше имя и ваши личные данные лучше вас самих. <br />
+                                    Введите их сюда, и процесс подачи заявки на покупку ценных бумаг будет завершен. <br />
+                                    Так просто! <br />
+                                    После проверки ваших личных данных вы получите ответ в течение 24 часов о том, была ли принята ваша заявка на покупку. <br />
+                                    Пожалуйста, обратите внимание, что после отклонения заявки повторная подача возможна не ранее чем через 90 дней.
+                                </Typography>
+                            </Box>
+                            <ButtonBecome />
+                        </Box>
+                    )}
+                    {showResults && result && step < 4 && (
+                        <Box mt={2} display="flex" justifyContent="center">
+                            <Box display="flex" flexDirection="column" alignItems="left">
+                                <Typography
+                                    variant="h6"
+                                    align="left"
+                                    sx={{
+                                        fontWeight: 'bold',
+                                        fontSize: '1.2rem',
+                                    }}
+                                >
+                                    CAD: {formatNumber(result)}
+                                </Typography>
+                                <motion.div
+                                    initial={{ opacity: 0 }}
+                                    animate={{ opacity: 1 }}
+                                    transition={{ duration: 1 }}
+                                >
                                     <Typography
                                         variant="h6"
                                         align="left"
                                         sx={{
                                             fontWeight: 'bold',
                                             fontSize: '1.2rem',
+                                            color: result * currencyRates.EUR > investmentAmount ? 'green' : 'red'
                                         }}
                                     >
-                                        CAD: {formatNumber(result)}
+                                        EUR: {formatNumber((result * currencyRates.EUR).toFixed(2))}
                                     </Typography>
-                                    <motion.div
-                                        initial={{ opacity: 0 }}
-                                        animate={{ opacity: 1 }}
-                                        transition={{ duration: 1 }}
+                                </motion.div>
+                                <motion.div
+                                    initial={{ opacity: 0 }}
+                                    animate={{ opacity: 1 }}
+                                    transition={{ duration: 1, delay: 0.2 }}
+                                >
+                                    <Typography
+                                        variant="h6"
+                                        align="left"
+                                        sx={{
+                                            fontWeight: 'bold',
+                                            fontSize: '1.2rem',
+                                            color: result * currencyRates.RUB > investmentAmount ? 'green' : 'red'
+                                        }}
                                     >
-                                        <Typography
-                                            variant="h6"
-                                            align="left"
-                                            sx={{
-                                                fontWeight: 'bold',
-                                                fontSize: '1.2rem',
-                                                color: result * currencyRates.EUR > investmentAmount ? 'green' : 'red'
-                                            }}
-                                        >
-                                            EUR: {formatNumber((result * currencyRates.EUR).toFixed(2))}
-                                        </Typography>
-                                    </motion.div>
-                                    <motion.div
-                                        initial={{ opacity: 0 }}
-                                        animate={{ opacity: 1 }}
-                                        transition={{ duration: 1, delay: 0.2 }}
+                                        RUB: {formatNumber((result * currencyRates.RUB).toFixed(2))}
+                                    </Typography>
+                                </motion.div>
+                                <motion.div
+                                    initial={{ opacity: 0 }}
+                                    animate={{ opacity: 1 }}
+                                    transition={{ duration: 1, delay: 0.4 }}
+                                >
+                                    <Typography
+                                        variant="h6"
+                                        align="left"
+                                        sx={{
+                                            fontWeight: 'bold',
+                                            fontSize: '1.2rem',
+                                            color: result * currencyRates.NAIRA > investmentAmount ? 'green' : 'red'
+                                        }}
                                     >
-                                        <Typography
-                                            variant="h6"
-                                            align="left"
-                                            sx={{
-                                                fontWeight: 'bold',
-                                                fontSize: '1.2rem',
-                                                color: result * currencyRates.RUB > investmentAmount ? 'green' : 'red'
-                                            }}
-                                        >
-                                            RUB: {formatNumber((result * currencyRates.RUB).toFixed(2))}
-                                        </Typography>
-                                    </motion.div>
-                                    <motion.div
-                                        initial={{ opacity: 0 }}
-                                        animate={{ opacity: 1 }}
-                                        transition={{ duration: 1, delay: 0.4 }}
-                                    >
-                                        <Typography
-                                            variant="h6"
-                                            align="left"
-                                            sx={{
-                                                fontWeight: 'bold',
-                                                fontSize: '1.2rem',
-                                                color: result * currencyRates.NAIRA > investmentAmount ? 'green' : 'red'
-                                            }}
-                                        >
-                                            NAIRA: {formatNumber((result * currencyRates.NAIRA).toFixed(2))}
-                                        </Typography>
-                                    </motion.div>
-                                </Box>
+                                        NAIRA: {formatNumber((result * currencyRates.NAIRA).toFixed(2))}
+                                    </Typography>
+                                </motion.div>
                             </Box>
-                        )}
-                        <Box display="flex" justifyContent="flex-end" mt={3}>
-                            <Button variant="contained" color="primary" onClick={handleNextStep}>
-                                {steps[step].finalStep ? 'Стать инвестором' : 'Далее'}
-                            </Button>
                         </Box>
-                    </Paper>
+                    )}
                 </Box>
-            </Modal>
-        </Container>
+            </Box>
+        </Modal>
     );
 };
 
