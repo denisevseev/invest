@@ -114,7 +114,7 @@ const UserInfoComponent = ({rout}) => {
     return (
       <div>
         <AppBarComponent />
-        {!isMobile && <CustomSideBar />}
+        {!isMobile && <CustomSideBar positionMenu={true} />}
         <EconomicCalendar />
         <Footer />
       </div>
@@ -141,7 +141,7 @@ const UserInfoComponent = ({rout}) => {
       <div>
         <AppBarComponent />
           <Notification/>
-        {!isMobile && <CustomSideBar />}
+        {!isMobile && <CustomSideBar positionMenu={true} />}
         <UploadScansComponent />
         <Footer />
       </div>
@@ -153,7 +153,7 @@ const UserInfoComponent = ({rout}) => {
       <div>
         <AppBarComponent />
           <Notification/>
-        {!isMobile && <CustomSideBar />}
+        {!isMobile && <CustomSideBar positionMenu={true} />}
         <OpenDemoAccount />
         <Footer />
       </div>
@@ -165,7 +165,7 @@ const UserInfoComponent = ({rout}) => {
     return (
       <div>
         <AppBarComponent />
-        {!isMobile && <CustomSideBar />}
+        {!isMobile && <CustomSideBar positionMenu={true} />}
         <OpenLiveAccount />
         <Footer />
       </div>
@@ -177,7 +177,7 @@ const UserInfoComponent = ({rout}) => {
     return (
       <div>
         <AppBarComponent />
-        {!isMobile && <CustomSideBar />}
+        {!isMobile && <CustomSideBar positionMenu={true} />}
         {user && <UserSurveyResults user={user} />}
         <Footer />
       </div>
