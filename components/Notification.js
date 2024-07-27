@@ -1,10 +1,12 @@
 // /src/components/Notifications.js
 import React, { useState } from 'react';
-import { Alert, AlertTitle, Link, Typography, Container } from '@mui/material';
+import {Alert, AlertTitle, Link, Typography, Container, useTheme, useMediaQuery} from '@mui/material';
 import useFetchUser from './../stores/hooks/useFetchUser';
 import VerificationModal from './../components/VerificationModal';
 
 const Notification = ({ user }) => {
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
   const [modalOpen, setModalOpen] = useState(false);
   const [confirmationType, setConfirmationType] = useState('');
 
@@ -16,7 +18,7 @@ const Notification = ({ user }) => {
   const handleCloseModal = () => setModalOpen(false);
 
   return (
-    <Container sx={{ mt: 15 }}>
+    <Container  sx={{ mt: 15, width: isMobile ?  '100%' : '60%'}}>
       <VerificationModal
         open={modalOpen}
         handleClose={handleCloseModal}

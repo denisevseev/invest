@@ -124,7 +124,6 @@ const UserInfoComponent = ({rout}) => {
 
   if (link === '/' && user?.clientType && user.role === 'investor') {
       console.log(8)
-      debugger
     return (
       <div>
         <AppBarComponent />
