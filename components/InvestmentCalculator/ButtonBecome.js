@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Box, Button, styled } from "@mui/material";
 import { useRouter } from "next/router";
 import Spinner from "./../Spinner"; // Импортируйте компонент прелоадера
+import store  from "../../stores/userStore";
 
 const AnimatedButton = styled(Button)(({ theme }) => ({
     minHeight: '5rem',
@@ -18,6 +19,7 @@ const ButtonBecome = (props) => {
             // Задержка для имитации асинхронного действия
             await new Promise((resolve) => setTimeout(resolve, 1000));
             router.push('/RegistrationForm');
+            store.stepsInvestor = true
         } catch (error) {
             console.error("Failed to navigate:", error);
         } finally {

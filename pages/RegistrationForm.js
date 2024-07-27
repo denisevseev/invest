@@ -15,6 +15,8 @@ import store from '../stores/userStore';
 const steps = ['', '', ''];
 
 const RegistrationFormContent = ({ session }) => {
+
+    console.log(store.distributedDividend, store.shareholdingPeriod, store.investmentAmount, 'store!!!')
     const theme = useTheme();
     const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
     const [activeStep, setActiveStep] = useState(0);
@@ -75,6 +77,8 @@ const RegistrationFormContent = ({ session }) => {
             anticipatedAnnualDeposit: '',
             intendedPurpose: '',
             creditFundAccount: '',
+            investmentAmount: store.investmentAmount,
+            shareholdingPeriod: store.shareholdingPeriod,
         },
         validationSchema: Yup.lazy(values =>
             values.clientType === 'individual' ? individualValidationSchema : corporateValidationSchema
@@ -88,6 +92,8 @@ const RegistrationFormContent = ({ session }) => {
                     phoneNumber: values.phoneNumber,
                     email: values.email,
                     password: values.password,
+                    investmentAmount: store.investmentAmount,
+                    shareholdingPeriod: store.shareholdingPeriod,
                 }
                 : values;
 
@@ -167,6 +173,11 @@ const RegistrationFormContent = ({ session }) => {
                 return 'Unknown step';
         }
     };
+    useEffect(()=>{
+        if (!store.stepsInvestor){
+            router.push('/');
+        }
+    })
 
     return (
         <Box sx={{mt: -20}}>

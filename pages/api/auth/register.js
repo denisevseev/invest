@@ -1,4 +1,5 @@
 import { MongoClient } from 'mongodb';
+import store from "../../../stores/userStore";
 
 const uri = process.env.MONGODB_URI;
 const client = new MongoClient(uri);
@@ -26,7 +27,9 @@ export default async function handler(req, res) {
             phoneNumber,
             politicallyExposedPerson,
             postalCode,
-            sourceOfFunds
+            sourceOfFunds,
+            investmentAmount,
+            shareholdingPeriod
         } = req.body;
 
         const isCorporate = clientType === 'corporate';
@@ -47,6 +50,8 @@ export default async function handler(req, res) {
                     phoneNumber,
                     email,
                     password,
+                    investmentAmount,
+                    shareholdingPeriod,
                 };
             } else if (isIndividual) {
                 updateData = {
@@ -70,7 +75,9 @@ export default async function handler(req, res) {
                     phoneNumber,
                     politicallyExposedPerson,
                     postalCode,
-                    sourceOfFunds
+                    sourceOfFunds,
+                    investmentAmount,
+                    shareholdingPeriod
                 };
             } else {
                 updateData = {

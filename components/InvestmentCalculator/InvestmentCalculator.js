@@ -3,11 +3,12 @@ import { Container, TextField, Typography, Box, Paper, Grid, Slider, Button, use
 import { motion } from 'framer-motion';
 import { useRouter } from 'next/router';
 import ButtonBecome from "./ButtonBecome";
+import store from "./../../stores/userStore"; // Импортируйте глобальное состояние
 
 const InvestmentCalculator = () => {
     const [step, setStep] = useState(0); // For controlling the steps
-    const [investmentAmount, setInvestmentAmount] = useState(2500); // Default minimum investment
-    const [shareholdingPeriod, setShareholdingPeriod] = useState(1); // Default minimum holding period in months
+    const [investmentAmount, setInvestmentAmount] = useState(store.investmentAmount || 2500); // Default minimum investment
+    const [shareholdingPeriod, setShareholdingPeriod] = useState(store.shareholdingPeriod || 1); // Default minimum holding period in months
     const [distributedDividend, setDistributedDividend] = useState(0); // Default dividend, will be set dynamically
     const [result, setResult] = useState(null);
     const [showResults, setShowResults] = useState(false); // For displaying results
@@ -68,11 +69,13 @@ const InvestmentCalculator = () => {
 
     const handleInvestmentChange = (e, newValue) => {
         setInvestmentAmount(newValue);
+        store.investmentAmount = newValue; // Сохраняем сумму инвестиций в глобальном состоянии
         setShowResults(true);
     };
 
     const handlePeriodChange = (e, newValue) => {
         setShareholdingPeriod(newValue);
+        store.shareholdingPeriod = newValue; // Сохраняем период владения в глобальном состоянии
         setShowResults(true);
     };
 

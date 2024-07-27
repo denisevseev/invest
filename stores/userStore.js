@@ -16,6 +16,10 @@ class UserStore {
   roleTitle = null
   isAdedRole = false
   isOpenDefaultSideBar = false
+  investmentAmount = 2500
+  shareholdingPeriod = 1
+  distributedDividend =  0
+  stepsInvestor = false
 
   constructor() {
     makeAutoObservable(this, {
@@ -27,8 +31,11 @@ class UserStore {
       arr: observable,
       roleTitle: observable,
       isAdedRole: observable,
-      isOpenDefaultSideBar:observable
-
+      isOpenDefaultSideBar:observable,
+      investmentAmount: observable,
+      shareholdingPeriod: observable,
+      distributedDividend: observable,
+      stepsInvestor: observable,
     });
   }
 
@@ -38,8 +45,8 @@ class UserStore {
     });
   }
 
-  
- 
+
+
 
   handleArr(formData) {
     const keys = Object.keys(formData);
