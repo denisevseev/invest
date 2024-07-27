@@ -1,17 +1,34 @@
-import {Box, Button, styled} from "@mui/material";
-import React from "react";
+import React, { useState } from "react";
+import { Box, Button, styled } from "@mui/material";
 import { useRouter } from "next/router";
+import Spinner from "./../Spinner"; // Импортируйте компонент прелоадера
 
 const AnimatedButton = styled(Button)(({ theme }) => ({
     minHeight: '5rem',
     minWidth: '22rem',
 }));
+
 const ButtonBecome = (props) => {
+    const [loading, setLoading] = useState(false);
     const router = useRouter();
-    return(
-        <Box sx={{ display: 'flex', justifyContent: 'center', mt: 2 }}>
+
+    const handleClick = async () => {
+        setLoading(true); // Показываем прелоадер
+        try {
+            // Задержка для имитации асинхронного действия
+            await new Promise((resolve) => setTimeout(resolve, 1000));
+            router.push('/RegistrationForm');
+        } catch (error) {
+            console.error("Failed to navigate:", error);
+        } finally {
+            setLoading(false); // Скрываем прелоадер
+        }
+    };
+
+    return (
+        <Box sx={{ position: 'relative', display: 'flex', justifyContent: 'center', mt: 2 }}>
             <AnimatedButton
-                onClick={() => router.push('/RegistrationForm')}
+                onClick={handleClick}
                 variant="outlined"
                 sx={{
                     mt: 2,
@@ -38,10 +55,11 @@ const ButtonBecome = (props) => {
                     },
                 }}
             >
-                Become an investor
+                {loading ?  <Spinner /> : <span> Become an investor</span>}
             </AnimatedButton>
-        </Box>
-    )
-}
-export default ButtonBecome;
 
+        </Box>
+    );
+};
+
+export default ButtonBecome;
