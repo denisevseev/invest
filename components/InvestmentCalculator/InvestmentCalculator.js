@@ -108,7 +108,7 @@ const InvestmentCalculator = () => {
                                     position: 'relative',
                                 }}
                             >
-                                <img src="/images/calc/1.jpg" alt="Введение" style={{ width: '100%', height: '100%', objectFit: 'cover', position: 'absolute', top: 0, left: 0 }} />
+                                <img src="/images/calc/1.jpg" alt="Einführung" style={{ width: '100%', height: '100%', objectFit: 'cover', position: 'absolute', top: 0, left: 0 }} />
                                 <Box
                                     sx={{
                                         position: 'absolute',
@@ -116,20 +116,25 @@ const InvestmentCalculator = () => {
                                         left: 0,
                                         right: 0,
                                         background: 'rgba(255, 255, 255, 0.8)',
-                                        padding: '10px 20px',
+                                        padding: '20px',
                                         textAlign: 'center',
                                     }}
                                 >
                                     <Typography variant="body1">
-                                        Мы очень рады вашему интересу к компании Victorum и ее деятельности. <br />
-                                        Пожалуйста, учтите, что в настоящее время у нас повышенный объем запросов. <br />
-                                        Это обстоятельство в сочетании с ограниченным контингентом ценных бумаг для внешних инвесторов приводит к тому, что, к сожалению, не каждый заинтересованный инвестор может получить ценные бумаги. <br />
-                                        Мы держим за вас кулаки и готовы ответить на ваши вопросы по номеру 76998789 или по адресу support@hhjjnbnjjj! <br />
-                                        С уважением, команда поддержки Victorum
+                                        Wir freuen uns sehr über Ihr Interesse an Victorum und unseren Aktivitäten.
+                                    </Typography>
+                                    <Typography variant="body1" mt={2}>
+                                        Bitte beachten Sie, dass wir derzeit ein hohes Anfragevolumen haben. Diese Situation in Kombination mit einem begrenzten Kontingent an Wertpapieren für externe Investoren führt dazu, dass leider nicht jeder interessierte Investor Wertpapiere erhalten kann.
+                                    </Typography>
+                                    <Typography variant="body1" mt={2}>
+                                        Wir drücken Ihnen die Daumen und stehen für Ihre Fragen unter der Nummer <strong>+1 604-260-0738</strong> oder per E-Mail an <strong>contact@victorum-capital.com</strong> zur Verfügung!
+                                    </Typography>
+                                    <Typography variant="body1" mt={2}>
+                                        Mit freundlichen Grüßen, Ihr Victorum Support-Team
                                     </Typography>
                                     <Box display="flex" justifyContent="flex-end" mt={3}>
                                         <Button variant="contained" color="primary" onClick={handleNextStep}>
-                                            Далее
+                                            Weiter
                                         </Button>
                                     </Box>
                                 </Box>
@@ -148,7 +153,7 @@ const InvestmentCalculator = () => {
                                     position: 'relative',
                                 }}
                             >
-                                <img src="/images/calc/2.jpg" alt="Краткая инструкция" style={{ width: '100%', height: '100%', objectFit: 'cover', position: 'absolute', top: 0, left: 0 }} />
+                                <img src="/images/calc/2.jpg" alt="Kurzanleitung" style={{ width: '100%', height: '100%', objectFit: 'cover', position: 'absolute', top: 0, left: 0 }} />
                                 <Box
                                     sx={{
                                         position: 'absolute',
@@ -156,25 +161,29 @@ const InvestmentCalculator = () => {
                                         left: 0,
                                         right: 0,
                                         background: 'rgba(255, 255, 255, 0.8)',
-                                        padding: '10px 20px',
+                                        padding: '20px',
                                         textAlign: 'center',
                                     }}
                                 >
                                     <Typography variant="h5" align="center" gutterBottom>
-                                        Краткая инструкция
+                                        Kurzanleitung
                                     </Typography>
                                     <Typography variant="body1" align="center">
-                                        Вы квалифицированный, склонный к риску и ориентированный на прибыль инвестор? <br />
-                                        Вы ищете динамичные инвестиционные возможности за пределами зоны евро? <br />
-                                        Канада для вас ассоциируется не только с кленовым сиропом, но и с одной из самых стабильных и быстрорастущих экономик в мире? <br />
-                                        Тогда вы пришли по адресу, и мы надеемся, что вы будете учтены при распределении ценных бумаг! <br />
-                                        За три-четыре минуты и в три простых этапа вы можете легко и просто оформить распределение и покупку ценных бумаг. <br />
-                                        Если у вас возникнут вопросы или технические трудности, не стесняйтесь обращаться к нам. <br />
-                                        Наша команда работает ежедневно с 9:00 до 18:00.
+                                        Sind Sie ein qualifizierter, risikofreudiger und gewinnorientierter Investor? <br />
+                                        Suchen Sie dynamische Investitionsmöglichkeiten außerhalb der Eurozone? <br />
+                                        Verbinden Sie Kanada nicht nur mit Ahornsirup, sondern auch mit einer der stabilsten und am schnellsten wachsenden Volkswirtschaften der Welt? <br />
+                                        Dann sind Sie hier richtig, und wir hoffen, dass Sie bei der Verteilung der Wertpapiere berücksichtigt werden!
+                                    </Typography>
+                                    <Typography variant="body1" align="center" mt={2}>
+                                        In drei bis vier Minuten und in drei einfachen Schritten können Sie die Verteilung und den Kauf von Wertpapieren ganz einfach und unkompliziert erledigen.
+                                    </Typography>
+                                    <Typography variant="body1" align="center" mt={2}>
+                                        Sollten Sie Fragen oder technische Schwierigkeiten haben, zögern Sie nicht, uns zu kontaktieren. <br />
+                                        Unser Team ist täglich von 9:00 bis 18:00 Uhr erreichbar.
                                     </Typography>
                                     <Box display="flex" justifyContent="flex-end" mt={3}>
                                         <Button variant="contained" color="primary" onClick={handleNextStep}>
-                                            Далее
+                                            Weiter
                                         </Button>
                                     </Box>
                                 </Box>
@@ -193,7 +202,7 @@ const InvestmentCalculator = () => {
                                     position: 'relative',
                                 }}
                             >
-                                <img src="/images/calc/3.jpg" alt="Шаг 1" style={{ width: '100%', height: '100%', objectFit: 'cover', position: 'absolute', top: 0, left: 0 }} />
+                                <img src="/images/calc/3.jpg" alt="Schritt 1" style={{ width: '100%', height: '100%', objectFit: 'cover', position: 'absolute', top: 0, left: 0 }} />
                                 <Box
                                     sx={{
                                         position: 'absolute',
@@ -201,18 +210,18 @@ const InvestmentCalculator = () => {
                                         left: 0,
                                         right: 0,
                                         background: 'rgba(255, 255, 255, 0.8)',
-                                        padding: '10px 20px',
+                                        padding: '20px',
                                         textAlign: 'center',
                                     }}
                                 >
                                     <Typography variant="h5" align="center" gutterBottom>
-                                        Шаг 1: Выберите количество ценных бумаг
+                                        Schritt 1: Wählen Sie die Anzahl der Wertpapiere
                                     </Typography>
                                     <Box>
                                         <Grid container spacing={2} direction="column">
                                             <Grid item xs={12}>
                                                 <Typography id="investment-amount-slider" gutterBottom>
-                                                    Сумма инвестиций (CAD)
+                                                    Investitionssumme (CAD)
                                                 </Typography>
                                                 <Slider
                                                     value={investmentAmount}
@@ -234,7 +243,7 @@ const InvestmentCalculator = () => {
                                             </Grid>
                                             <Grid item xs={12}>
                                                 <TextField
-                                                    label="Количество акций"
+                                                    label="Anzahl der Aktien"
                                                     type="number"
                                                     value={investmentAmount - 75} // Ensuring the value is 75 less than the investment amount
                                                     InputProps={{
@@ -247,7 +256,7 @@ const InvestmentCalculator = () => {
                                             </Grid>
                                             <Grid item xs={12}>
                                                 <TextField
-                                                    label="Ожидаемая распределенная дивидендная доходность (%)"
+                                                    label="Erwartete ausgeschüttete Dividendenrendite (%)"
                                                     type="number"
                                                     value={distributedDividend}
                                                     InputProps={{
@@ -326,7 +335,7 @@ const InvestmentCalculator = () => {
                                     )}
                                     <Box display="flex" justifyContent="flex-end" mt={3}>
                                         <Button variant="contained" color="primary" onClick={handleNextStep}>
-                                            Далее
+                                            Weiter
                                         </Button>
                                     </Box>
                                 </Box>
@@ -345,7 +354,7 @@ const InvestmentCalculator = () => {
                                     position: 'relative',
                                 }}
                             >
-                                <img src="/images/calc/4.jpg" alt="Шаг 2" style={{ width: '100%', height: '100%', objectFit: 'cover', position: 'absolute', top: 0, left: 0 }} />
+                                <img src="/images/calc/4.jpg" alt="Schritt 2" style={{ width: '100%', height: '100%', objectFit: 'cover', position: 'absolute', top: 0, left: 0 }} />
                                 <Box
                                     sx={{
                                         position: 'absolute',
@@ -353,18 +362,18 @@ const InvestmentCalculator = () => {
                                         left: 0,
                                         right: 0,
                                         background: 'rgba(255, 255, 255, 0.8)',
-                                        padding: '10px 20px',
+                                        padding: '20px',
                                         textAlign: 'center',
                                     }}
                                 >
                                     <Typography variant="h5" align="center" gutterBottom>
-                                        Шаг 2: Рассчитайте срок владения и соответствующие доходы
+                                        Schritt 2: Berechnen Sie die Haltedauer und die entsprechenden Erträge
                                     </Typography>
                                     <Box>
                                         <Grid container spacing={2}>
                                             <Grid item xs={12}>
                                                 <Typography id="shareholding-period-slider" gutterBottom>
-                                                    Ожидаемый срок владения (месяцы)
+                                                    Erwartete Haltedauer (Monate)
                                                 </Typography>
                                                 <Slider
                                                     value={shareholdingPeriod}
@@ -452,7 +461,7 @@ const InvestmentCalculator = () => {
                                     )}
                                     <Box display="flex" justifyContent="flex-end" mt={3}>
                                         <Button variant="contained" color="primary" onClick={handleNextStep}>
-                                            Далее
+                                            Weiter
                                         </Button>
                                     </Box>
                                 </Box>
@@ -471,7 +480,7 @@ const InvestmentCalculator = () => {
                                     position: 'relative',
                                 }}
                             >
-                                <img src="images/calc/handleshake.jpg" alt="Шаг 3" style={{ width: '100%', height: '100%', objectFit: 'cover', position: 'absolute', top: 0, left: 0 }} />
+                                <img src="/images/calc/handleshake.jpg" alt="Schritt 3" style={{ width: '100%', height: '100%', objectFit: 'cover', position: 'absolute', top: 0, left: 0 }} />
                                 <Box
                                     sx={{
                                         position: 'absolute',
@@ -479,20 +488,22 @@ const InvestmentCalculator = () => {
                                         left: 0,
                                         right: 0,
                                         background: 'rgba(255, 255, 255, 0.8)',
-                                        padding: '10px 20px',
+                                        padding: '20px',
                                         textAlign: 'center',
                                     }}
                                 >
                                     <Typography variant="h5" align="center" gutterBottom>
-                                        Шаг 3: Мы в одном шаге от вашей финансовой независимости
+                                        Schritt 3: Wir sind nur einen Schritt von Ihrer finanziellen Unabhängigkeit entfernt
                                     </Typography>
                                     <Box>
                                         <Typography variant="body1">
-                                            Теперь все становится просто, никто не знает ваше имя и ваши личные данные лучше вас самих. <br />
-                                            Введите их сюда, и процесс подачи заявки на покупку ценных бумаг будет завершен. <br />
-                                            Так просто! <br />
-                                            После проверки ваших личных данных вы получите ответ в течение 24 часов о том, была ли принята ваша заявка на покупку. <br />
-                                            Пожалуйста, обратите внимание, что после отклонения заявки повторная подача возможна не ранее чем через 90 дней.
+                                            Jetzt wird alles ganz einfach, niemand kennt Ihren Namen und Ihre persönlichen Daten besser als Sie selbst.
+                                        </Typography>
+                                        <Typography variant="body1" mt={2}>
+                                            Geben Sie diese hier ein und der Antragsprozess zum Kauf der Wertpapiere wird abgeschlossen.
+                                        </Typography>
+                                        <Typography variant="body1" mt={2}>
+                                            So einfach! Nach der Überprüfung Ihrer persönlichen Daten erhalten Sie innerhalb von 24 Stunden eine Rückmeldung, ob Ihr Antrag auf Kauf akzeptiert wurde. Bitte beachten Sie, dass nach einer Ablehnung eine erneute Antragstellung frühestens nach 90 Tagen möglich ist.
                                         </Typography>
                                     </Box>
                                     <ButtonBecome />
