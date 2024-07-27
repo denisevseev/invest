@@ -13,8 +13,6 @@ import CustomSideBar from "../pages/CustomSideBar";
 
 const drawerWidth = 200;
 
-
-
 const Layout = () => {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('sm'));

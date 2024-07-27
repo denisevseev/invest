@@ -23,7 +23,7 @@ import TrendingUpIcon from '@mui/icons-material/TrendingUp';
 import { useRouter } from 'next/router';
 import store from "../stores/userStore";
 
-const CustomSideBar = ({ mobileOpen }) => {
+const CustomSideBar = ({positionMenu}) => {
     const router = useRouter();
     const theme = useTheme();
     const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
@@ -68,7 +68,7 @@ const CustomSideBar = ({ mobileOpen }) => {
                 flexShrink: 0,
             }}
         >
-            <Box sx={{ overflow: 'auto' }}>
+            <Box sx={{ overflow: 'auto',  marginTop: positionMenu && '6rem' }}>
                 <List
                     subheader={
                         <ListSubheader component="div" id="nested-list-subheader">

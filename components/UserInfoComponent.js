@@ -122,17 +122,19 @@ const UserInfoComponent = ({rout}) => {
   }
 
 
-  if (link === '/' && user?.clientType && user.role === 'investor') {
-      console.log(8)
-    return (
-      <div>
-        <AppBarComponent />
-          <Notification/>
-        {!isMobile && <CustomSideBar />}
-        <Footer />
-      </div>
-    );
-  }
+    if (link === '/' && user?.clientType && user.role === 'investor') {
+        console.log(8)
+        return (
+            <div>
+                <AppBarComponent />
+                <Notification/>
+                {!isMobile &&
+                        <CustomSideBar positionMenu={true} />
+                }
+                <Footer />
+            </div>
+        );
+    }
 
   if (link === "Upload Documents" && user?.clientType) {
     return (
