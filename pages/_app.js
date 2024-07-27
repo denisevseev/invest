@@ -27,7 +27,7 @@ const MyApp = ({ Component, pageProps }) => {
 
     const isSignUpPage = [
         'Signup',
-        'Login',
+        // 'Login',
         'RegistrationForm',
         'ResetPassword',
         'ResetPasswordForm',

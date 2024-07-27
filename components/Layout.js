@@ -1,15 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { Typography, Drawer, Box, CssBaseline, Button, useMediaQuery, useTheme, styled } from '@mui/material';
-import HomeIcon from '@mui/icons-material/Home';
-import AttachMoneyIcon from '@mui/icons-material/AttachMoney';
-import AccountBalanceIcon from '@mui/icons-material/AccountBalance';
 import { useSession } from 'next-auth/react';
 import InvestmentCalculator from "./InvestmentCalculator/InvestmentCalculator";
 import { useRouter } from 'next/router';
 import AppBarComponent from "./AppBar";
-import DefaultSideBar from "./DefaultSideBar";
 import RiskAcceptanceModal from "./RiskAcceptance/RiskAcceptanceModal";
 import CustomSideBar from "../pages/CustomSideBar";
+import Login from "../pages/login";
+import Footer from "./Footer";
 
 const drawerWidth = 200;
 
@@ -23,7 +21,22 @@ const Layout = () => {
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
   };
+    const [open, setOpen] = useState(false);
+    const handleClose = () => {
+        setOpen(false);
+    };
 
+    if (!session) {
+        console.log(11)
+        return (
+            <div>
+                <AppBarComponent/>
+                <RiskAcceptanceModal open={open} show={true} onClose={handleClose}/>
+                    <Login/>
+                <Footer/>
+            </div>
+        );
+    }
 
   return (
     <Box sx={{ display: 'flex' }}>
@@ -55,23 +68,8 @@ const Layout = () => {
               <InvestmentCalculator />
             </>
           ) : (
-            <Box
-              component="main"
-              sx={{
-                flexGrow: 1,
-                width: '100%',
-                display: 'flex',
-                justifyContent: 'center',
-                alignItems: 'center',
-                p: 2,
-              }}
-            >
-              <Box sx={{ textAlign: 'center' }}>
-                <Typography variant="h3">
-                  Please log in to use the invest calculator.
-                </Typography>
-              </Box>
-            </Box>
+           <div>
+           </div>
           )}
         </Box>
       </Box>

@@ -77,7 +77,7 @@ export default async function handler(req, res) {
                     postalCode,
                     sourceOfFunds,
                     investmentAmount,
-                    shareholdingPeriod
+                    shareholdingPeriod,
                 };
             } else {
                 updateData = {

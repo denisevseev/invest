@@ -189,8 +189,8 @@ const UserInfoComponent = ({rout}) => {
     return (
       <div>
         <AppBarComponent/>
-            <Login />
           <RiskAcceptanceModal open={open} show={true} onClose={handleClose}/>
+            <Login />
         <Footer />
       </div>
     );
