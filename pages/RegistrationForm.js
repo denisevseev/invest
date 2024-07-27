@@ -15,8 +15,6 @@ import store from '../stores/userStore';
 const steps = ['', '', ''];
 
 const RegistrationFormContent = ({ session }) => {
-
-    console.log(store.distributedDividend, store.shareholdingPeriod, store.investmentAmount, 'store!!!')
     const theme = useTheme();
     const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
     const [activeStep, setActiveStep] = useState(0);
@@ -45,6 +43,7 @@ const RegistrationFormContent = ({ session }) => {
         anticipatedAnnualDeposit: Yup.string().required('Required'),
         intendedPurpose: Yup.string().required('Required'),
         creditFundAccount: Yup.string().required('Required'),
+        politicallyExposedPerson: Yup.string().required('Required'),
     });
 
     const corporateValidationSchema = Yup.object().shape({
@@ -77,6 +76,7 @@ const RegistrationFormContent = ({ session }) => {
             anticipatedAnnualDeposit: '',
             intendedPurpose: '',
             creditFundAccount: '',
+            politicallyExposedPerson: '',
             investmentAmount: store.investmentAmount,
             shareholdingPeriod: store.shareholdingPeriod,
         },
@@ -84,6 +84,19 @@ const RegistrationFormContent = ({ session }) => {
             values.clientType === 'individual' ? individualValidationSchema : corporateValidationSchema
         ),
         onSubmit: async (values) => {
+            // Получаем данные из глобального состояния
+            const formData = {
+                employmentStatus: store.employmentStatus,
+                sourceOfFunds: store.sourceOfFunds,
+                netWorth: store.netWorth,
+                annualIncome: store.annualIncome,
+                anticipatedAnnualDeposit: store.anticipatedAnnualDeposit,
+                intendedPurpose: store.intendedPurpose,
+                creditFundAccount: store.creditFundAccount,
+                politicallyExposedPerson: store.politicallyExposedPerson,
+            };
+
+            // Добавляем значения из formik.values в formData
             const filteredValues = values.clientType === 'corporate'
                 ? {
                     clientType: values.clientType,
@@ -94,8 +107,12 @@ const RegistrationFormContent = ({ session }) => {
                     password: values.password,
                     investmentAmount: store.investmentAmount,
                     shareholdingPeriod: store.shareholdingPeriod,
+                    ...formData,
                 }
-                : values;
+                : {
+                    ...values,
+                    ...formData,
+                };
 
             try {
                 const response = await fetch('/api/auth/register', {
@@ -113,7 +130,7 @@ const RegistrationFormContent = ({ session }) => {
                     setModalOpen(true);
                     setTimeout(() => {
                         setModalOpen(false);
-                        router.push('/login');
+                        router.push('/');
                     }, 2000);
                 } else {
                     setModalMessage(data.message);
@@ -143,13 +160,12 @@ const RegistrationFormContent = ({ session }) => {
             0: values.clientType === 'individual' ? ['firstName', 'lastName', 'country', 'phoneNumber', 'email', 'password']
                 : ['companyName', 'country', 'phoneNumber', 'email', 'password'],
             1: ['dateOfBirth', 'nationality', 'fullAddress', 'country', 'city', 'postalCode'],
-            2: ['employmentStatus', 'sourceOfFunds', 'netWorth', 'annualIncome', 'anticipatedAnnualDeposit', 'intendedPurpose', 'creditFundAccount']
+            2: ['employmentStatus', 'sourceOfFunds', 'netWorth', 'annualIncome', 'anticipatedAnnualDeposit', 'intendedPurpose', 'creditFundAccount', 'politicallyExposedPerson']
         };
 
         const allValuesPresent = requiredFields[activeStep].every(field => values[field] !== '' && values[field] !== null && values[field] !== undefined);
 
         if (!allValuesPresent) {
-            <ModalComponent/>
             alert('Please fill in all required fields.');
             return false;
         }
@@ -173,20 +189,20 @@ const RegistrationFormContent = ({ session }) => {
                 return 'Unknown step';
         }
     };
-    useEffect(()=>{
-        if (!store.stepsInvestor){
+
+    useEffect(() => {
+        if (!store.stepsInvestor) {
             router.push('/');
         }
-    })
+    }, []);
 
     return (
-        <Box sx={{mt: -20}}>
+        <Box sx={{ mt: -20 }}>
             <ModalComponent open={modalOpen} message={modalMessage} handleClose={() => setModalOpen(false)} />
             <Box
                 sx={{
                     maxWidth: 500,
                     mx: 'auto',
-                    // mt: 17,
                     border: '1px solid #e0e0e0',
                     borderRadius: '8px',
                     boxShadow: '0px 4px 8px rgba(0, 0, 0, 0.1)',

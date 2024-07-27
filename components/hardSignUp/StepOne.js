@@ -179,7 +179,7 @@ const StepOne = ({ formik }) => {
                 value={formik.values.email}
                 onChange={handleChange}
                 onBlur={formik.handleBlur}
-                disabled
+                // disabled
                 required
                 error={formik.touched.email && Boolean(formik.errors.email)}
                 helperText={formik.touched.email && formik.errors.email}

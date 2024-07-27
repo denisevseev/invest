@@ -84,7 +84,7 @@ const InvestmentCalculator = () => {
     };
 
     return (
-        <Modal open={false} onClose={() => {}} closeAfterTransition>
+        <Modal open={true} onClose={() => {}} closeAfterTransition>
             <Box
                 sx={{
                     position: 'absolute',

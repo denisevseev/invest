@@ -1,23 +1,30 @@
 import React from 'react';
-import { Box, FormControl, Select, Button, MenuItem, FormHelperText, Typography, TextField } from '@mui/material';
+import { Box, FormControl, Select, MenuItem, FormHelperText, Typography } from '@mui/material';
 import { observer } from 'mobx-react-lite';
+import store from './../../stores/userStore';
 
 const StepThree = ({ formik }) => {
     const options = {
         employmentStatus: ["Employed", "Self-Employed", "Unemployed", "Retired"],
         sourceOfFunds: ["Salary", "Business", "Savings", "Investments", "Other"],
         netWorth: ["Less than $50,000", "$50,000 - $100,000", "$100,000 - $500,000", "More than $500,000"],
-        annualIncome: ["Less than $50,000", "$50,000 - $100,000", "$100,000 - $500,000", "More than $500,000"],
-        anticipatedAnnualDeposit: ["Less than $50,000", "$50,000 - $100,000", "$100,000 - $500,000", "More than $500,000"],
+        annualIncome: ["Less than $50,000", "$50,000 - $100,000", "$100,000 - $500,000"],
+        anticipatedAnnualDeposit: ["Less than $50,000", "$50,000 - $100,000", "$100,000 - $500,000"],
         intendedPurpose: ["Investment", "Savings", "Retirement", "Other"],
         creditFundAccount: ["Bank Transfer", "Credit Card", "Debit Card", "Other"],
         politicallyExposedPerson: ["Yes", "No"],
     };
 
+    const handleSelectChange = (event) => {
+        const { name, value } = event.target;
+        formik.setFieldValue(name, value);
+        store.setField(name, value);
+    };
+
     return (
-        <Box component="form" onSubmit={formik.handleSubmit}>
+        <Box>
             <Typography variant="h6" gutterBottom>Employment & Financial Info</Typography>
-            
+
             {Object.keys(options).map((key, index) => (
                 <FormControl
                     fullWidth
@@ -35,7 +42,7 @@ const StepThree = ({ formik }) => {
                         displayEmpty
                         name={key}
                         value={formik.values[key]}
-                        onChange={formik.handleChange}
+                        onChange={handleSelectChange}
                         onBlur={formik.handleBlur}
                         renderValue={(selected) => {
                             if (!selected || selected.length === 0) {
@@ -56,8 +63,6 @@ const StepThree = ({ formik }) => {
                     )}
                 </FormControl>
             ))}
-
-        
         </Box>
     );
 };

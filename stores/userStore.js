@@ -1,6 +1,5 @@
 import { makeAutoObservable, configure, observable, runInAction, toJS } from "mobx";
 
-
 configure({
   useProxies: "never",
   enforceActions: "never",
@@ -9,17 +8,27 @@ configure({
 class UserStore {
   user = null;
   regForm = true;
-  routeLink = "/"
-  modalOpen = false
-  messageModal = null
-  arr = []
-  roleTitle = null
-  isAdedRole = false
-  isOpenDefaultSideBar = false
-  investmentAmount = 2500
-  shareholdingPeriod = 1
-  distributedDividend =  0
-  stepsInvestor = true
+  routeLink = "/";
+  modalOpen = false;
+  messageModal = null;
+  arr = [];
+  roleTitle = null;
+  isAdedRole = false;
+  isOpenDefaultSideBar = false;
+  investmentAmount = 2500;
+  shareholdingPeriod = 1;
+  distributedDividend = 0;
+  stepsInvestor = false;
+
+  // New observables for step three
+  employmentStatus = "";
+  sourceOfFunds = "";
+  netWorth = "";
+  annualIncome = "";
+  anticipatedAnnualDeposit = "";
+  intendedPurpose = "";
+  creditFundAccount = "";
+  politicallyExposedPerson = "";
 
   constructor() {
     makeAutoObservable(this, {
@@ -31,11 +40,19 @@ class UserStore {
       arr: observable,
       roleTitle: observable,
       isAdedRole: observable,
-      isOpenDefaultSideBar:observable,
+      isOpenDefaultSideBar: observable,
       investmentAmount: observable,
       shareholdingPeriod: observable,
       distributedDividend: observable,
       stepsInvestor: observable,
+      employmentStatus: observable,
+      sourceOfFunds: observable,
+      netWorth: observable,
+      annualIncome: observable,
+      anticipatedAnnualDeposit: observable,
+      intendedPurpose: observable,
+      creditFundAccount: observable,
+      politicallyExposedPerson: observable,
     });
   }
 
@@ -45,25 +62,33 @@ class UserStore {
     });
   }
 
-
-
-
-  handleArr(formData) {
-    const keys = Object.keys(formData);
-    keys.forEach(key => {
-      const existingIndex = this.arr.findIndex(item => item.name === key);
-      if (existingIndex !== -1) {
-        this.arr[existingIndex].value = formData[key];
-      } else {
-        this.arr.push({ name: key, value: formData[key] });
-      }
+  setField(name, value) {
+    runInAction(() => {
+      this[name] = value;
     });
-    console.log("Данные в store:", toJS(this.arr));
+    console.log(`Set ${name}: ${value}`);
   }
 
-  handleModal (message, open){
-    this.messageModal = message
-    this.modalOpen = open
+  handleArr(formData) {
+    runInAction(() => {
+      const keys = Object.keys(formData);
+      keys.forEach((key) => {
+        const existingIndex = this.arr.findIndex((item) => item.name === key);
+        if (existingIndex !== -1) {
+          this.arr[existingIndex].value = formData[key];
+        } else {
+          this.arr.push({ name: key, value: formData[key] });
+        }
+      });
+      console.log("Данные в store:", toJS(this.arr));
+    });
+  }
+
+  handleModal(message, open) {
+    runInAction(() => {
+      this.messageModal = message;
+      this.modalOpen = open;
+    });
   }
 
   setRegForm() {
@@ -73,7 +98,7 @@ class UserStore {
   }
 
   async SetUserInfo() {
-
+    // Your logic here
   }
 }
 
