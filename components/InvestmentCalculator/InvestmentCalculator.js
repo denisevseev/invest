@@ -120,16 +120,16 @@ const InvestmentCalculator = () => {
                                         textAlign: 'center',
                                     }}
                                 >
-                                    <Typography variant="body1">
+                                    <Typography variant="body1" sx={{ fontSize: '1.5rem' }}>
                                         Wir freuen uns sehr über Ihr Interesse an Victorum und unseren Aktivitäten.
                                     </Typography>
-                                    <Typography variant="body1" mt={2}>
+                                    <Typography variant="body1" mt={2} sx={{ fontSize: '1.5rem' }}>
                                         Bitte beachten Sie, dass wir derzeit ein hohes Anfragevolumen haben. Diese Situation in Kombination mit einem begrenzten Kontingent an Wertpapieren für externe Investoren führt dazu, dass leider nicht jeder interessierte Investor Wertpapiere erhalten kann.
                                     </Typography>
-                                    <Typography variant="body1" mt={2}>
+                                    <Typography variant="body1" mt={2} sx={{ fontSize: '1.5rem' }}>
                                         Wir drücken Ihnen die Daumen und stehen für Ihre Fragen unter der Nummer <strong>+1 604-260-0738</strong> oder per E-Mail an <strong>contact@victorum-capital.com</strong> zur Verfügung!
                                     </Typography>
-                                    <Typography variant="body1" mt={2}>
+                                    <Typography variant="body1" mt={2} sx={{ fontSize: '1.5rem' }}>
                                         Mit freundlichen Grüßen, Ihr Victorum Support-Team
                                     </Typography>
                                     <Box display="flex" justifyContent="flex-end" mt={3}>
@@ -165,19 +165,19 @@ const InvestmentCalculator = () => {
                                         textAlign: 'center',
                                     }}
                                 >
-                                    <Typography variant="h5" align="center" gutterBottom>
+                                    <Typography variant="h5" align="center" gutterBottom sx={{ fontSize: '1.5rem' }}>
                                         Kurzanleitung
                                     </Typography>
-                                    <Typography variant="body1" align="center">
+                                    <Typography variant="body1" align="center" sx={{ fontSize: '1.5rem' }}>
                                         Sind Sie ein qualifizierter, risikofreudiger und gewinnorientierter Investor? <br />
                                         Suchen Sie dynamische Investitionsmöglichkeiten außerhalb der Eurozone? <br />
                                         Verbinden Sie Kanada nicht nur mit Ahornsirup, sondern auch mit einer der stabilsten und am schnellsten wachsenden Volkswirtschaften der Welt? <br />
                                         Dann sind Sie hier richtig, und wir hoffen, dass Sie bei der Verteilung der Wertpapiere berücksichtigt werden!
                                     </Typography>
-                                    <Typography variant="body1" align="center" mt={2}>
+                                    <Typography variant="body1" align="center" mt={2} sx={{ fontSize: '1.5rem' }}>
                                         In drei bis vier Minuten und in drei einfachen Schritten können Sie die Verteilung und den Kauf von Wertpapieren ganz einfach und unkompliziert erledigen.
                                     </Typography>
-                                    <Typography variant="body1" align="center" mt={2}>
+                                    <Typography variant="body1" align="center" mt={2} sx={{ fontSize: '1.5rem' }}>
                                         Sollten Sie Fragen oder technische Schwierigkeiten haben, zögern Sie nicht, uns zu kontaktieren. <br />
                                         Unser Team ist täglich von 9:00 bis 18:00 Uhr erreichbar.
                                     </Typography>
@@ -214,13 +214,13 @@ const InvestmentCalculator = () => {
                                         textAlign: 'center',
                                     }}
                                 >
-                                    <Typography variant="h5" align="center" gutterBottom>
+                                    <Typography variant="h5" align="center" gutterBottom sx={{ fontSize: '1.5rem' }}>
                                         Schritt 1: Wählen Sie die Anzahl der Wertpapiere
                                     </Typography>
                                     <Box>
                                         <Grid container spacing={2} direction="column">
                                             <Grid item xs={12}>
-                                                <Typography id="investment-amount-slider" gutterBottom>
+                                                <Typography id="investment-amount-slider" gutterBottom sx={{ fontSize: '1.5rem' }}>
                                                     Investitionssumme (CAD)
                                                 </Typography>
                                                 <Slider
@@ -277,7 +277,7 @@ const InvestmentCalculator = () => {
                                                     align="left"
                                                     sx={{
                                                         fontWeight: 'bold',
-                                                        fontSize: '1.2rem',
+                                                        fontSize: '1.5rem',
                                                     }}
                                                 >
                                                     CAD: {formatNumber(result)}
@@ -292,7 +292,7 @@ const InvestmentCalculator = () => {
                                                         align="left"
                                                         sx={{
                                                             fontWeight: 'bold',
-                                                            fontSize: '1.2rem',
+                                                            fontSize: '1.5rem',
                                                         }}
                                                     >
                                                         EUR: {formatNumber((result * currencyRates.EUR).toFixed(2))}
@@ -308,7 +308,7 @@ const InvestmentCalculator = () => {
                                                         align="left"
                                                         sx={{
                                                             fontWeight: 'bold',
-                                                            fontSize: '1.2rem',
+                                                            fontSize: '1.5rem',
                                                         }}
                                                     >
                                                         RUB: {formatNumber((result * currencyRates.RUB).toFixed(2))}
@@ -324,7 +324,7 @@ const InvestmentCalculator = () => {
                                                         align="left"
                                                         sx={{
                                                             fontWeight: 'bold',
-                                                            fontSize: '1.2rem',
+                                                            fontSize: '1.5rem',
                                                         }}
                                                     >
                                                         NAIRA: {formatNumber((result * currencyRates.NAIRA).toFixed(2))}
@@ -366,13 +366,13 @@ const InvestmentCalculator = () => {
                                         textAlign: 'center',
                                     }}
                                 >
-                                    <Typography variant="h5" align="center" gutterBottom>
+                                    <Typography variant="h5" align="center" gutterBottom sx={{ fontSize: '1.5rem' }}>
                                         Schritt 2: Berechnen Sie die Haltedauer und die entsprechenden Erträge
                                     </Typography>
                                     <Box>
                                         <Grid container spacing={2}>
                                             <Grid item xs={12}>
-                                                <Typography id="shareholding-period-slider" gutterBottom>
+                                                <Typography id="shareholding-period-slider" gutterBottom sx={{ fontSize: '1.5rem' }}>
                                                     Erwartete Haltedauer (Monate)
                                                 </Typography>
                                                 <Slider
@@ -403,7 +403,7 @@ const InvestmentCalculator = () => {
                                                     align="left"
                                                     sx={{
                                                         fontWeight: 'bold',
-                                                        fontSize: '1.2rem',
+                                                        fontSize: '1.5rem',
                                                     }}
                                                 >
                                                     CAD: {formatNumber(result)}
@@ -418,7 +418,7 @@ const InvestmentCalculator = () => {
                                                         align="left"
                                                         sx={{
                                                             fontWeight: 'bold',
-                                                            fontSize: '1.2rem',
+                                                            fontSize: '1.5rem',
                                                         }}
                                                     >
                                                         EUR: {formatNumber((result * currencyRates.EUR).toFixed(2))}
@@ -434,7 +434,7 @@ const InvestmentCalculator = () => {
                                                         align="left"
                                                         sx={{
                                                             fontWeight: 'bold',
-                                                            fontSize: '1.2rem',
+                                                            fontSize: '1.5rem',
                                                         }}
                                                     >
                                                         RUB: {formatNumber((result * currencyRates.RUB).toFixed(2))}
@@ -450,7 +450,7 @@ const InvestmentCalculator = () => {
                                                         align="left"
                                                         sx={{
                                                             fontWeight: 'bold',
-                                                            fontSize: '1.2rem',
+                                                            fontSize: '1.5rem',
                                                         }}
                                                     >
                                                         NAIRA: {formatNumber((result * currencyRates.NAIRA).toFixed(2))}
@@ -492,17 +492,17 @@ const InvestmentCalculator = () => {
                                         textAlign: 'center',
                                     }}
                                 >
-                                    <Typography variant="h5" align="center" gutterBottom>
+                                    <Typography variant="h5" align="center" gutterBottom sx={{ fontSize: '1.5rem' }}>
                                         Schritt 3: Wir sind nur einen Schritt von Ihrer finanziellen Unabhängigkeit entfernt
                                     </Typography>
                                     <Box>
-                                        <Typography variant="body1">
+                                        <Typography variant="body1" sx={{ fontSize: '1.5rem' }}>
                                             Jetzt wird alles ganz einfach, niemand kennt Ihren Namen und Ihre persönlichen Daten besser als Sie selbst.
                                         </Typography>
-                                        <Typography variant="body1" mt={2}>
+                                        <Typography variant="body1" mt={2} sx={{ fontSize: '1.5rem' }}>
                                             Geben Sie diese hier ein und der Antragsprozess zum Kauf der Wertpapiere wird abgeschlossen.
                                         </Typography>
-                                        <Typography variant="body1" mt={2}>
+                                        <Typography variant="body1" mt={2} sx={{ fontSize: '1.5rem' }}>
                                             So einfach! Nach der Überprüfung Ihrer persönlichen Daten erhalten Sie innerhalb von 24 Stunden eine Rückmeldung, ob Ihr Antrag auf Kauf akzeptiert wurde. Bitte beachten Sie, dass nach einer Ablehnung eine erneute Antragstellung frühestens nach 90 Tagen möglich ist.
                                         </Typography>
                                     </Box>
