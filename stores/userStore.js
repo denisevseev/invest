@@ -19,7 +19,7 @@ class UserStore {
   investmentAmount = 2500
   shareholdingPeriod = 1
   distributedDividend =  0
-  stepsInvestor = false
+  stepsInvestor = true
 
   constructor() {
     makeAutoObservable(this, {
