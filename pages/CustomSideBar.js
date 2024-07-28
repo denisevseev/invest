@@ -74,6 +74,11 @@ const CustomSideBar = ({ positionMenu }) => {
         },
     }));
 
+    const handleClick = () => {
+        window.open('https://www.victorum-capital.com/wp-content/uploads/2021/12/Victorum_Catalog.pdf', '_blank');
+        // handleText('Presentation');
+    };
+
     return (
         <StyledDrawer
             variant="permanent"
@@ -130,13 +135,13 @@ const CustomSideBar = ({ positionMenu }) => {
                             <ListItem button sx={{ pl: 4 }} onClick={() => handleText('Profile')} selected={activeMenuItem === 'Profile'}>
                                 <ListItemText primary="Profile" />
                             </ListItem>
-                            <ListItem button sx={{ pl: 4 }} onClick={() => handleText('Presentation')} selected={activeMenuItem === 'Presentation'}>
+                            <ListItem button sx={{ pl: 4 }} onClick={handleClick} selected={activeMenuItem === 'Presentation'}>
                                 <ListItemText primary="Presentation" />
                             </ListItem>
-                            <ListItem button sx={{ pl: 4 }} onClick={() => handleText('VicPay')} selected={activeMenuItem === 'VicPay'}>
+                            <ListItem button sx={{ pl: 4 }} onClick={() => window.open('https://www.vicpayments.com/', '_blank')} selected={activeMenuItem === 'VicPay'}>
                                 <ListItemText primary="VicPay" />
                             </ListItem>
-                            <ListItem button sx={{ pl: 4 }} onClick={() => handleText('Victorum Trade')} selected={activeMenuItem === 'Victorum Trade'}>
+                            <ListItem button sx={{ pl: 4 }} onClick={() => window.open('https://victorum-trade.com/', '_blank')} selected={activeMenuItem === 'Victorum Trade'}>
                                 <ListItemText primary="Victorum Trade" />
                             </ListItem>
                         </List>
