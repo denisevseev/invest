@@ -23,26 +23,41 @@ import TrendingUpIcon from '@mui/icons-material/TrendingUp';
 import { useRouter } from 'next/router';
 import store from "../stores/userStore";
 
-const CustomSideBar = ({positionMenu}) => {
+const CustomSideBar = ({ positionMenu }) => {
     const router = useRouter();
     const theme = useTheme();
     const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
 
-    const [openAccounts, setOpenAccounts] = useState(false);
-    const [openFunds, setOpenFunds] = useState(false);
     const [openProfile, setOpenProfile] = useState(false);
-    const [activeMenuItem, setActiveMenuItem] = useState(''); // Add this line
-
-    const handleClickAccounts = () => {
-        setOpenAccounts(!openAccounts);
-    };
-
-    const handleClickFunds = () => {
-        setOpenFunds(!openFunds);
-    };
+    const [openCompanyProfile, setOpenCompanyProfile] = useState(false);
+    const [openServices, setOpenServices] = useState(false);
+    const [openRegulation, setOpenRegulation] = useState(false);
+    const [openNews, setOpenNews] = useState(false);
+    const [openHelp, setOpenHelp] = useState(false);
+    const [activeMenuItem, setActiveMenuItem] = useState('');
 
     const handleClickProfile = () => {
         setOpenProfile(!openProfile);
+    };
+
+    const handleClickCompanyProfile = () => {
+        setOpenCompanyProfile(!openCompanyProfile);
+    };
+
+    const handleClickServices = () => {
+        setOpenServices(!openServices);
+    };
+
+    const handleClickRegulation = () => {
+        setOpenRegulation(!openRegulation);
+    };
+
+    const handleClickNews = () => {
+        setOpenNews(!openNews);
+    };
+
+    const handleClickHelp = () => {
+        setOpenHelp(!openHelp);
     };
 
     const handleText = (text) => {
@@ -68,7 +83,7 @@ const CustomSideBar = ({positionMenu}) => {
                 flexShrink: 0,
             }}
         >
-            <Box sx={{ overflow: 'auto',  marginTop: positionMenu && '6rem' }}>
+            <Box sx={{ overflow: 'auto', marginTop: positionMenu && '6rem' }}>
                 <List
                     subheader={
                         <ListSubheader component="div" id="nested-list-subheader">
@@ -76,83 +91,152 @@ const CustomSideBar = ({positionMenu}) => {
                         </ListSubheader>
                     }
                 >
-                    <ListItem button onClick={handleClickAccounts} selected={activeMenuItem.startsWith('Account')}>
-                        <ListItemIcon>
-                            <AccountBalanceIcon />
-                        </ListItemIcon>
-                        <ListItemText primary="Accounts" />
-                        {openAccounts ? <ExpandLess /> : <ExpandMore />}
-                    </ListItem>
-                    <Collapse in={openAccounts} timeout="auto" unmountOnExit>
-                        <List component="div" disablePadding>
-                            <ListItem button sx={{ pl: 4 }} onClick={() => handleText('Open Demo Account')} selected={activeMenuItem === 'Open Demo Account'}>
-                                <ListItemText primary="Open Demo Account" />
-                            </ListItem>
-                            <ListItem button sx={{ pl: 4 }} onClick={() => handleText('Open Live Account')} selected={activeMenuItem === 'Open Live Account'}>
-                                <ListItemText primary="Open Live Account" />
-                            </ListItem>
-                            <ListItem button sx={{ pl: 4 }} onClick={() => handleText('Accounts Overview')} selected={activeMenuItem === 'Accounts Overview'}>
-                                <ListItemText primary="Accounts Overview" />
-                            </ListItem>
-                        </List>
-                    </Collapse>
-
-                    <ListItem button onClick={handleClickFunds} selected={activeMenuItem.startsWith('Fund')}>
-                        <ListItemIcon>
-                            <FolderIcon />
-                        </ListItemIcon>
-                        <ListItemText primary="Funds" />
-                        {openFunds ? <ExpandLess /> : <ExpandMore />}
-                    </ListItem>
-                    <Collapse in={openFunds} timeout="auto" unmountOnExit>
-                        <List component="div" disablePadding>
-                            <ListItem button sx={{ pl: 4 }} onClick={() => handleText('Deposit Funds')} selected={activeMenuItem === 'Deposit Funds'}>
-                                <ListItemText primary="Deposit Funds" />
-                            </ListItem>
-                            <ListItem button sx={{ pl: 4 }} onClick={() => handleText('Withdraw Funds')} selected={activeMenuItem === 'Withdraw Funds'}>
-                                <ListItemText primary="Withdraw Funds" />
-                            </ListItem>
-                            <ListItem button sx={{ pl: 4 }} onClick={() => handleText('Transfer Funds')} selected={activeMenuItem === 'Transfer Funds'}>
-                                <ListItemText primary="Transfer Funds" />
-                            </ListItem>
-                            <ListItem button sx={{ pl: 4 }} onClick={() => handleText('Transactions History')} selected={activeMenuItem === 'Transactions History'}>
-                                <ListItemText primary="Transactions History" />
-                            </ListItem>
-                            <ListItem button sx={{ pl: 4 }} onClick={() => handleText('Payment Details')} selected={activeMenuItem === 'Payment Details'}>
-                                <ListItemText primary="Payment Details" />
-                            </ListItem>
-                        </List>
-                    </Collapse>
-
-                    <ListItem button onClick={handleClickProfile} selected={activeMenuItem.startsWith('Profile')}>
+                    <ListItem button onClick={handleClickProfile} selected={activeMenuItem.startsWith('My Profile')}>
                         <ListItemIcon>
                             <AccountBoxIcon />
                         </ListItemIcon>
-                        <ListItemText primary="Profile" />
+                        <ListItemText primary="My Profile" />
                         {openProfile ? <ExpandLess /> : <ExpandMore />}
                     </ListItem>
                     <Collapse in={openProfile} timeout="auto" unmountOnExit>
                         <List component="div" disablePadding>
-                            {['Profile', 'Upload Documents', 'My Agreements', 'Messages', 'Help Desk', 'Two-factor authentication', 'Instant Message', 'Personal Information', 'Individual Questionnaire'].map((text, index) => (
-                                <ListItem button sx={{ pl: 4 }} key={index} onClick={() => handleText(text)} selected={activeMenuItem === text}>
-                                    <ListItemText primary={text} />
-                                </ListItem>
-                            ))}
+                            <ListItem button sx={{ pl: 4 }} onClick={() => handleText('Personal Information')} selected={activeMenuItem === 'Personal Information'}>
+                                <ListItemText primary="Personal Information" />
+                            </ListItem>
+                            <ListItem button sx={{ pl: 4 }} onClick={() => handleText('My Agreements')} selected={activeMenuItem === 'My Agreements'}>
+                                <ListItemText primary="My Agreements" />
+                            </ListItem>
+                            <ListItem button sx={{ pl: 4 }} onClick={() => handleText('Investment Overview')} selected={activeMenuItem === 'Investment Overview'}>
+                                <ListItemText primary="Investment Overview" />
+                            </ListItem>
+                            <ListItem button sx={{ pl: 4 }} onClick={() => handleText('Share Subscription')} selected={activeMenuItem === 'Share Subscription'}>
+                                <ListItemText primary="Share Subscription" />
+                            </ListItem>
+                            <ListItem button sx={{ pl: 4 }} onClick={() => handleText('Identification Documents')} selected={activeMenuItem === 'Identification Documents'}>
+                                <ListItemText primary="Identification Documents" />
+                            </ListItem>
                         </List>
                     </Collapse>
 
-                    <ListItem button onClick={() => handleText('Downloads')} selected={activeMenuItem === 'Downloads'}>
+                    <ListItem button onClick={handleClickCompanyProfile} selected={activeMenuItem.startsWith('Company Profile')}>
                         <ListItemIcon>
-                            <CloudDownloadIcon />
+                            <AccountBalanceIcon />
                         </ListItemIcon>
-                        <ListItemText primary="Downloads" />
+                        <ListItemText primary="Company Profile" />
+                        {openCompanyProfile ? <ExpandLess /> : <ExpandMore />}
                     </ListItem>
-                    <ListItem button onClick={() => handleText('Economic Calendar')} selected={activeMenuItem === 'Economic Calendar'}>
+                    <Collapse in={openCompanyProfile} timeout="auto" unmountOnExit>
+                        <List component="div" disablePadding>
+                            <ListItem button sx={{ pl: 4 }} onClick={() => handleText('Profile')} selected={activeMenuItem === 'Profile'}>
+                                <ListItemText primary="Profile" />
+                            </ListItem>
+                            <ListItem button sx={{ pl: 4 }} onClick={() => handleText('Presentation')} selected={activeMenuItem === 'Presentation'}>
+                                <ListItemText primary="Presentation" />
+                            </ListItem>
+                            <ListItem button sx={{ pl: 4 }} onClick={() => handleText('VicPay')} selected={activeMenuItem === 'VicPay'}>
+                                <ListItemText primary="VicPay" />
+                            </ListItem>
+                            <ListItem button sx={{ pl: 4 }} onClick={() => handleText('Victorum Trade')} selected={activeMenuItem === 'Victorum Trade'}>
+                                <ListItemText primary="Victorum Trade" />
+                            </ListItem>
+                        </List>
+                    </Collapse>
+
+                    <ListItem button onClick={handleClickServices} selected={activeMenuItem.startsWith('Services')}>
                         <ListItemIcon>
-                            <CalendarTodayIcon />
+                            <FolderIcon />
                         </ListItemIcon>
-                        <ListItemText primary="Economic Calendar" />
+                        <ListItemText primary="Services" />
+                        {openServices ? <ExpandLess /> : <ExpandMore />}
                     </ListItem>
+                    <Collapse in={openServices} timeout="auto" unmountOnExit>
+                        <List component="div" disablePadding>
+                            <ListItem button sx={{ pl: 4 }} onClick={() => handleText('Corporate Finance')} selected={activeMenuItem === 'Corporate Finance'}>
+                                <ListItemText primary="Corporate Finance" />
+                            </ListItem>
+                            <ListItem button sx={{ pl: 4 }} onClick={() => handleText('Investments')} selected={activeMenuItem === 'Investments'}>
+                                <ListItemText primary="Investments" />
+                            </ListItem>
+                            <ListItem button sx={{ pl: 4 }} onClick={() => handleText('Consulting')} selected={activeMenuItem === 'Consulting'}>
+                                <ListItemText primary="Consulting" />
+                            </ListItem>
+                            <ListItem button sx={{ pl: 4 }} onClick={() => handleText('Economic Development')} selected={activeMenuItem === 'Economic Development'}>
+                                <ListItemText primary="Economic Development" />
+                            </ListItem>
+                        </List>
+                    </Collapse>
+
+                    <ListItem button onClick={handleClickRegulation} selected={activeMenuItem.startsWith('Regulation')}>
+                        <ListItemIcon>
+                            <AccountBoxIcon />
+                        </ListItemIcon>
+                        <ListItemText primary="Regulation" />
+                        {openRegulation ? <ExpandLess /> : <ExpandMore />}
+                    </ListItem>
+                    <Collapse in={openRegulation} timeout="auto" unmountOnExit>
+                        <List component="div" disablePadding>
+                            <ListItem button sx={{ pl: 4 }} onClick={() => handleText('Regulation Authority')} selected={activeMenuItem === 'Regulation Authority'}>
+                                <ListItemText primary="Regulation Authority" />
+                            </ListItem>
+                            <ListItem button sx={{ pl: 4 }} onClick={() => handleText('Share Type')} selected={activeMenuItem === 'Share Type'}>
+                                <ListItemText primary="Share Type" />
+                            </ListItem>
+                            <ListItem button sx={{ pl: 4 }} onClick={() => handleText('Shareholder Structure')} selected={activeMenuItem === 'Shareholder Structure'}>
+                                <ListItemText primary="Shareholder Structure" />
+                            </ListItem>
+                            <ListItem button sx={{ pl: 4 }} onClick={() => handleText('Corporate Announcements')} selected={activeMenuItem === 'Corporate Announcements'}>
+                                <ListItemText primary="Corporate Announcements" />
+                            </ListItem>
+                        </List>
+                    </Collapse>
+
+                    <ListItem button onClick={handleClickNews} selected={activeMenuItem.startsWith('News')}>
+                        <ListItemIcon>
+                            <TrendingUpIcon />
+                        </ListItemIcon>
+                        <ListItemText primary="News" />
+                        {openNews ? <ExpandLess /> : <ExpandMore />}
+                    </ListItem>
+                    <Collapse in={openNews} timeout="auto" unmountOnExit>
+                        <List component="div" disablePadding>
+                            <ListItem button sx={{ pl: 4 }} onClick={() => handleText('Corporate News')} selected={activeMenuItem === 'Corporate News'}>
+                                <ListItemText primary="Corporate News" />
+                            </ListItem>
+                            <ListItem button sx={{ pl: 4 }} onClick={() => handleText('Economical Calendar')} selected={activeMenuItem === 'Economical Calendar'}>
+                                <ListItemText primary="Economical Calendar" />
+                            </ListItem>
+                            <ListItem button sx={{ pl: 4 }} onClick={() => handleText('Live Currency Rates')} selected={activeMenuItem === 'Live Currency Rates'}>
+                                <ListItemText primary="Live Currency Rates" />
+                            </ListItem>
+                            <ListItem button sx={{ pl: 4 }} onClick={() => handleText('Live Crypto Rates')} selected={activeMenuItem === 'Live Crypto Rates'}>
+                                <ListItemText primary="Live Crypto Rates" />
+                            </ListItem>
+                        </List>
+                    </Collapse>
+
+                    <ListItem button onClick={handleClickHelp} selected={activeMenuItem.startsWith('Help')}>
+                        <ListItemIcon>
+                            <AccountBoxIcon />
+                        </ListItemIcon>
+                        <ListItemText primary="Help" />
+                        {openHelp ? <ExpandLess /> : <ExpandMore />}
+                    </ListItem>
+                    <Collapse in={openHelp} timeout="auto" unmountOnExit>
+                        <List component="div" disablePadding>
+                            <ListItem button sx={{ pl: 4 }} onClick={() => handleText('Contact Center')} selected={activeMenuItem === 'Contact Center'}>
+                                <ListItemText primary="Contact Center" />
+                            </ListItem>
+                            <ListItem button sx={{ pl: 4 }} onClick={() => handleText('FAQ')} selected={activeMenuItem === 'FAQ'}>
+                                <ListItemText primary="FAQ" />
+                            </ListItem>
+                            <ListItem button sx={{ pl: 4 }} onClick={() => handleText('Change Password')} selected={activeMenuItem === 'Change Password'}>
+                                <ListItemText primary="Change Password" />
+                            </ListItem>
+                            <ListItem button sx={{ pl: 4 }} onClick={() => handleText('Share Subscription')} selected={activeMenuItem === 'Share Subscription'}>
+                                <ListItemText primary="Share Subscription" />
+                            </ListItem>
+                        </List>
+                    </Collapse>
                 </List>
             </Box>
         </StyledDrawer>

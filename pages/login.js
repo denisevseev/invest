@@ -90,7 +90,7 @@ const Login = () => {
             {error && <Typography color="error">{error}</Typography>}
             <Box mt={5} sx={{ display: 'flex', justifyContent: 'center' }}>
                 <Typography sx={{ marginLeft: '1rem' }}>
-                    <Link href="/ResetPassword" underline="hover">
+                    <Link href="/ResetPassword" underline="true">
                         Forgot Password
                     </Link>
                 </Typography>

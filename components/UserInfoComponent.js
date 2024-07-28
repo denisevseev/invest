@@ -172,7 +172,7 @@ const UserInfoComponent = ({rout}) => {
     );
   }
 
-  if (link === "Individual Questionnaire" && user?.clientType) {
+  if (link === "Personal Information" && user?.clientType) {
       console.log(4)
     return (
       <div>
