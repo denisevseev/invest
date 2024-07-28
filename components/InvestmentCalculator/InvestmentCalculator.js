@@ -136,7 +136,7 @@ const InvestmentCalculator = () => {
                                         Mit freundlichen Grüßen, Ihr Victorum Support-Team
                                     </Typography>
                                     <Box display="flex" justifyContent="flex-end" mt={3}>
-                                        <Button variant="contained" color="primary" onClick={handleNextStep}>
+                                        <Button variant="outlined" color="primary" onClick={handleNextStep}>
                                             Weiter
                                         </Button>
                                     </Box>
@@ -185,7 +185,7 @@ const InvestmentCalculator = () => {
                                         Unser Team ist täglich von 9:00 bis 18:00 Uhr erreichbar.
                                     </Typography>
                                     <Box display="flex" justifyContent="flex-end" mt={3}>
-                                        <Button variant="contained" color="primary" onClick={handleNextStep}>
+                                        <Button variant="outlined" color="primary" onClick={handleNextStep}>
                                             Weiter
                                         </Button>
                                     </Box>
@@ -337,7 +337,7 @@ const InvestmentCalculator = () => {
                                         </Box>
                                     )}
                                     <Box display="flex" justifyContent="flex-end" mt={3}>
-                                        <Button variant="contained" color="primary" onClick={handleNextStep}>
+                                        <Button variant="outlined" color="primary" onClick={handleNextStep}>
                                             Weiter
                                         </Button>
                                     </Box>
@@ -465,7 +465,7 @@ const InvestmentCalculator = () => {
                                         </Box>
                                     )}
                                     <Box display="flex" justifyContent="flex-end" mt={3}>
-                                        <Button variant="contained" color="primary" onClick={handleNextStep}>
+                                        <Button variant="outlined" color="primary" onClick={handleNextStep}>
                                             Weiter
                                         </Button>
                                     </Box>
