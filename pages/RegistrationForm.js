@@ -94,6 +94,11 @@ const RegistrationFormContent = ({ session }) => {
                 intendedPurpose: store.intendedPurpose,
                 creditFundAccount: store.creditFundAccount,
                 politicallyExposedPerson: store.politicallyExposedPerson,
+                dateOfBirth: store.dateOfBirth,
+                nationality: store.nationality,
+                fullAddress: store.fullAddress,
+                city: store.city,
+                postalCode: store.postalCode,
             };
 
             // Добавляем значения из formik.values в formData
@@ -107,7 +112,6 @@ const RegistrationFormContent = ({ session }) => {
                     password: values.password,
                     investmentAmount: store.investmentAmount,
                     shareholdingPeriod: store.shareholdingPeriod,
-                    ...formData,
                 }
                 : {
                     ...values,
@@ -144,10 +148,10 @@ const RegistrationFormContent = ({ session }) => {
     });
 
     const handleNext = () => {
-        if (validateForm()) {
-            if (activeStep === steps.length - 1) {
-                formik.handleSubmit();
-            } else {
+        if (formik.values.clientType === 'corporate') {
+            formik.handleSubmit();
+        } else {
+            if (validateForm()) {
                 setActiveStep((prevActiveStep) => prevActiveStep + 1);
             }
         }
@@ -166,7 +170,8 @@ const RegistrationFormContent = ({ session }) => {
         const allValuesPresent = requiredFields[activeStep].every(field => values[field] !== '' && values[field] !== null && values[field] !== undefined);
 
         if (!allValuesPresent) {
-            alert('Please fill in all required fields.');
+            setModalMessage('Please fill in all required fields.');
+            setModalOpen(true);
             return false;
         }
 
@@ -215,7 +220,7 @@ const RegistrationFormContent = ({ session }) => {
                 </Typography>
 
                 <Box sx={{ maxWidth: 500, mx: 'auto', mt: 4 }}>
-                    {formik.values.clientType !== 'corporate' && (
+                    {formik.values.clientType === 'individual' && (
                         <Stepper activeStep={activeStep}>
                             {steps.map((label, index) => (
                                 <Step key={index}>
@@ -228,21 +233,23 @@ const RegistrationFormContent = ({ session }) => {
                         {getStepContent(activeStep)}
                     </Box>
                     <Box sx={{ display: 'flex', flexDirection: 'row', pt: 2 }}>
-                        <Button
-                            color="inherit"
-                            disabled={activeStep === 0}
-                            onClick={handleBack}
-                            sx={{ mt: 3, ml: 1 }}
-                        >
-                            Back
-                        </Button>
+                        {formik.values.clientType === 'individual' && (
+                            <Button
+                                color="inherit"
+                                disabled={activeStep === 0}
+                                onClick={handleBack}
+                                sx={{ mt: 3, ml: 1 }}
+                            >
+                                Back
+                            </Button>
+                        )}
                         <Box sx={{ flex: '1 1 auto' }} />
                         <Button
                             variant="text"
                             onClick={handleNext}
                             sx={{ mt: 3, ml: 1 }}
                         >
-                            {activeStep === steps.length - 1 ? 'Finish' : 'Next'}
+                            {formik.values.clientType === 'individual' && activeStep === steps.length - 1 ? 'Finish' : 'Continue'}
                         </Button>
                     </Box>
                 </Box>

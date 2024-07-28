@@ -221,7 +221,7 @@ const InvestmentCalculator = () => {
                                         Schritt 1: Wählen Sie die Anzahl der Wertpapiere
                                     </Typography>
                                     <Box>
-                                        <Grid container spacing={2} direction="column">
+                                        <Grid  container spacing={2} direction="column">
                                             <Grid item xs={12}>
                                                 <Typography id="investment-amount-slider" gutterBottom sx={{ fontSize: '1.5rem' }}>
                                                     Investitionssumme (CAD)
@@ -367,6 +367,8 @@ const InvestmentCalculator = () => {
                                         background: 'rgba(255, 255, 255, 0.8)',
                                         padding: '20px',
                                         textAlign: 'center',
+                                        overflowY: 'auto', // Прокрутка по вертикали внутри этого блока
+                                        maxHeight: '95vh', // Максимал
                                     }}
                                 >
                                     <Typography variant="h5" align="center" gutterBottom sx={{ fontSize: '1.5rem' }}>
