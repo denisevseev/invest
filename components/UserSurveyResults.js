@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Box, Typography, Grid, Paper, Card, CardContent, IconButton, TextField } from '@mui/material';
+import { Box, Typography, Grid, Paper, Card, CardContent, IconButton, TextField, Divider } from '@mui/material';
 import { motion } from 'framer-motion';
 import { observer } from 'mobx-react-lite';
 import { Edit, Save } from '@mui/icons-material';
@@ -10,22 +10,53 @@ const UserSurveyResults = () => {
     const [formData, setFormData] = useState({ ...store.user });
 
     const handleEditClick = (field) => {
-        setEditMode({ ...editMode, [field]: !editMode[field] });
+        setEditMode((prev) => ({ ...prev, [field]: !prev[field] }));
+        console.log(`Edit clicked for ${field}`);
     };
 
     const handleChange = (field, value) => {
-        setFormData({ ...formData, [field]: value });
+        setFormData((prev) => ({ ...prev, [field]: value }));
+        console.log(`Changed ${field} to ${value}`);
     };
 
-    const handleSaveClick = (field) => {
-        store.user[field] = formData[field]; // Save changes to the store
-        setEditMode({ ...editMode, [field]: false });
+    const handleSaveClick = async (field) => {
+        const value = formData[field];
+        const userId = store.user._id; // Получите ID пользователя из вашего стора
+        store.user[field] = value; // Сохранение изменений в store
+        setEditMode((prev) => ({ ...prev, [field]: false }));
+
+        console.log(`Saving ${field} with value ${value} for user ${userId}`);
+
+        await saveFieldToBackend(userId, field, value); // Сохранение изменений на сервере
+    };
+
+    const saveFieldToBackend = async (userId, field, value) => {
+        try {
+            console.log(`Sending request to save: userId=${userId}, field=${field}, value=${value}`);
+
+            const response = await fetch('/api/saveUserField', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ userId, field, value }),
+            });
+
+            if (!response.ok) {
+                throw new Error('Network error');
+            }
+
+            const data = await response.json();
+            console.log('Successfully saved:', data);
+        } catch (error) {
+            console.error('Error saving field:', error);
+        }
     };
 
     const getQuestionsByCategory = (category) => {
         switch (category) {
             case 'Basic Information':
-                return ['firstName', 'lastName', 'dateOfBirth', 'nationality', 'gender', 'maritalStatus'];
+                return ['firstName', 'lastName', 'dateOfBirth', 'nationality'];
             case 'Contact Information':
                 return ['email', 'phoneNumber', 'fullAddress', 'city', 'postalCode', 'country'];
             case 'Questions and Answers':
@@ -39,9 +70,9 @@ const UserSurveyResults = () => {
         const keys = getQuestionsByCategory(category);
         return keys.map((key, index) => {
             const question = {
-                label: key.replace(/([A-Z])/g, ' $1').replace(/^./, str => str.toUpperCase()),
+                label: key.replace(/([A-Z])/g, ' $1').replace(/^./, (str) => str.toUpperCase()),
                 key,
-                value: formData[key]
+                value: formData[key],
             };
             return (
                 <Grid item xs={12} sm={6} md={4} lg={3} key={index}>
@@ -70,7 +101,7 @@ const UserSurveyResults = () => {
                                     </>
                                 )}
                                 <Box sx={{ display: 'flex', justifyContent: 'flex-end', mt: 1 }}>
-                                    <IconButton onClick={() => handleEditClick(question.key)} size="small">
+                                    <IconButton onClick={() => editMode[question.key] ? handleSaveClick(question.key) : handleEditClick(question.key)} size="small">
                                         {editMode[question.key] ? <Save /> : <Edit />}
                                     </IconButton>
                                 </Box>
@@ -85,34 +116,46 @@ const UserSurveyResults = () => {
     return (
         <Card sx={{ maxWidth: 1200, mx: 'auto', mt: 10, p: 2, marginLeft: '15%' }}>
             <CardContent>
-                <Typography sx={{textAlign: 'center'}} variant="h5" gutterBottom>My Information</Typography>
+                <Typography sx={{ textAlign: 'center' }} variant="h5" gutterBottom>
+                    My Information
+                </Typography>
+                <Divider sx={{ mb: 3 }} />
 
                 {/* Основная информация */}
                 <Box sx={{ mb: 3 }}>
-                    <Typography variant="h6" gutterBottom>Basic Information</Typography>
+                    <Typography variant="h6" gutterBottom>
+                        Basic Information
+                    </Typography>
                     <Grid container spacing={3}>
                         {renderQuestions('Basic Information')}
                     </Grid>
                 </Box>
+                <Divider sx={{ mb: 3 }} />
 
                 {/* Контактная информация */}
                 <Box sx={{ mb: 3 }}>
-                    <Typography variant="h6" gutterBottom>Contact Information</Typography>
+                    <Typography variant="h6" gutterBottom>
+                        Contact Information
+                    </Typography>
                     <Grid container spacing={3}>
                         {renderQuestions('Contact Information')}
                     </Grid>
                 </Box>
+                <Divider sx={{ mb: 3 }} />
 
                 {/* Вопросы и ответы */}
                 <Box sx={{ mb: 3 }}>
-                    <Typography variant="h6" gutterBottom>Questions and Answers</Typography>
+                    <Typography variant="h6" gutterBottom>
+                        Questions and Answers
+                    </Typography>
                     <Grid container spacing={3}>
                         {renderQuestions('Questions and Answers')}
                     </Grid>
                 </Box>
+                <Divider sx={{ mb: 3 }} />
             </CardContent>
         </Card>
     );
-}
+};
 
 export default observer(UserSurveyResults);

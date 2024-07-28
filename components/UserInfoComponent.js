@@ -136,7 +136,7 @@ const UserInfoComponent = ({rout}) => {
         );
     }
 
-  if (link === "Upload Documents" && user?.clientType) {
+  if (link === "Identification Documents" && user?.clientType) {
     return (
       <div>
         <AppBarComponent />

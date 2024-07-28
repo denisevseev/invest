@@ -1,12 +1,9 @@
-
-
 import React, { useState, useEffect } from 'react';
 import { Box, Typography, Grid, IconButton, Modal, Button } from '@mui/material';
 import { useDropzone } from 'react-dropzone';
 import CloudUploadIcon from '@mui/icons-material/CloudUpload';
 import DeleteIcon from '@mui/icons-material/Delete';
 import { useSession } from 'next-auth/react';
-import 'react-modal';
 
 const UploadScansComponent = () => {
     const { data: session } = useSession();
@@ -18,7 +15,7 @@ const UploadScansComponent = () => {
     const handleUpload = async (files, type, setFiles) => {
         const formData = new FormData();
         files.forEach(file => formData.append('files', file));
-        formData.append('type', type); 
+        formData.append('type', type);
 
         const response = await fetch('/api/upload', {
             method: 'POST',
@@ -156,53 +153,61 @@ const UploadScansComponent = () => {
     );
 
     return (
-        <Box sx={{ maxWidth: 900, mx: 'auto', mt: 20, padding: 3 }}>
-            <Typography variant="h5" gutterBottom>
-                Upload Your Passport Scans
-            </Typography>
-            <Box
-                {...getPassportRootProps()}
-                sx={{
-                    border: '2px dashed #e0e0e0',
-                    borderRadius: '8px',
-                    padding: '16px',
-                    textAlign: 'center',
-                    cursor: 'pointer',
-                    backgroundColor: '#f9f9f9'
-                }}
-            >
-                <input {...getPassportInputProps()} />
-                <CloudUploadIcon sx={{ fontSize: 200, color: '#3f51b5' }} />
-                <Typography>Drag & drop passport files here, or click to select files</Typography>
-                <Typography variant="body1" color="textSecondary">
-                    (Only *.jpeg, *.png images will be accepted)
-                </Typography>
-            </Box>
+        <Box sx={{ maxWidth: 900, mx: 'auto', mt: 2, padding: 3 }}>
+            {passportFiles.length < 2 && (
+                <>
+                    <Typography variant="h5" gutterBottom>
+                        Upload Your Passport Scans
+                    </Typography>
+                    <Box
+                        {...getPassportRootProps()}
+                        sx={{
+                            border: '2px dashed #e0e0e0',
+                            borderRadius: '8px',
+                            padding: '16px',
+                            textAlign: 'center',
+                            cursor: 'pointer',
+                            backgroundColor: '#f9f9f9'
+                        }}
+                    >
+                        <input {...getPassportInputProps()} />
+                        <CloudUploadIcon sx={{ fontSize: 200, color: '#3f51b5' }} />
+                        <Typography>Drag & drop passport files here, or click to select files</Typography>
+                        <Typography variant="body1" color="textSecondary">
+                            (Only *.jpeg, *.png images will be accepted)
+                        </Typography>
+                    </Box>
+                </>
+            )}
             <Grid container spacing={2} sx={{ mt: 2 }}>
                 {renderThumbs(passportFiles, setPassportFiles)}
             </Grid>
 
-            <Typography variant="h5" gutterBottom sx={{ mt: 4 }}>
-                Upload Your Address Proof
-            </Typography>
-            <Box
-                {...getAddressRootProps()}
-                sx={{
-                    border: '2px dashed #e0e0e0',
-                    borderRadius: '8px',
-                    padding: '16px',
-                    textAlign: 'center',
-                    cursor: 'pointer',
-                    backgroundColor: '#f9f9f9'
-                }}
-            >
-                <input {...getAddressInputProps()} />
-                <CloudUploadIcon sx={{ fontSize: 200, color: '#3f51b5' }} />
-                <Typography>Drag & drop address files here, or click to select files</Typography>
-                <Typography variant="body1" color="textSecondary">
-                    (Only *.jpeg, *.png images will be accepted)
-                </Typography>
-            </Box>
+            {addressFiles.length < 2 && (
+                <>
+                    <Typography variant="h5" gutterBottom sx={{ mt: 4 }}>
+                        Upload Your Address Proof
+                    </Typography>
+                    <Box
+                        {...getAddressRootProps()}
+                        sx={{
+                            border: '2px dashed #e0e0e0',
+                            borderRadius: '8px',
+                            padding: '16px',
+                            textAlign: 'center',
+                            cursor: 'pointer',
+                            backgroundColor: '#f9f9f9'
+                        }}
+                    >
+                        <input {...getAddressInputProps()} />
+                        <CloudUploadIcon sx={{ fontSize: 200, color: '#3f51b5' }} />
+                        <Typography>Drag & drop address files here, or click to select files</Typography>
+                        <Typography variant="body1" color="textSecondary">
+                            (Only *.jpeg, *.png images will be accepted)
+                        </Typography>
+                    </Box>
+                </>
+            )}
             <Grid container spacing={2} sx={{ mt: 2 }}>
                 {renderThumbs(addressFiles, setAddressFiles)}
             </Grid>
@@ -241,4 +246,3 @@ const UploadScansComponent = () => {
 };
 
 export default UploadScansComponent;
-
