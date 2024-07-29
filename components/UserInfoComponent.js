@@ -6,7 +6,7 @@ import CustomSideBar from "../pages/CustomSideBar";
 import UploadScansComponent from "./UploadScansComponent";
 import UserSurveyResults from "./UserSurveyResults";
 import Layout from "./Layout";
-import EconomicCalendar from "../pages/EconomicCalendar";
+import EconomicalCalendar from "../pages/EconomicalCalendar";
 import Login from "../pages/login";
 import Footer from './Footer';
 import OpenDemoAccount from '../pages/OpenDemoAccount';
@@ -24,6 +24,8 @@ import Employees from "../pages/roles/Employees";
 import Investors from "../pages/roles/Investors";
 import LinkGenerator from "./LinkGenerator";
 import RiskAcceptanceModal from "./RiskAcceptance/RiskAcceptanceModal";
+import InvestingWidget from "../pages/LiveCurrencyRates";
+import LiveCurrencyRates from "../pages/LiveCurrencyRates";
 
 
 const UserInfoComponent = ({rout}) => {
@@ -110,16 +112,31 @@ const UserInfoComponent = ({rout}) => {
 
 
 
-  if (link === 'Economic Calendar' && user?.clientType) {
+  if (link === 'Economical Calendar' && user?.clientType) {
     return (
-      <div>
-        <AppBarComponent />
-        {!isMobile && <CustomSideBar positionMenu={true} />}
-        <EconomicCalendar />
-        <Footer />
-      </div>
+        <div>
+            <AppBarComponent/>
+            {!isMobile && <CustomSideBar positionMenu={true}/>}
+            <div style={{width: '100%', padding: '20px', marginLeft: isMobile ?  '40%' : '-10%'  }}>
+                <EconomicalCalendar/>
+            </div>
+            <Footer/>
+        </div>
     );
   }
+
+    if (link === 'Live Currency Rates' && user?.clientType) {
+        return (
+            <div>
+                <AppBarComponent/>
+                {!isMobile && <CustomSideBar positionMenu={true}/>}
+                <div>
+                    <LiveCurrencyRates/>
+                </div>
+                <Footer/>
+            </div>
+        );
+    }
 
 
     if (link === '/' && user?.clientType && user.role === 'investor') {
