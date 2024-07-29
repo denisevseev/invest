@@ -1,10 +1,18 @@
-import dbConnect from '../../lib/dbConnect';
-import User from '../../models/User';
+
+import { MongoClient, ObjectId } from 'mongodb';
+
+async function dbConnect() {
+    const client = await MongoClient.connect(process.env.MONGODB_URI, {
+        useNewUrlParser: true,
+        useUnifiedTopology: true,
+    });
+    return client.db();
+}
 
 export default async function handler(req, res) {
     const { method } = req;
 
-    await dbConnect();
+    const db = await dbConnect();
 
     switch (method) {
         case 'POST':
@@ -15,17 +23,21 @@ export default async function handler(req, res) {
                     return res.status(400).json({ message: 'Invalid data' });
                 }
 
-                const user = await User.findById(userId);
-                if (!user) {
+                const result = await db.collection('users').updateOne(
+                    { _id: new ObjectId(userId) },
+                    { $set: { [field]: value } }
+                );
+
+                if (result.matchedCount === 0) {
                     return res.status(404).json({ message: 'User not found' });
                 }
 
-                user[field] = value;
-                let result  = await user.save();
-                console.log(req.body)
+                const updatedUser = await db.collection('users').findOne({ _id: new ObjectId(userId) });
+                console.log(req.body);
 
-                res.status(200).json({ message: 'Field successfully updated', user });
+                res.status(200).json({ message: 'Field successfully updated', user: updatedUser });
             } catch (error) {
+                console.error('Server error', error);
                 res.status(500).json({ message: 'Server error', error });
             }
             break;
