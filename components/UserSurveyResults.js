@@ -81,8 +81,8 @@ const UserSurveyResults = () => {
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.3, delay: index * 0.1 }}
                     >
-                        <Paper elevation={3} sx={{ p: 2, mb: 2, border: '1px solid #ddd', position: 'relative' }}>
-                            <Box sx={{ display: 'flex', flexDirection: 'column' }}>
+                        <Paper elevation={3} sx={{ p: 2, mb: 2, border: '1px solid #ddd', position: 'relative', wordBreak: 'break-word' }}>
+                            <Box sx={{ display: 'flex', flexDirection: 'column', height: '100%' }}>
                                 {editMode[question.key] ? (
                                     <TextField
                                         fullWidth
