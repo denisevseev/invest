@@ -1,13 +1,30 @@
-// models/User.js
 import mongoose from 'mongoose';
 import leanVirtuals from 'mongoose-lean-virtuals';
 
 const UserSchema = new mongoose.Schema({
+  clientType: { type: String, default: 'individual' },
   firstName: { type: String, required: true },
   lastName: { type: String, required: true },
+  companyName: { type: String },
+  country: { type: String },
+  phoneNumber: { type: String, required: true, unique: true },
   email: { type: String, required: true, unique: true },
   password: { type: String, required: true },
-  phoneNumber: { type: String, required: true, unique: true },
+  nationality:  { type: String, required: true },
+  dateOfBirth: { type: Date },
+  fullAddress: { type: String },
+  city: { type: String },
+  postalCode: { type: String },
+  employmentStatus: { type: String },
+  sourceOfFunds: { type: String },
+  netWorth: { type: String },
+  annualIncome: { type: String },
+  anticipatedAnnualDeposit: { type: String },
+  intendedPurpose: { type: String },
+  creditFundAccount: { type: String },
+  politicallyExposedPerson: { type: String },
+  investmentAmount: { type: Number, default: 2500 },
+  shareholdingPeriod: { type: Number, default: 1 },
   emailVerified: { type: Boolean, default: false },
   phoneVerified: { type: Boolean, default: false },
   verificationCode: { type: String },

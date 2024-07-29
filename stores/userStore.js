@@ -20,6 +20,13 @@ class UserStore {
   distributedDividend = 0;
   stepsInvestor = false;
 
+  //stepTwo
+  dateOfBirth = null
+  nationality = null
+  fullAddress = null
+  postalCode = null
+  city = null
+
   // New observables for step three
   employmentStatus = "";
   sourceOfFunds = "";
@@ -53,6 +60,11 @@ class UserStore {
       intendedPurpose: observable,
       creditFundAccount: observable,
       politicallyExposedPerson: observable,
+      dateOfBirth: observable,
+      nationality: observable,
+      fullAddress: observable,
+      postalCode: observable,
+      city: observable,
     });
   }
 

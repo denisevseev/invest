@@ -67,11 +67,13 @@ const StepTwo = ({ formik }) => {
         const formattedDate = date ? dayjs(date).format('YYYY-MM-DD') : null;
         formik.setFieldValue('dateOfBirth', formattedDate);
         setFormData((prevData) => ({ ...prevData, dateOfBirth: formattedDate }));
+        store.dateOfBirth = formattedDate
     };
 
     const handleCountryChange = (value) => {
         formik.setFieldValue('nationality', value);
         setFormData((prevData) => ({ ...prevData, nationality: value }));
+        store.nationality = value
     };
 
     const handleChange = (event) => {

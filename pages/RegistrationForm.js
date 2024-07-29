@@ -96,9 +96,11 @@ const RegistrationFormContent = ({ session }) => {
                 politicallyExposedPerson: store.politicallyExposedPerson,
                 dateOfBirth: store.dateOfBirth,
                 nationality: store.nationality,
-                fullAddress: store.fullAddress,
-                city: store.city,
-                postalCode: store.postalCode,
+                fullAddress: values.fullAddress,
+                city: values.city,
+                postalCode: values.postalCode,
+                investmentAmount: store.investmentAmount,
+                shareholdingPeriod: store.shareholdingPeriod,
             };
 
             // Добавляем значения из formik.values в formData
@@ -147,7 +149,11 @@ const RegistrationFormContent = ({ session }) => {
         },
     });
 
-    const handleNext = () => {
+    const handleNext = (val) => {
+        if(val){
+            formik.handleSubmit()
+            return
+        }
         if (formik.values.clientType === 'corporate') {
             formik.handleSubmit();
         } else {
@@ -246,7 +252,7 @@ const RegistrationFormContent = ({ session }) => {
                         <Box sx={{ flex: '1 1 auto' }} />
                         <Button
                             variant="text"
-                            onClick={handleNext}
+                            onClick={()=>handleNext(activeStep === steps.length - 1)}
                             sx={{ mt: 3, ml: 1 }}
                         >
                             {formik.values.clientType === 'individual' && activeStep === steps.length - 1 ? 'Finish' : 'Continue'}
