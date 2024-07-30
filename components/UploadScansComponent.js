@@ -186,7 +186,7 @@ const UploadScansComponent = () => {
             {addressFiles.length < 2 && (
                 <>
                     <Typography variant="h5" gutterBottom sx={{ mt: 4 }}>
-                        Upload Your Address Proof
+                        Please upload your proof of address / utility bill here!
                     </Typography>
                     <Box
                         {...getAddressRootProps()}

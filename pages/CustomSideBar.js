@@ -132,7 +132,7 @@ const CustomSideBar = ({ positionMenu }) => {
                     </ListItem>
                     <Collapse in={openCompanyProfile} timeout="auto" unmountOnExit>
                         <List component="div" disablePadding>
-                            <ListItem button sx={{ pl: 4 }} onClick={() => handleText('Profile')} selected={activeMenuItem === 'Profile'}>
+                            <ListItem button sx={{ pl: 4 }} onClick={() => {}} selected={activeMenuItem === 'Profile'}>
                                 <ListItemText primary="Profile" />
                             </ListItem>
                             <ListItem button sx={{ pl: 4 }} onClick={handleClick} selected={activeMenuItem === 'Presentation'}>
