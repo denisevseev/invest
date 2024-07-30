@@ -11,6 +11,7 @@ import { useSession } from "next-auth/react";
 import ModalComponent from '../components/Modal';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import store from '../stores/userStore';
+import RiskAcceptanceModal from "../components/RiskAcceptance/RiskAcceptanceModal";
 
 const steps = ['', '', ''];
 
@@ -267,6 +268,8 @@ const RegistrationFormContent = ({ session }) => {
 const RegistrationForm = () => {
     const { data: session, status } = useSession();
     const router = useRouter();
+    store.RiskAcceptanceModal  = true
+    store.acceptedRisks = !store.acceptedRisks
 
     useEffect(() => {
         if (status === 'unauthenticated') {
@@ -278,7 +281,12 @@ const RegistrationForm = () => {
         return null; // Return null while redirecting to prevent rendering
     }
 
-    return <RegistrationFormContent session={session} />;
+    return (
+        <div>
+            <RegistrationFormContent session={session} />
+            <RiskAcceptanceModal/>
+        </div>
+    );
 };
 
 export default RegistrationForm;

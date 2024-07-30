@@ -1,4 +1,5 @@
 import { makeAutoObservable, configure, observable, runInAction, toJS } from "mobx";
+import RiskAcceptanceModal from "../components/RiskAcceptance/RiskAcceptanceModal";
 
 configure({
   useProxies: "never",
@@ -19,6 +20,8 @@ class UserStore {
   shareholdingPeriod = 1;
   distributedDividend = 0;
   stepsInvestor = false;
+  RiskAcceptanceModal = true
+  acceptedRisks = false
 
   //stepTwo
   dateOfBirth = null
@@ -65,6 +68,7 @@ class UserStore {
       fullAddress: observable,
       postalCode: observable,
       city: observable,
+      RiskAcceptanceModal: observable,
     });
   }
 

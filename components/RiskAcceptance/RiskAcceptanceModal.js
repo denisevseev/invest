@@ -3,6 +3,8 @@ import React, { useState, useEffect } from 'react';
 import { Modal, Box, Typography, Button, Checkbox, FormControlLabel, useTheme, useMediaQuery } from '@mui/material';
 import { createTheme } from '@mui/material/styles';
 import Contacts from "./Contacts";
+import {observer} from "mobx-react-lite";
+import store from "../../stores/userStore";
 
 const theme = createTheme({
     typography: {
@@ -10,36 +12,16 @@ const theme = createTheme({
     },
 });
 
-const RiskAcceptanceModal = ({ show }) => {
-    const [open, setOpen] = useState(false);
-    const [accepted, setAccepted] = useState(false);
+const RiskAcceptanceModal = ({}) => {
     const theme = useTheme();
     const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
-    useEffect(() => {
-        const isModalShown = localStorage.getItem('riskModalShown');
-        if (!isModalShown) {
-            setOpen(true);
-        }
-        if (show) {
-            setOpen(true)
-        }
-    }, []);
-
-    const handleClose = () => {
-        setOpen(false);
-    };
-
-    const handleAccept = () => {
-        localStorage.setItem('riskModalShown', 'true');
-        setOpen(false);
-    }
 
     const handleAcceptChange = (event) => {
-        setAccepted(event.target.checked);
+        store.acceptedRisks = event.target.checked;
     };
 
     return (
-        <Modal open={open} onClose={handleClose} closeAfterTransition>
+        <Modal open={store.RiskAcceptanceModal} onClose={()=>store.RiskAcceptanceModal = false} closeAfterTransition>
             <Box
                 sx={{
                     position: 'absolute',
@@ -326,15 +308,15 @@ const RiskAcceptanceModal = ({ show }) => {
                 <Contacts/>
 
                 <FormControlLabel
-                    control={<Checkbox checked={accepted} onChange={handleAcceptChange} />}
+                    control={<Checkbox checked={store.acceptedRisks} onChange={handleAcceptChange} />}
                     label={isMobile ? 'I agree to the terms and conditions' : 'Ich stimme den Geschäftsbedingungen zu'}
                     sx={{ mt: 2, fontSize: isMobile ? '1rem' : '1.5rem' }}
                 />
                 <Button
                     variant="contained"
                     color="primary"
-                    onClick={handleAccept}
-                    disabled={!accepted}
+                    onClick={()=>store.RiskAcceptanceModal = false}
+                    disabled={!store.acceptedRisks}
                     sx={{ mt: 2 }}
                 >
                     {isMobile ? 'Accept' : 'Akzeptieren'}
@@ -344,4 +326,4 @@ const RiskAcceptanceModal = ({ show }) => {
     );
 };
 
-export default RiskAcceptanceModal;
+export default observer(RiskAcceptanceModal);

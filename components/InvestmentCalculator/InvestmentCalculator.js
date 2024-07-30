@@ -3,7 +3,8 @@ import { Container, TextField, Typography, Box, Paper, Grid, Slider, Button, use
 import { motion } from 'framer-motion';
 import { useRouter } from 'next/router';
 import ButtonBecome from "./ButtonBecome";
-import store from "./../../stores/userStore"; // Импортируйте глобальное состояние
+import store from "./../../stores/userStore";
+import RiskAcceptanceModal from "../RiskAcceptance/RiskAcceptanceModal"; // Импортируйте глобальное состояние
 
 const InvestmentCalculator = () => {
     const [step, setStep] = useState(0); // For controlling the steps
@@ -98,6 +99,7 @@ const InvestmentCalculator = () => {
                     overflowY: 'auto',
                 }}
             >
+                <RiskAcceptanceModal/>
                 <Box elevation={3} sx={{ display: 'flex', flexDirection: 'column', height: '100%' }}>
                     {step === 0 && (
                         <Box sx={{ flex: 1, display: 'flex', flexDirection: 'column' }}>

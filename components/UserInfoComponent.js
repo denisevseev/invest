@@ -151,6 +151,7 @@ const UserInfoComponent = ({rout}) => {
                 <Footer />
             </div>
         );
+
     }
 
   if (link === "Identification Documents" && user?.clientType) {
