@@ -23,6 +23,8 @@ import Investors from "../pages/roles/Investors";
 import LinkGenerator from "./LinkGenerator";
 import RiskAcceptanceModal from "./RiskAcceptance/RiskAcceptanceModal";
 import LiveCurrencyRates from "../pages/LiveCurrencyRates";
+import Cookies from 'js-cookie';
+
 
 const UserInfoComponent = () => {
     const link = store.routeLink;
@@ -31,15 +33,8 @@ const UserInfoComponent = () => {
     const router = useRouter();
     const theme = useTheme();
     const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
-    const [open, setOpen] = useState(false);
+    const sessionCookie = Cookies.get('session');
 
-    useEffect(() => {
-        setOpen(true);
-    }, []);
-
-    const handleClose = () => {
-        setOpen(false);
-    };
 
     if (session && loading) {
         return <div style={{ textAlign: 'center', marginTop: '30rem' }}> <h1>Loading...</h1> </div>;
@@ -49,7 +44,7 @@ const UserInfoComponent = () => {
         return (
             <div>
                 <AppBarComponent />
-                {store.RiskAcceptanceModal && <RiskAcceptanceModal open={open} onClose={handleClose} />}
+                {store.RiskAcceptanceModal && <RiskAcceptanceModal />}
                 <Login />
                 <Footer />
             </div>

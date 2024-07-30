@@ -8,6 +8,7 @@ import RiskAcceptanceModal from "./RiskAcceptance/RiskAcceptanceModal";
 import CustomSideBar from "../pages/CustomSideBar";
 import Login from "../pages/login";
 import Footer from "./Footer";
+import useFetchUser from "../stores/hooks/useFetchUser";
 
 const drawerWidth = 200;
 
@@ -17,6 +18,7 @@ const Layout = () => {
   const [mobileOpen, setMobileOpen] = useState(false);
   const { data: session } = useSession();
   const router = useRouter();
+  // const { user, loading } = useFetchUser();
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);

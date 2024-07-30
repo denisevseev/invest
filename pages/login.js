@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
-import { signIn } from 'next-auth/react';
+import {signIn, useSession} from 'next-auth/react';
 import { useRouter } from 'next/router';
 import { Container, TextField, useMediaQuery, useTheme, Button, Typography, Link, Box } from '@mui/material';
 import ReCAPTCHA from 'react-google-recaptcha';
 import Logo from '../components/Logo';
+import useFetchUser from "../stores/hooks/useFetchUser";
 
 const Login = () => {
     const [email, setEmail] = useState('');
@@ -13,6 +14,8 @@ const Login = () => {
     const theme = useTheme();
     const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
     const router = useRouter();
+    const { data: session } = useSession();
+
 
     const handleRecaptchaChange = (value) => {
         setRecaptchaValue(value);
@@ -56,6 +59,10 @@ const Login = () => {
             router.push('/');
         }
     };
+
+
+
+
 
     return (
         <Container sx={{ mt: 15, width: !isMobile ? '50%' : '100%' }}>
