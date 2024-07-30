@@ -39,11 +39,7 @@ const Login = () => {
         //     return;
         // }
 
-        // Проверяем, подтверждены ли риски
-        const hasAcceptedRisks = localStorage.getItem('riskModalShown') === 'true';
-        if (!hasAcceptedRisks) {
-            location.reload();
-        }
+
 
         const result = await signIn('credentials', {
             redirect: false,
