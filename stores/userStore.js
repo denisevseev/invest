@@ -37,7 +37,6 @@ class UserStore {
   annualIncome = "";
   anticipatedAnnualDeposit = "";
   intendedPurpose = "";
-  creditFundAccount = "";
   politicallyExposedPerson = "";
 
   constructor() {
@@ -61,7 +60,6 @@ class UserStore {
       annualIncome: observable,
       anticipatedAnnualDeposit: observable,
       intendedPurpose: observable,
-      creditFundAccount: observable,
       politicallyExposedPerson: observable,
       dateOfBirth: observable,
       nationality: observable,

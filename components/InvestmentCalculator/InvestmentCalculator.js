@@ -249,7 +249,7 @@ const InvestmentCalculator = () => {
                                             </Grid>
                                             <Grid item xs={12}>
                                                 <TextField
-                                                    label="Anzahl der Aktien"
+                                                    label="Die Anzahl Ihrer Aktien einschließlich unserer Provision von 75 (CAD)"
                                                     type="number"
                                                     value={investmentAmount - 75} // Ensuring the value is 75 less than the investment amount
                                                     InputProps={{

@@ -10,7 +10,6 @@ const userSchema = new mongoose.Schema({
     clientType: String,
     companyName: String,
     country: String,
-    creditFundAccount: String,
     dateOfBirth: Date,
     employmentStatus: String,
     firstName: String,

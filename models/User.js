@@ -21,7 +21,6 @@ const UserSchema = new mongoose.Schema({
   annualIncome: { type: String },
   anticipatedAnnualDeposit: { type: String },
   intendedPurpose: { type: String },
-  creditFundAccount: { type: String },
   politicallyExposedPerson: { type: String },
   investmentAmount: { type: Number, default: 2500 },
   shareholdingPeriod: { type: Number, default: 1 },

@@ -43,7 +43,6 @@ const RegistrationFormContent = ({ session }) => {
         annualIncome: Yup.string().required('Required'),
         anticipatedAnnualDeposit: Yup.string().required('Required'),
         intendedPurpose: Yup.string().required('Required'),
-        creditFundAccount: Yup.string().required('Required'),
         politicallyExposedPerson: Yup.string().required('Required'),
     });
 
@@ -76,7 +75,6 @@ const RegistrationFormContent = ({ session }) => {
             annualIncome: '',
             anticipatedAnnualDeposit: '',
             intendedPurpose: '',
-            creditFundAccount: '',
             politicallyExposedPerson: '',
             investmentAmount: store.investmentAmount,
             shareholdingPeriod: store.shareholdingPeriod,
@@ -93,7 +91,6 @@ const RegistrationFormContent = ({ session }) => {
                 annualIncome: store.annualIncome,
                 anticipatedAnnualDeposit: store.anticipatedAnnualDeposit,
                 intendedPurpose: store.intendedPurpose,
-                creditFundAccount: store.creditFundAccount,
                 politicallyExposedPerson: store.politicallyExposedPerson,
                 dateOfBirth: store.dateOfBirth,
                 nationality: store.nationality,
@@ -171,7 +168,7 @@ const RegistrationFormContent = ({ session }) => {
             0: values.clientType === 'individual' ? ['firstName', 'lastName', 'country', 'phoneNumber', 'email', 'password']
                 : ['companyName', 'country', 'phoneNumber', 'email', 'password'],
             1: ['dateOfBirth', 'nationality', 'fullAddress', 'country', 'city', 'postalCode'],
-            2: ['employmentStatus', 'sourceOfFunds', 'netWorth', 'annualIncome', 'anticipatedAnnualDeposit', 'intendedPurpose', 'creditFundAccount', 'politicallyExposedPerson']
+            2: ['employmentStatus', 'sourceOfFunds', 'netWorth', 'annualIncome', 'anticipatedAnnualDeposit', 'intendedPurpose', 'politicallyExposedPerson']
         };
 
         const allValuesPresent = requiredFields[activeStep].every(field => values[field] !== '' && values[field] !== null && values[field] !== undefined);
