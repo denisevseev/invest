@@ -18,7 +18,7 @@ const Layout = () => {
   const [mobileOpen, setMobileOpen] = useState(false);
   const { data: session } = useSession();
   const router = useRouter();
-  // const { user, loading } = useFetchUser();
+  const { user, loading } = useFetchUser();
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);

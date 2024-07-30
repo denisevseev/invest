@@ -23,7 +23,7 @@ import Investors from "../pages/roles/Investors";
 import LinkGenerator from "./LinkGenerator";
 import RiskAcceptanceModal from "./RiskAcceptance/RiskAcceptanceModal";
 import LiveCurrencyRates from "../pages/LiveCurrencyRates";
-import Cookies from 'js-cookie';
+
 
 
 const UserInfoComponent = () => {
@@ -33,14 +33,15 @@ const UserInfoComponent = () => {
     const router = useRouter();
     const theme = useTheme();
     const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
-    const sessionCookie = Cookies.get('session');
 
 
-    if (session && loading) {
-        return <div style={{ textAlign: 'center', marginTop: '30rem' }}> <h1>Loading...</h1> </div>;
-    }
+    // if (loading) {
+    //     console.log('09');
+    //     return <div style={{ textAlign: 'center', marginTop: '30rem' }}> <h1>Loading...</h1> </div>;
+    // }
 
     if (!session) {
+        console.log('01');
         return (
             <div>
                 <AppBarComponent />
@@ -52,6 +53,7 @@ const UserInfoComponent = () => {
     }
 
     if (user?.phoneNumber && !user?.clientType && user.role === 'investor') {
+        console.log('02');
         return (
             <Layout>
                 <Layout />
@@ -130,6 +132,7 @@ const UserInfoComponent = () => {
             break;
         case '/':
             if (user?.clientType && user.role === 'investor') {
+                console.log('033');
                 return (
                     <div>
                         <AppBarComponent />
@@ -180,6 +183,7 @@ const UserInfoComponent = () => {
             break;
         case 'Personal Information':
             if (user?.clientType) {
+                console.log('033')
                 return (
                     <div>
                         <AppBarComponent />
@@ -194,6 +198,7 @@ const UserInfoComponent = () => {
             return (
                 <div>
                     <AppBarComponent />
+                    <div>sdf</div>
                     <Footer />
                 </div>
             );

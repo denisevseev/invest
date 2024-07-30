@@ -7,6 +7,7 @@ import store from "./../../stores/userStore";
 import RiskAcceptanceModal from "../RiskAcceptance/RiskAcceptanceModal"; // Импортируйте глобальное состояние
 
 const InvestmentCalculator = () => {
+    console.log("InvestmentCalculator");
     const [step, setStep] = useState(0); // For controlling the steps
     const [investmentAmount, setInvestmentAmount] = useState(store.investmentAmount || 2500); // Default minimum investment
     const [shareholdingPeriod, setShareholdingPeriod] = useState(store.shareholdingPeriod || 1); // Default minimum holding period in months
