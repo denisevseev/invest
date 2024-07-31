@@ -30,6 +30,7 @@ import Dashboard from './Dashboard';
 
 const UserInfoComponent = () => {
     const link = store.routeLink;
+    debugger
     const { data: session } = useSession();
     const { user, loading } = useFetchUser();
     const router = useRouter();
@@ -65,6 +66,18 @@ const UserInfoComponent = () => {
     }
 
     switch (link) {
+        case '/':
+            if (user?.clientType) {
+                console.log('036')
+                return (
+                    <div>
+                        <AppBarComponent />
+                        {/*<Notification />*/}
+                        {!isMobile && <CustomSideBar positionMenu={true} />}
+                        {user && <Dashboard/>}
+                    </div>
+                );
+            }
         case 'Managers':
             return (
                 <div>
@@ -196,18 +209,6 @@ const UserInfoComponent = () => {
             }
             break;
 
-        case 'Economic Development':
-            if (user?.clientType) {
-                console.log('036')
-                return (
-                    <div>
-                        <AppBarComponent />
-                        {!isMobile && <CustomSideBar positionMenu={true} />}
-                        {user && <Dashboard/>}
-                    </div>
-                );
-            }
-            break;
 
         case 'Live Crypto Rates':
             if (user?.clientType) {
@@ -228,7 +229,6 @@ const UserInfoComponent = () => {
             return (
                 <div>
                     <AppBarComponent />
-                    <div>sdf</div>
                     <Footer />
                 </div>
             );

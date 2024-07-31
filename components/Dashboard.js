@@ -60,7 +60,7 @@ const Dashboard = observer(() => {
                         >
                             <Typography variant="h6">{title}</Typography>
                             {index === 0 && (
-                                <LineChart width={expanded === 0 ? 400 : 266.67} height={expanded === 0 ? 400 : 266.67} data={lineData}>
+                                <LineChart  width={expanded === 0 ? 400 : 266.67} height={expanded === 0 ? 350 : 250} data={lineData}>
                                     <CartesianGrid strokeDasharray="3 3" />
                                     <XAxis dataKey="name" />
                                     <YAxis />
@@ -71,13 +71,13 @@ const Dashboard = observer(() => {
                                 </LineChart>
                             )}
                             {index === 1 && (
-                                <PieChart width={expanded === 1 ? 400 : 266.67} height={expanded === 1 ? 400 : 266.67}>
+                                <PieChart width={expanded === 1 ? 400 : 266.67} height={expanded === 1 ? 350 : 250}>
                                     <Pie
                                         data={data}
-                                        cx={expanded === 1 ? 200 : 133.33}
-                                        cy={expanded === 1 ? 200 : 133.33}
+                                        cx={expanded === 1 ? 300 : 150}
+                                        cy={expanded === 1 ? 150 : 100}
                                         labelLine={false}
-                                        outerRadius={expanded === 1 ? 80 : 53.33}
+                                        outerRadius={expanded === 1 ? 120 : 80}
                                         fill="#8884d8"
                                         dataKey="value"
                                     >
@@ -89,7 +89,7 @@ const Dashboard = observer(() => {
                                 </PieChart>
                             )}
                             {index === 2 && (
-                                <BarChart width={expanded === 2 ? 400 : 266.67} height={expanded === 2 ? 400 : 266.67} data={barData}>
+                                <BarChart width={expanded === 2 ? 400 : 266.67} height={expanded === 2 ? 350 : 250} data={barData}>
                                     <CartesianGrid strokeDasharray="3 3" />
                                     <XAxis dataKey="name" />
                                     <YAxis />
@@ -112,7 +112,7 @@ const Dashboard = observer(() => {
                                 </Typography>
                             )}
                             {index === 5 && (
-                                <LineChart width={expanded === 5 ? 400 : 266.67} height={expanded === 5 ? 400 : 266.67} data={lineData}>
+                                <LineChart width={expanded === 5 ? 400 : 266.67} height={expanded === 5 ? 350 : 250} data={lineData}>
                                     <CartesianGrid strokeDasharray="3 3" />
                                     <XAxis dataKey="name" />
                                     <YAxis />
