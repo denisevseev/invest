@@ -86,6 +86,7 @@ const CustomSideBar = ({ positionMenu }) => {
             sx={{
                 width: 240,
                 flexShrink: 0,
+                position: 'absolute'
             }}
         >
             <Box sx={{ overflow: 'auto', marginTop: positionMenu && '6rem' }}>
@@ -204,7 +205,7 @@ const CustomSideBar = ({ positionMenu }) => {
                     </ListItem>
                     <Collapse in={openNews} timeout="auto" unmountOnExit>
                         <List component="div" disablePadding>
-                            <ListItem button sx={{ pl: 4 }} onClick={() => handleText('Corporate News')} selected={activeMenuItem === 'Corporate News'}>
+                            <ListItem button sx={{ pl: 4 }} onClick={() => {}} selected={activeMenuItem === 'Corporate News'}>
                                 <ListItemText primary="Corporate News" />
                             </ListItem>
                             <ListItem button sx={{ pl: 4 }} onClick={() => handleText('Economical Calendar')} selected={activeMenuItem === 'Economical Calendar'}>

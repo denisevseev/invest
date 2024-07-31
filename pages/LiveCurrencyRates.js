@@ -1,43 +1,28 @@
 import React from 'react';
-import styled from 'styled-components';
-
-const WidgetContainer = styled.div`
-  width: 100%;
-  height: 1000px;
-  position: relative;
-`;
-
-const PoweredBy = styled.div`
-  font-family: Arial, Helvetica, sans-serif;
-  font-size: 12px;
-  color: #666;
-  text-align: center;
-  margin-top: 10px;
-`;
 
 const LiveCurrencyRates = () => {
     return (
-        <WidgetContainer>
+        <div
+            style={{
+                position: 'relative',
+                width: '85%',
+                height: '1000px',
+                marginLeft: '13%',
+                marginTop: '5%',
+                overflow: 'hidden', // Запрещает прокрутку
+            }}
+        >
             <iframe
-                src="https://de.widgets.investing.com/live-currency-cross-rates?theme=darkTheme"
+                src="https://de.widgets.investing.com/live-currency-cross-rates?theme=darkTheme&pairs=1,3,2,4,7,5,8,6,9,10,49,11,13,16,47,51,58,50,53,15,12,52,48,55,42,155,43,54,9275,9276,9309,9310,9277,9278,9279,9280,9282,9283,9325,9284,9285,9287,9326,9312,1467,9292"
                 width="100%"
                 height="100%"
                 frameBorder="0"
                 allowTransparency="true"
                 marginWidth="0"
                 marginHeight="0"
-            ></iframe>
-            <PoweredBy>
-                Bereitgestellt von{' '}
-                <a
-                    href="https://de.investing.com?utm_source=WMT&utm_medium=referral&utm_campaign=LIVE_CURRENCY_X_RATES&utm_content=Footer%20Link"
-                    target="_blank"
-                    rel="nofollow"
-                >
-                    Investing.com
-                </a>
-            </PoweredBy>
-        </WidgetContainer>
+                style={{ overflow: 'hidden' }} // Отключает прокрутку внутри iframe
+            />
+        </div>
     );
 };
 

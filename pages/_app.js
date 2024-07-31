@@ -1,5 +1,5 @@
 // pages/_app.js
-import React from 'react';
+import React, {useEffect} from 'react';
 import { SessionProvider } from 'next-auth/react';
 import Layout from '../components/Layout';
 import UserInfoComponent from '../components/UserInfoComponent';
@@ -35,7 +35,12 @@ const MyApp = ({ Component, pageProps }) => {
         'RegisterInvestor'
     ].includes(Component.name);
     const other = ['Home', 'Managers'].includes(Component.name);
-    debugger
+    useEffect(() => {
+        const mainHeader = document.querySelector('.mainHeader');
+        if (mainHeader) {
+            mainHeader.style.display = 'none';
+        }
+    }, []);
 
 
     if (Component.name === 'InvestorAgreement') {

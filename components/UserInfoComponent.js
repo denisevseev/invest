@@ -23,6 +23,7 @@ import Investors from "../pages/roles/Investors";
 import LinkGenerator from "./LinkGenerator";
 import RiskAcceptanceModal from "./RiskAcceptance/RiskAcceptanceModal";
 import LiveCurrencyRates from "../pages/LiveCurrencyRates";
+import LiveCryptoRates from "./LiveCryptoRates";
 
 
 
@@ -189,11 +190,25 @@ const UserInfoComponent = () => {
                         <AppBarComponent />
                         {!isMobile && <CustomSideBar positionMenu={true} />}
                         {user && <UserSurveyResults user={user} />}
+                    </div>
+                );
+            }
+            break;
+        case 'Live Crypto Rates':
+            if (user?.clientType) {
+                console.log('0333')
+                return (
+                    <div>
+                        <AppBarComponent />
+                        {!isMobile && <CustomSideBar positionMenu={true} />}
+                        {user && <LiveCryptoRates user={user} />}
                         <Footer />
                     </div>
                 );
             }
             break;
+
+
         default:
             return (
                 <div>
