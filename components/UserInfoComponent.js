@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Box, Container, useMediaQuery, useTheme } from '@mui/material';
+import { Box, Container, Grid, useMediaQuery, useTheme } from '@mui/material';
 import { useRouter } from 'next/router';
 import { observer } from "mobx-react-lite";
 import { useSession } from 'next-auth/react';
@@ -24,6 +24,7 @@ import LinkGenerator from "./LinkGenerator";
 import RiskAcceptanceModal from "./RiskAcceptance/RiskAcceptanceModal";
 import LiveCurrencyRates from "../pages/LiveCurrencyRates";
 import LiveCryptoRates from "./LiveCryptoRates";
+import Dashboard from './Dashboard';
 
 
 
@@ -194,6 +195,20 @@ const UserInfoComponent = () => {
                 );
             }
             break;
+
+        case 'Economic Development':
+            if (user?.clientType) {
+                console.log('036')
+                return (
+                    <div>
+                        <AppBarComponent />
+                        {!isMobile && <CustomSideBar positionMenu={true} />}
+                        {user && <Dashboard/>}
+                    </div>
+                );
+            }
+            break;
+
         case 'Live Crypto Rates':
             if (user?.clientType) {
                 console.log('0333')
