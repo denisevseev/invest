@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Box, Grid, Paper, Typography } from '@mui/material';
 import { PieChart, Pie, Cell, BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, LineChart, Line, Legend } from 'recharts';
 import { observer } from 'mobx-react-lite';
@@ -35,10 +35,29 @@ const lineData = [
 
 const Dashboard = observer(() => {
     const [expanded, setExpanded] = useState(null);
-    const { investmentAmount, shareholdingPeriod } = store;
+    const { investmentAmount } = store;
+
+    useEffect(() => {
+        // Обработчик кликов вне области виджета
+        const handleClickOutside = (event) => {
+            if (expanded !== null && !event.target.closest('.expanded-widget')) {
+                setExpanded(null);
+            }
+        };
+
+        // Добавление обработчика кликов при монтировании компонента
+        document.addEventListener('click', handleClickOutside);
+
+        // Очистка обработчика кликов при размонтировании компонента
+        return () => {
+            document.removeEventListener('click', handleClickOutside);
+        };
+    }, [expanded]);
 
     const handleExpand = (index) => {
-        setExpanded(expanded === index ? null : index);
+        if (expanded === null || expanded === index) {
+            setExpanded(expanded === index ? null : index);
+        }
     };
 
     return (
@@ -47,20 +66,24 @@ const Dashboard = observer(() => {
                 {['Investment Over Time', 'Pie Chart Example', 'Bar Chart Example', 'Investment Progress', 'Status Overview', 'Random Curve'].map((title, index) => (
                     <Grid item xs={12} md={4} key={title} onClick={() => handleExpand(index)}>
                         <Paper
+                            className={expanded === index ? 'expanded-widget' : ''}
                             sx={{
                                 p: 2,
                                 cursor: 'pointer',
-                                transition: 'transform 0.3s',
-                                transform: expanded === index ? 'scale(2)' : 'scale(1)',
-                                zIndex: expanded === index ? 2 : 1,
-                                width: expanded === index ? 400 : 350.67, //  Ширина Paper
-                                height: expanded === index ? 400 : 266.67 // Высота Paper
+                                transition: 'all 0.3s ease-in-out',
+                                transform: expanded === index ? 'translate(-50%, -50%) scale(1.3)' : 'scale(1)',
+                                position: expanded === index ? 'fixed' : 'relative',
+                                top: expanded === index ? '50%' : 'auto',
+                                left: expanded === index ? '50%' : 'auto',
+                                zIndex: expanded === index ? 10 : 1,
+                                width: expanded === index ? 400 : 350.67,
+                                height: expanded === index ? 400 : 266.67
                             }}
                             elevation={expanded === index ? 8 : 1}
                         >
                             <Typography variant="h6">{title}</Typography>
                             {index === 0 && (
-                                <LineChart  width={expanded === 0 ? 400 : 266.67} height={expanded === 0 ? 350 : 250} data={lineData}>
+                                <LineChart width={expanded === 0 ? 400 : 266.67} height={expanded === 0 ? 350 : 250} data={lineData}>
                                     <CartesianGrid strokeDasharray="3 3" />
                                     <XAxis dataKey="name" />
                                     <YAxis />
@@ -74,7 +97,7 @@ const Dashboard = observer(() => {
                                 <PieChart width={expanded === 1 ? 400 : 266.67} height={expanded === 1 ? 350 : 250}>
                                     <Pie
                                         data={data}
-                                        cx={expanded === 1 ? 300 : 150}
+                                        cx={expanded === 1 ? 200 : 133.33}
                                         cy={expanded === 1 ? 150 : 100}
                                         labelLine={false}
                                         outerRadius={expanded === 1 ? 120 : 80}
