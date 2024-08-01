@@ -24,7 +24,7 @@ import LinkGenerator from "./LinkGenerator";
 import RiskAcceptanceModal from "./RiskAcceptance/RiskAcceptanceModal";
 import LiveCurrencyRates from "../pages/LiveCurrencyRates";
 import LiveCryptoRates from "./LiveCryptoRates";
-import Dashboard from './Dashboard';
+import Dashboard from './dashboard/Dashboard';
 import RegulationAuthority from "./RegulationAuthority";
 
 
