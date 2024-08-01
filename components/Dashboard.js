@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Box, Grid, Paper, Typography } from '@mui/material';
+import { Box, Grid, Paper, Typography, Slider } from '@mui/material'; // Импортируем Slider
 import { PieChart, Pie, Cell, BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, LineChart, Line, Legend } from 'recharts';
 import { observer } from 'mobx-react-lite';
 import store from '../stores/userStore';
@@ -127,6 +127,13 @@ const Dashboard = observer(() => {
                                     <Typography variant="body1">
                                         You have invested {investmentAmount} units
                                     </Typography>
+                                    <Slider
+                                        value={investmentAmount}
+                                        min={0}
+                                        max={1000000}
+                                        disabled
+                                        sx={{ mt: 2 }}
+                                    />
                                 </Box>
                             )}
                             {index === 4 && (

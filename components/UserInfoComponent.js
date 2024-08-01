@@ -90,21 +90,6 @@ const UserInfoComponent = () => {
                 );
             }
 
-
-        case 'Managers':
-            return (
-                <div>
-                    <AppBarComponent />
-                    <AdminDashboard />
-                </div>
-            );
-        case 'Employees':
-            return (
-                <div>
-                    <AppBarComponent />
-                    <Employees />
-                </div>
-            );
         case 'Investors':
             return (
                 <div>
@@ -117,6 +102,20 @@ const UserInfoComponent = () => {
                 <div>
                     <AppBarComponent />
                     <LinkGenerator />
+                </div>
+            );
+        case 'Managers':
+            return (
+                <div>
+                    <AppBarComponent />
+                    <AdminDashboard />
+                </div>
+            );
+        case 'Employees':
+            return (
+                <div>
+                    <AppBarComponent />
+                    <Employees />
                 </div>
             );
         case 'Statistics':
