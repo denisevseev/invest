@@ -34,16 +34,7 @@ const lineData = [
     { name: 'Jul', uv: 3490, pv: 4300 },
 ];
 
-// // Функция для получения иконки статуса
-// const getStatusIcon = (investmentAmount) => {
-//     if (investmentAmount >= 1000000) {
-//         return <KingBed fontSize="large" />;
-//     } else if (investmentAmount >= 500000) {
-//         return <EmojiEvents fontSize="large" />;
-//     } else {
-//         return <Star fontSize="large" />;
-//     }
-// };
+
 
 
 // Корона для King Member
@@ -77,6 +68,7 @@ const getStatusIcon = (investmentAmount) => {
         return <StarIcon />;
     }
 };
+
 
 // Компонент Dashboard с использованием новых иконок
 const Dashboard = observer(() => {
@@ -180,11 +172,10 @@ const Dashboard = observer(() => {
                             )}
                             {index === 4 && (
                                 <Box sx={{ mt: 2, textAlign: 'center' }}>
-                                    <Typography variant="h6">Status Overview</Typography>
                                     {getStatusIcon(investmentAmount)}
                                     <Typography variant="body1" sx={{ mt: 1 }}>
-                                        {investmentAmount >= 1000000 ? 'King Member' :
-                                            investmentAmount >= 500000 ? 'Elite Member' : 'Standard Member'}
+                                        {investmentAmount >= 50000 ? 'King Member' :
+                                            investmentAmount >= 100000 ? 'Elite Member' : 'Standard Member'}
                                     </Typography>
                                 </Box>
                             )}
