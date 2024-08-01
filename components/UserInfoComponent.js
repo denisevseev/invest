@@ -25,12 +25,12 @@ import RiskAcceptanceModal from "./RiskAcceptance/RiskAcceptanceModal";
 import LiveCurrencyRates from "../pages/LiveCurrencyRates";
 import LiveCryptoRates from "./LiveCryptoRates";
 import Dashboard from './Dashboard';
+import RegulationAuthority from "./RegulationAuthority";
 
 
 
 const UserInfoComponent = () => {
     const link = store.routeLink;
-    debugger
     const { data: session } = useSession();
     const { user, loading } = useFetchUser();
     const router = useRouter();
@@ -78,6 +78,19 @@ const UserInfoComponent = () => {
                     </div>
                 );
             }
+        case 'Regulation Authority':
+            if (user?.clientType) {
+                console.log('0363')
+                return (
+                    <div>
+                        <AppBarComponent />
+                        {!isMobile && <CustomSideBar positionMenu={true} />}
+                        {user && <RegulationAuthority/>}
+                    </div>
+                );
+            }
+
+
         case 'Managers':
             return (
                 <div>

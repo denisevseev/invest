@@ -93,7 +93,7 @@ const CustomSideBar = ({ positionMenu }) => {
                 <List
                     subheader={
                         <ListSubheader component="div" id="nested-list-subheader">
-                            TRADER'S MENU
+                            INVESTOR'S MENU
                         </ListSubheader>
                     }
                 >
@@ -184,8 +184,8 @@ const CustomSideBar = ({ positionMenu }) => {
                             <ListItem button sx={{ pl: 4 }} onClick={() => handleText('Regulation Authority')} selected={activeMenuItem === 'Regulation Authority'}>
                                 <ListItemText primary="Regulation Authority" />
                             </ListItem>
-                            <ListItem button sx={{ pl: 4 }} onClick={() => handleText('Share Type')} selected={activeMenuItem === 'Share Type'}>
-                                <ListItemText primary="Share Type" />
+                            <ListItem button sx={{ pl: 4 }} onClick={() => handleText('Share Type & Investors')} selected={activeMenuItem === 'Share Type & Investors'}>
+                                <ListItemText primary="Share Type & Investors" />
                             </ListItem>
                             <ListItem button sx={{ pl: 4 }} onClick={() => handleText('Shareholder Structure')} selected={activeMenuItem === 'Shareholder Structure'}>
                                 <ListItemText primary="Shareholder Structure" />
