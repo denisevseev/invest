@@ -16,7 +16,7 @@ class UserStore {
   roleTitle = null;
   isAdedRole = false;
   isOpenDefaultSideBar = false;
-  investmentAmount = 2500;
+  investmentAmount = 25;
   shareholdingPeriod = 1;
   distributedDividend = 0;
   stepsInvestor = false;

@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { Box, Grid, Paper, Typography, Slider } from '@mui/material'; // Импортируем Slider
+import { Box, Grid, Paper, Typography, Slider } from '@mui/material';
 import { PieChart, Pie, Cell, BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, LineChart, Line, Legend } from 'recharts';
 import { observer } from 'mobx-react-lite';
 import store from '../stores/userStore';
+import { KingBed, EmojiEvents, Star } from '@mui/icons-material'; // Импортируем иконки
 
 const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042'];
 
@@ -33,22 +34,64 @@ const lineData = [
     { name: 'Jul', uv: 3490, pv: 4300 },
 ];
 
+// // Функция для получения иконки статуса
+// const getStatusIcon = (investmentAmount) => {
+//     if (investmentAmount >= 1000000) {
+//         return <KingBed fontSize="large" />;
+//     } else if (investmentAmount >= 500000) {
+//         return <EmojiEvents fontSize="large" />;
+//     } else {
+//         return <Star fontSize="large" />;
+//     }
+// };
+
+
+// Корона для King Member
+const CrownIcon = () => (
+    <svg width="100" height="100" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M2 20h20v2H2v-2zM7 13l-5 5h20l-5-5-5 4-5-4zM18 11.635l3.424-6.44-7.353 2.735-3.558-5.853-3.557 5.852-7.353-2.734L6 11.635l6 4.933 6-4.933z" fill="#FFD700"/>
+    </svg>
+);
+
+// Медаль для Elite Member
+const MedalIcon = () => (
+    <svg width="100" height="100" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M12 2L8.5 8.5 1 9.5l5 5-2 9L12 18l8-4.5-2-9 5-5-7.5-1L12 2z" fill="#C0C0C0"/>
+    </svg>
+);
+
+// Звезда для Standard Member
+const StarIcon = () => (
+    <svg width="100" height="100" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M12 2L15 9h8l-6.5 5 2.5 8-7-4-7 4 2.5-8L1 9h8l3-7z" fill="#FFD700"/>
+    </svg>
+);
+
+// Функция для получения иконки статуса
+const getStatusIcon = (investmentAmount) => {
+    if (investmentAmount >= 1000000) {
+        return <CrownIcon />;
+    } else if (investmentAmount >= 500000) {
+        return <MedalIcon />;
+    } else {
+        return <StarIcon />;
+    }
+};
+
+// Компонент Dashboard с использованием новых иконок
 const Dashboard = observer(() => {
     const [expanded, setExpanded] = useState(null);
     const { investmentAmount } = store;
 
     useEffect(() => {
-        // Обработчик кликов вне области виджета
         const handleClickOutside = (event) => {
             if (expanded !== null && !event.target.closest('.expanded-widget')) {
                 setExpanded(null);
             }
         };
 
-        // Добавление обработчика кликов при монтировании компонента
         document.addEventListener('click', handleClickOutside);
 
-        // Очистка обработчика кликов при размонтировании компонента
         return () => {
             document.removeEventListener('click', handleClickOutside);
         };
@@ -123,7 +166,7 @@ const Dashboard = observer(() => {
                                 </BarChart>
                             )}
                             {index === 3 && (
-                                <Box sx={{ mt: 2 }}>
+                                <Box sx={{ mt: 9 }}>
                                     <Typography variant="body1">
                                         You have invested {investmentAmount} units
                                     </Typography>
@@ -131,15 +174,19 @@ const Dashboard = observer(() => {
                                         value={investmentAmount}
                                         min={0}
                                         max={1000000}
-                                        disabled
                                         sx={{ mt: 2 }}
                                     />
                                 </Box>
                             )}
                             {index === 4 && (
-                                <Typography variant="body1">
-                                    {investmentAmount >= 1000000 ? 'Gold Member' : 'Standard Member'}
-                                </Typography>
+                                <Box sx={{ mt: 2, textAlign: 'center' }}>
+                                    <Typography variant="h6">Status Overview</Typography>
+                                    {getStatusIcon(investmentAmount)}
+                                    <Typography variant="body1" sx={{ mt: 1 }}>
+                                        {investmentAmount >= 1000000 ? 'King Member' :
+                                            investmentAmount >= 500000 ? 'Elite Member' : 'Standard Member'}
+                                    </Typography>
+                                </Box>
                             )}
                             {index === 5 && (
                                 <LineChart width={expanded === 5 ? 400 : 266.67} height={expanded === 5 ? 350 : 250} data={lineData}>
@@ -160,3 +207,4 @@ const Dashboard = observer(() => {
 });
 
 export default Dashboard;
+
