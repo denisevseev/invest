@@ -17,16 +17,30 @@ import AccountBalanceIcon from '@mui/icons-material/AccountBalance';
 import FolderIcon from '@mui/icons-material/Folder';
 import ExpandLess from '@mui/icons-material/ExpandLess';
 import ExpandMore from '@mui/icons-material/ExpandMore';
-import CloudDownloadIcon from '@mui/icons-material/CloudDownload';
-import CalendarTodayIcon from '@mui/icons-material/CalendarToday';
 import TrendingUpIcon from '@mui/icons-material/TrendingUp';
 import { useRouter } from 'next/router';
 import store from "../stores/userStore";
+import en from './../public/lang/en.json';
+import de from './../public/lang/de.json';
 
 const CustomSideBar = ({ positionMenu }) => {
     const router = useRouter();
     const theme = useTheme();
     const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
+    const lang = store.lang;
+
+    // Определение переводов на основе выбранного языка
+    const translations = lang === 'de' ? de : en;
+
+    // Функция для получения перевода текста
+    const getText = (key) => {
+        return translations.sidebar[key] || key;
+    };
+
+    // Функция для получения английского текста
+    const getEnglishText = (key) => {
+        return en.sidebar[key] || key;
+    };
 
     const [openProfile, setOpenProfile] = useState(false);
     const [openCompanyProfile, setOpenCompanyProfile] = useState(false);
@@ -60,23 +74,22 @@ const CustomSideBar = ({ positionMenu }) => {
         setOpenHelp(!openHelp);
     };
 
-    const handleText = (text) => {
+    const handleText = (key) => {
+        const text = getEnglishText(key);
         console.log('Clicked text:', text);
         setActiveMenuItem(text);
-        store.routeLink = text;
-        // Perform any actions with the clicked text here
+        store.routeLink = text; // сохраняем значение на английском языке
     };
 
     const StyledDrawer = styled(Drawer)(({ theme }) => ({
         '& .MuiDrawer-paper': {
-            width: isMobile ? 240 : 200,
+            width: isMobile ? 260 : 220, // Увеличенная ширина
             boxSizing: 'border-box',
         },
     }));
 
     const handleClick = () => {
         window.open('https://www.victorum-capital.com/wp-content/uploads/2021/12/Victorum_Catalog.pdf', '_blank');
-        // handleText('Presentation');
     };
 
     return (
@@ -93,153 +106,153 @@ const CustomSideBar = ({ positionMenu }) => {
                 <List
                     subheader={
                         <ListSubheader component="div" id="nested-list-subheader">
-                            INVESTOR'S MENU
+                            {getText('investorMenu')}
                         </ListSubheader>
                     }
                 >
-                    <ListItem button onClick={handleClickProfile} selected={activeMenuItem.startsWith('My Profile')}>
+                    <ListItem button onClick={handleClickProfile} selected={activeMenuItem.startsWith(getEnglishText('myProfile'))}>
                         <ListItemIcon>
                             <AccountBoxIcon />
                         </ListItemIcon>
-                        <ListItemText primary="My Profile" />
+                        <ListItemText primary={getText('myProfile')} primaryTypographyProps={{ style: { whiteSpace: 'normal', wordBreak: 'break-word' } }} />
                         {openProfile ? <ExpandLess /> : <ExpandMore />}
                     </ListItem>
                     <Collapse in={openProfile} timeout="auto" unmountOnExit>
                         <List component="div" disablePadding>
-                            <ListItem button sx={{ pl: 4 }} onClick={() => handleText('Personal Information')} selected={activeMenuItem === 'Personal Information'}>
-                                <ListItemText primary="Personal Information" />
+                            <ListItem button sx={{ pl: 4 }} onClick={() => handleText('personalInformation')} selected={activeMenuItem === getEnglishText('personalInformation')}>
+                                <ListItemText primary={getText('personalInformation')} primaryTypographyProps={{ style: { whiteSpace: 'normal', wordBreak: 'break-word' } }} />
                             </ListItem>
-                            <ListItem button sx={{ pl: 4 }} onClick={() => handleText('My Agreements')} selected={activeMenuItem === 'My Agreements'}>
-                                <ListItemText primary="My Agreements" />
+                            <ListItem button sx={{ pl: 4 }} onClick={() => handleText('myAgreements')} selected={activeMenuItem === getEnglishText('myAgreements')}>
+                                <ListItemText primary={getText('myAgreements')} primaryTypographyProps={{ style: { whiteSpace: 'normal', wordBreak: 'break-word' } }} />
                             </ListItem>
-                            <ListItem button sx={{ pl: 4 }} onClick={() => handleText('Investment Overview')} selected={activeMenuItem === 'Investment Overview'}>
-                                <ListItemText primary="Investment Overview" />
+                            <ListItem button sx={{ pl: 4 }} onClick={() => handleText('investmentOverview')} selected={activeMenuItem === getEnglishText('investmentOverview')}>
+                                <ListItemText primary={getText('investmentOverview')} primaryTypographyProps={{ style: { whiteSpace: 'normal', wordBreak: 'break-word' } }} />
                             </ListItem>
-                            <ListItem button sx={{ pl: 4 }} onClick={() => handleText('Share Subscription')} selected={activeMenuItem === 'Share Subscription'}>
-                                <ListItemText primary="Share Subscription" />
+                            <ListItem button sx={{ pl: 4 }} onClick={() => handleText('shareSubscription')} selected={activeMenuItem === getEnglishText('shareSubscription')}>
+                                <ListItemText primary={getText('shareSubscription')} primaryTypographyProps={{ style: { whiteSpace: 'normal', wordBreak: 'break-word' } }} />
                             </ListItem>
-                            <ListItem button sx={{ pl: 4 }} onClick={() => handleText('Identification Documents')} selected={activeMenuItem === 'Identification Documents'}>
-                                <ListItemText primary="Identification Documents" />
+                            <ListItem button sx={{ pl: 4 }} onClick={() => handleText('identificationDocuments')} selected={activeMenuItem === getEnglishText('identificationDocuments')}>
+                                <ListItemText primary={getText('identificationDocuments')} primaryTypographyProps={{ style: { whiteSpace: 'normal', wordBreak: 'break-word' } }} />
                             </ListItem>
                         </List>
                     </Collapse>
 
-                    <ListItem button onClick={handleClickCompanyProfile} selected={activeMenuItem.startsWith('Company Profile')}>
+                    <ListItem button onClick={handleClickCompanyProfile} selected={activeMenuItem.startsWith(getEnglishText('companyProfile'))}>
                         <ListItemIcon>
                             <AccountBalanceIcon />
                         </ListItemIcon>
-                        <ListItemText primary="Company Profile" />
+                        <ListItemText primary={getText('companyProfile')} primaryTypographyProps={{ style: { whiteSpace: 'normal', wordBreak: 'break-word' } }} />
                         {openCompanyProfile ? <ExpandLess /> : <ExpandMore />}
                     </ListItem>
                     <Collapse in={openCompanyProfile} timeout="auto" unmountOnExit>
                         <List component="div" disablePadding>
-                            <ListItem button sx={{ pl: 4 }} onClick={() => {}} selected={activeMenuItem === 'Profile'}>
-                                <ListItemText primary="Profile" />
+                            <ListItem button sx={{ pl: 4 }} onClick={() => handleText('profile')} selected={activeMenuItem === getEnglishText('profile')}>
+                                <ListItemText primary={getText('profile')} primaryTypographyProps={{ style: { whiteSpace: 'normal', wordBreak: 'break-word' } }} />
                             </ListItem>
-                            <ListItem button sx={{ pl: 4 }} onClick={handleClick} selected={activeMenuItem === 'Presentation'}>
-                                <ListItemText primary="Presentation" />
+                            <ListItem button sx={{ pl: 4 }} onClick={handleClick} selected={activeMenuItem === getEnglishText('presentation')}>
+                                <ListItemText primary={getText('presentation')} primaryTypographyProps={{ style: { whiteSpace: 'normal', wordBreak: 'break-word' } }} />
                             </ListItem>
-                            <ListItem button sx={{ pl: 4 }} onClick={() => window.open('https://www.vicpayments.com/', '_blank')} selected={activeMenuItem === 'VicPay'}>
-                                <ListItemText primary="VicPay" />
+                            <ListItem button sx={{ pl: 4 }} onClick={() => window.open('https://www.vicpayments.com/', '_blank')} selected={activeMenuItem === getEnglishText('vicPay')}>
+                                <ListItemText primary={getText('vicPay')} primaryTypographyProps={{ style: { whiteSpace: 'normal', wordBreak: 'break-word' } }} />
                             </ListItem>
-                            <ListItem button sx={{ pl: 4 }} onClick={() => window.open('https://victorum-trade.com/', '_blank')} selected={activeMenuItem === 'Victorum Trade'}>
-                                <ListItemText primary="Victorum Trade" />
+                            <ListItem button sx={{ pl: 4 }} onClick={() => window.open('https://victorum-trade.com/', '_blank')} selected={activeMenuItem === getEnglishText('victorumTrade')}>
+                                <ListItemText primary={getText('victorumTrade')} primaryTypographyProps={{ style: { whiteSpace: 'normal', wordBreak: 'break-word' } }} />
                             </ListItem>
                         </List>
                     </Collapse>
 
-                    <ListItem button onClick={handleClickServices} selected={activeMenuItem.startsWith('Services')}>
+                    <ListItem button onClick={handleClickServices} selected={activeMenuItem.startsWith(getEnglishText('services'))}>
                         <ListItemIcon>
                             <FolderIcon />
                         </ListItemIcon>
-                        <ListItemText primary="Services" />
+                        <ListItemText primary={getText('services')} primaryTypographyProps={{ style: { whiteSpace: 'normal', wordBreak: 'break-word' } }} />
                         {openServices ? <ExpandLess /> : <ExpandMore />}
                     </ListItem>
                     <Collapse in={openServices} timeout="auto" unmountOnExit>
                         <List component="div" disablePadding>
-                            <ListItem button sx={{ pl: 4 }} onClick={() => handleText('Corporate Finance')} selected={activeMenuItem === 'Corporate Finance'}>
-                                <ListItemText primary="Corporate Finance" />
+                            <ListItem button sx={{ pl: 4 }} onClick={() => handleText('corporateFinance')} selected={activeMenuItem === getEnglishText('corporateFinance')}>
+                                <ListItemText primary={getText('corporateFinance')} primaryTypographyProps={{ style: { whiteSpace: 'normal', wordBreak: 'break-word' } }} />
                             </ListItem>
-                            <ListItem button sx={{ pl: 4 }} onClick={() => handleText('Investments')} selected={activeMenuItem === 'Investments'}>
-                                <ListItemText primary="Investments" />
+                            <ListItem button sx={{ pl: 4 }} onClick={() => handleText('investments')} selected={activeMenuItem === getEnglishText('investments')}>
+                                <ListItemText primary={getText('investments')} primaryTypographyProps={{ style: { whiteSpace: 'normal', wordBreak: 'break-word' } }} />
                             </ListItem>
-                            <ListItem button sx={{ pl: 4 }} onClick={() => handleText('Consulting')} selected={activeMenuItem === 'Consulting'}>
-                                <ListItemText primary="Consulting" />
+                            <ListItem button sx={{ pl: 4 }} onClick={() => handleText('consulting')} selected={activeMenuItem === getEnglishText('consulting')}>
+                                <ListItemText primary={getText('consulting')} primaryTypographyProps={{ style: { whiteSpace: 'normal', wordBreak: 'break-word' } }} />
                             </ListItem>
-                            <ListItem button sx={{ pl: 4 }} onClick={() => handleText('Economic Development')} selected={activeMenuItem === 'Economic Development'}>
-                                <ListItemText primary="Economic Development" />
+                            <ListItem button sx={{ pl: 4 }} onClick={() => handleText('economicDevelopment')} selected={activeMenuItem === getEnglishText('economicDevelopment')}>
+                                <ListItemText primary={getText('economicDevelopment')} primaryTypographyProps={{ style: { whiteSpace: 'normal', wordBreak: 'break-word' } }} />
                             </ListItem>
                         </List>
                     </Collapse>
 
-                    <ListItem button onClick={handleClickRegulation} selected={activeMenuItem.startsWith('Regulation')}>
+                    <ListItem button onClick={handleClickRegulation} selected={activeMenuItem.startsWith(getEnglishText('regulation'))}>
                         <ListItemIcon>
                             <AccountBoxIcon />
                         </ListItemIcon>
-                        <ListItemText primary="Regulation" />
+                        <ListItemText primary={getText('regulation')} primaryTypographyProps={{ style: { whiteSpace: 'normal', wordBreak: 'break-word' } }} />
                         {openRegulation ? <ExpandLess /> : <ExpandMore />}
                     </ListItem>
                     <Collapse in={openRegulation} timeout="auto" unmountOnExit>
                         <List component="div" disablePadding>
-                            <ListItem button sx={{ pl: 4 }} onClick={() => handleText('Regulation Authority')} selected={activeMenuItem === 'Regulation Authority'}>
-                                <ListItemText primary="Regulation Authority" />
+                            <ListItem button sx={{ pl: 4 }} onClick={() => handleText('regulationAuthority')} selected={activeMenuItem === getEnglishText('regulationAuthority')}>
+                                <ListItemText primary={getText('regulationAuthority')} primaryTypographyProps={{ style: { whiteSpace: 'normal', wordBreak: 'break-word' } }} />
                             </ListItem>
-                            <ListItem button sx={{ pl: 4 }} onClick={() => handleText('Share Type & Investors')} selected={activeMenuItem === 'Share Type & Investors'}>
-                                <ListItemText primary="Share Type & Investors" />
+                            <ListItem button sx={{ pl: 4 }} onClick={() => handleText('shareTypeInvestors')} selected={activeMenuItem === getEnglishText('shareTypeInvestors')}>
+                                <ListItemText primary={getText('shareTypeInvestors')} primaryTypographyProps={{ style: { whiteSpace: 'normal', wordBreak: 'break-word' } }} />
                             </ListItem>
-                            <ListItem button sx={{ pl: 4 }} onClick={() => handleText('Shareholder Structure')} selected={activeMenuItem === 'Shareholder Structure'}>
-                                <ListItemText primary="Shareholder Structure" />
+                            <ListItem button sx={{ pl: 4 }} onClick={() => handleText('shareholderStructure')} selected={activeMenuItem === getEnglishText('shareholderStructure')}>
+                                <ListItemText primary={getText('shareholderStructure')} primaryTypographyProps={{ style: { whiteSpace: 'normal', wordBreak: 'break-word' } }} />
                             </ListItem>
-                            <ListItem button sx={{ pl: 4 }} onClick={() => handleText('Corporate Announcements')} selected={activeMenuItem === 'Corporate Announcements'}>
-                                <ListItemText primary="Corporate Announcements" />
+                            <ListItem button sx={{ pl: 4 }} onClick={() => handleText('corporateAnnouncements')} selected={activeMenuItem === getEnglishText('corporateAnnouncements')}>
+                                <ListItemText primary={getText('corporateAnnouncements')} primaryTypographyProps={{ style: { whiteSpace: 'normal', wordBreak: 'break-word' } }} />
                             </ListItem>
                         </List>
                     </Collapse>
 
-                    <ListItem button onClick={handleClickNews} selected={activeMenuItem.startsWith('News')}>
+                    <ListItem button onClick={handleClickNews} selected={activeMenuItem.startsWith(getEnglishText('news'))}>
                         <ListItemIcon>
                             <TrendingUpIcon />
                         </ListItemIcon>
-                        <ListItemText primary="News" />
+                        <ListItemText primary={getText('news')} primaryTypographyProps={{ style: { whiteSpace: 'normal', wordBreak: 'break-word' } }} />
                         {openNews ? <ExpandLess /> : <ExpandMore />}
                     </ListItem>
                     <Collapse in={openNews} timeout="auto" unmountOnExit>
                         <List component="div" disablePadding>
-                            <ListItem button sx={{ pl: 4 }} onClick={() => {}} selected={activeMenuItem === 'Corporate News'}>
-                                <ListItemText primary="Corporate News" />
+                            <ListItem button sx={{ pl: 4 }} onClick={() => handleText('corporateNews')} selected={activeMenuItem === getEnglishText('corporateNews')}>
+                                <ListItemText primary={getText('corporateNews')} primaryTypographyProps={{ style: { whiteSpace: 'normal', wordBreak: 'break-word' } }} />
                             </ListItem>
-                            <ListItem button sx={{ pl: 4 }} onClick={() => handleText('Economical Calendar')} selected={activeMenuItem === 'Economical Calendar'}>
-                                <ListItemText primary="Economical Calendar" />
+                            <ListItem button sx={{ pl: 4 }} onClick={() => handleText('economicalCalendar')} selected={activeMenuItem === getEnglishText('economicalCalendar')}>
+                                <ListItemText primary={getText('economicalCalendar')} primaryTypographyProps={{ style: { whiteSpace: 'normal', wordBreak: 'break-word' } }} />
                             </ListItem>
-                            <ListItem button sx={{ pl: 4 }} onClick={() => handleText('Live Currency Rates')} selected={activeMenuItem === 'Live Currency Rates'}>
-                                <ListItemText primary="Live Currency Rates" />
+                            <ListItem button sx={{ pl: 4 }} onClick={() => handleText('liveCurrencyRates')} selected={activeMenuItem === getEnglishText('liveCurrencyRates')}>
+                                <ListItemText primary={getText('liveCurrencyRates')} primaryTypographyProps={{ style: { whiteSpace: 'normal', wordBreak: 'break-word' } }} />
                             </ListItem>
-                            <ListItem button sx={{ pl: 4 }} onClick={() => handleText('Live Crypto Rates')} selected={activeMenuItem === 'Live Crypto Rates'}>
-                                <ListItemText primary="Live Crypto Rates" />
+                            <ListItem button sx={{ pl: 4 }} onClick={() => handleText('liveCryptoRates')} selected={activeMenuItem === getEnglishText('liveCryptoRates')}>
+                                <ListItemText primary={getText('liveCryptoRates')} primaryTypographyProps={{ style: { whiteSpace: 'normal', wordBreak: 'break-word' } }} />
                             </ListItem>
                         </List>
                     </Collapse>
 
-                    <ListItem button onClick={handleClickHelp} selected={activeMenuItem.startsWith('Help')}>
+                    <ListItem button onClick={handleClickHelp} selected={activeMenuItem.startsWith(getEnglishText('help'))}>
                         <ListItemIcon>
                             <AccountBoxIcon />
                         </ListItemIcon>
-                        <ListItemText primary="Help" />
+                        <ListItemText primary={getText('help')} primaryTypographyProps={{ style: { whiteSpace: 'normal', wordBreak: 'break-word' } }} />
                         {openHelp ? <ExpandLess /> : <ExpandMore />}
                     </ListItem>
                     <Collapse in={openHelp} timeout="auto" unmountOnExit>
                         <List component="div" disablePadding>
-                            <ListItem button sx={{ pl: 4 }} onClick={() => handleText('Contact Center')} selected={activeMenuItem === 'Contact Center'}>
-                                <ListItemText primary="Contact Center" />
+                            <ListItem button sx={{ pl: 4 }} onClick={() => handleText('contactCenter')} selected={activeMenuItem === getEnglishText('contactCenter')}>
+                                <ListItemText primary={getText('contactCenter')} primaryTypographyProps={{ style: { whiteSpace: 'normal', wordBreak: 'break-word' } }} />
                             </ListItem>
-                            <ListItem button sx={{ pl: 4 }} onClick={() => handleText('FAQ')} selected={activeMenuItem === 'FAQ'}>
-                                <ListItemText primary="FAQ" />
+                            <ListItem button sx={{ pl: 4 }} onClick={() => handleText('faq')} selected={activeMenuItem === getEnglishText('faq')}>
+                                <ListItemText primary={getText('faq')} primaryTypographyProps={{ style: { whiteSpace: 'normal', wordBreak: 'break-word' } }} />
                             </ListItem>
-                            <ListItem button sx={{ pl: 4 }} onClick={() => handleText('Change Password')} selected={activeMenuItem === 'Change Password'}>
-                                <ListItemText primary="Change Password" />
+                            <ListItem button sx={{ pl: 4 }} onClick={() => handleText('changePassword')} selected={activeMenuItem === getEnglishText('changePassword')}>
+                                <ListItemText primary={getText('changePassword')} primaryTypographyProps={{ style: { whiteSpace: 'normal', wordBreak: 'break-word' } }} />
                             </ListItem>
-                            <ListItem button sx={{ pl: 4 }} onClick={() => handleText('Share Subscription')} selected={activeMenuItem === 'Share Subscription'}>
-                                <ListItemText primary="Share Subscription" />
+                            <ListItem button sx={{ pl: 4 }} onClick={() => handleText('shareSubscription')} selected={activeMenuItem === getEnglishText('shareSubscription')}>
+                                <ListItemText primary={getText('shareSubscription')} primaryTypographyProps={{ style: { whiteSpace: 'normal', wordBreak: 'break-word' } }} />
                             </ListItem>
                         </List>
                     </Collapse>

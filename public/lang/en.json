@@ -1,0 +1,83 @@
+{
+    "sidebar": {
+        "investorMenu": "INVESTOR'S MENU",
+        "myProfile": "My Profile",
+        "personalInformation": "Personal Information",
+        "myAgreements": "My Agreements",
+        "investmentOverview": "Investment Overview",
+        "shareSubscription": "Share Subscription",
+        "identificationDocuments": "Identification Documents",
+        "companyProfile": "Company Profile",
+        "profile": "Profile",
+        "presentation": "Presentation",
+        "vicPay": "VicPay",
+        "victorumTrade": "Victorum Trade",
+        "services": "Services",
+        "corporateFinance": "Corporate Finance",
+        "investments": "Investments",
+        "consulting": "Consulting",
+        "economicDevelopment": "Economic Development",
+        "regulation": "Regulation",
+        "regulationAuthority": "Regulation Authority",
+        "shareTypeInvestors": "Share Type & Investors",
+        "shareholderStructure": "Shareholder Structure",
+        "corporateAnnouncements": "Corporate Announcements",
+        "news": "News",
+        "corporateNews": "Corporate News",
+        "economicalCalendar": "Economical Calendar",
+        "liveCurrencyRates": "Live Currency Rates",
+        "liveCryptoRates": "Live Crypto Rates",
+        "help": "Help",
+        "contactCenter": "Contact Center",
+        "faq": "FAQ",
+        "changePassword": "Change Password"
+    },
+    "userSurveyResults": {
+        "myInformation": "My Information",
+        "basicInformation": "Basic Information",
+        "contactInformation": "Contact Information",
+        "questionsAndAnswers": "Questions and Answers",
+        "fields": {
+            "firstName": "First Name",
+            "lastName": "Last Name",
+            "dateOfBirth": "Date of Birth",
+            "nationality": "Nationality",
+            "email": "Email",
+            "phoneNumber": "Phone Number",
+            "fullAddress": "Full Address",
+            "city": "City",
+            "postalCode": "Postal Code",
+            "country": "Country",
+            "employmentStatus": "Employment Status",
+            "sourceOfFunds": "Source of Funds",
+            "netWorth": "Net Worth",
+            "annualIncome": "Annual Income",
+            "anticipatedAnnualDeposit": "Anticipated Annual Deposit",
+            "intendedPurpose": "Intended Purpose",
+            "creditFundAccount": "Credit Fund Account",
+            "politicallyExposedPerson": "Politically Exposed Person"
+        }
+    },
+
+    "regulationAuthority": {
+        "title": "Stability and Trust: The U.S. Securities and Exchange Commission (SEC) as the Guardian of Financial Markets",
+        "content": [
+            "The U.S. Securities and Exchange Commission (SEC) oversees the financial markets in the United States and is one of the oldest organizations for monitoring the activities of financial service providers, banks, and companies.",
+            "Its main goal is to ensure a functional, reliable, and stable financial system and to protect bank customers, policyholders, and investors.",
+            "The SEC is one of the most important governmental regulators in the United States. It is responsible for regulating the securities market, including stock trading, issuance, exchanges, brokers, trading operations by individuals, and investment companies. The SEC also oversees mergers and acquisitions of companies. This means that if an asset is traded on U.S. exchanges or is accessible to an American broker, it is automatically subject to the rules established by the SEC. The main goal of this organization is to ensure transparency in transactions and to combat fraudulent activities."
+        ],
+        "contact": {
+            "name": "U.S. Securities and Exchange Commission",
+            "address": "100 F Street, NE Washington",
+            "city": "DC 20549-0213",
+            "phone": "Telephone: (800) 732-0330",
+            "fax": "Fax: (202) 772-9295",
+            "web": "Web",
+            "webLink": "https://www.sec.gov",
+            "companyLinkText": "Link to Victorum Capital Inc. on the SEC",
+            "companyLink": "https://www.sec.gov/Archives/edgar/data/0001871600/000187160021000001/xslFormDX01/primary_doc.xml"
+        }
+    }
+
+
+}

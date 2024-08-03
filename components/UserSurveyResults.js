@@ -4,10 +4,14 @@ import { motion } from 'framer-motion';
 import { observer } from 'mobx-react-lite';
 import { Edit, Save } from '@mui/icons-material';
 import store from './../stores/userStore';
+import en from './../public/lang/en.json';
+import de from './../public/lang/de.json';
 
 const UserSurveyResults = () => {
     const [editMode, setEditMode] = useState({});
     const [formData, setFormData] = useState({ ...store.user });
+    const lang = store.lang === 'de' ? de : en;
+    const fields = lang.userSurveyResults.fields;
 
     const handleEditClick = (field) => {
         setEditMode((prev) => ({ ...prev, [field]: !prev[field] }));
@@ -21,13 +25,13 @@ const UserSurveyResults = () => {
 
     const handleSaveClick = async (field) => {
         const value = formData[field];
-        const userId = store.user._id; // Получите ID пользователя из вашего стора
-        store.user[field] = value; // Сохранение изменений в store
+        const userId = store.user._id;
+        store.user[field] = value;
         setEditMode((prev) => ({ ...prev, [field]: false }));
 
         console.log(`Saving ${field} with value ${value} for user ${userId}`);
 
-        await saveFieldToBackend(userId, field, value); // Сохранение изменений на сервере
+        await saveFieldToBackend(userId, field, value);
     };
 
     const saveFieldToBackend = async (userId, field, value) => {
@@ -70,7 +74,7 @@ const UserSurveyResults = () => {
         const keys = getQuestionsByCategory(category);
         return keys.map((key, index) => {
             const question = {
-                label: key.replace(/([A-Z])/g, ' $1').replace(/^./, (str) => str.toUpperCase()),
+                label: fields[key],
                 key,
                 value: formData[key],
             };
@@ -117,14 +121,14 @@ const UserSurveyResults = () => {
         <Card sx={{ maxWidth: 1200, mx: 'auto', mt: 10, p: 2, marginLeft: '15%' }}>
             <CardContent>
                 <Typography sx={{ textAlign: 'center' }} variant="h5" gutterBottom>
-                    My Information
+                    {lang.userSurveyResults.myInformation}
                 </Typography>
                 <Divider sx={{ mb: 3 }} />
 
                 {/* Основная информация */}
                 <Box sx={{ mb: 3 }}>
                     <Typography variant="h6" gutterBottom>
-                        Basic Information
+                        {lang.userSurveyResults.basicInformation}
                     </Typography>
                     <Grid container spacing={3}>
                         {renderQuestions('Basic Information')}
@@ -135,7 +139,7 @@ const UserSurveyResults = () => {
                 {/* Контактная информация */}
                 <Box sx={{ mb: 3 }}>
                     <Typography variant="h6" gutterBottom>
-                        Contact Information
+                        {lang.userSurveyResults.contactInformation}
                     </Typography>
                     <Grid container spacing={3}>
                         {renderQuestions('Contact Information')}
@@ -146,7 +150,7 @@ const UserSurveyResults = () => {
                 {/* Вопросы и ответы */}
                 <Box sx={{ mb: 3 }}>
                     <Typography variant="h6" gutterBottom>
-                        Questions and Answers
+                        {lang.userSurveyResults.questionsAndAnswers}
                     </Typography>
                     <Grid container spacing={3}>
                         {renderQuestions('Questions and Answers')}

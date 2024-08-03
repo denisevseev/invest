@@ -22,6 +22,7 @@ class UserStore {
   stepsInvestor = false;
   RiskAcceptanceModal = true
   acceptedRisks = false
+  lang = "en"
 
   //stepTwo
   dateOfBirth = null
@@ -67,6 +68,7 @@ class UserStore {
       postalCode: observable,
       city: observable,
       RiskAcceptanceModal: observable,
+      lang: observable,
     });
   }
 

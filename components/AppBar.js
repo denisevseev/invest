@@ -1,32 +1,29 @@
-import React, { useEffect, useState } from "react";
-import { Box, Button, IconButton, Toolbar, AppBar, useTheme, useMediaQuery, Drawer, Typography, Divider } from "@mui/material";
+import React, { useState } from "react";
+import { Box, Button, IconButton, Toolbar, AppBar, useTheme, useMediaQuery, Drawer, Typography, Divider, Menu, MenuItem } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 import LogoutIcon from "@mui/icons-material/Logout";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
-import MailIcon from "@mui/icons-material/Mail";
 import HeadsetMicIcon from "@mui/icons-material/HeadsetMic";
-import FlagIcon from "@mui/icons-material/Flag";
 import Logo from "./Logo";
-import Link from "next/link";
 import { signOut, useSession } from 'next-auth/react';
 import { useRouter } from "next/router";
+import Link from "next/link"; // Ensure Link is imported here
 import SideMenu from "./SideMenu";
 import store from "../stores/userStore";
 import { observer } from "mobx-react-lite";
-import DefaultSideBar from "./DefaultSideBar";
 import useFetchUser from './../stores/hooks/useFetchUser';
 import CustomSideBar from "../pages/CustomSideBar";
+import GermanFlag from '@mui/icons-material/Flag'; // Placeholder icon
+import UKFlag from '@mui/icons-material/Flag'; // Placeholder icon
 
 const AppBarComponent = () => {
     const theme = useTheme();
     const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
     const [mobileOpen, setMobileOpen] = useState(false);
+    const [anchorEl, setAnchorEl] = useState(null);
     const { data: session } = useSession();
     const router = useRouter();
     const { user, loading } = useFetchUser();
-    // let role =  user.rol
-
-
 
 
     const handleDrawerToggle = () => {
@@ -38,11 +35,39 @@ const AppBarComponent = () => {
         await signOut({ redirect: false });
         router.reload();
     };
-    store.roleTitle =  user?.role
+
+    const handleLanguageMenu = (event) => {
+        setAnchorEl(event.currentTarget);
+    };
+
+    const handleLanguageChange = async (language) => {
+        debugger
+        setAnchorEl(null);
+        try {
+            const payload = {
+                language,
+                user, // Include the session object
+            };
+
+            await fetch('/api/change-language', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(payload), // Send the payload
+            });
+            router.reload();
+        } catch (error) {
+            console.error('Error changing language:', error);
+        }
+    };
+
     const capitalizeFirstLetter = (string) => {
         if (!string) return '';
         return string.charAt(0).toUpperCase() + string.slice(1).toLowerCase();
     };
+
+    store.roleTitle = user?.role;
 
     return (
         <Box sx={{ display: 'flex' }}>
@@ -74,12 +99,7 @@ const AppBarComponent = () => {
                         {session && !isMobile && (
                             <Typography
                                 variant="body1"
-                                sx={{
-                                    color: 'black',
-                                    // textShadow: '1px 1px 2px rgba(0,0,0,0.4)',
-                                    // fontWeight: 'bold', // Делаем текст жирным
-                                    // fontSize: '1.5rem'
-                                }}
+                                sx={{ color: 'black' }}
                             >
                                 {capitalizeFirstLetter(store?.roleTitle)}
                             </Typography>
@@ -90,23 +110,28 @@ const AppBarComponent = () => {
                             {!isMobile && (
                                 <Box sx={{ display: 'flex', alignItems: 'center', mr: 2 }}>
                                     <AccountCircleIcon sx={{ mr: 1 }} />
-                                    <Typography variant="body1" sx={{ color: 'black',  mr: 2 }}>
+                                    <Typography variant="body1" sx={{ color: 'black', mr: 2 }}>
                                         {user?.companyName ? user.companyName : user?.firstName} {user?.companyName ? user.country : user?.lastName} / {user?.email}
                                     </Typography>
                                 </Box>
                             )}
                             {!isMobile && <Divider orientation="vertical" flexItem sx={{ mx: 1 }} />}
-                            {/*{!isMobile && (*/}
-                            {/*    <IconButton>*/}
-                            {/*        <FlagIcon />*/}
-                            {/*    </IconButton>*/}
-                            {/*)}*/}
-                            {/*{!isMobile && <Divider orientation="vertical" flexItem sx={{ mx: 1 }} />}*/}
-                            {/*<IconButton>*/}
-                                {/*<MailIcon />*/}
-                                {/*{!isMobile && <Typography variant="body1" sx={{ ml: 1 }}>Messages</Typography>}*/}
-                            {/*</IconButton>*/}
-                            {/*<Divider orientation="vertical" flexItem sx={{ mx: 1 }} />*/}
+                            <IconButton onClick={handleLanguageMenu}>
+                                {user?.language === 'de' ? <GermanFlag /> : <UKFlag />}
+                            </IconButton>
+                            <Menu
+                                anchorEl={anchorEl}
+                                open={Boolean(anchorEl)}
+                                onClose={() => setAnchorEl(null)}
+                            >
+                                <MenuItem onClick={() => handleLanguageChange('de')}>
+                                    <GermanFlag sx={{ mr: 1 }} /> Deutsch
+                                </MenuItem>
+                                <MenuItem onClick={() => handleLanguageChange('en')}>
+                                    <UKFlag sx={{ mr: 1 }} /> English
+                                </MenuItem>
+                            </Menu>
+                            <Divider orientation="vertical" flexItem sx={{ mx: 1 }} />
                             <IconButton>
                                 <HeadsetMicIcon />
                                 {!isMobile && <Typography variant="body1" sx={{ ml: 1 }}>Help Desk</Typography>}
@@ -140,7 +165,7 @@ const AppBarComponent = () => {
                     keepMounted: true,
                 }}
                 sx={{
-                    '& .MuiDrawer-paper': { boxSizing: 'border-box',   mt: isMobile ? '60px' : '80px' },
+                    '& .MuiDrawer-paper': { boxSizing: 'border-box', mt: isMobile ? '60px' : '80px' },
                 }}
             >
                 {user && user.role ? (
@@ -148,8 +173,7 @@ const AppBarComponent = () => {
                 ) : (
                     <div></div>
                 )}
-                {user?.role && isMobile ? <CustomSideBar/> : ''}
-
+                {user?.role && isMobile ? <CustomSideBar /> : ''}
             </Drawer>
         </Box>
     );

@@ -1,0 +1,82 @@
+{
+  "sidebar": {
+    "investorMenu": "INVESTOREN MENÜ",
+    "myProfile": "Mein Profil",
+    "personalInformation": "Persönliche Angaben",
+    "myAgreements": "Meine Verträge",
+    "investmentOverview": "Investmentübersicht",
+    "shareSubscription": "Zeichnungsanfrage",
+    "identificationDocuments": "Identifikationsdokumente",
+    "companyProfile": "Unternehmensprofil",
+    "profile": "Profil",
+    "presentation": "Präsentation",
+    "vicPay": "VicPay",
+    "victorumTrade": "Victorum Trade",
+    "services": "Dienstleistungen",
+    "corporateFinance": "Corporate Finance",
+    "investments": "Beteiligungen",
+    "consulting": "Beratung",
+    "economicDevelopment": "Wirtschaftsförderung",
+    "regulation": "Regulierung",
+    "regulationAuthority": "Regulierungsbehörde",
+    "shareTypeInvestors": "Wertpapiertyp & Investoren",
+    "shareholderStructure": "Aktionärsstruktur",
+    "corporateAnnouncements": "Unternehmensmitteilungen",
+    "news": "Nachrichten",
+    "corporateNews": "Unternehmensnachrichten",
+    "economicalCalendar": "Wirtschaftskalender",
+    "liveCurrencyRates": "Live-Währungskurse",
+    "liveCryptoRates": "Live-Kryptokurse",
+    "help": "Hilfe",
+    "contactCenter": "Kontaktcenter",
+    "faq": "FAQ",
+    "changePassword": "Passwort ändern"
+  },
+  "userSurveyResults": {
+    "myInformation": "Meine Informationen",
+    "basicInformation": "Grundlegende Informationen",
+    "contactInformation": "Kontaktinformationen",
+    "questionsAndAnswers": "Fragen und Antworten",
+    "fields": {
+      "firstName": "Vorname",
+      "lastName": "Nachname",
+      "dateOfBirth": "Geburtsdatum",
+      "nationality": "Staatsangehörigkeit",
+      "email": "Email",
+      "phoneNumber": "Telefonnummer",
+      "fullAddress": "Vollständige Adresse",
+      "city": "Stadt",
+      "postalCode": "Postleitzahl",
+      "country": "Land",
+      "employmentStatus": "Beschäftigungsstatus",
+      "sourceOfFunds": "Einkommensquelle",
+      "netWorth": "Vermögen",
+      "annualIncome": "Jährliches Einkommen",
+      "anticipatedAnnualDeposit": "Erwartete jährliche Einzahlung",
+      "intendedPurpose": "Beabsichtigter Zweck",
+      "creditFundAccount": "Kreditfonds-Konto",
+      "politicallyExposedPerson": "Politisch exponierte Person"
+    }
+  },
+
+  "regulationAuthority": {
+    "title": "Stabilität und Vertrauen: Die U.S. Securities and Exchange Commission (SEC) als Hüter der Finanzmärkte",
+    "content": [
+      "Die US-amerikanische Börsenaufsicht SEC (Securities and Exchange Commission) beaufsichtigt die Finanzmärkte in den USA und ist eine der ältesten Organisationen zur Überwachung der Aktivitäten von Finanzdienstleistern, Banken und Unternehmen.",
+      "Ihr Hauptziel ist es, ein funktionsfähiges, zuverlässiges und stabiles Finanzsystem zu gewährleisten und Bankkunden, Versicherte und Anleger zu schützen.",
+      "Die SEC ist eine der wichtigsten staatlichen Aufsichtsbehörden in den USA. Sie ist für die Regulierung des Wertpapiermarktes verantwortlich, einschließlich des Handels mit Aktien, ihrer Emission, der Börsen, Makler, der Handelsoperationen von Privatpersonen und Investmentgesellschaften. Die SEC überwacht auch Fusionen und Übernahmen von Unternehmen. Dies bedeutet: Wenn ein Vermögenswert an den US-Börsen gehandelt wird oder einem amerikanischen Makler zugänglich ist, unterliegt er automatisch den von der SEC festgelegten Regeln. Das Hauptziel dieser Organisation besteht darin, Transparenz in Transaktionen zu gewährleisten und betrügerische Aktivitäten zu bekämpfen."
+    ],
+    "contact": {
+      "name": "U.S. Securities and Exchange Commission",
+      "address": "100 F Street, NE Washington",
+      "city": "DC 20549-0213",
+      "phone": "Telefon: (800) 732-0330",
+      "fax": "Fax: (202) 772-9295",
+      "web": "Web",
+      "webLink": "https://www.sec.gov",
+      "companyLinkText": "Link zu Victorum Capital Inc. bei der SEC",
+      "companyLink": "https://www.sec.gov/Archives/edgar/data/0001871600/000187160021000001/xslFormDX01/primary_doc.xml"
+    }
+  }
+
+}
