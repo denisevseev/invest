@@ -7,14 +7,12 @@ import HeadsetMicIcon from "@mui/icons-material/HeadsetMic";
 import Logo from "./Logo";
 import { signOut, useSession } from 'next-auth/react';
 import { useRouter } from "next/router";
-import Link from "next/link"; // Ensure Link is imported here
+import Link from "next/link";
 import SideMenu from "./SideMenu";
 import store from "../stores/userStore";
 import { observer } from "mobx-react-lite";
 import useFetchUser from './../stores/hooks/useFetchUser';
 import CustomSideBar from "../pages/CustomSideBar";
-import GermanFlag from '@mui/icons-material/Flag'; // Placeholder icon
-import UKFlag from '@mui/icons-material/Flag'; // Placeholder icon
 
 const AppBarComponent = () => {
     const theme = useTheme();
@@ -24,7 +22,6 @@ const AppBarComponent = () => {
     const { data: session } = useSession();
     const router = useRouter();
     const { user, loading } = useFetchUser();
-
 
     const handleDrawerToggle = () => {
         setMobileOpen(!mobileOpen);
@@ -41,12 +38,11 @@ const AppBarComponent = () => {
     };
 
     const handleLanguageChange = async (language) => {
-        debugger
         setAnchorEl(null);
         try {
             const payload = {
                 language,
-                user, // Include the session object
+                user,
             };
 
             await fetch('/api/change-language', {
@@ -54,7 +50,7 @@ const AppBarComponent = () => {
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify(payload), // Send the payload
+                body: JSON.stringify(payload),
             });
             router.reload();
         } catch (error) {
@@ -117,7 +113,11 @@ const AppBarComponent = () => {
                             )}
                             {!isMobile && <Divider orientation="vertical" flexItem sx={{ mx: 1 }} />}
                             <IconButton onClick={handleLanguageMenu}>
-                                {user?.language === 'de' ? <GermanFlag /> : <UKFlag />}
+                                <img
+                                    src={user?.language === 'de' ? "/images/germany_flag.png" : "/images/United-States-Flag.svg"}
+                                    alt="Selected Flag"
+                                    style={{ width: 20, height: user?.language === 'de' ?  13 : 20 }}
+                                />
                             </IconButton>
                             <Menu
                                 anchorEl={anchorEl}
@@ -125,10 +125,12 @@ const AppBarComponent = () => {
                                 onClose={() => setAnchorEl(null)}
                             >
                                 <MenuItem onClick={() => handleLanguageChange('de')}>
-                                    <GermanFlag sx={{ mr: 1 }} /> Deutsch
+                                    <img src="/images/germany_flag.png" alt="German Flag" style={{ width: 20, height: 13, marginRight: 8 }} />
+                                    Deutsch
                                 </MenuItem>
                                 <MenuItem onClick={() => handleLanguageChange('en')}>
-                                    <UKFlag sx={{ mr: 1 }} /> English
+                                    <img src="/images/United-States-Flag.svg" alt="UK Flag" style={{ width: 20, height: 20, marginRight: 8 }} />
+                                    English
                                 </MenuItem>
                             </Menu>
                             <Divider orientation="vertical" flexItem sx={{ mx: 1 }} />

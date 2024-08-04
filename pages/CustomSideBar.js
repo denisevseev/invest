@@ -22,11 +22,14 @@ import { useRouter } from 'next/router';
 import store from "../stores/userStore";
 import en from './../public/lang/en.json';
 import de from './../public/lang/de.json';
+import useFetchUser from "../stores/hooks/useFetchUser";
 
 const CustomSideBar = ({ positionMenu }) => {
     const router = useRouter();
     const theme = useTheme();
     const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
+    const { user, loading } = useFetchUser();
+    store.lang =  user?.language
     const lang = store.lang;
 
     // Определение переводов на основе выбранного языка

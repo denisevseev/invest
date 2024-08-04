@@ -12,15 +12,13 @@ export default async function handler(req, res) {
     //     return res.status(401).json({ message: 'Unauthorized' });
     // }
 
-    // Extract the user ID and language preference from the request body
+
     const { user, language } = req.body;
 
-    // Validate the user ID
     if (!user || !user._id) {
         return res.status(400).json({ message: 'User ID is required' });
     }
 
-    // Connect to the MongoDB database
     const client = new MongoClient(uri);
 
     try {
@@ -28,13 +26,11 @@ export default async function handler(req, res) {
         const db = client.db('victorum-portal'); // Replace with your database name
         const usersCollection = db.collection('users');
 
-        // Update the user's language preference
         const result = await usersCollection.updateOne(
             { _id: new ObjectId(user._id) },
             { $set: { language } }
         );
 
-        // Check if the update was successful
         if (result.modifiedCount === 1) {
             res.status(200).json({ message: 'Language updated successfully' });
         } else {
@@ -47,3 +43,5 @@ export default async function handler(req, res) {
         await client.close();
     }
 }
+
+
