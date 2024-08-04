@@ -86,7 +86,7 @@ const CustomSideBar = ({ positionMenu }) => {
 
     const StyledDrawer = styled(Drawer)(({ theme }) => ({
         '& .MuiDrawer-paper': {
-            width: isMobile ? 260 : 220, // Увеличенная ширина
+            width: isMobile ? 260 : 200, // Увеличенная ширина
             boxSizing: 'border-box',
         },
     }));

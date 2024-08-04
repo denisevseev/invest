@@ -77,6 +77,29 @@
       "companyLinkText": "Link zu Victorum Capital Inc. bei der SEC",
       "companyLink": "https://www.sec.gov/Archives/edgar/data/0001871600/000187160021000001/xslFormDX01/primary_doc.xml"
     }
+  },
+
+  "notifications": {
+    "emailNotVerified": "Ihre E-Mail ist nicht verifiziert",
+    "emailNotVerifiedText": "Ihre E-Mail-Adresse <span style='font-weight: bold;'>{email}</span> wurde noch nicht verifiziert.",
+    "phoneNotVerified": "Ihr Telefon ist nicht verifiziert",
+    "phoneNotVerifiedText": "Ihr Telefon <span style='font-weight: bold;'>{phone}</span> wurde noch nicht verifiziert.",
+    "profilePreApproved": "Ihr Profil wurde vorab genehmigt",
+    "profilePreApprovedText": "Daher können einige Funktionen eingeschränkt sein. <Link href='/'>Klicken Sie hier, um zu sehen, was genau fehlt</Link>",
+    "verifyNow": "Jetzt verifizieren"
+  },
+  "dashboard": {
+    "balance": "Balance",
+    "investmentOverTime": "Investment Over Time",
+    "pieChartExample": "Pie Chart Example",
+    "barChartExample": "Bar Chart Example",
+    "investmentProgress": "Investment Progress",
+    "statusOverview": "Status Overview",
+    "randomCurve": "Random Curve",
+    "investedUnits": "You have invested {amount} units",
+    "kingMember": "King Member",
+    "eliteMember": "Elite Member",
+    "standardMember": "Standard Member"
   }
 
 }

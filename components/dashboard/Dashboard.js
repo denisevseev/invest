@@ -3,7 +3,8 @@ import { Box, Grid, Paper, Typography, Slider } from '@mui/material';
 import { PieChart, Pie, Cell, BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, LineChart, Line, Legend } from 'recharts';
 import { observer } from 'mobx-react-lite';
 import store from './../../stores/userStore';
-import { KingBed, EmojiEvents, Star } from '@mui/icons-material';
+import en from './../../public/lang/en.json';
+import de from './../../public/lang/de.json';
 
 const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042'];
 
@@ -62,7 +63,6 @@ const getStatusIcon = (investmentAmount) => {
     }
 };
 
-// Компонент для бегущей строки
 const Marquee = ({ children }) => {
     return (
         <Box sx={{
@@ -70,9 +70,8 @@ const Marquee = ({ children }) => {
             whiteSpace: 'nowrap',
             width: '100%',
             position: 'relative',
-            p:3,
+            p: 3,
             mt: 8
-            // mb: 3
         }}>
             <Box sx={{
                 display: 'inline-block',
@@ -91,6 +90,8 @@ const Marquee = ({ children }) => {
 };
 
 const BalanceHeader = () => {
+    const lang = store.lang === 'de' ? de : en;
+    debugger
     const userBalanceCAD = store.investmentAmount;
     const [currencyRates, setCurrencyRates] = useState({
         EUR: 0.7,
@@ -123,7 +124,7 @@ const BalanceHeader = () => {
     return (
         <Marquee>
             <Typography variant="h5" component="span">
-                Balance :
+                {lang.dashboard.balance}:
             </Typography>
             <Typography variant="body1" component="span" sx={{ mx: 2 }}>
                 CAD: {userBalanceCAD.toFixed(2)}
@@ -131,7 +132,7 @@ const BalanceHeader = () => {
             <Typography variant="body1" component="span" sx={{ mx: 2 }}>
                 EUR: {userBalanceEUR}
             </Typography>
-            <Typography variant="body1"  component="span" sx={{ mx: 2 }}>
+            <Typography variant="body1" component="span" sx={{ mx: 2 }}>
                 RUB: {userBalanceRUB}
             </Typography>
             <Typography variant="body1" component="span" sx={{ mx: 2 }}>
@@ -142,6 +143,7 @@ const BalanceHeader = () => {
 };
 
 const Dashboard = observer(() => {
+    const lang = store.lang === 'de' ? de : en;
     const [expanded, setExpanded] = useState(null);
     const { investmentAmount } = store;
 
@@ -168,9 +170,16 @@ const Dashboard = observer(() => {
     return (
         <Box>
             <BalanceHeader />
-            <Box sx={{ p: 2, ml: 25,  }} maxWidth={"lg"}>
+            <Box sx={{ p: 2, ml: 25 }} maxWidth={"lg"}>
                 <Grid container spacing={2}>
-                    {['Investment Over Time', 'Pie Chart Example', 'Bar Chart Example', 'Investment Progress', 'Status Overview', 'Random Curve'].map((title, index) => (
+                    {[
+                        lang.dashboard.investmentOverTime,
+                        lang.dashboard.pieChartExample,
+                        lang.dashboard.barChartExample,
+                        lang.dashboard.investmentProgress,
+                        lang.dashboard.statusOverview,
+                        lang.dashboard.randomCurve
+                    ].map((title, index) => (
                         <Grid item xs={12} md={4} key={title} onClick={() => handleExpand(index)}>
                             <Paper
                                 className={expanded === index ? 'expanded-widget' : ''}
@@ -232,7 +241,7 @@ const Dashboard = observer(() => {
                                 {index === 3 && (
                                     <Box sx={{ mt: 9 }}>
                                         <Typography variant="body1">
-                                            You have invested {investmentAmount} units
+                                            {lang.dashboard.investedUnits.replace('{amount}', investmentAmount)}
                                         </Typography>
                                         <Slider
                                             value={investmentAmount}
@@ -246,8 +255,8 @@ const Dashboard = observer(() => {
                                     <Box sx={{ mt: 2, textAlign: 'center' }}>
                                         {getStatusIcon(investmentAmount)}
                                         <Typography variant="body1" sx={{ mt: 1 }}>
-                                            {investmentAmount >= 1000000 ? 'King Member' :
-                                                investmentAmount >= 500000 ? 'Elite Member' : 'Standard Member'}
+                                            {investmentAmount >= 1000000 ? lang.dashboard.kingMember :
+                                                investmentAmount >= 500000 ? lang.dashboard.eliteMember : lang.dashboard.standardMember}
                                         </Typography>
                                     </Box>
                                 )}
@@ -267,7 +276,6 @@ const Dashboard = observer(() => {
                 </Grid>
             </Box>
         </Box>
-
     );
 });
 

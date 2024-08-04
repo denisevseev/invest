@@ -153,7 +153,7 @@ const UploadScansComponent = () => {
     );
 
     return (
-        <Box sx={{ maxWidth: 900, mx: 'auto', mt: 2, padding: 3 }}>
+            <Box sx={{ maxWidth: 900, mx: 'auto', mt: 2, padding: 3 }}>
             {passportFiles.length < 2 && (
                 <>
                     <Typography variant="h5" gutterBottom>
@@ -174,7 +174,7 @@ const UploadScansComponent = () => {
                         <CloudUploadIcon sx={{ fontSize: 200, color: '#3f51b5' }} />
                         <Typography>Drag & drop passport files here, or click to select files</Typography>
                         <Typography variant="body1" color="textSecondary">
-                            (Only *.jpeg, *.png images will be accepted)
+                            (Only *.jpeg, *.pdf, *.png images will be accepted)
                         </Typography>
                     </Box>
                 </>
@@ -203,7 +203,7 @@ const UploadScansComponent = () => {
                         <CloudUploadIcon sx={{ fontSize: 200, color: '#3f51b5' }} />
                         <Typography>Drag & drop address files here, or click to select files</Typography>
                         <Typography variant="body1" color="textSecondary">
-                            (Only *.jpeg, *.png images will be accepted)
+                            (Only *.jpeg, *.pdf *.png images will be accepted)
                         </Typography>
                     </Box>
                 </>

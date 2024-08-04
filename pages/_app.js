@@ -41,6 +41,7 @@ const MyApp = ({ Component, pageProps }) => {
             mainHeader.style.display = 'none';
         }
     }, []);
+    debugger
 
 
     if (Component.name === 'InvestorAgreement') {
@@ -81,7 +82,7 @@ const MyApp = ({ Component, pageProps }) => {
                 ) : (
                     <Layout>
                         <Component {...pageProps} />
-                    </Layout>
+                     </Layout>
                 )}
             </ThemeProvider>
         </SessionProvider>
