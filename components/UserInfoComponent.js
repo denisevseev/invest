@@ -26,6 +26,8 @@ import LiveCurrencyRates from "../pages/LiveCurrencyRates";
 import LiveCryptoRates from "./LiveCryptoRates";
 import Dashboard from './dashboard/Dashboard';
 import RegulationAuthority from "./RegulationAuthority";
+import VerificationInfo from "./VerificationInfo";
+import VerificationOverview from "./VerificationOverview";
 
 
 
@@ -175,23 +177,44 @@ const UserInfoComponent = () => {
                 return (
                     <div>
                         <AppBarComponent />
-                        <Notification />
-                        {!isMobile && <CustomSideBar positionMenu={true} />}
-                        <UploadScansComponent />
+                        <div style={{
+                            display: 'flex',
+                            justifyContent: 'center',
+                            alignItems: 'flex-start',
+                            padding: isMobile ? '0 20px' : '0 40px',
+                            marginTop: '80px',
+                            marginLeft: '10%'
+                        }}>
+                            <div style={{ maxWidth: '1200px', width: '100%' }}>
+                                <div style={{ display: 'flex'}}>
+                                    <div style={{ flex: 2 }}>
+                                        <Notification />
+                                    </div>
+                                    <div style={{ flex: 2 }}>
+                                        {!isMobile && <VerificationOverview />}
+                                    </div>
+                                </div>
+                                <VerificationInfo />
+                                <UploadScansComponent />
+                            </div>
+                            {!isMobile && <CustomSideBar positionMenu={true} />}
+                        </div>
                         <Footer />
                     </div>
                 );
             }
             break;
+
+
         case 'Open Demo Account':
             if (user?.clientType) {
                 return (
                     <div>
-                        <AppBarComponent />
-                        <Notification />
-                        {!isMobile && <CustomSideBar positionMenu={true} />}
-                        <OpenDemoAccount />
-                        <Footer />
+                        <AppBarComponent/>
+                        <Notification/>
+                        {!isMobile && <CustomSideBar positionMenu={true}/>}
+                        <OpenDemoAccount/>
+                        <Footer/>
                     </div>
                 );
             }
@@ -248,3 +271,7 @@ const UserInfoComponent = () => {
 };
 
 export default observer(UserInfoComponent);
+
+
+
+

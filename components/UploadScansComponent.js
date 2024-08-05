@@ -153,11 +153,11 @@ const UploadScansComponent = () => {
     );
 
     return (
-            <Box sx={{ maxWidth: 900, mx: 'auto', mt: 2, padding: 3 }}>
+        <Box sx={{ maxWidth: 900, mx: 'auto', mt: 2, padding: 3 }}>
             {passportFiles.length < 2 && (
                 <>
                     <Typography variant="h5" gutterBottom>
-                        Upload Your Passport Scans
+                        Bitte laden Sie Scans beider Seiten Ihres Reisepasses / Personalausweises hoch.
                     </Typography>
                     <Box
                         {...getPassportRootProps()}
@@ -172,9 +172,9 @@ const UploadScansComponent = () => {
                     >
                         <input {...getPassportInputProps()} />
                         <CloudUploadIcon sx={{ fontSize: 200, color: '#3f51b5' }} />
-                        <Typography>Drag & drop passport files here, or click to select files</Typography>
+                        <Typography>Ziehen Sie die Dateien hierher oder klicken Sie, um Dateien auszuwählen.</Typography>
                         <Typography variant="body1" color="textSecondary">
-                            (Only *.jpeg, *.pdf, *.png images will be accepted)
+                            (Bitte verwenden Sie aus Sicherheitsgründen nur *.jpeg, *.pdf, *.png-Dateien)
                         </Typography>
                     </Box>
                 </>
@@ -186,7 +186,7 @@ const UploadScansComponent = () => {
             {addressFiles.length < 2 && (
                 <>
                     <Typography variant="h5" gutterBottom sx={{ mt: 4 }}>
-                        Please upload your proof of address / utility bill here!
+                        Bitte laden Sie Scans Ihres Adressnachweises hoch
                     </Typography>
                     <Box
                         {...getAddressRootProps()}
@@ -201,9 +201,9 @@ const UploadScansComponent = () => {
                     >
                         <input {...getAddressInputProps()} />
                         <CloudUploadIcon sx={{ fontSize: 200, color: '#3f51b5' }} />
-                        <Typography>Drag & drop address files here, or click to select files</Typography>
+                        <Typography>Ziehen Sie die Dateien hierher oder klicken Sie, um Dateien auszuwählen.</Typography>
                         <Typography variant="body1" color="textSecondary">
-                            (Only *.jpeg, *.pdf *.png images will be accepted)
+                            (Bitte verwenden Sie aus Sicherheitsgründen nur *.jpeg, *.pdf *.png-Dateien)
                         </Typography>
                     </Box>
                 </>
@@ -237,7 +237,7 @@ const UploadScansComponent = () => {
                             alt={selectedFile.filename || selectedFile.name}
                             style={{ width: '100%', height: 'auto' }}
                         />
-                        <Button onClick={closeModal} sx={{ mt: 2 }} variant="contained" color="primary">Close</Button>
+                        <Button onClick={closeModal} sx={{ mt: 2 }} variant="contained" color="primary">Schließen</Button>
                     </Box>
                 </Modal>
             )}

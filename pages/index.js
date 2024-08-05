@@ -3,9 +3,8 @@ import { Container, Typography } from '@mui/material';
 
 const Home = () => {
     return (
-        <Container>
-            dfdf
-        </Container>
+        <>
+        </>
     );
 };
 

@@ -91,7 +91,6 @@ const Marquee = ({ children }) => {
 
 const BalanceHeader = () => {
     const lang = store.lang === 'de' ? de : en;
-    debugger
     const userBalanceCAD = store.investmentAmount;
     const [currencyRates, setCurrencyRates] = useState({
         EUR: 0.7,
