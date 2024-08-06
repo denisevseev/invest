@@ -185,7 +185,7 @@ const UserInfoComponent = () => {
                             marginTop: '80px',
                             marginLeft: '10%'
                         }}>
-                            <div style={{width: '100%' }}>
+                            <div style={{width: '100%', marginLeft: !isMobile && '2rem', paddingLeft: !isMobile && '2rem'}}>
                                 {/*<div style={{ display: 'flex'}}>*/}
                                     {/*<div style={{ flex: 2 }}>*/}
                                         <Notification />

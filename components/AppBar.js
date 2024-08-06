@@ -17,6 +17,8 @@ import CustomSideBar from "../pages/CustomSideBar";
 const AppBarComponent = () => {
     const theme = useTheme();
     const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
+    const isTablet = useMediaQuery(theme.breakpoints.between('sm', 'md'));
+    const isDesktop = useMediaQuery(theme.breakpoints.up('md'));
     const [mobileOpen, setMobileOpen] = useState(false);
     const [anchorEl, setAnchorEl] = useState(null);
     const { data: session } = useSession();
@@ -77,7 +79,7 @@ const AppBarComponent = () => {
                 }}
             >
                 <Toolbar>
-                    {session && isMobile && (
+                    {(session && (isMobile || isTablet)) && (
                         <IconButton
                             color="black"
                             aria-label="open drawer"
@@ -159,12 +161,12 @@ const AppBarComponent = () => {
                 </Toolbar>
             </AppBar>
             <Drawer
-                variant={isMobile ? "temporary" : "permanent"}
+                variant={(isMobile || isTablet) ? "temporary" : "permanent"}
                 anchor="left"
-                open={isMobile ? mobileOpen : true}
+                open={(isMobile || isTablet) ? mobileOpen : true}
                 onClose={handleDrawerToggle}
                 ModalProps={{
-                    keepMounted: true,
+                    keepMounted: true, // Better open performance on mobile.
                 }}
                 sx={{
                     '& .MuiDrawer-paper': { boxSizing: 'border-box', mt: isMobile ? '60px' : '80px' },
@@ -175,7 +177,7 @@ const AppBarComponent = () => {
                 ) : (
                     <div></div>
                 )}
-                {user?.role && isMobile ? <CustomSideBar /> : ''}
+                {user?.role && (isMobile || isTablet) ? <CustomSideBar /> : ''}
             </Drawer>
         </Box>
     );

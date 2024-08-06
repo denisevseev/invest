@@ -28,6 +28,7 @@ const CustomSideBar = ({ positionMenu }) => {
     const router = useRouter();
     const theme = useTheme();
     const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
+    const isTablet = useMediaQuery(theme.breakpoints.between('sm', 'md'));
     const { user, loading } = useFetchUser();
     store.lang =  user?.language
     const lang = store.lang;
@@ -88,6 +89,7 @@ const CustomSideBar = ({ positionMenu }) => {
         '& .MuiDrawer-paper': {
             width: isMobile ? 260 : 200, // Увеличенная ширина
             boxSizing: 'border-box',
+            // display: 'none',
         },
     }));
 
