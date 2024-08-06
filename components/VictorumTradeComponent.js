@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box, Typography, Link, Button, useTheme, useMediaQuery } from '@mui/material';
+import { Box, Typography, Link, Button, useTheme, useMediaQuery, Divider } from '@mui/material';
 import { styled } from '@mui/material/styles';
 import { observer } from 'mobx-react-lite';
 import store from './../stores/userStore';
@@ -53,6 +53,7 @@ const VictorumTradeComponent = () => {
             >
                 {victorumTrade.title}
             </Typography>
+            <Divider />
             <Box component="img" src="/images/trade.png" alt="Victorum Trade" sx={{ width: '100%', opacity: 0.7 }} />
             <Box sx={{ textAlign: 'left', maxWidth: '100%', p: isMobile ? 1 : 3 }}>
                 <Typography variant="body1" paragraph sx={{ fontSize: isMobile ? '22px' : '21px' }}>
