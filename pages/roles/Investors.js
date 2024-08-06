@@ -48,7 +48,7 @@ const Investors = () => {
                                 </TableRow>
                             </TableHead>
                             <TableBody>
-                                {investors.map(investor => (
+                                {investors?.map(investor => (
                                     <React.Fragment key={investor._id}>
                                         <TableRow>
                                             <TableCell>{investor._id}</TableCell>
