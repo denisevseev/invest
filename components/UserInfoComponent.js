@@ -12,7 +12,6 @@ import Layout from "./Layout";
 import EconomicalCalendar from "../pages/EconomicalCalendar";
 import Login from "../pages/login";
 import Footer from './Footer';
-import OpenDemoAccount from '../pages/OpenDemoAccount';
 import OpenLiveAccount from '../pages/OpenLiveAccount';
 import useFetchUser from './../stores/hooks/useFetchUser';
 import Notification from "./Notification";
@@ -28,6 +27,7 @@ import Dashboard from './dashboard/Dashboard';
 import RegulationAuthority from "./RegulationAuthority";
 import VerificationInfo from "./VerificationInfo";
 import VerificationOverview from "./VerificationOverview";
+import VictorumTradeComponent from "./VictorumTradeComponent";
 
 
 
@@ -205,20 +205,18 @@ const UserInfoComponent = () => {
             }
             break;
 
-
-        case 'Open Demo Account':
+        case 'Victorum Trade':
             if (user?.clientType) {
                 return (
                     <div>
                         <AppBarComponent/>
-                        <Notification/>
-                        {!isMobile && <CustomSideBar positionMenu={true}/>}
-                        <OpenDemoAccount/>
-                        <Footer/>
+                        {!isMobile && <CustomSideBar positionMenu={true} />}
+                        <VictorumTradeComponent />
                     </div>
                 );
             }
             break;
+
         case 'Open Live Account':
             if (user?.clientType) {
                 return (

@@ -100,6 +100,12 @@
         "kingMember": "King Member",
         "eliteMember": "Elite Member",
         "standardMember": "Standard Member"
+    },
+    "victorumTrade": {
+        "title": "Victorum Trade",
+        "description1": "Victorum Trade is part of the Victorum Group and is the world's leading B2B e-commerce platform, connecting buyers and suppliers worldwide. Victorum Trade focuses not only on China, India, Turkey, and Africa but also on the rapidly growing markets in Belarus, Kazakhstan, Brazil, and Korea. Whether a startup or a global player, the Victorum Trade team supports companies of all sizes, individual entrepreneurs, and individuals.",
+        "description2": "Victorum Trade unites more than 350,000 buyers and sellers with over 2.1 million inquiries per year across more than 11 product categories. Buyers and sellers worldwide benefit from over 350,000 registered users and a simple and user-friendly platform for selling goods.",
+        "visitButton": "Visit Victorum Trade Website"
     }
 
 

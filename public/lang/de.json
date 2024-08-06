@@ -88,6 +88,12 @@
     "profilePreApprovedText": "Daher können einige Funktionen eingeschränkt sein. <Link href='/'>Klicken Sie hier, um zu sehen, was genau fehlt</Link>",
     "verifyNow": "Jetzt verifizieren"
   },
+  "victorumTrade": {
+    "title": "Victorum Trade",
+    "description1": "Victorum Trade ist Teil der Victorum-Unternehmensgruppe und die weltweit führende B2B-E-Commerce-Plattform, die Käufer und Lieferanten weltweit zusammenbringt. Der Fokus von Victorum Trade liegt nicht nur auf China, Indien, der Türkei und Afrika, sondern auch auf den schnell wachsenden Märkten in Belarus, Kasachstan, Brasilien und Korea. Ob Start-up oder globaler Player, das Victorum Trade-Team unterstützt Unternehmen jeder Größe, Einzelunternehmer und Privatpersonen.",
+    "description2": "Victorum Trade vereint mehr als 350.000 Käufer und Verkäufer mit über 2,1 Millionen Anfragen pro Jahr in mehr als 11 Produktkategorien. Käufer und Verkäufer weltweit profitieren von über 350.000 registrierten Nutzern und einer einfachen und benutzerfreundlichen Plattform für den Warenverkauf.",
+    "visitButton": "Besuchen Sie die Victorum Trade Website"
+  },
   "dashboard": {
     "balance": "Balance",
     "investmentOverTime": "Investment Over Time",

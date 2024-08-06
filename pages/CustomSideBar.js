@@ -160,7 +160,7 @@ const CustomSideBar = ({ positionMenu }) => {
                             <ListItem button sx={{ pl: 4 }} onClick={() => window.open('https://www.vicpayments.com/', '_blank')} selected={activeMenuItem === getEnglishText('vicPay')}>
                                 <ListItemText primary={getText('vicPay')} primaryTypographyProps={{ style: { whiteSpace: 'normal', wordBreak: 'break-word' } }} />
                             </ListItem>
-                            <ListItem button sx={{ pl: 4 }} onClick={() => window.open('https://victorum-trade.com/', '_blank')} selected={activeMenuItem === getEnglishText('victorumTrade')}>
+                            <ListItem button sx={{ pl: 4 }} onClick={() => handleText('victorumTrade')} selected={activeMenuItem === getEnglishText('victorumTrade')}>
                                 <ListItemText primary={getText('victorumTrade')} primaryTypographyProps={{ style: { whiteSpace: 'normal', wordBreak: 'break-word' } }} />
                             </ListItem>
                         </List>
