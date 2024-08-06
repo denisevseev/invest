@@ -18,7 +18,7 @@ const Notification = ({ user }) => {
   const handleCloseModal = () => setModalOpen(false);
 
   return (
-      <Container sx={{ width: isMobile ? '100%' : '90%', mt: 4}}>
+      <Container sx={{ width: isMobile ? '100%' : '100%', mt: 4}}>
         <VerificationModal
             open={modalOpen}
             handleClose={handleCloseModal}
@@ -26,27 +26,25 @@ const Notification = ({ user }) => {
             user={user}
         />
         {!user.emailVerified && (
-            <Alert severity="warning" sx={{ fontSize: '1rem', mb: 2 }}>
-              <AlertTitle sx={{ fontSize: 'inherit' }}>Ihre E-Mail-Adresse ist noch nicht bestätigt!</AlertTitle>
-              <Typography sx={{ fontSize: 'inherit' }}>
+            <Alert severity="warning" sx={{ fontSize:  !isMobile ?  '1rem' : '1rem', mb: 2 }}>
+              <AlertTitle sx={{ fontSize: 'inherit' }}>Ihre E-Mail-Adresse ist noch nicht bestätigt!
                 Ihre E-Mail-Adresse <span style={{ fontWeight: 'bold' }}>{user?.email}</span> wurde noch nicht bestätigt. <Link href="#" onClick={() => handleOpenModal('email')}>Bestätigen Sie diese bitte hier</Link>.
-              </Typography>
+              </AlertTitle>
             </Alert>
         )}
         {!user.phoneVerified && (
-            <Alert severity="warning" sx={{ fontSize: '1rem', mb: 2 }}>
-              <AlertTitle sx={{ fontSize: 'inherit' }}>Ihre Telefonnummer ist noch nicht bestätigt!</AlertTitle>
-              <Typography sx={{ fontSize: 'inherit' }}>
+            <Alert severity="warning" sx={{ fontSize:  !isMobile ?  '1rem' : '1rem', mb: 2 }}>
+              <AlertTitle sx={{ fontSize: 'inherit' }}>Ihre Telefonnummer ist noch nicht bestätigt!
                 Ihre Telefonnummer <span style={{ fontWeight: 'bold' }}>{user?.phoneNumber}</span> wurde noch nicht bestätigt. <Link href="#" onClick={() => handleOpenModal('phone')}>Bestätigen Sie diese bitte hier</Link>.
-              </Typography>
+              </AlertTitle>
             </Alert>
         )}
         {!user.profileApproved && (
-            <Alert severity="warning" sx={{ fontSize: '1rem', mb: 2 }}>
-              <AlertTitle sx={{ fontSize: 'inherit' }}>Ihr Profil ist noch nicht vollständig</AlertTitle>
-              <Typography sx={{ fontSize: 'inherit' }}>
+            <Alert severity="warning" sx={{ fontSize:  !isMobile ?  '1rem' : '1rem', mb: 2 }}>
+              <AlertTitle sx={{ fontSize: 'inherit' }}>
+                Ihr Profil ist noch nicht vollständig
                 Daher sind einige Funktionen eingeschränkt. <Link href="/">Klicken Sie hier, um zu sehen, was genau fehlt</Link>.
-              </Typography>
+              </AlertTitle>
             </Alert>
         )}
       </Container>

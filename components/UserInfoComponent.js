@@ -185,15 +185,15 @@ const UserInfoComponent = () => {
                             marginTop: '80px',
                             marginLeft: '10%'
                         }}>
-                            <div style={{ maxWidth: '1200px', width: '100%' }}>
-                                <div style={{ display: 'flex'}}>
-                                    <div style={{ flex: 2 }}>
+                            <div style={{width: '100%' }}>
+                                {/*<div style={{ display: 'flex'}}>*/}
+                                    {/*<div style={{ flex: 2 }}>*/}
                                         <Notification />
-                                    </div>
-                                    <div style={{ flex: 2 }}>
-                                        {!isMobile && <VerificationOverview />}
-                                    </div>
-                                </div>
+                                    {/*</div>*/}
+                                    {/*<div style={{ flex: 2 }}>*/}
+                                    {/*    {!isMobile && <VerificationOverview />}*/}
+                                    {/*</div>*/}
+                                {/*</div>*/}
                                 <VerificationInfo />
                                 <UploadScansComponent />
                             </div>
