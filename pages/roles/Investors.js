@@ -9,20 +9,24 @@ const Investors = () => {
     const [investors, setInvestors] = useState([]);
     const [expanded, setExpanded] = useState({});
     const { user } = useFetchUser();
+    debugger
 
     const handleExpandClick = (id) => {
         setExpanded(prev => ({ ...prev, [id]: !prev[id] }));
     };
 
     useEffect(() => {
+        debugger
         if (user) {
+            if(user.role =! 'investor')
             fetchInvestors();
         }
     }, [user]);
 
     const fetchInvestors = async () => {
         const response = await fetch('/api/admin/getAllInvestorFiles');
-        const data = await response.json();
+        const data = await response.json()
+        debugger
         setInvestors(data);
     };
 
