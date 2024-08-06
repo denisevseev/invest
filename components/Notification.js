@@ -18,7 +18,7 @@ const Notification = ({ user }) => {
   const handleCloseModal = () => setModalOpen(false);
 
   return (
-      <Container sx={{ width: isMobile ? '100%' : '100%', mt: 4}}>
+      <Container sx={{ width: isMobile ? '100%' : '120%', mt: 4, ml: -5}}>
         <VerificationModal
             open={modalOpen}
             handleClose={handleCloseModal}
