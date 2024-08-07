@@ -94,6 +94,17 @@
     "description2": "Victorum Trade vereint mehr als 350.000 Käufer und Verkäufer mit über 2,1 Millionen Anfragen pro Jahr in mehr als 11 Produktkategorien. Käufer und Verkäufer weltweit profitieren von über 350.000 registrierten Nutzern und einer einfachen und benutzerfreundlichen Plattform für den Warenverkauf.",
     "visitButton": "Besuchen Sie die Victorum Trade Website"
   },
+  "victorumPay": {
+    "title": "Victorum Pay: Ihre sichere Zahlungsösung",
+    "description1": "In einer Welt, in der Sicherheit immer wichtiger wird, bietet Victorum Pay zukunftssichere und zuverlässige Fiat- und Kryptowährungszahlungen. Unsere Plattform ist darauf ausgelegt, die höchsten Sicherheitsstandards zu erfüllen und sicherzustellen, dass Ihre Transaktionen sicher und geschützt sind.",
+    "whyChooseTitle": "Warum Victorum Pay?",
+    "reason1": "Victorum Pay zeichnet sich als Leuchtfeuer des Vertrauens und der Innovation in der Finanzlandschaft aus. Wir bieten unseren Kunden eine einfache und intuitive moderne Alternative zu traditionellen Brokern oder Filialbanken. Unsere Dienstleistungen sind darauf zugeschnitten, den unterschiedlichen Bedürfnissen von Unternehmen und Einzelpersonen gerecht zu werden und bieten Flexibilität, Schnelligkeit und Sicherheit.",
+    "reason2": "Zukunftssichere Zahlungen: Erleben Sie die Zukunft der Finanzen mit unseren integrierten Fiat- und Kryptowährungszahlungslösungen. Victorum Pay unterstützt eine breite Palette digitaler Währungen und stellt sicher, dass Sie im sich schnell entwickelnden Finanzökosystem immer einen Schritt voraus sind.",
+    "reason3": "Zuverlässigkeit: Mit einem starken Fokus auf Zuverlässigkeit garantiert unsere Plattform reibungslose und ununterbrochene Transaktionen. Ob Sie es mit groß angelegten Geschäftszahlungen oder alltäglichen persönlichen Transaktionen zu tun haben, Victorum Pay ist Ihr verlässlicher Partner.",
+    "reason4": "Benutzerfreundliche Oberfläche: Unsere Plattform ist benutzerorientiert gestaltet. Genießen Sie ein nahtloses Erlebnis mit unserer intuitiven Benutzeroberfläche, die das Verwalten Ihrer Zahlungen mühelos macht.",
+    "reason5": "Umfassender Support: Wir glauben daran, unsere Kunden in jeder Phase zu unterstützen. Unser engagiertes Support-Team steht Ihnen jederzeit zur Verfügung, um Ihnen bei Fragen oder Problemen zu helfen.",
+    "discoverMore": "Mehr Erfahren"
+  },
   "dashboard": {
     "balance": "Balance",
     "investmentOverTime": "Investment Over Time",

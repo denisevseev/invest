@@ -28,6 +28,7 @@ import RegulationAuthority from "./RegulationAuthority";
 import VerificationInfo from "./VerificationInfo";
 import VerificationOverview from "./VerificationOverview";
 import VictorumTradeComponent from "./VictorumTradeComponent";
+import VictorumPayComponent from "./VictorumPayComponent";
 
 
 
@@ -91,6 +92,19 @@ const UserInfoComponent = () => {
                     </div>
                 );
             }
+
+        case 'VicPay':
+            if (user?.clientType) {
+                console.log('03363')
+                return (
+                    <Container>
+                        <AppBarComponent />
+                        {!isMobile && <CustomSideBar positionMenu={true} />}
+                        {user && <VictorumPayComponent/>}
+                    </Container>
+                );
+            }
+
 
         case 'Investors':
             return (
