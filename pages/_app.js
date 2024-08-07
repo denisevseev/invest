@@ -16,6 +16,7 @@ import LicenseAgreement from './LicenseAgreement';
 import AdminDashboard from './roles/AdminDashboard';
 import StatisticsChart from './roles/StatisticsChart';
 import { Container } from '@mui/material';
+import CustomSideBar from "./CustomSideBar";
 
 const theme = createTheme({
     typography: {
