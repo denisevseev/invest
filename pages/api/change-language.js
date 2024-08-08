@@ -6,7 +6,7 @@ const uri = process.env.MONGODB_URI;
 
 export default async function handler(req, res) {
     // Get the session from the request
-    const session = await getSession({ req });
+    // const session = await getSession({ req });
     //
     // if (!session) {
     //     return res.status(401).json({ message: 'Unauthorized' });

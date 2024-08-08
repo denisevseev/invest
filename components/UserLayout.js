@@ -53,7 +53,7 @@ const UserLayout = ({ children }) => {
             case 'Upload Scans':
                 return <UploadScansComponent />;
             case 'Economical Calendar':
-                return <EconomicalCalendar />;
+                return <Box ml={-42}><EconomicalCalendar />;</Box>
             case 'Live Currency Rates':
                 return <LiveCurrencyRates />;
             case 'Live Crypto Rates':
