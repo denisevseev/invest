@@ -1,4 +1,3 @@
-// pages/api/change-language.js
 import { MongoClient, ObjectId } from 'mongodb';
 import { getSession } from 'next-auth/react';
 
@@ -8,10 +7,12 @@ export default async function handler(req, res) {
     // Get the session from the request
     // const session = await getSession({ req });
     //
+    // // Дополнительная отладка
+    // console.log('Session:', session);
+    //
     // if (!session) {
     //     return res.status(401).json({ message: 'Unauthorized' });
     // }
-
 
     const { user, language } = req.body;
 
@@ -26,11 +27,23 @@ export default async function handler(req, res) {
         const db = client.db('victorum-portal'); // Replace with your database name
         const usersCollection = db.collection('users');
 
+        // Дополнительная отладка
+        console.log('Updating user:', user);
+        console.log('New language:', language);
+
+        const userDocument = await usersCollection.findOne({ _id: new ObjectId(user._id) });
+        console.log('User document:', userDocument);
+
+        if (!userDocument) {
+            return res.status(404).json({ message: 'User not found' });
+        }
+
         const result = await usersCollection.updateOne(
             { _id: new ObjectId(user._id) },
             { $set: { language } }
         );
-        console.log(user._id, result)
+
+        console.log('Update result:', result);
 
         if (result.modifiedCount === 1) {
             res.status(200).json({ message: 'Language updated successfully' });
@@ -44,5 +57,3 @@ export default async function handler(req, res) {
         await client.close();
     }
 }
-
-
