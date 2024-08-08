@@ -18,7 +18,6 @@ const AppBarComponent = () => {
     const theme = useTheme();
     const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
     const isTablet = useMediaQuery(theme.breakpoints.between('sm', 'md'));
-    const isDesktop = useMediaQuery(theme.breakpoints.up('md'));
     const [mobileOpen, setMobileOpen] = useState(false);
     const [anchorEl, setAnchorEl] = useState(null);
     const { data: session } = useSession();
@@ -163,16 +162,21 @@ const AppBarComponent = () => {
             <Drawer
                 variant={(isMobile || isTablet) ? "temporary" : "permanent"}
                 anchor="left"
-                open={(isMobile || isTablet) ? mobileOpen : true}
+                open={mobileOpen || !isMobile && !isTablet}
                 onClose={handleDrawerToggle}
                 ModalProps={{
                     keepMounted: true, // Better open performance on mobile.
                 }}
                 sx={{
-                    '& .MuiDrawer-paper': { boxSizing: 'border-box', mt: isMobile ? '60px' : '80px' },
+                    '& .MuiDrawer-paper': {
+                        boxSizing: 'border-box',
+                        width: isMobile ? 300 : 200, // Ensure consistent width
+                        position: 'fixed', // Ensure the drawer is fixed position
+                    },
                 }}
             >
-                {user && user.role ? (
+
+            {user && user.role ? (
                     user.role === 'investor' ? '' : <SideMenu role={user.role} />
                 ) : (
                     <div></div>

@@ -34,6 +34,7 @@ const UserLayout = ({ children }) => {
     const { user, loading } = useFetchUser();
     const theme = useTheme();
     const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
+    const isTablet = useMediaQuery(theme.breakpoints.between('sm', 'md'));
 
     const renderComponent = () => {
         switch (selectedComponent) {
@@ -153,7 +154,7 @@ const UserLayout = ({ children }) => {
         <div>
             <AppBarComponent />
             <div>
-                <CustomSideBar onMenuItemClick={setSelectedComponent} />
+                {!isMobile  && !isTablet && <CustomSideBar onMenuItemClick={setSelectedComponent} />}
                 <main >
                     {renderComponent()}
                 </main>

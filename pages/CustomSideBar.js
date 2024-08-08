@@ -33,7 +33,6 @@ const CustomSideBar = ({ onMenuItemClick, positionMenu }) => {
     // Определение переводов на основе выбранного языка
     const translations = lang === 'de' ? de : en;
 
-
     // Функция для получения перевода текста
     const getText = (key) => {
         return translations.sidebar[key] || key;
@@ -90,6 +89,7 @@ const CustomSideBar = ({ onMenuItemClick, positionMenu }) => {
             sx={{
                 width: 240,
                 flexShrink: 0,
+                fontSize: '40px',
                 '& .MuiDrawer-paper': {
                     width: 200,
                     boxSizing: 'border-box',

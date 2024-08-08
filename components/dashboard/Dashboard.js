@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { Box, Grid, Paper, Typography, Slider } from '@mui/material';
+import {Box, Grid, Paper, Typography, Slider, useMediaQuery, ThemeProvider, useTheme} from '@mui/material'; // Import ThemeProvider
+import { createTheme } from '@mui/material/styles'; // Import createTheme
 import { PieChart, Pie, Cell, BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, LineChart, Line, Legend } from 'recharts';
 import { observer } from 'mobx-react-lite';
 import store from './../../stores/userStore';
@@ -145,6 +146,11 @@ const Dashboard = observer(() => {
     const lang = store.lang === 'de' ? de : en;
     const [expanded, setExpanded] = useState(null);
     const { investmentAmount } = store;
+    const theme = useTheme();
+    const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
+    const isTablet = useMediaQuery(theme.breakpoints.between('sm', 'md'));
+    const isLg = useMediaQuery(theme.breakpoints.between('md', 'lg'));
+    const isXl = useMediaQuery(theme.breakpoints.up('lg'));
 
     useEffect(() => {
         const handleClickOutside = (event) => {
@@ -169,7 +175,7 @@ const Dashboard = observer(() => {
     return (
         <Box>
             <BalanceHeader />
-            <Box sx={{ p: 2, ml: 25 }} maxWidth={"lg"}>
+            <Box sx={{ p: 2, ml: !isMobile && !isTablet ? 25: 2 }} maxWidth={"lg"}>
                 <Grid container spacing={2}>
                     {[
                         lang.dashboard.investmentOverTime,
@@ -179,7 +185,7 @@ const Dashboard = observer(() => {
                         lang.dashboard.statusOverview,
                         lang.dashboard.randomCurve
                     ].map((title, index) => (
-                        <Grid item xs={12} md={4} key={title} onClick={() => handleExpand(index)}>
+                        <Grid item xs={12} md={isLg  ? 6 :  4} key={title} onClick={() => handleExpand(index)}>
                             <Paper
                                 className={expanded === index ? 'expanded-widget' : ''}
                                 sx={{
