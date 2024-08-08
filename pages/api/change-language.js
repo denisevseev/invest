@@ -28,8 +28,8 @@ export default async function handler(req, res) {
         console.log('New language:', language);
 
         // Преобразование _id в ObjectId
-        const userId = new ObjectId(user._id);
-        console.log('Converted userId:', userId);
+        const userId = user._id
+
 
         const userDocument = await usersCollection.findOne({ _id: userId });
         console.log('User document before update:', userDocument);
