@@ -30,6 +30,7 @@ export default async function handler(req, res) {
             { _id: new ObjectId(user._id) },
             { $set: { language } }
         );
+        console.log(result)
 
         if (result.modifiedCount === 1) {
             res.status(200).json({ message: 'Language updated successfully' });
