@@ -9,7 +9,8 @@ export default function Logo() {
     const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
 
     const handleClick = () => {
-        router.push('/');
+        window.location.reload()
+        // alert(1)
     };
 
     return (

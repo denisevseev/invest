@@ -3,7 +3,7 @@ import { Box, Typography, Grid } from '@mui/material';
 
 const VerificationInfo = () => {
     return (
-        <Box sx={{ mt: 4, p: 2, borderRadius: '8px', backgroundColor: 'rgba(255, 255, 255, 0.9)' }}>
+        <Box sx={{ mt: 4, p: 2, ml:20, borderRadius: '8px', backgroundColor: 'rgba(255, 255, 255, 0.9)' }}>
             {/*<Typography variant="h4" gutterBottom align="center">*/}
             {/*    Why Verification Matters*/}
             {/*</Typography>*/}

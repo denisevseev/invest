@@ -33,6 +33,7 @@ const CustomSideBar = ({ onMenuItemClick, positionMenu }) => {
     // Определение переводов на основе выбранного языка
     const translations = lang === 'de' ? de : en;
 
+
     // Функция для получения перевода текста
     const getText = (key) => {
         return translations.sidebar[key] || key;
@@ -94,7 +95,7 @@ const CustomSideBar = ({ onMenuItemClick, positionMenu }) => {
                     boxSizing: 'border-box',
                     position: 'fixed',
                     top: '80px', // Adjust this value to match your app bar height
-                    height: 'calc(100% - 64px)',
+                    height: 'calc(100% - 80px)',
                 },
             }}
         >

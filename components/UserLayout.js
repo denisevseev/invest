@@ -1,6 +1,6 @@
 // components/UserLayout.js
 import React, { useState } from 'react';
-import { Box, Container, useTheme, useMediaQuery } from '@mui/material';
+import { Box, Container, useTheme, useMediaQuery, Grid } from '@mui/material';
 import AppBarComponent from './AppBar';
 import Footer from './Footer';
 import CustomSideBar from '../pages/CustomSideBar';
@@ -80,8 +80,17 @@ const UserLayout = ({ children }) => {
             case 'Identification Documents':
                 return (
                     <Box p={10}>
-                        <Notification />
-                        <UploadScansComponent />
+                        <Grid container spacing={2}>
+                            <Grid item xs={12}>
+                                <Notification />
+                            </Grid>
+                            <Grid item xs={12}>
+                                <VerificationInfo />
+                            </Grid>
+                            <Grid item xs={12}>
+                                <UploadScansComponent />
+                            </Grid>
+                        </Grid>
                     </Box>
                 ); // Assuming combined components
             case 'Profile':
@@ -89,7 +98,9 @@ const UserLayout = ({ children }) => {
             case 'Presentation':
                 return <Dashboard />; // Assuming Dashboard is the correct component
             case 'VicPay':
-                return <VictorumPayComponent />; // Assuming VictorumPayComponent is the correct component
+                return <Box>
+                    <VictorumPayComponent />
+                </Box>; // Assuming VictorumPayComponent is the correct component
             case 'Victorum Trade':
                 return <VictorumTradeComponent />; // Assuming VictorumTradeComponent is the correct component
             case 'Corporate Finance':
@@ -123,7 +134,7 @@ const UserLayout = ({ children }) => {
             case 'Change Password':
                 return <Notification />; // Assuming Notification is the correct component
             default:
-                return children;
+                return <Dashboard/>;
         }
     };
 
@@ -142,7 +153,7 @@ const UserLayout = ({ children }) => {
         <div>
             <AppBarComponent />
             <div>
-                    <CustomSideBar onMenuItemClick={setSelectedComponent} />
+                <CustomSideBar onMenuItemClick={setSelectedComponent} />
                 <main >
                     {renderComponent()}
                 </main>

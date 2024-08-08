@@ -153,7 +153,7 @@ const UploadScansComponent = () => {
     );
 
     return (
-        <Box sx={{ maxWidth: 900, mx: 'auto', mt: 2, padding: 3 }}>
+        <Box sx={{ maxWidth: 900, mx: 'auto', mt: 2, padding: 3, ml: 30 }}>
             {passportFiles.length < 2 && (
                 <>
                     <Typography variant="h5" gutterBottom>

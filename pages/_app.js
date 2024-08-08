@@ -38,7 +38,6 @@ const MyApp = ({ Component, pageProps }) => {
         'RegisterInvestor'
     ].includes(Component.name);
     const other = ['Home', 'Managers'].includes(Component.name);
-    debugger
     useEffect(() => {
         const mainHeader = document.querySelector('.mainHeader');
         if (mainHeader) {
@@ -86,9 +85,12 @@ const MyApp = ({ Component, pageProps }) => {
                         <Component rout = {Component.name} {...pageProps} />
                     </UserLayout>
                 ) : (
-                    <Layout>
-                        <Component {...pageProps} />
-                    </Layout>
+                    // <Layout>
+                    //     <Component {...pageProps} />
+                    // </Layout>
+                    <UserLayout>
+                        <Component rout = {Component.name} {...pageProps} />
+                    </UserLayout>
                 )}
             </ThemeProvider>
         </SessionProvider>
