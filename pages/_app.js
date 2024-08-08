@@ -82,9 +82,9 @@ const MyApp = ({ Component, pageProps }) => {
                         <Component {...pageProps} />
                     </AppBarLayout>
                 ) : other ? (
-                    // <UserLayout>
-                        <UserInfoComponent rout = {Component.name} {...pageProps} />
-
+                    <UserLayout>
+                        <Component rout = {Component.name} {...pageProps} />
+                    </UserLayout>
                 ) : (
                     <Layout>
                         <Component {...pageProps} />
@@ -96,3 +96,4 @@ const MyApp = ({ Component, pageProps }) => {
 };
 
 export default MyApp;
+

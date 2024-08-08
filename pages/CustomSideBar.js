@@ -8,7 +8,6 @@ import {
     ListSubheader,
     Collapse,
     Box,
-    styled,
     useTheme,
     useMediaQuery
 } from '@mui/material';
@@ -22,15 +21,13 @@ import { useRouter } from 'next/router';
 import store from "../stores/userStore";
 import en from './../public/lang/en.json';
 import de from './../public/lang/de.json';
-import useFetchUser from "../stores/hooks/useFetchUser";
+import useFetchUser from './../stores/hooks/useFetchUser';
 
-const CustomSideBar = ({ positionMenu }) => {
+const CustomSideBar = ({ onMenuItemClick, positionMenu }) => {
     const router = useRouter();
     const theme = useTheme();
-    const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
-    const isTablet = useMediaQuery(theme.breakpoints.between('sm', 'md'));
     const { user, loading } = useFetchUser();
-    store.lang =  user?.language
+    store.lang = user?.language;
     const lang = store.lang;
 
     // Определение переводов на основе выбранного языка
@@ -78,33 +75,27 @@ const CustomSideBar = ({ positionMenu }) => {
         setOpenHelp(!openHelp);
     };
 
-    const handleText = (key) => {
-        const text = getEnglishText(key);
-        console.log('Clicked text:', text);
+    const handleText = (componentName) => {
+        const text = getEnglishText(componentName);
         setActiveMenuItem(text);
         store.routeLink = text; // сохраняем значение на английском языке
-    };
-
-    const StyledDrawer = styled(Drawer)(({ theme }) => ({
-        '& .MuiDrawer-paper': {
-            width: isMobile ? 260 : 200, // Увеличенная ширина
-            boxSizing: 'border-box',
-            // display: 'none',
-        },
-    }));
-
-    const handleClick = () => {
-        window.open('https://www.victorum-capital.com/wp-content/uploads/2021/12/Victorum_Catalog.pdf', '_blank');
+        onMenuItemClick(text);
     };
 
     return (
-        <StyledDrawer
+        <Drawer
             variant="permanent"
             anchor="left"
             sx={{
                 width: 240,
                 flexShrink: 0,
-                position: 'absolute'
+                '& .MuiDrawer-paper': {
+                    width: 200,
+                    boxSizing: 'border-box',
+                    position: 'fixed',
+                    top: '80px', // Adjust this value to match your app bar height
+                    height: 'calc(100% - 64px)',
+                },
             }}
         >
             <Box sx={{ overflow: 'auto', marginTop: positionMenu && '6rem' }}>
@@ -154,7 +145,7 @@ const CustomSideBar = ({ positionMenu }) => {
                             <ListItem button sx={{ pl: 4 }} onClick={() => handleText('profile')} selected={activeMenuItem === getEnglishText('profile')}>
                                 <ListItemText primary={getText('profile')} primaryTypographyProps={{ style: { whiteSpace: 'normal', wordBreak: 'break-word' } }} />
                             </ListItem>
-                            <ListItem button sx={{ pl: 4 }} onClick={handleClick} selected={activeMenuItem === getEnglishText('presentation')}>
+                            <ListItem button sx={{ pl: 4 }} onClick={() => handleText('presentation')} selected={activeMenuItem === getEnglishText('presentation')}>
                                 <ListItemText primary={getText('presentation')} primaryTypographyProps={{ style: { whiteSpace: 'normal', wordBreak: 'break-word' } }} />
                             </ListItem>
                             <ListItem button sx={{ pl: 4 }} onClick={() => handleText('vicPay')} selected={activeMenuItem === getEnglishText('vicPay')}>
@@ -263,10 +254,8 @@ const CustomSideBar = ({ positionMenu }) => {
                     </Collapse>
                 </List>
             </Box>
-        </StyledDrawer>
+        </Drawer>
     );
 };
 
 export default CustomSideBar;
-CustomSideBar.js
-
