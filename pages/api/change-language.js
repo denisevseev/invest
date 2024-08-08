@@ -4,11 +4,7 @@ import { getSession } from 'next-auth/react';
 const uri = process.env.MONGODB_URI;
 
 export default async function handler(req, res) {
-    // Get the session from the request
     // const session = await getSession({ req });
-    //
-    // // Дополнительная отладка
-    // console.log('Session:', session);
     //
     // if (!session) {
     //     return res.status(401).json({ message: 'Unauthorized' });
@@ -31,21 +27,28 @@ export default async function handler(req, res) {
         console.log('Updating user:', user);
         console.log('New language:', language);
 
-        const userDocument = await usersCollection.findOne({ _id: new ObjectId(user._id) });
-        console.log('User document:', userDocument);
+        // Преобразование _id в ObjectId
+        const userId = new ObjectId(user._id);
+        console.log('Converted userId:', userId);
+
+        const userDocument = await usersCollection.findOne({ _id: userId });
+        console.log('User document before update:', userDocument);
 
         if (!userDocument) {
             return res.status(404).json({ message: 'User not found' });
         }
 
         const result = await usersCollection.updateOne(
-            { _id: new ObjectId(user._id) },
-            { $set: { language } }
+            { _id: userId },
+            { $set: { language: language } }
         );
 
         console.log('Update result:', result);
 
         if (result.modifiedCount === 1) {
+            const updatedUserDocument = await usersCollection.findOne({ _id: userId });
+            console.log('User document after update:', updatedUserDocument);
+
             res.status(200).json({ message: 'Language updated successfully' });
         } else {
             res.status(400).json({ message: 'Failed to update language' });
