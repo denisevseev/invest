@@ -17,6 +17,8 @@ import AdminDashboard from './roles/AdminDashboard';
 import StatisticsChart from './roles/StatisticsChart';
 import { Container } from '@mui/material';
 import CustomSideBar from "./CustomSideBar";
+import UserLayout from "../components/UserLayout";
+import { Box, Grid, Paper, Typography, Slider } from '@mui/material';
 
 const theme = createTheme({
     typography: {
@@ -36,13 +38,14 @@ const MyApp = ({ Component, pageProps }) => {
         'RegisterInvestor'
     ].includes(Component.name);
     const other = ['Home', 'Managers'].includes(Component.name);
+    debugger
     useEffect(() => {
         const mainHeader = document.querySelector('.mainHeader');
         if (mainHeader) {
             mainHeader.style.display = 'none';
         }
     }, []);
-    debugger
+
 
 
     if (Component.name === 'InvestorAgreement') {
@@ -79,7 +82,9 @@ const MyApp = ({ Component, pageProps }) => {
                         <Component {...pageProps} />
                     </AppBarLayout>
                 ) : other ? (
-                    <UserInfoComponent rout = {Component.name} {...pageProps} />
+                    // <UserLayout>
+                        <UserInfoComponent rout = {Component.name} {...pageProps} />
+
                 ) : (
                     <Layout>
                         <Component {...pageProps} />

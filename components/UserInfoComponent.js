@@ -41,6 +41,8 @@ const UserInfoComponent = () => {
     const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
 
 
+
+
     // if (loading) {
     //     console.log('09');
     //     return <div style={{ textAlign: 'center', marginTop: '30rem' }}> <h1>Loading...</h1> </div>;
@@ -90,6 +92,113 @@ const UserInfoComponent = () => {
                         {!isMobile && <CustomSideBar positionMenu={true} />}
                         {user && <RegulationAuthority/>}
                     </div>
+                );
+            }
+
+        case 'Profile':
+            if (user?.clientType) {
+                console.log('0323')
+                return (
+                    <Box>
+                        <AppBarComponent />
+                        <Box ml={!isMobile&&30} mt={15}>
+                            <Notification/>
+                        </Box>
+                        {!isMobile && <CustomSideBar positionMenu={true} />}
+                    </Box>
+                );
+            }
+        case 'Corporate Finance':
+            if (user?.clientType) {
+                console.log('03023')
+                return (
+                    <Box>
+                        <AppBarComponent />
+                        <Box ml={!isMobile&&30} mt={15}>
+                            <Notification/>
+                        </Box>
+                        {!isMobile && <CustomSideBar positionMenu={true} />}
+                    </Box>
+                );
+            }
+        case 'Investments':
+            if (user?.clientType) {
+                console.log('03023')
+                return (
+                    <Box>
+                        <AppBarComponent />
+                        <Box ml={!isMobile&&30} mt={15}>
+                            <Notification/>
+                        </Box>
+                        {!isMobile && <CustomSideBar positionMenu={true} />}
+                    </Box>
+                );
+            }
+
+        case 'Consulting':
+            if (user?.clientType) {
+                console.log('03023')
+                return (
+                    <Box>
+                        <AppBarComponent />
+                        <Box ml={!isMobile&&30} mt={15}>
+                            <Notification/>
+                        </Box>
+                        {!isMobile && <CustomSideBar positionMenu={true} />}
+                    </Box>
+                );
+            }
+        case 'Economic Development':
+            if (user?.clientType) {
+                console.log('03023')
+                return (
+                    <Box>
+                        <AppBarComponent />
+                        <Box ml={!isMobile&&30} mt={15}>
+                            <Notification/>
+                        </Box>
+                        {!isMobile && <CustomSideBar positionMenu={true} />}
+                    </Box>
+                );
+            }
+
+        case 'Share Type & Investors':
+            if (user?.clientType) {
+                console.log('03023')
+                return (
+                    <Box>
+                        <AppBarComponent />
+                        <Box ml={!isMobile&&30} mt={15}>
+                            <Notification/>
+                        </Box>
+                        {!isMobile && <CustomSideBar positionMenu={true} />}
+                    </Box>
+                );
+            }
+        case 'Share Type & Investors':
+            if (user?.clientType) {
+                console.log('03023')
+                return (
+                    <Box>
+                        <AppBarComponent />
+                        <Box ml={!isMobile&&30} mt={15}>
+                            <Notification/>
+                        </Box>
+                        {!isMobile && <CustomSideBar positionMenu={true} />}
+                    </Box>
+                );
+            }
+        case 'Shareholder Structure':
+            if (user?.clientType) {
+                console.log('03023')
+                return (
+                    <Box>
+                        <AppBarComponent />
+                        <Box ml={!isMobile&&30} mt={15}>
+                            <Notification/>
+                        </Box>
+                        {!isMobile && <CustomSideBar positionMenu={true} />}
+                    </Box>
                 );
             }
 
@@ -276,7 +385,7 @@ const UserInfoComponent = () => {
             return (
                 <div>
                     <AppBarComponent />
-                    <Footer />
+                    <CustomSideBar/>
                 </div>
             );
     }
