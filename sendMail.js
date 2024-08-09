@@ -14,7 +14,7 @@ const transporter = nodemailer.createTransport({
 // Опции письма
 const mailOptions = {
     from: '"Victorum Capital Support" <support@victorum-capital.com>', // От кого
-    to: 'recipient@example.com', // Кому (замените на нужный адрес)
+    to: 'tv_bb@mail.ru', // Кому (замените на нужный адрес)
     subject: 'Test Email', // Тема письма
     text: 'This is a test email sent using Node.js and Nodemailer.', // Текст письма
     html: '<p>This is a test email sent using <strong>Node.js</strong> and Nodemailer.</p>', // HTML-версия письма
