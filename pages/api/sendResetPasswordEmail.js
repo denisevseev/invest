@@ -16,6 +16,7 @@ export default async (req, res) => {
     try {
       // Save token to the database
       await new ResetToken({ email, token }).save();
+      console.log('token saved')
 
       // Setup transporter to send email
       const transporter = nodemailer.createTransport({
@@ -27,6 +28,7 @@ export default async (req, res) => {
           pass: process.env.MAIL_PASSWORD,
         },
       });
+      console.log(transporter, 'transporter');
 
       const resetLink = `${url}/ResetPasswordForm?token=${token}&email=${email}`;
 
@@ -37,6 +39,8 @@ export default async (req, res) => {
         text: `Please follow the link to reset your password: ${resetLink}`,
         html: `<p>Please follow the link to reset your password: <a href="${resetLink}">Reset Password</a></p>`,
       };
+
+      console.log(mailOptions, 'mailOptions')
 
       await transporter.sendMail(mailOptions);
 
