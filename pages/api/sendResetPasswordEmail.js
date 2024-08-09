@@ -24,7 +24,7 @@ export default async (req, res) => {
         port: 465,
         secure: true, // true для 465, false для других портов
         auth: {
-          user: 'Victorum Capital Support', // Логин для авторизации на SMTP сервере
+          user: 'support@victorum-capital.com', // Логин для авторизации на SMTP сервере
           pass: 'ChghryXLe7JBHjtaJPiw', // Пароль для авторизации на SMTP сервере
         },
       });
