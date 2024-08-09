@@ -10,15 +10,15 @@ export default async (req, res) => {
     const { email } = req.body;
     const url = process.env.NEXTAUTH_URL;
 
-    // Generate unique token
+    // Генерация уникального токена
     const token = crypto.randomBytes(32).toString('hex');
 
     try {
-      // Save token to the database
+      // Сохранение токена в базе данных
       await new ResetToken({ email, token }).save();
-      console.log('token saved')
+      console.log('Token saved');
 
-      // Setup transporter to send email
+      // Настройка транспортера для отправки письма
       const transporter = nodemailer.createTransport({
         host: process.env.MAIL_HOST,
         port: process.env.MAIL_PORT,
@@ -28,7 +28,7 @@ export default async (req, res) => {
           pass: process.env.MAIL_PASSWORD,
         },
       });
-      console.log(transporter, 'transporter');
+      // console.log('Transporter:', transporter);
 
       const resetLink = `${url}/ResetPasswordForm?token=${token}&email=${email}`;
 
@@ -40,19 +40,17 @@ export default async (req, res) => {
         html: `<p>Please follow the link to reset your password: <a href="${resetLink}">Reset Password</a></p>`,
       };
 
-      console.log(mailOptions, 'mailOptions')
+      // console.log('Mail options:', mailOptions);
 
+      // Отправка письма
       await transporter.sendMail(mailOptions);
 
       res.status(200).json({ message: 'Email sent' });
     } catch (error) {
+      console.error('Error sending email:', error);
       res.status(500).json({ error: 'Error sending email' });
     }
   } else {
     res.status(405).json({ error: 'Method Not Allowed' });
   }
 };
-
-
-
-
