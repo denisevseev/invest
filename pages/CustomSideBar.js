@@ -146,7 +146,7 @@ const CustomSideBar = ({ onMenuItemClick, positionMenu }) => {
                             <ListItem button sx={{ pl: 4 }} onClick={() => handleText('profile')} selected={activeMenuItem === getEnglishText('profile')}>
                                 <ListItemText primary={getText('profile')} primaryTypographyProps={{ style: { whiteSpace: 'normal', wordBreak: 'break-word' } }} />
                             </ListItem>
-                            <ListItem button sx={{ pl: 4 }} onClick={() => handleText('presentation')} selected={activeMenuItem === getEnglishText('presentation')}>
+                            <ListItem button sx={{ pl: 4 }} onClick={() => window.open('https://www.victorum-capital.com/wp-content/uploads/2021/12/Victorum_Catalog.pdf', '_blank', 'noopener,noreferrer')} selected={activeMenuItem === getEnglishText('presentation')}>
                                 <ListItemText primary={getText('presentation')} primaryTypographyProps={{ style: { whiteSpace: 'normal', wordBreak: 'break-word' } }} />
                             </ListItem>
                             <ListItem button sx={{ pl: 4 }} onClick={() => handleText('vicPay')} selected={activeMenuItem === getEnglishText('vicPay')}>

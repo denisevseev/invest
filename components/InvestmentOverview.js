@@ -13,7 +13,7 @@ const InvestmentOverview = () => {
             </Typography>
             <CardMedia
                 component="img"
-                height="300"
+                height={isMobile ? 300 : 600}
                 image="/images/invOwer.jpg" // Replace with the path to your image
                 alt="Investment"
                 sx={{ mb: 4 }}

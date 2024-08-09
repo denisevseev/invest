@@ -29,6 +29,7 @@ import useFetchUser from './../stores/hooks/useFetchUser';
 import Login from "../pages/login";
 import MyAgreements from "./MyAgreements";
 import InvestmentOverview from "./InvestmentOverview";
+import ShareSubscription from "./ShareSubscription";
 
 const UserLayout = ({ children }) => {
     const [selectedComponent, setSelectedComponent] = useState(null);
@@ -79,7 +80,7 @@ const UserLayout = ({ children }) => {
             case 'Investment Overview':
                 return <InvestmentOverview />; // Assuming Notification is the correct component
             case 'Share Subscription':
-                return <UploadScansComponent />; // Assuming UploadScansComponent is the correct component
+                return <ShareSubscription />; // Assuming UploadScansComponent is the correct component
             case 'Identification Documents':
                 return (
                     <Box p={10}>

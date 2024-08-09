@@ -36,7 +36,7 @@ const VictorumTradeComponent = () => {
     const { victorumTrade } = language;
 
     return (
-        <Box sx={{ width: isMobile ? '100%' : '80%', ml: isMobile ? 1 : 30, mt: 12, textAlign: 'center' }}>
+        <Box sx={{width: isMobile ? '100%' : '80%', ml: isMobile ? 1 : 30, mt: 12, textAlign: 'center'}}>
             <Typography
                 variant="h4"
                 align={isMobile ? 'center' : 'center'}
@@ -53,13 +53,15 @@ const VictorumTradeComponent = () => {
             >
                 {victorumTrade.title}
             </Typography>
-            <Divider />
-            <Box component="img" src="/images/trade.png" alt="Victorum Trade" sx={{ width: '100%', opacity: 0.7 }} />
-            <Box sx={{ textAlign: 'left', maxWidth: '100%', p: isMobile ? 1 : 3 }}>
-                <Typography variant="body1" paragraph sx={{ fontSize: isMobile ? '22px' : '21px' }}>
+            <Divider/>
+            <a href="https://victorum-trade.com/" target="_blank" rel="noopener noreferrer">
+                <Box component="img" src="/images/trade.png" alt="Victorum Trade" sx={{width: '100%', opacity: 0.7}}/>
+            </a>
+            <Box sx={{textAlign: 'left', maxWidth: '100%', p: isMobile ? 1 : 3}}>
+                <Typography variant="body1" paragraph sx={{fontSize: isMobile ? '22px' : '21px'}}>
                     {victorumTrade.description1}
                 </Typography>
-                <Typography variant="body1" paragraph sx={{ fontSize: isMobile ? '22px' : '21px' }}>
+                <Typography variant="body1" paragraph sx={{fontSize: isMobile ? '22px' : '21px'}}>
                     {victorumTrade.description2}
                 </Typography>
                 <Box textAlign="center" mt={2}>
@@ -69,7 +71,7 @@ const VictorumTradeComponent = () => {
                         target="_blank"
                         rel="noopener"
                     >
-                        <Typography variant="body1" sx={{ fontSize: isMobile ? '22px' : '21px' }}>
+                        <Typography variant="body1" sx={{fontSize: isMobile ? '22px' : '21px'}}>
                             {victorumTrade.visitButton}
                         </Typography>
                     </StyledButton>
