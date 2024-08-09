@@ -23,6 +23,7 @@ const AppBarComponent = () => {
     const { data: session } = useSession();
     const router = useRouter();
     const { user, loading } = useFetchUser();
+    store.sessionUser = user
 
     const handleDrawerToggle = () => {
         setMobileOpen(!mobileOpen);

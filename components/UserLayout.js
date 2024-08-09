@@ -30,6 +30,7 @@ import Login from "../pages/login";
 import MyAgreements from "./MyAgreements";
 import InvestmentOverview from "./InvestmentOverview";
 import ShareSubscription from "./ShareSubscription";
+import ChangePassword from "./ChangePassword";
 
 const UserLayout = ({ children }) => {
     const [selectedComponent, setSelectedComponent] = useState(null);
@@ -136,7 +137,7 @@ const UserLayout = ({ children }) => {
             case 'FAQ':
                 return <Notification />; // Assuming Notification is the correct component
             case 'Change Password':
-                return <Notification />; // Assuming Notification is the correct component
+                return <ChangePassword />; // Assuming Notification is the correct component
             default:
                 return <Dashboard/>;
         }

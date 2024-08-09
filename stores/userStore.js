@@ -23,6 +23,7 @@ class UserStore {
   RiskAcceptanceModal = true
   acceptedRisks = false
   lang = "en"
+  sessionUser = null
 
   //stepTwo
   dateOfBirth = null
@@ -69,6 +70,7 @@ class UserStore {
       city: observable,
       RiskAcceptanceModal: observable,
       lang: observable,
+      sessionUser: observable,
     });
   }
 
