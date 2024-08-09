@@ -27,6 +27,8 @@ import { observer } from 'mobx-react-lite';
 import { useSession } from 'next-auth/react';
 import useFetchUser from './../stores/hooks/useFetchUser';
 import Login from "../pages/login";
+import MyAgreements from "./MyAgreements";
+import InvestmentOverview from "./InvestmentOverview";
 
 const UserLayout = ({ children }) => {
     const [selectedComponent, setSelectedComponent] = useState(null);
@@ -73,9 +75,9 @@ const UserLayout = ({ children }) => {
             case 'Personal Information':
                 return <UserSurveyResults user={user} />; // Assuming UserSurveyResults is the correct component
             case 'My Agreements':
-                return <Notification />; // Assuming Notification is the correct component
+                return <MyAgreements />; // Assuming Notification is the correct component
             case 'Investment Overview':
-                return <Notification />; // Assuming Notification is the correct component
+                return <InvestmentOverview />; // Assuming Notification is the correct component
             case 'Share Subscription':
                 return <UploadScansComponent />; // Assuming UploadScansComponent is the correct component
             case 'Identification Documents':
