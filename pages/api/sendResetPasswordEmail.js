@@ -20,27 +20,26 @@ export default async (req, res) => {
 
       // Настройка транспортера для отправки письма
       const transporter = nodemailer.createTransport({
-        host: process.env.MAIL_HOST,
-        port: process.env.MAIL_PORT,
-        secure: true,
+        host: 'smtp.mail.ru',
+        port: 465,
+        secure: true, // true для 465, false для других портов
         auth: {
-          user: process.env.MAIL_USERNAME,
-          pass: process.env.MAIL_PASSWORD,
+          user: 'Victorum Capital Support', // Логин для авторизации на SMTP сервере
+          pass: 'ChghryXLe7JBHjtaJPiw', // Пароль для авторизации на SMTP сервере
         },
       });
-      // console.log('Transporter:', transporter);
 
       const resetLink = `${url}/ResetPasswordForm?token=${token}&email=${email}`;
 
       const mailOptions = {
-        from: `"Victorum Capital Support" <${process.env.MAIL_USERNAME}>`,
+        from: '"Victorum Capital Support" <support@victorum-capital.com>',
         to: email,
         subject: 'Password Reset',
         text: `Please follow the link to reset your password: ${resetLink}`,
         html: `<p>Please follow the link to reset your password: <a href="${resetLink}">Reset Password</a></p>`,
       };
 
-      // console.log('Mail options:', mailOptions);
+      console.log('Mail options:', mailOptions);
 
       // Отправка письма
       await transporter.sendMail(mailOptions);
