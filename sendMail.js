@@ -6,7 +6,7 @@ const transporter = nodemailer.createTransport({
     port: 465,
     secure: true, // true для 465 порта, иначе false
     auth: {
-        user: 'Victorum Capital Support', // Имя пользователя (логин)
+        user: 'support@victorum-capital.com', // Имя пользователя (логин)
         pass: 'ChghryXLe7JBHjtaJPiw', // Пароль для SMTP сервера
     },
 });
