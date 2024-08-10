@@ -33,7 +33,6 @@ import ShareSubscription from "./ShareSubscription";
 import ChangePassword from "./ChangePassword";
 
 const UserLayout = ({ children }) => {
-    const [selectedComponent, setSelectedComponent] = useState(null);
     const { data: session } = useSession();
     const { user, loading } = useFetchUser();
     const theme = useTheme();
@@ -41,7 +40,7 @@ const UserLayout = ({ children }) => {
     const isTablet = useMediaQuery(theme.breakpoints.between('sm', 'md'));
 
     const renderComponent = () => {
-        switch (selectedComponent) {
+        switch (store.routeLink) {
             case 'Dashboard':
                 return <Dashboard />;
             case 'Regulation Authority':
@@ -97,6 +96,7 @@ const UserLayout = ({ children }) => {
                             </Grid>
                         </Grid>
                     </Box>
+
                 ); // Assuming combined components
             case 'Profile':
                 return <Dashboard />; // Assuming Dashboard is the correct component
@@ -158,7 +158,9 @@ const UserLayout = ({ children }) => {
         <div>
             <AppBarComponent />
             <div>
-                {!isMobile  && !isTablet && <CustomSideBar onMenuItemClick={setSelectedComponent} />}
+                {!isMobile  && !isTablet && <CustomSideBar/>}
+                {/*{<CustomSideBar/>}*/}
+
                 <main >
                     {renderComponent()}
                 </main>

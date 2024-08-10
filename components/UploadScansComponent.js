@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Box, Typography, Grid, IconButton, Modal, Button } from '@mui/material';
+import {Box, Typography, Grid, IconButton, Modal, Button, useTheme, useMediaQuery} from '@mui/material';
 import { useDropzone } from 'react-dropzone';
 import CloudUploadIcon from '@mui/icons-material/CloudUpload';
 import DeleteIcon from '@mui/icons-material/Delete';
@@ -11,6 +11,8 @@ const UploadScansComponent = () => {
     const [addressFiles, setAddressFiles] = useState([]);
     const [selectedFile, setSelectedFile] = useState(null);
     const [isModalOpen, setIsModalOpen] = useState(false);
+    const theme = useTheme();
+    const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
 
     const handleUpload = async (files, type, setFiles) => {
         const formData = new FormData();
@@ -153,7 +155,7 @@ const UploadScansComponent = () => {
     );
 
     return (
-        <Box sx={{ maxWidth: 900, mx: 'auto', mt: 2, padding: 3, ml: 30 }}>
+        <Box sx={{ maxWidth: 900, mx: 'auto', mt: 2, padding: 3, ml: !isMobile && 30 }}>
             {passportFiles.length < 2 && (
                 <>
                     <Typography variant="h5" gutterBottom>

@@ -24,6 +24,7 @@ class UserStore {
   acceptedRisks = false
   lang = "en"
   sessionUser = null
+  selectedComponent = null
 
   //stepTwo
   dateOfBirth = null
@@ -71,6 +72,7 @@ class UserStore {
       RiskAcceptanceModal: observable,
       lang: observable,
       sessionUser: observable,
+      selectedComponent: observable,
     });
   }
 

@@ -20,10 +20,11 @@ const AppBarComponent = () => {
     const isTablet = useMediaQuery(theme.breakpoints.between('sm', 'md'));
     const [mobileOpen, setMobileOpen] = useState(false);
     const [anchorEl, setAnchorEl] = useState(null);
+    const [selectedComponent, setSelectedComponent] = useState(null); // Добавлено для управления состоянием
     const { data: session } = useSession();
     const router = useRouter();
     const { user, loading } = useFetchUser();
-    store.sessionUser = user
+    store.sessionUser = user;
 
     const handleDrawerToggle = () => {
         setMobileOpen(!mobileOpen);
@@ -58,6 +59,11 @@ const AppBarComponent = () => {
         } catch (error) {
             console.error('Error changing language:', error);
         }
+    };
+
+    const handleMenuItemClick = (componentName) => {
+        setSelectedComponent(componentName);
+        setMobileOpen(false); // Закрытие меню после клика на мобильных устройствах
     };
 
     const capitalizeFirstLetter = (string) => {
@@ -118,7 +124,7 @@ const AppBarComponent = () => {
                                 <img
                                     src={user?.language === 'de' ? "/images/germany_flag.png" : "/images/United-States-Flag.svg"}
                                     alt="Selected Flag"
-                                    style={{ width: 20, height: user?.language === 'de' ?  13 : 20 }}
+                                    style={{ width: 20, height: user?.language === 'de' ? 13 : 20 }}
                                 />
                             </IconButton>
                             <Menu
@@ -142,7 +148,7 @@ const AppBarComponent = () => {
                             </IconButton>
                             <Divider orientation="vertical" flexItem sx={{ mx: 1 }} />
                             <Button sx={{ color: 'black', textShadow: '1px 1px 2px rgba(0,0,0,0.4)' }} onClick={handleLogout}>
-                                <LogoutIcon sx={{ mr: 1 }} />
+                                <LogoutIcon />
                                 {!isMobile && 'Logout'}
                             </Button>
                         </>
@@ -171,21 +177,22 @@ const AppBarComponent = () => {
                 sx={{
                     '& .MuiDrawer-paper': {
                         boxSizing: 'border-box',
-                        width: isMobile ? 300 : 200, // Ensure consistent width
+                        width: isMobile ? 200 : 200, // Ensure consistent width
                         position: 'fixed', // Ensure the drawer is fixed position
                     },
                 }}
             >
-
-            {user && user.role ? (
-                    user.role === 'investor' ? '' : <SideMenu role={user.role} />
-                ) : (
-                    <div></div>
+                {user?.role && (
+                    isMobile || isTablet ? (
+                        <CustomSideBar onMenuItemClick={handleMenuItemClick} />
+                    ) : (
+                        <SideMenu role={user.role} />
+                    )
                 )}
-                {user?.role && (isMobile || isTablet) ? <CustomSideBar /> : ''}
             </Drawer>
         </Box>
     );
-}
+};
 
 export default observer(AppBarComponent);
+

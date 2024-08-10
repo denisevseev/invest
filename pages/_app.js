@@ -2,7 +2,6 @@
 import React, {useEffect} from 'react';
 import { SessionProvider } from 'next-auth/react';
 import Layout from '../components/Layout';
-import UserInfoComponent from '../components/UserInfoComponent';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import Head from 'next/head';
 import AppBarLayout from '../components/AppBarLayout';

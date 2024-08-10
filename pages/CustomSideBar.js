@@ -29,6 +29,7 @@ const CustomSideBar = ({ onMenuItemClick, positionMenu }) => {
     const { user, loading } = useFetchUser();
     store.lang = user?.language;
     const lang = store.lang;
+    const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
 
     // Определение переводов на основе выбранного языка
     const translations = lang === 'de' ? de : en;
@@ -79,7 +80,7 @@ const CustomSideBar = ({ onMenuItemClick, positionMenu }) => {
         const text = getEnglishText(componentName);
         setActiveMenuItem(text);
         store.routeLink = text; // сохраняем значение на английском языке
-        onMenuItemClick(text);
+        // onMenuItemClick(text);
     };
 
     return (
@@ -87,7 +88,7 @@ const CustomSideBar = ({ onMenuItemClick, positionMenu }) => {
             variant="permanent"
             anchor="left"
             sx={{
-                width: 240,
+                width: 200,
                 flexShrink: 0,
                 fontSize: '40px',
                 '& .MuiDrawer-paper': {
