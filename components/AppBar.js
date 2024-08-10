@@ -184,7 +184,7 @@ const AppBarComponent = () => {
             >
                 {user?.role && (
                     isMobile || isTablet ? (
-                        <CustomSideBar onMenuItemClick={handleMenuItemClick} />
+                        <CustomSideBar/>
                     ) : (
                         <SideMenu role={user.role} />
                     )

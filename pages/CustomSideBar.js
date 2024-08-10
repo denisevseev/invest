@@ -23,13 +23,14 @@ import en from './../public/lang/en.json';
 import de from './../public/lang/de.json';
 import useFetchUser from './../stores/hooks/useFetchUser';
 
-const CustomSideBar = ({ onMenuItemClick, positionMenu }) => {
+const CustomSideBar = ({ positionMenu }) => {
     const router = useRouter();
     const theme = useTheme();
     const { user, loading } = useFetchUser();
     store.lang = user?.language;
     const lang = store.lang;
     const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
+    const isTablet = useMediaQuery(theme.breakpoints.between('sm', 'md'));
 
     // Определение переводов на основе выбранного языка
     const translations = lang === 'de' ? de : en;

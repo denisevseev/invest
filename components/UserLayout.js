@@ -38,6 +38,7 @@ const UserLayout = ({ children }) => {
     const theme = useTheme();
     const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
     const isTablet = useMediaQuery(theme.breakpoints.between('sm', 'md'));
+    const isLg = useMediaQuery(theme.breakpoints.between('md', 'lg'));
 
     const renderComponent = () => {
         switch (store.routeLink) {
@@ -158,9 +159,7 @@ const UserLayout = ({ children }) => {
         <div>
             <AppBarComponent />
             <div>
-                {!isMobile  && !isTablet && <CustomSideBar/>}
-                {/*{<CustomSideBar/>}*/}
-
+                {!isTablet && !isMobile && <CustomSideBar/> }
                 <main >
                     {renderComponent()}
                 </main>
