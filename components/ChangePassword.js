@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { Box, Typography, TextField, Button, Grid, useTheme, useMediaQuery } from '@mui/material';
-import useSessionStore from './../stores/hooks/useSessionStore';
 import { observer } from 'mobx-react-lite';
 import store from '../stores/userStore';
 
@@ -13,9 +12,6 @@ const ChangePassword = () => {
     const [user, setUser] = useState(null);
     const [error, setError] = useState('');
 
-
-
-
     const handleSubmit = async (e) => {
         e.preventDefault();
         setError('');
@@ -24,14 +20,12 @@ const ChangePassword = () => {
             setError('New password must be at least 8 characters long.');
             return;
         }
-        setUser(store.sessionUser)
+        setUser(store.sessionUser);
 
         if (newPassword !== confirmPassword) {
             setError('New passwords do not match.');
             return;
         }
-
-
 
         try {
             const response = await fetch('/api/change-password', {
@@ -57,10 +51,18 @@ const ChangePassword = () => {
     };
 
     return (
-        <Box maxWidth={'lg'} sx={{ mt: 12, p: 2, ml: !isMobile && 25 }}>
+        <Box maxWidth={'md'} sx={{ mt: 12, p: 2, ml: !isMobile && 40 }}>
             <Typography variant="h4" align="center" sx={{ fontWeight: 'bold', mb: 3 }}>
                 Change Password
             </Typography>
+            {/* Add your image here */}
+            <Box textAlign="center" mb={4}>
+                <img
+                    src="/images/img_1.png" // Replace with your image path
+                    alt="Change Password"
+                    style={{ maxWidth: '10%', height: 'auto', borderRadius: 4 }}
+                />
+            </Box>
             <form onSubmit={handleSubmit}>
                 <Grid container spacing={3}>
                     <Grid item xs={12}>

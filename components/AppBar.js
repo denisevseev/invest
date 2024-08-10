@@ -96,9 +96,9 @@ const AppBarComponent = () => {
                             <MenuIcon />
                         </IconButton>
                     )}
-                    <Box sx={{ display: 'flex', alignItems: 'center', flexGrow: 1 }}>
+                    {!isMobile &&  <Box sx={{ display: 'flex', alignItems: 'center', flexGrow: 1 }}>
                         <Logo />
-                    </Box>
+                    </Box>}
                     <Box sx={{ flexGrow: 1, display: 'flex', justifyContent: 'center' }}>
                         {session && !isMobile && (
                             <Typography

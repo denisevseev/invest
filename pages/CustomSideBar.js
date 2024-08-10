@@ -80,7 +80,8 @@ const CustomSideBar = ({ positionMenu }) => {
     const handleText = (componentName) => {
         const text = getEnglishText(componentName);
         setActiveMenuItem(text);
-        store.routeLink = text; // сохраняем значение на английском языке
+        store.routeLink = text;
+        debugger
         // onMenuItemClick(text);
     };
 

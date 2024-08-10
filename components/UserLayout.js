@@ -31,6 +31,7 @@ import MyAgreements from "./MyAgreements";
 import InvestmentOverview from "./InvestmentOverview";
 import ShareSubscription from "./ShareSubscription";
 import ChangePassword from "./ChangePassword";
+import ContactDetails from "./ContactDetails";
 
 const UserLayout = ({ children }) => {
     const { data: session } = useSession();
@@ -134,7 +135,7 @@ const UserLayout = ({ children }) => {
             case 'Live Crypto Rates':
                 return <LiveCryptoRates />; // Assuming LiveCryptoRates is the correct component
             case 'Contact Center':
-                return <Notification />; // Assuming Notification is the correct component
+                return <ContactDetails />; // Assuming Notification is the correct component
             case 'FAQ':
                 return <Notification />; // Assuming Notification is the correct component
             case 'Change Password':
