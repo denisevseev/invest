@@ -32,6 +32,7 @@ import InvestmentOverview from "./InvestmentOverview";
 import ShareSubscription from "./ShareSubscription";
 import ChangePassword from "./ChangePassword";
 import ContactDetails from "./ContactDetails";
+import ResponsiveGrid from "./ResponsiveGrid";
 
 const UserLayout = ({ children }) => {
     const { data: session } = useSession();
@@ -137,7 +138,7 @@ const UserLayout = ({ children }) => {
             case 'Contact Center':
                 return <ContactDetails />; // Assuming Notification is the correct component
             case 'FAQ':
-                return <Notification />; // Assuming Notification is the correct component
+                return <ResponsiveGrid/>; // Assuming Notification is the correct component
             case 'Change Password':
                 return <ChangePassword />; // Assuming Notification is the correct component
             default:
