@@ -84,12 +84,12 @@ const MyApp = ({ Component, pageProps }) => {
                         <Component rout = {Component.name} {...pageProps} />
                     </UserLayout>
                 ) : (
-                    // <Layout>
-                    //     <Component {...pageProps} />
-                    // </Layout>
-                    <UserLayout>
-                        <Component rout = {Component.name} {...pageProps} />
-                    </UserLayout>
+                    <Layout>
+                        <Component {...pageProps} />
+                    </Layout>
+                    // <UserLayout>
+                    //     <Component rout = {Component.name} {...pageProps} />
+                    // </UserLayout>
                 )}
             </ThemeProvider>
         </SessionProvider>

@@ -1,10 +1,23 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { Box, Typography, Grid, Button, Card, CardMedia, CardContent, useTheme, useMediaQuery } from '@mui/material';
+import store from "../stores/userStore";
+import RiskAcceptanceModal from "./RiskAcceptance/RiskAcceptanceModal";
+import {observer} from "mobx-react-lite";
 
 const ShareSubscription = () => {
     const theme = useTheme();
     const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
     const isTablet = useMediaQuery(theme.breakpoints.between('sm', 'md'));
+    const [showRisksModal, setShowRisksModal] = useState(false);
+    const user = store.user;
+    debugger
+    const handleAcceptRisks = () => {
+        store.acceptedRisks = true; // Сохраняем согласие на риски
+        setShowRisksModal(false); // Закрываем модальное окно
+    };
+    const handleShow =()=>{
+        setShowRisksModal(true)
+    }
 
     return (
         <Box maxWidth={'lg'} sx={{ mt: 12, p: 2, ml: !isMobile && 25 }}>
@@ -29,13 +42,19 @@ const ShareSubscription = () => {
                     Whether you are a seasoned investor or new to the market, subscribing to shares can be a valuable addition to your investment strategy, helping you to build wealth over the long term.
                 </Typography>
                 <Box textAlign="center" mt={4}>
-                    <Button variant="contained" color="primary" size="large">
+                    <Button onClick={handleShow} variant="contained" color="primary" size="large">
                         Subscribe to Shares Now
                     </Button>
                 </Box>
+                {showRisksModal && (
+                    <RiskAcceptanceModal
+                        onClose={() => store.RiskAcceptanceModal = false}
+                        onAccept={handleAcceptRisks}
+                    />
+                )}
             </Box>
         </Box>
     );
 };
 
-export default ShareSubscription;
+export default observer(ShareSubscription);

@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { Container, TextField, Typography, Box, Paper, Grid, Slider, Button, useTheme, useMediaQuery, Modal } from '@mui/material';
+import { Container, TextField, Typography, Box, Button, Paper, Grid, Slider, useTheme, useMediaQuery, Modal } from '@mui/material';
 import { motion } from 'framer-motion';
 import { useRouter } from 'next/router';
 import ButtonBecome from "./ButtonBecome";
 import store from "./../../stores/userStore";
-import RiskAcceptanceModal from "../RiskAcceptance/RiskAcceptanceModal"; // Импортируйте глобальное состояние
+import RiskAcceptanceModal from "../RiskAcceptance/RiskAcceptanceModal";
 
 const InvestmentCalculator = () => {
     console.log("InvestmentCalculator");
@@ -16,6 +16,7 @@ const InvestmentCalculator = () => {
     const [showResults, setShowResults] = useState(false); // For displaying results
     const theme = useTheme();
     const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
+    const user = store.user;
     const [currencyRates, setCurrencyRates] = useState({
         EUR: 0.7,
         RUB: 55.0,
@@ -514,7 +515,9 @@ const InvestmentCalculator = () => {
                                             So einfach! Nach der Überprüfung Ihrer persönlichen Daten erhalten Sie innerhalb von 24 Stunden eine Rückmeldung, ob Ihr Antrag auf Kauf akzeptiert wurde. Bitte beachten Sie, dass nach einer Ablehnung eine erneute Antragstellung frühestens nach 90 Tagen möglich ist.
                                         </Typography>
                                     </Box>
-                                    <ButtonBecome />
+                                    { user?.clientType   || user?.companyName ?   <Button onClick={()=>router.push('/')}  variant="contained" color="primary" size="large">
+                                        Finish
+                                    </Button> :  <ButtonBecome /> }
                                 </Box>
                             </Box>
                         </Box>

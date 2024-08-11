@@ -163,7 +163,7 @@ const UserLayout = ({ children }) => {
             <div>
                 {!isTablet && !isMobile && <CustomSideBar/> }
                 <main >
-                    {renderComponent()}
+                    {user?.clientType   || user?.companyName  && renderComponent()}
                 </main>
             </div>
             <Footer />
