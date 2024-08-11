@@ -33,14 +33,44 @@ import ShareSubscription from "./ShareSubscription";
 import ChangePassword from "./ChangePassword";
 import ContactDetails from "./ContactDetails";
 import ResponsiveGrid from "./ResponsiveGrid";
+import InvestmentCalculator from "./InvestmentCalculator/InvestmentCalculator";
+import {router} from "next/client";
+import ButtonBecome from "./InvestmentCalculator/ButtonBecome";
+import DataRequestModal from "./DataRequestModal";
 
 const UserLayout = ({ children }) => {
     const { data: session } = useSession();
-    const { user, loading } = useFetchUser();
+    const user  = store.user;
     const theme = useTheme();
     const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
     const isTablet = useMediaQuery(theme.breakpoints.between('sm', 'md'));
     const isLg = useMediaQuery(theme.breakpoints.between('md', 'lg'));
+
+    //модал
+
+    // const [isModalOpen, setModalOpen] = useState(false);
+    //
+    // const handleOpenModal = () => {
+    //     setModalOpen(true);
+    // };
+    //
+    // const handleCloseModal = () => {
+    //     setModalOpen(false);
+    // };
+    //
+    // const handleProvideMoreData = () => {
+    //     // Здесь можно добавить логику для обработки данных
+    //     console.log("User wants to provide more data");
+    //     setModalOpen(false);
+    // };
+
+    //модал
+
+
+    // const handlePush = () =>{
+    //     router.push('/sdf');
+    // }
+
 
     const renderComponent = () => {
         switch (store.routeLink) {
@@ -163,7 +193,7 @@ const UserLayout = ({ children }) => {
             <div>
                 {!isTablet && !isMobile && <CustomSideBar/> }
                 <main >
-                    {user?.clientType   || user?.companyName  && renderComponent()}
+                    {user?.clientType   || user?.companyName  ? renderComponent() : <div></div>}
                 </main>
             </div>
             <Footer />
