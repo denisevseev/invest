@@ -25,7 +25,6 @@ import Notification from './Notification';
 import store from '../stores/userStore';
 import { observer } from 'mobx-react-lite';
 import { useSession } from 'next-auth/react';
-import useFetchUser from './../stores/hooks/useFetchUser';
 import Login from "../pages/login";
 import MyAgreements from "./MyAgreements";
 import InvestmentOverview from "./InvestmentOverview";
@@ -33,9 +32,6 @@ import ShareSubscription from "./ShareSubscription";
 import ChangePassword from "./ChangePassword";
 import ContactDetails from "./ContactDetails";
 import ResponsiveGrid from "./ResponsiveGrid";
-import InvestmentCalculator from "./InvestmentCalculator/InvestmentCalculator";
-import {router} from "next/client";
-import ButtonBecome from "./InvestmentCalculator/ButtonBecome";
 import DataRequestModal from "./DataRequestModal";
 
 const UserLayout = ({ children }) => {
@@ -46,30 +42,10 @@ const UserLayout = ({ children }) => {
     const isTablet = useMediaQuery(theme.breakpoints.between('sm', 'md'));
     const isLg = useMediaQuery(theme.breakpoints.between('md', 'lg'));
 
-    //модал
-
-    // const [isModalOpen, setModalOpen] = useState(false);
-    //
-    // const handleOpenModal = () => {
-    //     setModalOpen(true);
-    // };
-    //
-    // const handleCloseModal = () => {
-    //     setModalOpen(false);
-    // };
-    //
-    // const handleProvideMoreData = () => {
-    //     // Здесь можно добавить логику для обработки данных
-    //     console.log("User wants to provide more data");
-    //     setModalOpen(false);
-    // };
-
-    //модал
-
-
-    // const handlePush = () =>{
-    //     router.push('/sdf');
-    // }
+    const handleProvideMoreData = () => {
+        // Здесь можно добавить логику для обработки данных
+        console.log("User wants to provide more data");
+    };
 
 
     const renderComponent = () => {
@@ -193,7 +169,7 @@ const UserLayout = ({ children }) => {
             <div>
                 {!isTablet && !isMobile && <CustomSideBar/> }
                 <main >
-                    {user?.clientType   || user?.companyName  ? renderComponent() : <div></div>}
+                    {user?.clientType   || user?.companyName  ? renderComponent() : <DataRequestModal/>}
                 </main>
             </div>
             <Footer />

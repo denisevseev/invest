@@ -26,7 +26,7 @@ import useFetchUser from './../stores/hooks/useFetchUser';
 const CustomSideBar = ({ positionMenu }) => {
     const router = useRouter();
     const theme = useTheme();
-    const { user, loading } = useFetchUser();
+    const user = store.user;
     store.lang = user?.language;
     const lang = store.lang;
     const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
@@ -78,11 +78,12 @@ const CustomSideBar = ({ positionMenu }) => {
     };
 
     const handleText = (componentName) => {
+        if(!user?.clientType || !user?.companyName){
+            store.DataRequestModal = true
+        }
         const text = getEnglishText(componentName);
         setActiveMenuItem(text);
         store.routeLink = text;
-        debugger
-        // onMenuItemClick(text);
     };
 
     return (

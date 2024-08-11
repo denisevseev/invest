@@ -55,7 +55,7 @@ const AppBarComponent = () => {
                 },
                 body: JSON.stringify(payload),
             });
-            router.reload();
+            router.push(router.asPath);
         } catch (error) {
             console.error('Error changing language:', error);
         }

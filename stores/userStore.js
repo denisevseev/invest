@@ -25,6 +25,7 @@ class UserStore {
   lang = "en"
   sessionUser = null
   selectedComponent = null
+  DataRequestModal  = true
 
   //stepTwo
   dateOfBirth = null
@@ -73,6 +74,7 @@ class UserStore {
       lang: observable,
       sessionUser: observable,
       selectedComponent: observable,
+      DataRequestModal: observable,
     });
   }
 
