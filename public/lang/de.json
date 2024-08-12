@@ -36,7 +36,7 @@
     "myInformation": "Meine Informationen",
     "basicInformation": "Grundlegende Informationen",
     "contactInformation": "Kontaktinformationen",
-    "questionsAndAnswers": "Fragen und Antworten",
+    "questionsAndAnswers": "Allgemeine Angaben",
     "fields": {
       "firstName": "Vorname",
       "lastName": "Nachname",
@@ -48,7 +48,7 @@
       "city": "Stadt",
       "postalCode": "Postleitzahl 40227",
       "country": "Land",
-      "employmentStatus": "Beschäftigungsstatus",
+      "employmentStatus": "Beschäftigungsverhältniss",
       "sourceOfFunds": "Einkommensquelle",
       "netWorth": "Vermögen",
       "annualIncome": "Jährliches Einkommen",
