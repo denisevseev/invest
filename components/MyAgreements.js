@@ -15,8 +15,8 @@ const MyAgreements = () => {
                 Auf dieser Seite finden Sie alle rechtlichen Vereinbarungen, die Sie im Laufe Ihrer Nutzung dieser Plattform unterzeichnet haben. Diese Dokumente umfassen allgemeine Nutzungsbedingungen, Datenschutzerklärungen und spezifische Vereinbarungen für verschiedene Dienstleistungen. Es ist wichtig, dass Sie eine Kopie dieser Dokumente für Ihre Unterlagen aufbewahren. Falls Sie eine dieser Vereinbarungen erneut einsehen oder herunterladen möchten, können Sie dies ganz einfach über die untenstehenden Links tun.
             </Typography>
             <Grid container spacing={3}>
-                {[1, 2, 3].map((item) => (
-                    <Grid item xs={12} md={4} key={item}>
+                {[1, 2].map((item) => (
+                    <Grid item xs={12} md={6} key={item}>
                         <Card sx={{ boxShadow: 3 }}>
                             <CardMedia
                                 component="img"
