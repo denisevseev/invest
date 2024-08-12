@@ -72,7 +72,7 @@ const InvestmentCalculator = () => {
 
     const handleInvestmentChange = (e, newValue) => {
         setInvestmentAmount(newValue);
-        store.investmentAmount = newValue; // Сохраняем сумму инвестиций в глобальном состоянии
+        store.investmentAmount = newValue;
         setShowResults(true);
     };
 

@@ -1,5 +1,5 @@
 // components/UserLayout.js
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Box, Container, useTheme, useMediaQuery, Grid } from '@mui/material';
 import AppBarComponent from './AppBar';
 import Footer from './Footer';
@@ -41,11 +41,17 @@ const UserLayout = ({ children }) => {
     const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
     const isTablet = useMediaQuery(theme.breakpoints.between('sm', 'md'));
     const isLg = useMediaQuery(theme.breakpoints.between('md', 'lg'));
+    if(user?.investmentAmount){
+        store.investmentAmount = user.investmentAmount;
+    }
+    useEffect(() => {
+        let u = JSON.parse(localStorage.getItem('user'));
+        store.RiskAcceptanceModal = !store.RiskAcceptanceModal;
+        if (u){
+            store.user = u
+        }
+    }, []);
 
-    const handleProvideMoreData = () => {
-        // Здесь можно добавить логику для обработки данных
-        console.log("User wants to provide more data");
-    };
 
 
     const renderComponent = () => {
@@ -155,10 +161,12 @@ const UserLayout = ({ children }) => {
     if (!session) {
         return (
             <div>
-                <AppBarComponent />
-                {store.RiskAcceptanceModal && <RiskAcceptanceModal />}
-                <Login />
-                <Footer />
+                {user ? <>
+                    <AppBarComponent />
+                    {store.RiskAcceptanceModal && <RiskAcceptanceModal />}
+                    {!user ? <Login /> : ''}
+                    <Footer />
+                </>:''}
             </div>
         );
     }

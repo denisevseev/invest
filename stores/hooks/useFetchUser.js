@@ -27,6 +27,7 @@ const useFetchUser = () => {
           }
           setUser(data);
           store.user = data;
+          localStorage.setItem('user', JSON.stringify(data));
         }
       } catch (error) {
         console.error('Error fetching user data:', error);
