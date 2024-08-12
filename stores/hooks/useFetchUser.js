@@ -19,6 +19,7 @@ const useFetchUser = () => {
           }
         });
         const data = await response.json();
+        debugger
 
         if (data) {
           const role = ['admin', 'manager', 'employee'].includes(data.role);
@@ -27,6 +28,7 @@ const useFetchUser = () => {
           }
           setUser(data);
           store.user = data;
+          debugger
           localStorage.setItem('user', JSON.stringify(data));
         }
       } catch (error) {

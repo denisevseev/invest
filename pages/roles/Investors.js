@@ -9,7 +9,6 @@ const Investors = () => {
     const [investors, setInvestors] = useState([]);
     const [expanded, setExpanded] = useState({});
     const { user } = useFetchUser();
-    debugger
 
     const handleExpandClick = (id) => {
         setExpanded(prev => ({ ...prev, [id]: !prev[id] }));

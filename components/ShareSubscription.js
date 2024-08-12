@@ -10,7 +10,6 @@ const ShareSubscription = () => {
     const isTablet = useMediaQuery(theme.breakpoints.between('sm', 'md'));
     const [showRisksModal, setShowRisksModal] = useState(false);
     const user = store.user;
-    debugger
     const handleAcceptRisks = () => {
         store.acceptedRisks = true; // Сохраняем согласие на риски
         setShowRisksModal(false); // Закрываем модальное окно

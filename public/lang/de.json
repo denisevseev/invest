@@ -46,14 +46,14 @@
       "phoneNumber": "Telefonnummer",
       "fullAddress": "Vollständige Adresse",
       "city": "Stadt",
-      "postalCode": "Postleitzahl",
+      "postalCode": "Postleitzahl 40227",
       "country": "Land",
       "employmentStatus": "Beschäftigungsstatus",
       "sourceOfFunds": "Einkommensquelle",
       "netWorth": "Vermögen",
       "annualIncome": "Jährliches Einkommen",
       "anticipatedAnnualDeposit": "Erwartete jährliche Einzahlung",
-      "intendedPurpose": "Beabsichtigter Zweck",
+      "intendedPurpose": "Investmentziel Investment",
       "creditFundAccount": "Kreditfonds-Konto",
       "politicallyExposedPerson": "Politisch exponierte Person"
     }

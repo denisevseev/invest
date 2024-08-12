@@ -36,7 +36,6 @@ const MyApp = ({ Component, pageProps }) => {
         'Register',
         'RegisterInvestor'
     ].includes(Component.name);
-    debugger
     const other = ['Home', 'Managers'].includes(Component.name);
     useEffect(() => {
         const mainHeader = document.querySelector('.mainHeader');
