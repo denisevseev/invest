@@ -49,13 +49,13 @@
       "postalCode": "Postleitzahl 40227",
       "country": "Land",
       "employmentStatus": "Beschäftigungsverhältniss",
-      "sourceOfFunds": "Einkommensquelle",
-      "netWorth": "Vermögen",
-      "annualIncome": "Jährliches Einkommen",
-      "anticipatedAnnualDeposit": "Erwartete jährliche Einzahlung",
-      "intendedPurpose": "Investmentziel Investment",
-      "creditFundAccount": "Kreditfonds-Konto",
-      "politicallyExposedPerson": "Politisch exponierte Person"
+      "sourceOfFunds": "Einnahmequelle",
+      "netWorth": "Eigenkapital",
+      "annualIncome": "Jahresbruttoeinnahmen",
+      "anticipatedAnnualDeposit": "Geplantes Initialinvestment",
+      "intendedPurpose": "Investmentziel",
+      "creditFundAccount": "Einzahlungsart",
+      "politicallyExposedPerson": "Politisch exponierte Person (PEP)"
     }
   },
 

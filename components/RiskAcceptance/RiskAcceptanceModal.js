@@ -128,7 +128,7 @@ const RiskAcceptanceModal = ({}) => {
                     1. Was sind Aktien?
                 </Typography>
                 <Typography variant="body1" gutterBottom sx={{ fontSize: isMobile ? '1rem' : '1.5rem' }}>
-                    Aktien sind Beteiligungspapiere. Sie verkörpern die Beteiligung an dem Vermögen der Aktiengesellschaft und vermitteln, soweit die Stimmrechte nicht ausgeschlossen sind, auch Stimmrechte, die das Recht zur Beteiligung an der Aktionärsversammlung einschließen. Ein Ertrag wird erzielt, sofern eine Dividende (Gewinnbeteiligung) ausgezahlt wird und/oder zum Zeitpunkt des Verkaufs im Ergebnis ein Verkaufspreis erzielt wird, der über dem Anschaffungspreis liegt (Kurssteigerung).
+                    Aktien sind Beteiligungspapiere. Sie verkörpern die Beteiligung an dem Eigenkapital der Aktiengesellschaft und vermitteln, soweit die Stimmrechte nicht ausgeschlossen sind, auch Stimmrechte, die das Recht zur Beteiligung an der Aktionärsversammlung einschließen. Ein Ertrag wird erzielt, sofern eine Dividende (Gewinnbeteiligung) ausgezahlt wird und/oder zum Zeitpunkt des Verkaufs im Ergebnis ein Verkaufspreis erzielt wird, der über dem Anschaffungspreis liegt (Kurssteigerung).
                 </Typography>
                 <Typography variant="h6" gutterBottom sx={{ fontSize: isMobile ? '1.2rem' : '1.5rem' }}>
                     Eine Garantie für die Erzielung eines Ertrags mit der Kapitalanlage in Aktien kann nicht gegeben werden. Eine Kapitalanlage in Aktien ist immer eine Risikoanlage.
@@ -229,10 +229,10 @@ const RiskAcceptanceModal = ({}) => {
                     stellen keine geeignete Sicherheitsleistung für eine Kreditaufnahme dar. Sollte der Anleger dennoch
                     entgegen dieser Warnung einen Kredit aufnehmen, um den Erwerb von Aktien zu finanzieren, so muss er
                     damit rechnen, dass er bei dem Verlust eines Teils oder der Gesamtheit seiner Anlagesumme nicht nur den
-                    Kredit in dieser Höhe aus anderen Einkommensquellen zurückführen muss, sondern darüber hinaus auch die
+                    Kredit in dieser Höhe aus anderen Einnahmequelle zurückführen muss, sondern darüber hinaus auch die
                     Zinsen und die Kosten für die Fremdfinanzierung. Das Risiko einer kreditfinanzierten Anlage in Aktien geht
                     damit über das Risiko des Totalverlustes hinaus. Sofern der Kredit sowie die Zinsen und die Kosten für die
-                    Fremdfinanzierung nicht aus anderen Einkommensquellen zurückgeführt werden kann, besteht das Risiko
+                    Fremdfinanzierung nicht aus anderen Einnahmequelle zurückgeführt werden kann, besteht das Risiko
                     einer Privatinsolvenz.
                 </Typography>
                 <Typography variant="h6" gutterBottom sx={{ fontSize: isMobile ? '1.2rem' : '1.5rem' }}>
