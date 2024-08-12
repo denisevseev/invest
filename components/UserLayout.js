@@ -1,6 +1,5 @@
-// components/UserLayout.js
-import React, { useState, useEffect } from 'react';
-import { Box, Container, useTheme, useMediaQuery, Grid } from '@mui/material';
+import React, { useEffect } from 'react';
+import { Box, useTheme, useMediaQuery, Grid } from '@mui/material';
 import AppBarComponent from './AppBar';
 import Footer from './Footer';
 import CustomSideBar from '../pages/CustomSideBar';
@@ -35,24 +34,51 @@ import ResponsiveGrid from "./ResponsiveGrid";
 import DataRequestModal from "./DataRequestModal";
 
 const UserLayout = ({ children }) => {
-    const { data: session } = useSession();
-    const user  = store.user;
+    const { data: session, status } = useSession(); // Используем статус для отслеживания загрузки сессии
+    const user = store.user;
     const theme = useTheme();
     const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
     const isTablet = useMediaQuery(theme.breakpoints.between('sm', 'md'));
-    const isLg = useMediaQuery(theme.breakpoints.between('md', 'lg'));
-    if(user?.investmentAmount){
-        store.investmentAmount = user.investmentAmount;
-    }
+
+    // Сохранение данных пользователя из локального хранилища
     useEffect(() => {
-        let u = JSON.parse(localStorage.getItem('user'));
-        store.RiskAcceptanceModal = !store.RiskAcceptanceModal;
-        if (u){
-            store.user = u
+        const u = JSON.parse(localStorage.getItem('user'));
+        if (u) {
+            store.user = u;
         }
-    }, []);
+
+        if (user?.investmentAmount) {
+            store.investmentAmount = user.investmentAmount;
+        }
+    }, [user?.investmentAmount]);
+
+    // Пока сессия загружается, ничего не рендерим
+    if (status === 'loading') {
+        // return (
+        //     <Box
+        //         sx={{
+        //             display: 'flex',
+        //             justifyContent: 'center',
+        //             alignItems: 'center',
+        //             height: '100vh',
+        //         }}
+        //     >
+        //         <h2>Loading ...</h2>
+        //     </Box>
+        // );
+        return null
+    }
 
 
+    // Если сессии нет, отображаем компонент логина
+    if (!session) {
+        return (
+            <div>
+                <AppBarComponent />
+                <Login />
+            </div>
+        );
+    }
 
     const renderComponent = () => {
         switch (store.routeLink) {
@@ -71,7 +97,7 @@ const UserLayout = ({ children }) => {
             case 'Upload Scans':
                 return <UploadScansComponent />;
             case 'Economical Calendar':
-                return <Box ml={-42}><EconomicalCalendar />;</Box>
+                return <Box ml={-42}><EconomicalCalendar /></Box>;
             case 'Live Currency Rates':
                 return <LiveCurrencyRates />;
             case 'Live Crypto Rates':
@@ -89,13 +115,13 @@ const UserLayout = ({ children }) => {
             case 'Open Live Account':
                 return <OpenLiveAccount />;
             case 'Personal Information':
-                return <UserSurveyResults user={user} />; // Assuming UserSurveyResults is the correct component
+                return <UserSurveyResults user={user} />;
             case 'My Agreements':
-                return <MyAgreements />; // Assuming Notification is the correct component
+                return <MyAgreements />;
             case 'Investment Overview':
-                return <InvestmentOverview />; // Assuming Notification is the correct component
+                return <InvestmentOverview />;
             case 'Share Subscription':
-                return <ShareSubscription />; // Assuming UploadScansComponent is the correct component
+                return <ShareSubscription />;
             case 'Identification Documents':
                 return (
                     <Box p={10}>
@@ -111,73 +137,45 @@ const UserLayout = ({ children }) => {
                             </Grid>
                         </Grid>
                     </Box>
-
-                ); // Assuming combined components
+                );
             case 'Profile':
-                return <Dashboard />; // Assuming Dashboard is the correct component
+                return <Dashboard />;
             case 'Presentation':
-                return <Dashboard />; // Assuming Dashboard is the correct component
-            case 'VicPay':
-                return <Box>
-                    <VictorumPayComponent />
-                </Box>; // Assuming VictorumPayComponent is the correct component
-            case 'Victorum Trade':
-                return <VictorumTradeComponent />; // Assuming VictorumTradeComponent is the correct component
+                return <Dashboard />;
             case 'Corporate Finance':
-                return <Dashboard />; // Assuming Dashboard is the correct component
+                return <Dashboard />;
             case 'Investments':
-                return <Dashboard />; // Assuming Dashboard is the correct component
+                return <Dashboard />;
             case 'Consulting':
-                return <Dashboard />; // Assuming Dashboard is the correct component
+                return <Dashboard />;
             case 'Economic Development':
-                return <Dashboard />; // Assuming Dashboard is the correct component
-            case 'Regulation Authority':
-                return <RegulationAuthority />; // Assuming RegulationAuthority is the correct component
+                return <Dashboard />;
             case 'Share Type & Investors':
-                return <Notification />; // Assuming Notification is the correct component
+                return <Notification />;
             case 'Shareholder Structure':
-                return <Notification />; // Assuming Notification is the correct component
+                return <Notification />;
             case 'Corporate Announcements':
-                return <Notification />; // Assuming Notification is the correct component
+                return <Notification />;
             case 'Corporate News':
-                return <Notification />; // Assuming Notification is the correct component
-            case 'Economical Calendar':
-                return <EconomicalCalendar />; // Assuming EconomicalCalendar is the correct component
-            case 'Live Currency Rates':
-                return <LiveCurrencyRates />; // Assuming LiveCurrencyRates is the correct component
-            case 'Live Crypto Rates':
-                return <LiveCryptoRates />; // Assuming LiveCryptoRates is the correct component
+                return <Notification />;
             case 'Contact Center':
-                return <ContactDetails />; // Assuming Notification is the correct component
+                return <ContactDetails />;
             case 'FAQ':
-                return <ResponsiveGrid/>; // Assuming Notification is the correct component
+                return <ResponsiveGrid />;
             case 'Change Password':
-                return <ChangePassword />; // Assuming Notification is the correct component
+                return <ChangePassword />;
             default:
-                return <Dashboard/>;
+                return <Dashboard />;
         }
     };
-
-    if (!session) {
-        return (
-            <div>
-                {user ? <>
-                    <AppBarComponent />
-                    {store.RiskAcceptanceModal && <RiskAcceptanceModal />}
-                    {!user ? <Login /> : ''}
-                    <Footer />
-                </>:''}
-            </div>
-        );
-    }
 
     return (
         <div>
             <AppBarComponent />
             <div>
-                {!isTablet && !isMobile && <CustomSideBar/> }
-                <main >
-                    {user?.clientType   || user?.companyName  ? renderComponent() : <DataRequestModal/>}
+                {!isTablet && !isMobile && <CustomSideBar />}
+                <main>
+                    {user?.clientType || user?.companyName ? renderComponent() : <DataRequestModal />}
                 </main>
             </div>
             <Footer />

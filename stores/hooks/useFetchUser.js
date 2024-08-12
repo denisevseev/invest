@@ -11,6 +11,7 @@ const useFetchUser = () => {
   const router = useRouter();
 
   const fetchUser = async () => {
+    debugger
     if (session && session.user) {
       try {
         const response = await fetch('/api/userInfo', {
@@ -28,7 +29,7 @@ const useFetchUser = () => {
           }
           setUser(data);
           store.user = data;
-          debugger
+
           localStorage.setItem('user', JSON.stringify(data));
         }
       } catch (error) {
