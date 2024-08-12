@@ -11,13 +11,34 @@ const InvestmentOverview = () => {
             <Typography variant="h4" align="center" sx={{ fontWeight: 'bold', mb: 3 }}>
                 Investment Overview
             </Typography>
-            <CardMedia
+            {!isMobile ? (
+                <Box
+                    sx={{
+                        position: 'relative',
+                        height: '400px', // Высота контейнера
+                        overflow: 'hidden', // Скрыть части изображения, выходящие за пределы контейнера
+                    }}
+                >
+                    <CardMedia
+                        component="img"
+                        image="/images/invOwer.jpg"
+                        alt="Share Subscription"
+                        sx={{
+                            position: 'absolute',
+                            top: '-90%', // Смещаем изображение вверх на 20%
+                            width: '100%',
+                            height: 'auto', // Сохраняем соотношение сторон
+                        }}
+                    />
+                </Box>
+            ): <CardMedia
                 component="img"
-                height={isMobile ? 300 : 600}
-                image="/images/invOwer.jpg" // Replace with the path to your image
-                alt="Investment"
-                sx={{ mb: 4 }}
-            />
+                image="/images/invOwer.jpg"
+                alt="Share Subscription"
+                height="400"
+            />}
+
+
             <Box sx={{ textAlign: 'left', maxWidth: '100%', p: isMobile ? 1 : 3 }}>
                 <Typography variant="body1" paragraph sx={{ fontSize: isMobile ? '18px' : '21px' }}>
                     Investing is a powerful way to grow wealth over time. By allocating resources into various financial assets, such as stocks, bonds, or real estate, investors aim to earn a return that outpaces inflation and enhances their financial security. The key to successful investing lies in understanding the balance between risk and return, diversifying across asset classes, and maintaining a long-term perspective.

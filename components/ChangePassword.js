@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Box, Typography, TextField, Button, Grid, useTheme, useMediaQuery } from '@mui/material';
+import {Box, Typography, TextField, Button, Grid, useTheme, useMediaQuery, CardMedia} from '@mui/material';
 import { observer } from 'mobx-react-lite';
 import store from '../stores/userStore';
 
@@ -61,6 +61,13 @@ const ChangePassword = () => {
                     src="/images/img_1.png" // Replace with your image path
                     alt="Change Password"
                     style={{ maxWidth: '10%', height: 'auto', borderRadius: 4 }}
+                />
+                <CardMedia
+                    component="img"
+                    height="180"
+                    image="/images/pass.jpg" // Replace with the path to your image
+                    alt="Change Password"
+                    sx={{ mb: 4, borderRadius: 4 }}
                 />
             </Box>
             <form onSubmit={handleSubmit}>

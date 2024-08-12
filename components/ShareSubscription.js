@@ -23,13 +23,34 @@ const ShareSubscription = () => {
             <Typography variant="h4" align="center" sx={{ fontWeight: 'bold', mb: 3 }}>
                 Share Subscription
             </Typography>
-            <CardMedia
+            {!isMobile ? (
+                <Box
+                    sx={{
+                        position: 'relative',
+                        height: '400px', // Высота контейнера
+                        overflow: 'hidden', // Скрыть части изображения, выходящие за пределы контейнера
+                    }}
+                >
+                    <CardMedia
+                        component="img"
+                        image="/images/shareS.jpg"
+                        alt="Share Subscription"
+                        sx={{
+                            position: 'absolute',
+                            top: '-40%', // Смещаем изображение вверх на 20%
+                            width: '100%',
+                            height: 'auto', // Сохраняем соотношение сторон
+                        }}
+                    />
+                </Box>
+            ): <CardMedia
                 component="img"
-                height="500"
-                image="/images/shareS.jpg" // Replace with the path to your image
+                image="/images/shareS.jpg"
                 alt="Share Subscription"
-                sx={{ mb: 4 }}
-            />
+                height="400"
+            />}
+
+
             <Box sx={{ textAlign: 'left', maxWidth: '100%', p: isMobile ? 1 : 3 }}>
                 <Typography variant="body1" paragraph sx={{ fontSize: isMobile ? '18px' : '21px' }}>
                     Subscribing to shares allows investors to become partial owners of a company, granting them a stake in the company’s profits and the ability to influence corporate decisions. By subscribing to new shares, investors can support the company’s growth while potentially earning dividends and benefiting from the appreciation of the share price.
