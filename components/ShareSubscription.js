@@ -25,7 +25,7 @@ const ShareSubscription = () => {
             </Typography>
             <CardMedia
                 component="img"
-                height="300"
+                height="500"
                 image="/images/shareS.jpg" // Replace with the path to your image
                 alt="Share Subscription"
                 sx={{ mb: 4 }}
