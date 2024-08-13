@@ -97,35 +97,62 @@ const Notification = ({ user }) => {
                 >
                     <Box
                         sx={{
-                            width: isMobile ? '90%' : '400px',
+                            width: isMobile ? '90%' : '500px',
                             bgcolor: 'background.paper',
-                            borderRadius: '8px',
+                            borderRadius: '12px',
                             p: 4,
-                            textAlign: 'center',
+                            boxShadow: 24,
+                            textAlign: 'left',
                         }}
                     >
-                        <Typography variant="h6" gutterBottom>
+                        <Typography variant="h5" gutterBottom sx={{ fontWeight: 'bold', mb: 3 }}>
                             Sehr geehrter Investor,
                         </Typography>
-                        <Typography variant="body1" sx={{ mb: 2 }}>
-                            Um mit Ihrer Investition zu beginnen, überweisen Sie bitte den im Rechner angegebenen Betrag auf die folgenden Kontodaten.
+                        <Typography variant="body1" sx={{ mb: 3 }}>
+                            Mit der Durchführung und Überwachung dieses Vertrages wurde als Treuhänder beauftragt:
                         </Typography>
-                        <Typography variant="body2" sx={{ mb: 2 }}>
-                            Kontoinhaber: [Ihr Firmenname]<br/>
-                            IBAN: [Ihre IBAN]<br/>
-                            BIC: [Ihre BIC]<br/>
-                            Bank: [Name der Bank]<br/>
-                            Verwendungszweck: [Verwendungszweck für die Überweisung]
+                        <Typography variant="body2" sx={{ mb: 3 }}>
+                            <strong>Swiss Finance Group AG</strong><br />
+                            Dr. Michael Rau<br />
+                            Bahnhofplatz 10<br />
+                            CH-9100 Herisau
                         </Typography>
-                        <Typography variant="body2" sx={{ mb: 2 }}>
+                        <Typography variant="body1" sx={{ mb: 3 }}>
+                            Bitte transferieren Sie die in diesem Vertrag vereinbarte Summe und nutzen Sie die folgende Bankverbindung:
+                        </Typography>
+                        <Box
+                            sx={{
+                                p: 2,
+                                borderRadius: '8px',
+                                bgcolor: '#f5f5f5',
+                                mb: 3,
+                            }}
+                        >
+                            <Typography variant="body2" sx={{ mb: 1 }}>
+                                <strong>Kontoinhaber:</strong> Swiss Finance Group AG
+                            </Typography>
+                            <Typography variant="body2" sx={{ mb: 1 }}>
+                                <strong>IBAN:</strong> BE75 9671 1118 0251
+                            </Typography>
+                            <Typography variant="body2" sx={{ mb: 1 }}>
+                                <strong>BIC:</strong> TRWIBEB1
+                            </Typography>
+                            <Typography variant="body2" sx={{ mb: 1 }}>
+                                <strong>Bankinstitut:</strong> Wise Europe SA
+                            </Typography>
+                        </Box>
+                        <Typography variant="body2" sx={{ mb: 3 }}>
                             Sobald wir Ihre Zahlung erhalten haben, wird Ihr Investorenkonto aktiviert, und Sie können mit dem Investieren beginnen.
                         </Typography>
-                        <Button onClick={handleCloseModal} variant="contained" color="primary">
-                            Schließen
-                        </Button>
+                        <Box sx={{ textAlign: 'center' }}>
+                            <Button onClick={handleCloseModal} variant="contained" color="primary" sx={{ minWidth: '150px' }}>
+                                Schließen
+                            </Button>
+                        </Box>
                     </Box>
                 </Modal>
             )}
+
         </Container>
     );
 };
