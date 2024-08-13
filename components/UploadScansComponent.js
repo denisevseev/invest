@@ -11,6 +11,8 @@ const UploadScansComponent = () => {
     const [addressFiles, setAddressFiles] = useState([]);
     const [selectedFile, setSelectedFile] = useState(null);
     const [isModalOpen, setIsModalOpen] = useState(false);
+    const [fileToDelete, setFileToDelete] = useState(null);
+    const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
     const theme = useTheme();
     const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
 
@@ -37,7 +39,7 @@ const UploadScansComponent = () => {
     const { getRootProps: getPassportRootProps, getInputProps: getPassportInputProps } = useDropzone({
         accept: 'image/*',
         onDrop: acceptedFiles => {
-            if (passportFiles.length + acceptedFiles.length <= 2) {
+            if (passportFiles.length + acceptedFiles.length <= 3) {
                 const newFiles = acceptedFiles.map(file => Object.assign(file, {
                     preview: URL.createObjectURL(file)
                 }));
@@ -118,6 +120,26 @@ const UploadScansComponent = () => {
         setIsModalOpen(false);
     };
 
+    const handleDeleteClick = (file) => {
+        setFileToDelete(file);
+        setIsDeleteModalOpen(true);
+    };
+
+    const confirmDelete = async () => {
+        if (fileToDelete) {
+            const files = fileToDelete.metadata?.type === 'passport' ? passportFiles : addressFiles;
+            const setFiles = fileToDelete.metadata?.type === 'passport' ? setPassportFiles : setAddressFiles;
+            await removeFile(fileToDelete, setFiles);
+            setIsDeleteModalOpen(false);
+            setFileToDelete(null);
+        }
+    };
+
+    const closeDeleteModal = () => {
+        setIsDeleteModalOpen(false);
+        setFileToDelete(null);
+    };
+
     const renderThumbs = (files, setFiles) => (
         files.map(file => (
             <Grid item xs={12} sm={4} key={file.filename || file.name}>
@@ -140,15 +162,33 @@ const UploadScansComponent = () => {
                         alt={file.filename || file.name}
                         style={{ width: '100%', height: 'auto', borderRadius: '4px', cursor: 'pointer' }}
                     />
-                    <IconButton
-                        onClick={(e) => {
-                            e.stopPropagation();
-                            removeFile(file, setFiles);
+                    <Box
+                        sx={{
+                            display: 'flex',
+                            alignItems: 'center',
+                            justifyContent: 'space-between',
+                            position: 'absolute',
+                            top: 8,
+                            left: 8,
+                            right: 8,
+                            backgroundColor: 'rgba(255, 255, 255, 0.8)',
+                            borderRadius: '4px',
+                            padding: '4px 8px',
                         }}
-                        sx={{ position: 'absolute', top: 8, right: 8, backgroundColor: 'white' }}
                     >
-                        <DeleteIcon />
-                    </IconButton>
+                        <Typography variant="body2" noWrap sx={{ maxWidth: '80%' }}>
+                            {file.filename || file.name}
+                        </Typography>
+                        <IconButton
+                            onClick={(e) => {
+                                e.stopPropagation();
+                                handleDeleteClick(file);
+                            }}
+                            sx={{ ml: 1, backgroundColor: 'white' }}
+                        >
+                            <DeleteIcon />
+                        </IconButton>
+                    </Box>
                 </Box>
             </Grid>
         ))
@@ -156,7 +196,7 @@ const UploadScansComponent = () => {
 
     return (
         <Box sx={{ maxWidth: 900, mx: 'auto', mt: 2, padding: 3, ml: !isMobile && 30 }}>
-            {passportFiles.length < 2 && (
+            {passportFiles.length < 3 && (
                 <>
                     <Typography variant="h5" gutterBottom>
                         Bitte laden Sie Scans beider Seiten Ihres Reisepasses / Personalausweises hoch.
@@ -226,23 +266,71 @@ const UploadScansComponent = () => {
                 >
                     <Box
                         sx={{
-                            maxWidth: '90%',
-                            maxHeight: '90%',
-                            backgroundColor: 'white',
+                            width: isMobile ? '90%' : '60%', // Ширина контейнера
+                            height: isMobile ? 'auto' : '80vh', // Высота контейнера
                             borderRadius: '8px',
                             p: 2,
-                            outline: 'none'
+                            outline: 'none',
+                            textAlign: 'center',
+                            display: 'flex',
+                            flexDirection: 'column',
+                            alignItems: 'center',
+                            justifyContent: 'center',
                         }}
                     >
-                        <img
+                        <Box
+                            component="img"
                             src={selectedFile.preview}
                             alt={selectedFile.filename || selectedFile.name}
-                            style={{ width: '100%', height: 'auto' }}
+                            sx={{
+                                maxWidth: '100%',
+                                maxHeight: '90%',
+                                objectFit: 'contain', // This ensures the image scales down to fit within the container
+                                marginBottom: '16px'
+                            }}
                         />
-                        <Button onClick={closeModal} sx={{ mt: 2 }} variant="contained" color="primary">Schließen</Button>
+                        <Button onClick={closeModal} variant="contained" color="primary">Schließen</Button>
                     </Box>
                 </Modal>
             )}
+
+            {isDeleteModalOpen && (
+                <Modal
+                    open={isDeleteModalOpen}
+                    onClose={closeDeleteModal}
+                    sx={{
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center'
+                    }}
+                >
+                    <Box
+                        sx={{
+                            width: '300px',
+                            bgcolor: 'background.paper',
+                            borderRadius: '8px',
+                            p: 4,
+                            textAlign: 'center',
+                        }}
+                    >
+                        <Typography variant="h6" gutterBottom>
+                            Möchten Sie diese Datei wirklich löschen?
+                        </Typography>
+                        <Button
+                            onClick={confirmDelete}
+                            variant="contained"
+                            color="secondary"
+                            sx={{ mr: 2 }}
+                        >
+                            Ja
+                        </Button>
+                        <Button onClick={closeDeleteModal} variant="contained">
+                            Nein
+                        </Button>
+                    </Box>
+                </Modal>
+            )}
+
         </Box>
     );
 };
