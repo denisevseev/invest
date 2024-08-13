@@ -151,7 +151,7 @@ const UploadScansComponent = () => {
                         justifyContent: 'center',
                         border: '1px solid #e0e0e0',
                         borderRadius: '8px',
-                        padding: '16px',
+                        // padding: '16px',
                         margin: '8px',
                         position: 'relative'
                     }}
@@ -173,10 +173,10 @@ const UploadScansComponent = () => {
                             right: 8,
                             backgroundColor: 'rgba(255, 255, 255, 0.8)',
                             borderRadius: '4px',
-                            padding: '4px 8px',
+                            // padding: '4px 8px',
                         }}
                     >
-                        <Typography variant="body2" noWrap sx={{ maxWidth: '80%' }}>
+                        <Typography variant="body2" noWrap p={2} sx={{ maxWidth: '80%' }}>
                             {file.filename || file.name}
                         </Typography>
                         <IconButton
@@ -184,7 +184,7 @@ const UploadScansComponent = () => {
                                 e.stopPropagation();
                                 handleDeleteClick(file);
                             }}
-                            sx={{ ml: 1, backgroundColor: 'white' }}
+                            sx={{ ml: 1}}
                         >
                             <DeleteIcon />
                         </IconButton>
