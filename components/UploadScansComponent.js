@@ -199,7 +199,7 @@ const UploadScansComponent = () => {
             {passportFiles.length < 3 && (
                 <>
                     <Typography variant="h5" gutterBottom>
-                        Bitte laden Sie Scans beider Seiten Ihres Reisepasses / Personalausweises hoch.
+                        Bitte laden Sie Scans beider Seiten Ihres Reisepasses / Personalausweises hoch. / hier können Sie auch einen Scheck für eine abgeschlossene Überweisung hinzufügen
                     </Typography>
                     <Box
                         {...getPassportRootProps()}

@@ -47,16 +47,30 @@ const VictorumTradeComponent = () => {
                     position: 'relative',
                     overflow: 'hidden',
                     color: 'lightgray',
-                    // textShadow: `0 4px 6px ${theme.palette.text.primary}`,
-                    // animation: 'fadeInUp 1s ease-out',
                 }}
             >
                 {victorumTrade.title}
             </Typography>
             <Divider/>
-            <a href="https://victorum-trade.com/" target="_blank" rel="noopener noreferrer">
-                <Box component="img" src="/images/trade.png" alt="Victorum Trade" sx={{width: '100%', opacity: 0.7}}/>
-            </a>
+            <Box
+                sx={{
+                    position: 'relative',
+                    width: '100%',
+                    height: 'auto',
+                    backgroundImage: 'url(/images/trade.jpg)', // Укажите путь к фоновому изображению
+                    backgroundSize: 'cover',
+                    backgroundPosition: 'center',
+                    display: 'flex',
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                    p: 3, // Отступы внутри контейнера
+                }}
+            >
+                <a href="https://victorum-trade.com/" target="_blank" rel="noopener noreferrer">
+                    <Box component="img" src="/images/trade.png" alt="Victorum Trade" sx={{width: '80%', borderRadius: '45px', opacity: 0.7}}/>
+                </a>
+            </Box>
+            <Divider/>
             <Box sx={{textAlign: 'left', maxWidth: '100%', p: isMobile ? 1 : 3}}>
                 <Typography variant="body1" paragraph sx={{fontSize: isMobile ? '22px' : '21px'}}>
                     {victorumTrade.description1}

@@ -33,7 +33,7 @@ const VictorumPayComponent = () => {
             >
                 {victorumPay.title}
             </Typography>
-            <Image sx={{maxWidth: '100%', maxHeight: '38rem' }} src="/images/VicPay.jpg" alt="Victorum Pay" />
+            <Image sx={{maxWidth: '100%', maxHeight: '28rem' }} src="/images/VicPay.jpg" alt="Victorum Pay" />
             <Box sx={{ textAlign: 'left', maxWidth: '100%', margin: '0 auto' }}>
                 <Typography variant="body1" paragraph sx={{ fontSize: isMobile ? '22px' : '21px' }}>
                     {victorumPay.description1}
