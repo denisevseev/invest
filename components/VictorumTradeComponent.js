@@ -36,7 +36,7 @@ const VictorumTradeComponent = () => {
     const { victorumTrade } = language;
 
     return (
-        <Box sx={{width: isMobile ? '100%' : '80%', ml: isMobile ? 1 : 30, mt: 12, textAlign: 'center'}}>
+        <Box sx={{width: isMobile ? '100%' : '80%', ml: isMobile ? 1 : 28, mt: 12, textAlign: 'center'}}>
             <Typography
                 variant="h4"
                 align={isMobile ? 'center' : 'center'}
@@ -46,7 +46,7 @@ const VictorumTradeComponent = () => {
                     fontSize: isMobile ? '1.8rem' : '2.2rem',
                     position: 'relative',
                     overflow: 'hidden',
-                    color: 'lightgray',
+                    color: 'black',
                 }}
             >
                 {victorumTrade.title}
@@ -56,7 +56,7 @@ const VictorumTradeComponent = () => {
                 sx={{
                     position: 'relative',
                     width: '100%',
-                    height: 'auto',
+                    height: '100%',
                     backgroundImage: 'url(/images/trade.jpg)', // Укажите путь к фоновому изображению
                     backgroundSize: 'cover',
                     backgroundPosition: 'center',
@@ -67,7 +67,7 @@ const VictorumTradeComponent = () => {
                 }}
             >
                 <a href="https://victorum-trade.com/" target="_blank" rel="noopener noreferrer">
-                    <Box component="img" src="/images/trade.png" alt="Victorum Trade" sx={{width: '80%', borderRadius: '45px', opacity: 0.7}}/>
+                    <Box component="img" src="/images/trade.png" alt="Victorum Trade" sx={{width: isMobile ? '80%' : '132%',  opacity: 0}}/>
                 </a>
             </Box>
             <Divider/>
