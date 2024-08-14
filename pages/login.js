@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import {signIn, useSession} from 'next-auth/react';
+import { signIn, useSession } from 'next-auth/react';
 import { useRouter } from 'next/router';
 import { Container, TextField, useMediaQuery, useTheme, Button, Typography, Link, Box } from '@mui/material';
 import ReCAPTCHA from 'react-google-recaptcha';
@@ -15,7 +15,6 @@ const Login = () => {
     const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
     const router = useRouter();
     const { data: session } = useSession();
-
 
     const handleRecaptchaChange = (value) => {
         setRecaptchaValue(value);
@@ -42,8 +41,6 @@ const Login = () => {
         //     return;
         // }
 
-
-
         const result = await signIn('credentials', {
             redirect: false,
             email,
@@ -60,45 +57,62 @@ const Login = () => {
         }
     };
 
-
-
-
-
     return (
-        <Container sx={{ mt: 15, width: !isMobile ? '50%' : '100%' }}>
-            <form onSubmit={handleSubmit}>
-                <TextField
-                    label="Email"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    fullWidth
-                    margin="normal"
-                />
-                <TextField
-                    label="Password"
-                    type="password"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                    fullWidth
-                    margin="normal"
-                />
-                {/*<ReCAPTCHA*/}
-                {/*    sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY}  // Use environment variable for site key*/}
-                {/*    onChange={handleRecaptchaChange}*/}
-                {/*/>*/}
-                <Button type="submit" variant="contained" color="primary" fullWidth>
-                    Sign In
-                </Button>
-            </form>
-            {error && <Typography color="error">{error}</Typography>}
-            <Box mt={5} sx={{ display: 'flex', justifyContent: 'center' }}>
-                <Typography sx={{ marginLeft: '1rem' }}>
-                    <Link href="/ResetPassword" underline="true">
-                        Forgot Password
-                    </Link>
-                </Typography>
-            </Box>
-        </Container>
+        <Box
+            sx={{
+                backgroundImage: 'url(/images/login.jpg)',
+                backgroundSize: 'cover',
+                backgroundPosition: 'center',
+                minHeight: '100vh',
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+                padding: 2,
+            }}
+        >
+            <Container
+                sx={{
+                    backgroundColor: 'rgba(255, 255, 255, 0.85)', // Полупрозрачный фон для формы
+                    padding: 4,
+                    borderRadius: 2,
+                    boxShadow: 3,
+                    width: !isMobile ? '50%' : '100%',
+                }}
+            >
+                <form onSubmit={handleSubmit}>
+                    <TextField
+                        label="Email"
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                        fullWidth
+                        margin="normal"
+                    />
+                    <TextField
+                        label="Password"
+                        type="password"
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
+                        fullWidth
+                        margin="normal"
+                    />
+                    {/*<ReCAPTCHA*/}
+                    {/*    sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY}  // Use environment variable for site key*/}
+                    {/*    onChange={handleRecaptchaChange}*/}
+                    {/*/>*/}
+                    <Button type="submit" variant="contained" color="primary" fullWidth>
+                        Sign In
+                    </Button>
+                </form>
+                {error && <Typography color="error">{error}</Typography>}
+                <Box mt={5} sx={{ display: 'flex', justifyContent: 'center' }}>
+                    <Typography sx={{ marginLeft: '1rem' }}>
+                        <Link href="/ResetPassword" underline="true">
+                            Forgot Password
+                        </Link>
+                    </Typography>
+                </Box>
+            </Container>
+        </Box>
     );
 };
 

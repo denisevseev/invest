@@ -175,11 +175,11 @@ const AppBarComponent = () => {
                     keepMounted: true, // Better open performance on mobile.
                 }}
                 sx={{
-                    '& .MuiDrawer-paper': {
-                        boxSizing: 'border-box',
-                        width: isMobile ? 200 : 200, // Ensure consistent width
-                        position: 'fixed', // Ensure the drawer is fixed position
-                    },
+                    // '& .MuiDrawer-paper': {
+                    //     boxSizing: 'border-box',
+                    //     width: isMobile ? 200 : 200, // Ensure consistent width
+                    //     position: 'fixed', // Ensure the drawer is fixed position
+                    // },
                 }}
             >
                 {user?.role && (
