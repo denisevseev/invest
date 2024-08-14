@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Container, Typography, TextField, Button, Paper } from '@mui/material';
+import { Container, Typography, TextField, Button, Paper, Box } from '@mui/material';
 
 const ResetPassword = () => {
     const [email, setEmail] = useState('');
@@ -34,37 +34,50 @@ const ResetPassword = () => {
     };
 
     return (
-        <Container component={Paper} maxWidth="xs" sx={{ padding: '2rem', marginTop: '2rem' }}>
-            <Typography variant="h4" gutterBottom align="center">
-                Password Reset
-            </Typography>
-            {message && (
-                <Typography variant="body1" color="primary" align="center" sx={{ marginBottom: '1rem' }}>
-                    {message}
+        <Box
+            sx={{
+                backgroundImage: 'url(/images/login.jpg)', // Укажите путь к изображению
+                backgroundSize: 'cover',
+                backgroundPosition: 'center',
+                minHeight: '100vh',
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+                padding: 2,
+            }}
+        >
+            <Container component={Paper} maxWidth="xs" sx={{ padding: '2rem', marginTop: '2rem', backgroundColor: 'rgba(255, 255, 255, 0.85)', borderRadius: 2 }}>
+                <Typography variant="h4" gutterBottom align="center">
+                    Password Reset
                 </Typography>
-            )}
-            {error && (
-                <Typography variant="body1" color="error" align="center" sx={{ marginBottom: '1rem' }}>
-                    {error}
-                </Typography>
-            )}
-            <form onSubmit={handleSubmit}>
-                <TextField
-                    type="email"
-                    label="Email"
-                    variant="outlined"
-                    fullWidth
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    placeholder="Enter your email"
-                    required
-                    sx={{ marginBottom: '1rem' }}
-                />
-                <Button type="submit" variant="contained" color="primary" fullWidth>
-                    Send Email
-                </Button>
-            </form>
-        </Container>
+                {message && (
+                    <Typography variant="body1" color="primary" align="center" sx={{ marginBottom: '1rem' }}>
+                        {message}
+                    </Typography>
+                )}
+                {error && (
+                    <Typography variant="body1" color="error" align="center" sx={{ marginBottom: '1rem' }}>
+                        {error}
+                    </Typography>
+                )}
+                <form onSubmit={handleSubmit}>
+                    <TextField
+                        type="email"
+                        label="Email"
+                        variant="outlined"
+                        fullWidth
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                        placeholder="Enter your email"
+                        required
+                        sx={{ marginBottom: '1rem' }}
+                    />
+                    <Button type="submit" variant="contained" color="primary" fullWidth>
+                        Send Email
+                    </Button>
+                </form>
+            </Container>
+        </Box>
     );
 };
 
