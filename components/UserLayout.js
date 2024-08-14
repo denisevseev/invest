@@ -26,7 +26,6 @@ import { observer } from 'mobx-react-lite';
 import { useSession } from 'next-auth/react';
 import Login from "../pages/login";
 import MyAgreements from "./MyAgreements";
-import InvestmentOverview from "./InvestmentOverview";
 import ShareSubscription from "./ShareSubscription";
 import ChangePassword from "./ChangePassword";
 import ContactDetails from "./ContactDetails";
@@ -118,8 +117,6 @@ const UserLayout = ({ children }) => {
                 return <UserSurveyResults user={user} />;
             case 'My Agreements':
                 return <MyAgreements />;
-            case 'Investment Overview':
-                return <InvestmentOverview />;
             case 'Share Subscription':
                 return <ShareSubscription />;
             case 'Identification Documents':

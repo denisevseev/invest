@@ -126,9 +126,6 @@ const CustomSideBar = ({ positionMenu }) => {
                             <ListItem button sx={{ pl: 4 }} onClick={() => handleText('myAgreements')} selected={activeMenuItem === getEnglishText('myAgreements')}>
                                 <ListItemText primary={getText('myAgreements')} primaryTypographyProps={{ style: { whiteSpace: 'normal', wordBreak: 'break-word' } }} />
                             </ListItem>
-                            <ListItem button sx={{ pl: 4 }} onClick={() => handleText('investmentOverview')} selected={activeMenuItem === getEnglishText('investmentOverview')}>
-                                <ListItemText primary={getText('investmentOverview')} primaryTypographyProps={{ style: { whiteSpace: 'normal', wordBreak: 'break-word' } }} />
-                            </ListItem>
                             <ListItem button sx={{ pl: 4 }} onClick={() => handleText('shareSubscription')} selected={activeMenuItem === getEnglishText('shareSubscription')}>
                                 <ListItemText primary={getText('shareSubscription')} primaryTypographyProps={{ style: { whiteSpace: 'normal', wordBreak: 'break-word' } }} />
                             </ListItem>
