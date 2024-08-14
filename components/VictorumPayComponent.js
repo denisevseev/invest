@@ -27,8 +27,8 @@ const VictorumPayComponent = () => {
                     fontWeight: 'bold',
                     marginBottom: '1rem',
                     fontSize: isMobile ? '1.8rem' : '2.2rem',
-                    color: theme.palette.primary.main,
-                    textShadow: `0 4px 6px ${theme.palette.text.primary}`,
+                    // color: theme.palette.primary.main,
+                    // textShadow: `0 4px 6px ${theme.palette.text.primary}`,
                 }}
             >
                 {victorumPay.title}
