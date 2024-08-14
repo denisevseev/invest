@@ -6,6 +6,9 @@ import store from '../stores/userStore'; // Импортируйте ваш MobX
 const UniversalModal = observer(() => {
     const handleClose = () => {
         store.isModalOpen = false;
+        if(store.reloadPage){
+            location.reload();
+        }
     };
 
     return (

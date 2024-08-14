@@ -45,8 +45,9 @@ class UserStore {
   politicallyExposedPerson = "";
 
   //UniversalModal
-  modalText ='sdff'
-  isModalOpen = true
+  modalText =''
+  isModalOpen = false
+  reloadPage = false;
 
 
   constructor() {
@@ -83,6 +84,7 @@ class UserStore {
       DataRequestModal: observable,
       showCalc: observable,
       modalText: observable,
+      reloadPage: observable,
     });
   }
 
@@ -91,6 +93,8 @@ class UserStore {
       this.user = user;
     });
   }
+
+
 
   setField(name, value) {
     runInAction(() => {

@@ -26,7 +26,6 @@ const ShareSubscription = () => {
             <Typography variant="h4" align="center" sx={{ fontWeight: 'bold', mb: 3 }}>
                 Share Subscription
             </Typography>
-            <UniversalModal/>
             {store.showCalc && (<InvestmentCalculator/>)}
             {!isMobile ? (
                 <Box
