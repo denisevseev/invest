@@ -20,6 +20,11 @@ const RiskAcceptanceModal = ({}) => {
         store.acceptedRisks = event.target.checked;
     };
 
+    const handleAcceptClick = () =>{
+        store.RiskAcceptanceModal = false
+        store.showCalc = true
+    }
+
     return (
         <Modal open={store.RiskAcceptanceModal} onClose={()=>store.RiskAcceptanceModal = false} closeAfterTransition>
             <Box
@@ -315,7 +320,7 @@ const RiskAcceptanceModal = ({}) => {
                 <Button
                     variant="contained"
                     color="primary"
-                    onClick={()=>store.RiskAcceptanceModal = false}
+                    onClick={handleAcceptClick}
                     disabled={!store.acceptedRisks}
                     sx={{ mt: 2 }}
                 >

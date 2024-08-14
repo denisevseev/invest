@@ -18,6 +18,7 @@ class UserStore {
   isOpenDefaultSideBar = false;
   investmentAmount = 2500;
   shareholdingPeriod = 1;
+  showCalc = false
   distributedDividend = 0;
   stepsInvestor = false;
   RiskAcceptanceModal = true
@@ -42,6 +43,11 @@ class UserStore {
   anticipatedAnnualDeposit = "";
   intendedPurpose = "";
   politicallyExposedPerson = "";
+
+  //UniversalModal
+  modalText ='sdff'
+  isModalOpen = true
+
 
   constructor() {
     makeAutoObservable(this, {
@@ -75,6 +81,8 @@ class UserStore {
       sessionUser: observable,
       selectedComponent: observable,
       DataRequestModal: observable,
+      showCalc: observable,
+      modalText: observable,
     });
   }
 

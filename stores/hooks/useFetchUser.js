@@ -11,7 +11,6 @@ const useFetchUser = () => {
   const router = useRouter();
 
   const fetchUser = async () => {
-    debugger
     if (session && session.user) {
       try {
         const response = await fetch('/api/userInfo', {
@@ -20,7 +19,6 @@ const useFetchUser = () => {
           }
         });
         const data = await response.json();
-        debugger
 
         if (data) {
           const role = ['admin', 'manager', 'employee'].includes(data.role);

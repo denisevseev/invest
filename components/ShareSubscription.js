@@ -2,7 +2,9 @@ import React, {useState} from 'react';
 import { Box, Typography, Grid, Button, Card, CardMedia, CardContent, useTheme, useMediaQuery } from '@mui/material';
 import store from "../stores/userStore";
 import RiskAcceptanceModal from "./RiskAcceptance/RiskAcceptanceModal";
+import InvestmentCalculator from './InvestmentCalculator/InvestmentCalculator'
 import {observer} from "mobx-react-lite";
+import UniversalModal from "./UniversalModal";
 
 const ShareSubscription = () => {
     const theme = useTheme();
@@ -13,6 +15,7 @@ const ShareSubscription = () => {
     const handleAcceptRisks = () => {
         store.acceptedRisks = true; // Сохраняем согласие на риски
         setShowRisksModal(false); // Закрываем модальное окно
+        store.showCalc = true
     };
     const handleShow =()=>{
         setShowRisksModal(true)
@@ -23,6 +26,8 @@ const ShareSubscription = () => {
             <Typography variant="h4" align="center" sx={{ fontWeight: 'bold', mb: 3 }}>
                 Share Subscription
             </Typography>
+            <UniversalModal/>
+            {store.showCalc && (<InvestmentCalculator/>)}
             {!isMobile ? (
                 <Box
                     sx={{
@@ -72,6 +77,7 @@ const ShareSubscription = () => {
                         onAccept={handleAcceptRisks}
                     />
                 )}
+
             </Box>
         </Box>
     );

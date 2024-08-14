@@ -85,6 +85,36 @@ const InvestmentCalculator = () => {
     const formatNumber = (number) => {
         return new Intl.NumberFormat('en-US').format(number);
     };
+    const handleClickFinish = async ()=>{
+       await updateInvestmentData(user.email, investmentAmount, shareholdingPeriod)
+       location.reload()
+    }
+
+    const updateInvestmentData = async (email, investmentAmount, shareholdingPeriod) => {
+        try {
+            const response = await fetch('/api/setInvestorData', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ email, investmentAmount, shareholdingPeriod }),
+            });
+
+            const data = await response.json();
+
+            if (response.ok) {
+                store.isModalOpen = true
+                store.modalText = 'Daten erfolgreich aktualisiert'
+            } else {
+                store.isModalOpen = true
+                store.modalText = data.message
+            }
+        } catch (error) {
+            alert('Failed to update investment data.');
+        }
+    };
+
+
 
     return (
         <Modal open={true} onClose={() => {}} closeAfterTransition>
@@ -515,7 +545,7 @@ const InvestmentCalculator = () => {
                                             So einfach! Nach der Überprüfung Ihrer persönlichen Daten erhalten Sie innerhalb von 24 Stunden eine Rückmeldung, ob Ihr Antrag auf Kauf akzeptiert wurde. Bitte beachten Sie, dass nach einer Ablehnung eine erneute Antragstellung frühestens nach 90 Tagen möglich ist.
                                         </Typography>
                                     </Box>
-                                    { user?.clientType   || user?.companyName ?   <Button onClick={()=>router.push('/')}  variant="contained" color="primary" size="large">
+                                    { user?.clientType   || user?.companyName ?   <Button onClick={handleClickFinish}  variant="contained" color="primary" size="large">
                                         Finish
                                     </Button> :  <ButtonBecome /> }
                                 </Box>
