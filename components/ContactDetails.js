@@ -1,11 +1,10 @@
 import React from 'react';
-import {Grid, Typography, Box, Link, useTheme, useMediaQuery} from '@mui/material';
+import { Grid, Typography, Box, Link, useTheme, useMediaQuery } from '@mui/material';
 import { styled } from '@mui/system';
 
 const ContactContainer = styled(Box)(({ theme }) => ({
     padding: theme.spacing(12),
-    marginLeft:  '10%',
-    backgroundImage: 'url(/images/contact.jpg)',
+    marginLeft: '10%',
     backgroundSize: 'cover',
     backgroundPosition: 'center',
     backgroundRepeat: 'no-repeat',
@@ -17,7 +16,7 @@ const ContactContainer = styled(Box)(({ theme }) => ({
         left: 0,
         right: 0,
         bottom: 0,
-        backgroundColor: 'rgba(255, 255, 255, 0.85)', // Adds a black overlay with 50% opacity
+        backgroundColor: 'rgba(255, 255, 255, 0.85)', // Adds a white overlay with 85% opacity
         zIndex: 1,
     },
     '& > *': {
@@ -48,8 +47,26 @@ const ContactDetails = () => {
     const theme = useTheme();
     const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
     const isTablet = useMediaQuery(theme.breakpoints.between('sm', 'md'));
+
     return (
         <ContactContainer>
+            <Typography variant="h4" sx={{ marginBottom: 3, textAlign: 'center', fontWeight: 'bold', color: 'black' }}>
+                Contact Information
+            </Typography>
+            <Box
+                component="img"
+                src="/images/contact.jpg"
+                alt="Contact"
+                sx={{
+                    display: 'block',
+                    margin: '0 auto',
+                    marginBottom: 5,
+                    width: isMobile ? '100%' : '105%',
+                    maxHeight: '400px', // Ограничение высоты до 400 пикселей для компьютеров
+                    // borderRadius: 2,
+                    objectFit: 'cover', // Изображение заполняет блок с сохранением пропорций
+                }}
+            />
             <Grid container spacing={4}>
                 <Grid item xs={12} sm={6} md={4}>
                     <Typography variant="h5" sx={{ marginBottom: 3, color: 'black' }}>

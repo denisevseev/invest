@@ -15,7 +15,7 @@ const ResponsiveGrid = () => {
         >
             <Grid container spacing={4}>
                 <Grid item xs={12} md={12}>
-                    <Typography variant="h5" sx={{ marginBottom: 2 }}>
+                    <Typography variant="h4" sx={{ marginBottom: 2, fontWeight: 'bold' }}>
                         Frequently Asked Questions (FAQ)
                     </Typography>
                     <Box
@@ -23,10 +23,10 @@ const ResponsiveGrid = () => {
                         src="https://fineproxy.org/wp-content/uploads/2023/05/Frequently-Asked-Questions-FAQ.jpg" // Replace with your image path
                         alt="Sample"
                         sx={{
-                            width: isMobile  ? '100%' : '50%',
-                            height: 'auto',
-                            borderRadius: 2,
-                            marginBottom: 2,
+                            display: 'block',
+                            width: isMobile ? '100%' : '85%',
+                            maxHeight:  '400px', // Ограничение высоты до 400 пикселей для компьютеров
+                            marginLeft: !isMobile && '12rem'
                         }}
                     />
                 </Grid>
