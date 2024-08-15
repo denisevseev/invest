@@ -166,33 +166,35 @@ const AppBarComponent = () => {
                     )}
                 </Toolbar>
             </AppBar>
-            <Drawer
-                variant={(isMobile || isTablet) ? "temporary" : "permanent"}
-                anchor="left"
-                open={mobileOpen || !isMobile && !isTablet}
-                onClose={handleDrawerToggle}
-                ModalProps={{
-                    keepMounted: true, // Better open performance on mobile.
-                }}
-                sx={{
-                    ...(user && {
-                        '& .MuiDrawer-paper': {
-                            boxSizing: 'border-box',
-                            width: isMobile ? 200 : 200, // Ensure consistent width
-                            position: 'fixed', // Ensure the drawer is fixed position
-                        }
-                    }),
-                }}
+            {store.visibleDrawer && (
+                <Drawer
+                    variant={(isMobile || isTablet) ? "temporary" : "permanent"}
+                    anchor="left"
+                    open={mobileOpen || !isMobile && !isTablet}
+                    onClose={handleDrawerToggle}
+                    ModalProps={{
+                        keepMounted: true, // Better open performance on mobile.
+                    }}
+                    sx={{
+                        ...(user && {
+                            '& .MuiDrawer-paper': {
+                                boxSizing: 'border-box',
+                                width: isMobile ? 200 : 200, // Ensure consistent width
+                                position: 'fixed', // Ensure the drawer is fixed position
+                            }
+                        }),
+                    }}
 
-            >
-                {user?.role && (
-                    isMobile || isTablet ? (
-                        <CustomSideBar/>
-                    ) : (
-                        <SideMenu role={user.role} />
-                    )
-                )}
-            </Drawer>
+                >
+                    {user?.role && (
+                        isMobile || isTablet ? (
+                            <CustomSideBar/>
+                        ) : (
+                            <SideMenu role={user.role} />
+                        )
+                    )}
+                </Drawer>
+            )}
         </Box>
     );
 };

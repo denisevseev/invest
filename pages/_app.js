@@ -11,7 +11,8 @@ import Logo from '../components/Logo';
 import SignaturePad from './SignaturePad';
 import LicenseAgreement from './LicenseAgreement';
 import UserLayout from "../components/UserLayout";
-import UniversalModal from "../components/UniversalModal"; // Импортируем модальное окно
+import UniversalModal from "../components/UniversalModal";
+import Layout from "../components/Layout"; // Импортируем модальное окно
 
 // const theme = createTheme({
 //     typography: {

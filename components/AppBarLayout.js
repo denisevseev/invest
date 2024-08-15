@@ -5,7 +5,6 @@ import Footer from "./Footer";
 import CustomSideBar from "../pages/CustomSideBar";
 
 const AppBarLayuot = ({children}) => {
-    debugger
     return (
         <div>
             <AppBarComponent/>

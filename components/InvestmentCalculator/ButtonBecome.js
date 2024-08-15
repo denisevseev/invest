@@ -25,11 +25,12 @@ const ButtonBecome = (props) => {
     };
 
     const navigateToRegistration = async () => {
+        debugger
         setLoading(true); // Показываем прелоадер
         try {
             await new Promise((resolve) => setTimeout(resolve, 1000));
-            router.push('/RegistrationForm');
             store.stepsInvestor = true;
+            router.push('/RegistrationForm');
         } catch (error) {
             console.error("Failed to navigate:", error);
         } finally {

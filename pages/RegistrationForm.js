@@ -22,6 +22,7 @@ const RegistrationFormContent = ({ session }) => {
     const [modalOpen, setModalOpen] = useState(false);
     const [modalMessage, setModalMessage] = useState('');
     const router = useRouter();
+    store.visibleDrawer = false
 
     const phoneRegExp = /^(\+?\d{1,4}|\d{1,4})?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}$/;
 
@@ -201,6 +202,7 @@ const RegistrationFormContent = ({ session }) => {
 
     useEffect(() => {
         if (!store.stepsInvestor) {
+            debugger
             router.push('/');
         }
     }, []);

@@ -27,6 +27,7 @@ class UserStore {
   sessionUser = null
   selectedComponent = null
   DataRequestModal  = true
+  visibleDrawer = true
 
   //stepTwo
   dateOfBirth = null
@@ -85,6 +86,7 @@ class UserStore {
       showCalc: observable,
       modalText: observable,
       reloadPage: observable,
+      visibleDrawer: observable,
     });
   }
 
