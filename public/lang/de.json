@@ -59,27 +59,33 @@
     }
   },
 
+
   "regulationAuthority": {
     "title": "Stabilität und Vertrauen: Die U.S. Securities and Exchange Commission (SEC) als Hüter der Finanzmärkte",
     "content": [
-      "Die US-amerikanische Börsenaufsicht SEC (Securities and Exchange Commission) beaufsichtigt die Finanzmärkte in den USA und ist eine der ältesten Organisationen zur Überwachung der Aktivitäten von Finanzdienstleistern, Banken und Unternehmen.",
+      "Die US-amerikanische Börsenaufsicht SEC (Securities and Exchange Commission) beaufsichtigt die Finanzmärkte in den USA und ist eine der ältesten Organisationen zur Überwachung der Aktivitäten von Finanzdienstleistern, Banken und Unternehmen, welche Wertpapiere emittieren.",
       "Ihr Hauptziel ist es, ein funktionsfähiges, zuverlässiges und stabiles Finanzsystem zu gewährleisten und Bankkunden, Versicherte und Anleger zu schützen.",
-      "Die SEC ist eine der wichtigsten staatlichen Aufsichtsbehörden in den USA. Sie ist für die Regulierung des Wertpapiermarktes verantwortlich, einschließlich des Handels mit Aktien, ihrer Emission, der Börsen, Makler, der Handelsoperationen von Privatpersonen und Investmentgesellschaften. Die SEC überwacht auch Fusionen und Übernahmen von Unternehmen. Dies bedeutet: Wenn ein Vermögenswert an den US-Börsen gehandelt wird oder einem amerikanischen Makler zugänglich ist, unterliegt er automatisch den von der SEC festgelegten Regeln. Das Hauptziel dieser Organisation besteht darin, Transparenz in Transaktionen zu gewährleisten und betrügerische Aktivitäten zu bekämpfen."
+      "Die SEC ist eine der wichtigsten staatlichen Aufsichtsbehörden in den USA. Sie ist für die Regulierung des Wertpapiermarktes verantwortlich, einschließlich des Handels mit Aktien, ihrer Emission, der Börsen, Makler, der Handelsoperationen von Privatpersonen und Investmentgesellschaften.",
+      "Die SEC überwacht auch Fusionen und Übernahmen von Unternehmen. Dies bedeutet: Wenn ein Vermögenswert an den US-Börsen gehandelt wird oder einem amerikanischen Makler zugänglich ist, unterliegt er automatisch den von der SEC festgelegten Regeln.",
+      "Das Hauptziel dieser Organisation besteht darin, Transparenz in Transaktionen zu gewährleisten, betrügerische Aktivitäten zu bekämpfen, Investoren zu schützen sowie die US-Börsen zu überwachen."
     ],
     "contact": {
       "name": "U.S. Securities and Exchange Commission",
       "address": "100 F Street, NE Washington",
       "city": "DC 20549-0213",
-      "phone": "Telefon: (800) 732-0330",
+      "phone": "Telefon: +1 604-260-0738",
       "fax": "Fax: (202) 772-9295",
-      "web": "Web",
-      "webLink": "https://www.sec.gov",
+      "web": "Web: https://www.sec.gov",
       "companyLinkText": "Link zu Victorum Capital Inc. bei der SEC",
-      "companyLink": "https://www.sec.gov/Archives/edgar/data/0001871600/000187160021000001/xslFormDX01/primary_doc.xml"
+      "companyLink": "https://www.sec.gov/Archives/edgar/data/0001871600/000187160021000001/xslFormDX01/primary_doc.xml",
+      "additionalContactInfo": "Wenn Sie weitere Fragen zu den Wertpapieren von Victorum Capital haben, können Sie uns jederzeit unter XXXXXXXXXXXXXXXXX oder per E-Mail unter contact@victorum-capital.com kontaktieren - wir freuen uns auf Ihren Anruf!"
     }
+
   },
 
-  "notifications": {
+
+
+"notifications": {
     "emailNotVerified": "Ihre E-Mail ist nicht verifiziert",
     "emailNotVerifiedText": "Ihre E-Mail-Adresse <span style='font-weight: bold;'>{email}</span> wurde noch nicht verifiziert.",
     "phoneNotVerified": "Ihr Telefon ist nicht verifiziert",

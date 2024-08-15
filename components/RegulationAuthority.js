@@ -30,10 +30,13 @@ const RegulationAuthority = () => {
                         {regulationAuthority.contact.city}<br />
                         {regulationAuthority.contact.phone}<br />
                         {regulationAuthority.contact.fax}<br />
-                        {regulationAuthority.contact.web}: <Link href={regulationAuthority.contact.webLink} target="_blank" rel="noopener">{regulationAuthority.contact.webLink}</Link>
+                        {regulationAuthority.contact.web}: <Link href={regulationAuthority.contact.web} target="_blank" rel="noopener">{regulationAuthority.contact.web}</Link>
                     </Typography>
-                    <Typography variant="body1" sx={{ fontSize: isMobile ? '22px' : '21px' }}>
+                    <Typography variant="body1" paragraph sx={{ fontSize: isMobile ? '22px' : '21px' }}>
                         {regulationAuthority.contact.companyLinkText}: <Link href={regulationAuthority.contact.companyLink} target="_blank" rel="noopener">{regulationAuthority.contact.companyLink}</Link>
+                    </Typography>
+                    <Typography variant="body1" sx={{ fontSize: isMobile ? '22px' : '21px', marginTop: '1rem' }}>
+                        {regulationAuthority.contact.additionalContactInfo}
                     </Typography>
                 </Box>
             </Box>
