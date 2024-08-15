@@ -314,7 +314,7 @@ const RiskAcceptanceModal = ({}) => {
 
                 <FormControlLabel
                     control={<Checkbox checked={store.acceptedRisks} onChange={handleAcceptChange} />}
-                    label={isMobile ? 'I agree to the terms and conditions' : 'Ich stimme den Geschäftsbedingungen zu'}
+                    label={'Ich verstehe die Ausführungen zu den Risiken und stimme diesen zu!'}
                     sx={{ mt: 2, fontSize: isMobile ? '1rem' : '1.5rem' }}
                 />
                 <Button
