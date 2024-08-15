@@ -31,6 +31,7 @@ import ChangePassword from "./ChangePassword";
 import ContactDetails from "./ContactDetails";
 import ResponsiveGrid from "./ResponsiveGrid";
 import DataRequestModal from "./DataRequestModal";
+import Profile from "./Profile";
 
 const UserLayout = ({ children }) => {
     const { data: session, status } = useSession(); // Используем статус для отслеживания загрузки сессии
@@ -136,7 +137,7 @@ const UserLayout = ({ children }) => {
                     </Box>
                 );
             case 'Profile':
-                return <Dashboard />;
+                return <Profile/>;
             case 'Presentation':
                 return <Dashboard />;
             case 'Corporate Finance':
