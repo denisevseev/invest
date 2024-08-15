@@ -45,7 +45,7 @@ const ShareType = () => {
                     href="https://victorum-trade.com/"
                     target="_blank"
                     rel="noopener noreferrer"
-                    sx={{ fontWeight: 'bold', color: 'blue', textDecoration: 'none' }}
+                    sx={{  textDecoration: 'none' }}
                 >
                     <Box component="img" src="/images/trade.png" alt="Victorum Trade" sx={{ width: isMobile ? '80%' : '132%', opacity: 0 }} />
                 </Link>
@@ -72,17 +72,17 @@ const ShareType = () => {
                 </Typography>
                 <Typography variant="body1" paragraph sx={{ fontSize: isMobile ? '22px' : '21px' }}>
                     Der Übertrag geschieht, basierend auf kanadischem Recht, auf elektronischem Weg über die{' '}
-                    <Link href="https://www.integraltransfer.com/" target="_blank" rel="noopener noreferrer" sx={{ fontWeight: 'bold', color: 'blue', textDecoration: 'none' }}>
+                    <Link href="https://www.integraltransfer.com/" target="_blank" rel="noopener noreferrer" sx={{ textDecoration: 'none' }}>
                         Integral Transfer Agency Shareholder Services Inc.
                     </Link>, 100 Queen St E, Suite 203, Toronto, ON, M5C 1S6, Canada, Phone: {' '}
-                    <Link href="tel:+14166238028" sx={{ fontWeight: 'bold', color: 'blue', textDecoration: 'none' }}>
+                    <Link href="tel:+14166238028" sx={{  textDecoration: 'none' }}>
                         +1 416-623‐8028
                     </Link>{' '}
                     / Fax: {' '}
-                    <Link href="tel:+16477943332" sx={{ fontWeight: 'bold', color: 'blue', textDecoration: 'none' }}>
+                    <Link href="tel:+16477943332" sx={{  textDecoration: 'none' }}>
                         +1 647-794‐3332
                     </Link>,{' '}
-                    <Link href="mailto:info@integraltransfer.com" sx={{ fontWeight: 'bold', color: 'blue', textDecoration: 'none' }}>
+                    <Link href="mailto:info@integraltransfer.com" sx={{  textDecoration: 'none' }}>
                         info@integraltransfer.com
                     </Link>
                 </Typography>
@@ -100,14 +100,14 @@ const ShareType = () => {
                 </Typography>
                 <Typography variant="body1" paragraph sx={{ fontSize: isMobile ? '22px' : '21px' }}>
                     Gar kein Problem - wir stehen Ihnen auch auf Deutsch täglich zwischen 10 und 22h Berlin Zeit unter{' '}
-                    <Link href="tel:+16042600738" sx={{ fontWeight: 'bold', color: 'blue', textDecoration: 'none' }}>
+                    <Link href="tel:+16042600738" sx={{  textDecoration: 'none' }}>
                         +1 604-260-0738
                     </Link>{' '}
                     zur Verfügung.
                 </Typography>
                 <Typography variant="body1" paragraph sx={{ fontSize: isMobile ? '22px' : '21px' }}>
                     Natürlich können Sie uns Ihre Fragen auch schriftlich per E-Mail an{' '}
-                    <Link href="mailto:contact@victorum-capital.com" sx={{ fontWeight: 'bold', color: 'blue', textDecoration: 'none' }}>
+                    <Link href="mailto:contact@victorum-capital.com" sx={{  textDecoration: 'none' }}>
                         contact@victorum-capital.com
                     </Link>{' '}
                     senden - wir freuen uns auf Ihre Nachricht!
