@@ -32,6 +32,7 @@ import ContactDetails from "./ContactDetails";
 import ResponsiveGrid from "./ResponsiveGrid";
 import DataRequestModal from "./DataRequestModal";
 import Profile from "./Profile";
+import ShareType from "./SharType";
 
 const UserLayout = ({ children }) => {
     const { data: session, status } = useSession(); // Используем статус для отслеживания загрузки сессии
@@ -149,7 +150,7 @@ const UserLayout = ({ children }) => {
             case 'Economic Development':
                 return <Dashboard />;
             case 'Share Type & Investors':
-                return <Notification />;
+                return <ShareType/>;
             case 'Shareholder Structure':
                 return <Notification />;
             case 'Corporate Announcements':
