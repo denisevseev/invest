@@ -13,11 +13,18 @@ import LicenseAgreement from './LicenseAgreement';
 import UserLayout from "../components/UserLayout";
 import UniversalModal from "../components/UniversalModal"; // Импортируем модальное окно
 
+// const theme = createTheme({
+//     typography: {
+//         fontFamily: 'Roboto, Arial, sans-serif',
+//     },
+// });
+
 const theme = createTheme({
     typography: {
-        fontFamily: 'Roboto, Arial, sans-serif',
+        fontFamily: 'Times New Roman, Times, serif', // Устанавливаем шрифт Times New Roman
     },
 });
+
 
 const MyApp = ({ Component, pageProps }) => {
     const isSignUpPage = [
