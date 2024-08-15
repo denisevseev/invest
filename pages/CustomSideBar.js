@@ -84,6 +84,7 @@ const CustomSideBar = ({ positionMenu }) => {
         const text = getEnglishText(componentName);
         setActiveMenuItem(text);
         store.routeLink = text;
+        window.scrollTo(0, 0);
     };
 
     return (

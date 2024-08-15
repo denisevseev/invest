@@ -10,6 +10,7 @@ const ShareType = () => {
     const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
     const language = store.lang === 'de' ? de : en;
 
+
     return (
         <Box sx={{ width: isMobile ? '100%' : '80%', ml: isMobile ? 1 : 28, mt: 12, textAlign: 'center' }}>
             <Typography

@@ -53,7 +53,6 @@ const UserLayout = ({ children }) => {
         }
     }, [user?.investmentAmount]);
 
-    // Пока сессия загружается, ничего не рендерим
     if (status === 'loading') {
         // return (
         //     <Box

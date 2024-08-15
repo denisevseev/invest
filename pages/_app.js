@@ -39,12 +39,16 @@ const MyApp = ({ Component, pageProps }) => {
 
     const other = ['Home', 'Managers'].includes(Component.name);
 
+
+
     useEffect(() => {
         const mainHeader = document.querySelector('.mainHeader');
         if (mainHeader) {
             mainHeader.style.display = 'none';
         }
     }, []);
+
+
 
     if (Component.name === 'InvestorAgreement') {
         return (
