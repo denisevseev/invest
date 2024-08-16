@@ -35,7 +35,7 @@ const EconomicCalendar = () => {
                 sx={{
                     width: '100%',
                     maxHeight: '400px',
-                    marginBottom: '2rem'
+                    objectFit: 'cover'
                 }}
             />
 

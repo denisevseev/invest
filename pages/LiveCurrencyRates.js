@@ -28,6 +28,7 @@ const LiveCurrencyRates = () => {
                 sx={{
                     width: '100%',
                     maxHeight: !isMobile && '400px',
+                    objectFit: 'cover'
                 }}
             />
 
