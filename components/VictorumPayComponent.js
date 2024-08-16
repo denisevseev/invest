@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box, Typography, Link, useTheme, useMediaQuery } from '@mui/material';
+import {Box, Typography, Link, useTheme, useMediaQuery, Button} from '@mui/material';
 import { styled } from '@mui/material/styles';
 import { observer } from 'mobx-react-lite';
 import store from './../stores/userStore';
@@ -33,7 +33,7 @@ const VictorumPayComponent = () => {
             >
                 {victorumPay.title}
             </Typography>
-            <Image sx={{maxWidth: '100%', maxHeight: '28rem' }} src="/images/VicPay.jpg" alt="Victorum Pay" />
+            <Image sx={{maxWidth: '100%', maxHeight: '400px', objectFit: 'cover' }} src="/images/VicPay.jpg" alt="Victorum Pay" />
             <Box sx={{ textAlign: 'left', maxWidth: '100%', margin: '0 auto' }}>
                 <Typography variant="body1" paragraph sx={{ fontSize: isMobile ? '22px' : '21px' }}>
                     {victorumPay.description1}
@@ -64,11 +64,17 @@ const VictorumPayComponent = () => {
                     <strong>{victorumPay.reason5.split(':')[0]}:</strong> {victorumPay.reason5.split(':')[1]}
                 </Typography>
                 <Box textAlign="center" mt={2}>
-                    <Link href="https://vicpayments.com/" target="_blank" rel="noopener" sx={{ cursor: 'pointer', textDecoration: 'none' }}>
-                        <Typography variant="body1" sx={{ fontSize: isMobile ? '22px' : '21px', fontWeight: 'bold', color: theme.palette.primary.main }}>
+                    <Button
+                        variant="contained"
+                        href="https://vicpayments.com"
+                        target="_blank"
+                        rel="noopener"
+                        size="large"
+                    >
+                        <Typography variant="body1" sx={{fontSize: isMobile ? '22px' : '21px'}}>
                             {victorumPay.discoverMore}
                         </Typography>
-                    </Link>
+                    </Button>
                 </Box>
             </Box>
         </Box>

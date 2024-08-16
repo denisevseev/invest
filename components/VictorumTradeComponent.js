@@ -15,19 +15,6 @@ const StyledLink = styled(Link)(({ theme }) => ({
     },
 }));
 
-const StyledButton = styled(Button)(({ theme }) => ({
-    backgroundColor: theme.palette.primary.main,
-    color: theme.palette.common.white,
-    '&:hover': {
-        backgroundColor: theme.palette.primary.dark,
-    },
-    padding: '12px 24px',
-    fontSize: '16px',
-    fontWeight: 'bold',
-    borderRadius: '4px',
-    transition: 'background-color 0.3s ease',
-    variant: 'outlined'
-}));
 
 const VictorumTradeComponent = () => {
     const theme = useTheme();
@@ -79,16 +66,16 @@ const VictorumTradeComponent = () => {
                     {victorumTrade.description2}
                 </Typography>
                 <Box textAlign="center" mt={2}>
-                    <StyledButton
-                        variant="outlined"
+                    <Button
+                        variant="contained"
                         href="https://victorum-trade.com/"
                         target="_blank"
                         rel="noopener"
                     >
-                        <Typography variant="body1" sx={{fontSize: isMobile ? '22px' : '21px'}}>
+                        <Typography variant="body1">
                             {victorumTrade.visitButton}
                         </Typography>
-                    </StyledButton>
+                    </Button>
                 </Box>
             </Box>
         </Box>
