@@ -26,7 +26,8 @@ const ResponsiveGrid = () => {
                             display: 'block',
                             width: isMobile ? '100%' : '85%',
                             maxHeight:  '400px', // Ограничение высоты до 400 пикселей для компьютеров
-                            marginLeft: !isMobile && '12rem'
+                            marginLeft: !isMobile && '12rem',
+                            objectFit: 'cover',
                         }}
                     />
                 </Grid>
