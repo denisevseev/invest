@@ -6,6 +6,7 @@ import VerificationModal from './../components/VerificationModal';
 const Notification = ({ user }) => {
     const theme = useTheme();
     const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
+    const isTablet = useMediaQuery(theme.breakpoints.between('sm', 'md'));
     const [modalOpen, setModalOpen] = useState(false);
     const [confirmationType, setConfirmationType] = useState('');
     const [isPaymentModalOpen, setIsPaymentModalOpen] = useState(false);
@@ -25,7 +26,7 @@ const Notification = ({ user }) => {
     };
 
     return (
-        <Container sx={{ width: '100%', mt: 4, ml: 15 }}>
+        <Container sx={{ width: '100%', mt: 4, ml: !isMobile &&  !isTablet &&  15 }}>
             <VerificationModal
                 open={modalOpen}
                 handleClose={handleCloseModal}
