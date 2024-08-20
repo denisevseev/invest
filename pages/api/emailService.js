@@ -1,6 +1,6 @@
 // emailService.js
 
-const transporter = require('./mailConfig');
+const transporter = require('./../../models/mailConfig');
 
 async function sendEmail(to, subject, text, html) {
     try {

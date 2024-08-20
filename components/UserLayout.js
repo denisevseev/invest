@@ -54,19 +54,19 @@ const UserLayout = ({ children }) => {
     }, [user?.investmentAmount]);
 
     if (status === 'loading') {
-        // return (
-        //     <Box
-        //         sx={{
-        //             display: 'flex',
-        //             justifyContent: 'center',
-        //             alignItems: 'center',
-        //             height: '100vh',
-        //         }}
-        //     >
-        //         <h2>Loading ...</h2>
-        //     </Box>
-        // );
-        return null
+        return (
+            <Box
+                sx={{
+                    display: 'flex',
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                    height: '100vh',
+                }}
+            >
+                <h2>Loading ...</h2>
+            </Box>
+        );
+        // return null
     }
 
 
