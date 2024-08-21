@@ -1,17 +1,22 @@
-import { dividerClasses } from "@mui/material";
-import React, { useState } from "react";
-import AppBarComponent from './AppBar'
+import React from "react";
+import { useRouter } from 'next/router';
+import AppBarComponent from './AppBar';
 import Footer from "./Footer";
-import CustomSideBar from "../pages/CustomSideBar";
 
-const AppBarLayuot = ({children}) => {
+const AppBarLayout = ({ children }) => {
+    const router = useRouter();
+    const isResetPasswordPage = router.pathname === '/ResetPassword';
+    console.log(isResetPasswordPage)
+
     return (
         <div>
-            <AppBarComponent/>
-            <main style={{ marginTop: children.type.name === 'ResetPassword' ? '1rem' : '15rem'}}>{children}</main>
-            <Footer/>
+            <AppBarComponent />
+            <main style={{ marginTop: isResetPasswordPage ? '1rem' : '15rem' }}>
+                {children}
+            </main>
+            <Footer />
         </div>
-    )
-}
+    );
+};
 
-export default AppBarLayuot;
+export default AppBarLayout;

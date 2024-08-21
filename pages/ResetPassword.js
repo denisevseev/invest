@@ -1,10 +1,14 @@
-import { useState } from 'react';
+import {useEffect, useState} from 'react';
 import { Container, Typography, TextField, Button, Paper, Box } from '@mui/material';
 
 const ResetPassword = () => {
     const [email, setEmail] = useState('');
     const [message, setMessage] = useState('');
     const [error, setError] = useState(null);
+
+    useEffect(() => {
+        console.log('ResetPassword component rendered');
+    }, []);
 
     const handleSubmit = async (event) => {
         event.preventDefault();
