@@ -228,7 +228,7 @@ const UploadScansComponent = () => {
             {addressFiles.length < 2 && (
                 <>
                     <Typography variant="h5" fontWeight={"bold"} gutterBottom sx={{ mt: 4 }}>
-                        Bitte laden Sie Scans Ihres Adressnachweises hoch.
+                        Bitte laden Sie Scans Ihres Adressnachweises hoch..
                     </Typography>
                     <Box
                         {...getAddressRootProps()}
