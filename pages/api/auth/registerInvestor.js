@@ -11,6 +11,7 @@ export default async function handler(req, res) {
             email,
             password
         } = req.body;
+        console.log('Received data:', req.body);
 
         try {
             await client.connect();
