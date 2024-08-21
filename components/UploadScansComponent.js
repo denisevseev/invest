@@ -16,7 +16,7 @@ const UploadScansComponent = () => {
     const theme = useTheme();
     const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
 
-    const handleUpload = async (files, type, setFiles) => {
+    const handleUpload = async (files, type) => {
         const formData = new FormData();
         files.forEach(file => formData.append('files', file));
         formData.append('type', type);
