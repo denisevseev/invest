@@ -26,7 +26,7 @@ const Notification = ({ user }) => {
     };
 
     return (
-        <Container sx={{ width: '100%', mt: 4, ml: !isMobile &&  !isTablet &&  15 }}>
+        <Container>
             <VerificationModal
                 open={modalOpen}
                 handleClose={handleCloseModal}
@@ -90,22 +90,8 @@ const Notification = ({ user }) => {
                 <Modal
                     open={isPaymentModalOpen}
                     onClose={handleCloseModal}
-                    sx={{
-                        display: 'flex',
-                        alignItems: 'center',
-                        justifyContent: 'center'
-                    }}
                 >
-                    <Box
-                        sx={{
-                            width: isMobile ? '90%' : '500px',
-                            bgcolor: 'background.paper',
-                            borderRadius: '12px',
-                            p: 4,
-                            boxShadow: 24,
-                            textAlign: 'left',
-                        }}
-                    >
+                    <Box>
                         <Typography variant="h5" gutterBottom sx={{ fontWeight: 'bold', mb: 3 }}>
                             Sehr geehrter Investor,
                         </Typography>
@@ -121,14 +107,7 @@ const Notification = ({ user }) => {
                         <Typography variant="body1" sx={{ mb: 3 }}>
                             Bitte transferieren Sie die in diesem Vertrag vereinbarte Summe und nutzen Sie die folgende Bankverbindung:
                         </Typography>
-                        <Box
-                            sx={{
-                                p: 2,
-                                borderRadius: '8px',
-                                bgcolor: '#f5f5f5',
-                                mb: 3,
-                            }}
-                        >
+                        <Box>
                             <Typography variant="body2" sx={{ mb: 1 }}>
                                 <strong>Kontoinhaber:</strong> Swiss Finance Group AG
                             </Typography>

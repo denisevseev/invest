@@ -122,10 +122,18 @@ const UserLayout = ({ children }) => {
                 return <ShareSubscription />;
             case 'Identification Documents':
                 return (
-                    <Box>
-                        <Notification />
-                        <VerificationInfo />
-                        <UploadScansComponent />
+                    <Box mt={12}  ml={!isMobile && !isTablet && 20}>
+                        <Grid container spacing={2}>
+                            <Grid ml={!isMobile && !isTablet && 5} item xs={12}>
+                                <Notification />
+                            </Grid>
+                            <Grid item  ml={!isMobile && !isTablet && 5} xs={12}>
+                                <VerificationInfo />
+                            </Grid>
+                            <Grid item ml={isTablet || isMobile ? 5 : 10} xs={10}>
+                                <UploadScansComponent />
+                            </Grid>
+                        </Grid>
                     </Box>
                 );
             case 'Profile':
