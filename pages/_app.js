@@ -1,12 +1,16 @@
 import React, { useEffect } from 'react';
-import { SessionProvider } from 'next-auth/react';
+import { SessionProvider, useSession } from 'next-auth/react';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
 import AppBarLayout from '../components/AppBarLayout';
 import UserLayout from "../components/UserLayout";
 import UniversalModal from "../components/UniversalModal";
+import CircularProgress from '@mui/material/CircularProgress';
+import Box from '@mui/material/Box';
+import useFetchUser from './../stores/hooks/useFetchUser';
 import Layout from "../components/Layout";
+import ControlLayout from "../components/ControlLayout";
 
 const theme = createTheme({
     typography: {
@@ -14,8 +18,10 @@ const theme = createTheme({
     },
 });
 
-const MyApp = ({ Component, pageProps }) => {
+const MyAppContent = ({ Component, pageProps }) => {
     const router = useRouter();
+    const { status } = useSession(); // Используем статус сессии
+    const { user, loading } = useFetchUser(); // Используем хук для получения пользователя
 
     // Определение маршрутов
     const signUpPages = ['/signup', '/resetpassword', '/resetpasswordform', '/register', '/registerinvestor', '/registrationform'];
@@ -28,17 +34,60 @@ const MyApp = ({ Component, pageProps }) => {
     const isOtherPage = otherPages.includes(currentPath);
     const ismore = more.includes(currentPath);
 
+    // Показываем индикатор загрузки, пока данные о пользователе не загружены и сессия загружается
+    if (loading || status === 'loading') {
+        return (
+            <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
+                <CircularProgress />
+            </Box>
+        );
+    }
 
+    // Если пользователь не авторизован, показываем обычные страницы
+    if (status === 'unauthenticated') {
+        return (
+           <Layout pageProps={pageProps}>
+               <Component {...pageProps} />
+           </Layout>
+        );
+    }
 
-    debugger
+    // Определяем лейаут в зависимости от роли пользователя
+    if (user?.role && user.role !== 'investor') {
+        return (
+            <ControlLayout>
+                <Component {...pageProps} />
+            </ControlLayout>
+        );
+    }
 
-    useEffect(() => {
-        const mainHeader = document.querySelector('.mainHeader');
-        if (mainHeader) {
-            mainHeader.style.display = 'none';
-        }
-    }, []);
+    // Лейаут для авторизованных пользователей
+    return (
+        <>
+            {isSignUpPage && (
+                <AppBarLayout>
+                    <Component {...pageProps} />
+                </AppBarLayout>
+            )}
 
+            {isOtherPage && (
+                <UserLayout>
+                    <Component {...pageProps} />
+                </UserLayout>
+            )}
+
+            {ismore && (
+                <div>
+                    <Component {...pageProps} />
+                </div>
+            )}
+
+            <UniversalModal /> {/* Добавляем модальное окно */}
+        </>
+    );
+};
+
+const MyApp = ({ Component, pageProps }) => {
     return (
         <SessionProvider session={pageProps.session}>
             <Head>
@@ -48,26 +97,7 @@ const MyApp = ({ Component, pageProps }) => {
                 />
             </Head>
             <ThemeProvider theme={theme}>
-                {isSignUpPage && (
-                    <AppBarLayout>
-                        <Component {...pageProps} />
-                    </AppBarLayout>
-                )}
-
-                {isOtherPage && (
-                    <UserLayout>
-                        <Component {...pageProps} />
-                    </UserLayout>
-                )}
-
-
-                {ismore && (
-                    <div>
-                        <Component {...pageProps} />
-                    </div>
-                )}
-
-                <UniversalModal /> {/* Добавляем модальное окно */}
+                <MyAppContent Component={Component} pageProps={pageProps} />
             </ThemeProvider>
         </SessionProvider>
     );
