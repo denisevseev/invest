@@ -30,7 +30,6 @@ const MyApp = ({ Component, pageProps }) => {
 
 
 
-
     debugger
 
     useEffect(() => {
@@ -63,9 +62,9 @@ const MyApp = ({ Component, pageProps }) => {
 
 
                 {ismore && (
-                    <Layout>
+                    <div>
                         <Component {...pageProps} />
-                    </Layout>
+                    </div>
                 )}
 
                 <UniversalModal /> {/* Добавляем модальное окно */}
