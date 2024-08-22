@@ -201,9 +201,11 @@ const RegistrationFormContent = ({ session }) => {
     };
 
     useEffect(() => {
-        if (!store.stepsInvestor) {
-            debugger
-            router.push('/');
+        // Восстановление состояния из localStorage при загрузке страницы
+        const savedStepsInvestor = localStorage.getItem('stepsInvestor');
+        if (savedStepsInvestor === 'true') {
+            store.stepsInvestor = true;
+            localStorage.removeItem('stepsInvestor'); // Удаление ключа после использования
         }
     }, []);
 
@@ -264,7 +266,7 @@ const RegistrationFormContent = ({ session }) => {
     );
 };
 
-const RegistrationForm = () => {
+const Registrationform = () => {
     const { data: session, status } = useSession();
     const router = useRouter();
     store.RiskAcceptanceModal  = true
@@ -288,4 +290,4 @@ const RegistrationForm = () => {
     );
 };
 
-export default RegistrationForm;
+export default Registrationform;

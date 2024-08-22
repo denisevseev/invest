@@ -6,8 +6,6 @@ import Footer from "./Footer";
 const AppBarLayout = ({ children }) => {
     const router = useRouter();
     const isResetPasswordPage = router.pathname === '/ResetPassword';
-    console.log(isResetPasswordPage)
-
     return (
         <div>
             <AppBarComponent />

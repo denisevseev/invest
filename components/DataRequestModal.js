@@ -6,6 +6,9 @@ import { observer } from 'mobx-react-lite';
 
 const DataRequestModal = () => {
     const router = useRouter();
+    const handle =  ()=>{
+       router.push('/more-info');
+    }
     return (
         <Modal
             open={store.DataRequestModal}
@@ -52,7 +55,7 @@ const DataRequestModal = () => {
                             variant="contained"
                             color="primary"
                             fullWidth
-                            onClick={() => router.push('/more-info')}
+                            onClick={handle}
                         >
                             Weitere Daten bereitstellen
                         </Button>

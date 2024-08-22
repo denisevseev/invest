@@ -25,23 +25,23 @@ const ButtonBecome = (props) => {
     };
 
     const navigateToRegistration = async () => {
-        debugger
         setLoading(true); // Показываем прелоадер
         try {
-            await new Promise((resolve) => setTimeout(resolve, 1000));
+            await new Promise((resolve) => setTimeout(resolve, 1000)); // Симуляция ожидания
             store.stepsInvestor = true;
-            router.push('/RegistrationForm');
+            localStorage.setItem('stepsInvestor', 'true'); // Сохраняем состояние в localStorage
+            await router.push('/registrationform'); // Переход к странице регистрации
         } catch (error) {
             console.error("Failed to navigate:", error);
         } finally {
-            setLoading(false); // Скрываем прелоадер
+            setLoading(false); // Скрываем прелоадер после успешной навигации
         }
     };
 
     const handleAcceptRisks = () => {
         store.acceptedRisks = true; // Сохраняем согласие на риски
         setShowRisksModal(false); // Закрываем модальное окно
-        navigateToRegistration(); // Переходим к регистрации
+        navigateToRegistration() // Переходим к регистрации
     };
 
     return (
