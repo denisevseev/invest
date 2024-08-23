@@ -26,18 +26,17 @@ const MyAppContent = ({ Component, pageProps }) => {
     // Определение маршрутов
     const signUpPages = ['/signup', '/resetpassword', '/resetpasswordform', '/register', '/registerinvestor', '/registrationform'];
     const otherPages = ['/home', '/managers', '/', '/login'];
-    const isResetPassword = router.pathname.toLowerCase().includes('/resetpassword');
-    const isResetPasswordForm = router.pathname.toLowerCase().includes('/resetpasswordform');
-    debugger
-
-
     const more = ['/more-info'];
 
-    const currentPath = router.asPath.toLowerCase(); // Используем asPath для более точной проверки
+    // Получаем путь без query-параметров для сравнения
+    const pathname = router.pathname.toLowerCase();
+    const currentPath = router.asPath.toLowerCase();
 
-    const isSignUpPage = signUpPages.includes(currentPath);
-    const isOtherPage = otherPages.includes(currentPath);
-    const ismore = more.includes(currentPath);
+    const isResetPasswordForm = pathname === '/resetpasswordform';
+    const isResetPassword = pathname === '/resetpassword';
+    const isSignUpPage = signUpPages.includes(pathname);
+    const isOtherPage = otherPages.includes(pathname);
+    const ismore = more.includes(pathname);
 
     // Показываем индикатор загрузки, пока данные о пользователе не загружены и сессия загружается
     if (loading || status === 'loading') {
@@ -48,8 +47,16 @@ const MyAppContent = ({ Component, pageProps }) => {
         );
     }
 
-    // Если пользователь не авторизован, показываем обычные страницы
-    if (status === 'unauthenticated' && !isResetPassword && !isResetPasswordForm) {
+    // Если пользователь не авторизован, обрабатываем страницы для неавторизованных пользователей
+    if (status === 'unauthenticated') {
+        if (isResetPasswordForm || isResetPassword ) {
+        return (
+                <AppBarLayout>
+                    <Component {...pageProps} />
+                </AppBarLayout>
+            )
+        }
+
         return (
             <Layout pageProps={pageProps}>
                 <Component {...pageProps} />
