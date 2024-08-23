@@ -12,6 +12,7 @@ const AddManagerModal = ({ open, handleClose }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    console.log(email, password, phoneNumber, firstName, lastName )
 
     const response = await fetch('/api/admin/addManager', {
       method: 'POST',

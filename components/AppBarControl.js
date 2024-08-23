@@ -166,7 +166,9 @@ const AppBarControl = () => {
                 }}
             >
                 {user?.role && (
-                    <SideMenu role={user.role} />
+                    <Box mt={10}>
+                        <SideMenu role={user.role} />
+                    </Box>
                 )}
             </Drawer>
         </Box>
