@@ -5,6 +5,7 @@ import { Container, Typography, TextField, Button, Grid, Paper } from '@mui/mate
 const ResetPasswordForm = ({}) => {
   const router = useRouter();
   const { token, email } = router.query; // Getting token and email from query parameters
+  debugger
 
   const [password, setPassword] = useState('');
   const [message, setMessage] = useState('');

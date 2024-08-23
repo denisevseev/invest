@@ -26,6 +26,11 @@ const MyAppContent = ({ Component, pageProps }) => {
     // Определение маршрутов
     const signUpPages = ['/signup', '/resetpassword', '/resetpasswordform', '/register', '/registerinvestor', '/registrationform'];
     const otherPages = ['/home', '/managers', '/', '/login'];
+    const isResetPassword = router.pathname.toLowerCase().includes('/resetpassword');
+    const isResetPasswordForm = router.pathname.toLowerCase().includes('/resetpasswordform');
+    debugger
+
+
     const more = ['/more-info'];
 
     const currentPath = router.asPath.toLowerCase(); // Используем asPath для более точной проверки
@@ -44,11 +49,11 @@ const MyAppContent = ({ Component, pageProps }) => {
     }
 
     // Если пользователь не авторизован, показываем обычные страницы
-    if (status === 'unauthenticated') {
+    if (status === 'unauthenticated' && !isResetPassword && !isResetPasswordForm) {
         return (
-           <Layout pageProps={pageProps}>
-               <Component {...pageProps} />
-           </Layout>
+            <Layout pageProps={pageProps}>
+                <Component {...pageProps} />
+            </Layout>
         );
     }
 

@@ -11,24 +11,20 @@ import Link from "next/link";
 import SideMenu from "./SideMenu";
 import store from "../stores/userStore";
 import { observer } from "mobx-react-lite";
-import useFetchUser from './../stores/hooks/useFetchUser';
-import CustomSideBar from "../pages/CustomSideBar";
 
-const AppBarComponent = () => {
+const AppBarControl = () => {
     const theme = useTheme();
     const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
     const isTablet = useMediaQuery(theme.breakpoints.between('sm', 'md'));
     const [mobileOpen, setMobileOpen] = useState(false);
     const [anchorEl, setAnchorEl] = useState(null);
-    const [selectedComponent, setSelectedComponent] = useState(null); // Добавлено для управления состоянием
     const { data: session } = useSession();
     const router = useRouter();
-    const { user, loading } = useFetchUser();
-    store.sessionUser = user;
+    const user = store.user;
 
     const handleDrawerToggle = () => {
         setMobileOpen(!mobileOpen);
-        store.isOpenDefaultSideBar = !store.isOpenDefaultSideBar;
+        store.visibleDrawer = !store.visibleDrawer;
     };
 
     const handleLogout = async () => {
@@ -61,11 +57,6 @@ const AppBarComponent = () => {
         }
     };
 
-    const handleMenuItemClick = (componentName) => {
-        setSelectedComponent(componentName);
-        setMobileOpen(false); // Закрытие меню после клика на мобильных устройствах
-    };
-
     const capitalizeFirstLetter = (string) => {
         if (!string) return '';
         return string.charAt(0).toUpperCase() + string.slice(1).toLowerCase();
@@ -80,27 +71,29 @@ const AppBarComponent = () => {
                 sx={{
                     zIndex: (theme) => theme.zIndex.drawer + 1,
                     width: '100%',
-                    height: isMobile ? '60px' : '80px',
+                    height: isMobile ? '80px' : '80px', // Увеличение высоты для мобильных устройств
                     background: 'white',
                 }}
             >
                 <Toolbar>
-                    {(session && (isMobile || isTablet)) && (
+                    {(user && (isMobile || isTablet)) && (
                         <IconButton
                             color="black"
                             aria-label="open drawer"
                             edge="start"
                             onClick={handleDrawerToggle}
-                            sx={{ mr: 2 }}
+                            sx={{ mr: 2, fontSize: '2rem' }} // Увеличение размера иконки
                         >
-                            <MenuIcon />
+                            <MenuIcon sx={{ fontSize: isMobile ? '2.5rem' : '1.5rem' }} /> {/* Увеличение размера иконки */}
                         </IconButton>
                     )}
-                    {!isMobile &&  <Box sx={{ display: 'flex', alignItems: 'center', flexGrow: 1 }}>
-                        <Logo />
-                    </Box>}
+                    {!isMobile && (
+                        <Box sx={{ display: 'flex', alignItems: 'center', flexGrow: 1 }}>
+                            <Logo />
+                        </Box>
+                    )}
                     <Box sx={{ flexGrow: 1, display: 'flex', justifyContent: 'center' }}>
-                        {session && !isMobile && (
+                        {user && !isMobile && (
                             <Typography
                                 variant="body1"
                                 sx={{ color: 'black' }}
@@ -109,7 +102,7 @@ const AppBarComponent = () => {
                             </Typography>
                         )}
                     </Box>
-                    {session ? (
+                    {user && (
                         <>
                             {!isMobile && (
                                 <Box sx={{ display: 'flex', alignItems: 'center', mr: 2 }}>
@@ -124,7 +117,7 @@ const AppBarComponent = () => {
                                 <img
                                     src={user?.language === 'de' ? "/images/germany_flag.png" : "/images/United-States-Flag.svg"}
                                     alt="Selected Flag"
-                                    style={{ width: 20, height: user?.language === 'de' ? 13 : 20 }}
+                                    style={{ width: 30, height: user?.language === 'de' ? 20 : 30 }} // Увеличение размера флагов для мобильных устройств
                                 />
                             </IconButton>
                             <Menu
@@ -143,60 +136,41 @@ const AppBarComponent = () => {
                             </Menu>
                             <Divider orientation="vertical" flexItem sx={{ mx: 1 }} />
                             <IconButton>
-                                <HeadsetMicIcon />
+                                <HeadsetMicIcon sx={{ fontSize: isMobile ? '2rem' : '1.5rem' }} /> {/* Увеличение размера иконки */}
                                 {!isMobile && <Typography variant="body1" sx={{ ml: 1 }}>Help Desk</Typography>}
                             </IconButton>
                             <Divider orientation="vertical" flexItem sx={{ mx: 1 }} />
                             <Button sx={{ color: 'black', textShadow: '1px 1px 2px rgba(0,0,0,0.4)' }} onClick={handleLogout}>
-                                <LogoutIcon />
+                                <LogoutIcon sx={{ fontSize: isMobile ? '2rem' : '1.5rem' }} /> {/* Увеличение размера иконки */}
                                 {!isMobile && 'Logout'}
                             </Button>
-                        </>
-                    ) : (
-                        <>
-                            <Button sx={{ color: 'black', textShadow: '1px 1px 2px rgba(0,0,0,0.4)' }} onClick={() => router.push('/login')}>
-                                Login
-                            </Button>
-                            <Link href="/signup" passHref>
-                                <Button sx={{ color: 'black', textShadow: '1px 1px 2px rgba(0,0,0,0.4)' }}>
-                                    Sign Up
-                                </Button>
-                            </Link>
                         </>
                     )}
                 </Toolbar>
             </AppBar>
-            {store.visibleDrawer && (
-                <Drawer
-                    variant={(isMobile || isTablet) ? "temporary" : "permanent"}
-                    anchor="left"
-                    open={mobileOpen || !isMobile && !isTablet}
-                    onClose={handleDrawerToggle}
-                    ModalProps={{
-                        keepMounted: true, // Better open performance on mobile.
-                    }}
-                    sx={{
-                        ...(user && {
-                            '& .MuiDrawer-paper': {
-                                boxSizing: 'border-box',
-                                width: isMobile ? 200 : 200, // Ensure consistent width
-                                position: 'fixed', // Ensure the drawer is fixed position
-                            }
-                        }),
-                    }}
-
-                >
-                    {user?.role && (
-                        isMobile || isTablet ? (
-                            <CustomSideBar/>
-                        ) : (
-                            <SideMenu role={user.role} />
-                        )
-                    )}
-                </Drawer>
-            )}
+            <Drawer
+                variant={(isMobile || isTablet) ? "temporary" : "permanent"}
+                anchor="left"
+                open={mobileOpen || !isMobile && !isTablet}
+                onClose={handleDrawerToggle}
+                disableScrollLock
+                ModalProps={{
+                    keepMounted: true, // Better open performance on mobile.
+                }}
+                sx={{
+                    '& .MuiDrawer-paper': {
+                        boxSizing: 'border-box',
+                        width: isMobile ? 240 : 200, // Увеличение ширины меню для мобильных устройств
+                        position: 'fixed',
+                    },
+                }}
+            >
+                {user?.role && (
+                    <SideMenu role={user.role} />
+                )}
+            </Drawer>
         </Box>
     );
 };
 
-export default observer(AppBarComponent);
+export default observer(AppBarControl);

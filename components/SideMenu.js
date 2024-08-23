@@ -1,41 +1,40 @@
 import React from 'react';
-import { List, ListItem, ListItemText, ListItemIcon, Drawer, Box, Typography } from '@mui/material';
+import { List, ListItem, ListItemText, ListItemIcon, Box, Typography } from '@mui/material';
 import { useRouter } from 'next/router';
 import HomeIcon from '@mui/icons-material/Home';
 import PeopleIcon from '@mui/icons-material/People';
 import GroupIcon from '@mui/icons-material/Group';
 import AttachMoneyIcon from '@mui/icons-material/AttachMoney';
 import LinkIcon from '@mui/icons-material/Link';
-import store from "../stores/userStore";
+import { observer } from 'mobx-react-lite';
+import store from "../stores/userStore"; // Подключение вашего MobX стора
 
 const menuItems = {
   admin: [
-    { text: 'Statistics', route: '/admin/statistics', icon: <HomeIcon /> },
-    { text: 'Managers', route: '/roles/AdminDashboard', icon: <PeopleIcon /> },
-    { text: 'Employees', route: '/admin/employees', icon: <GroupIcon /> },
-    { text: 'Investors', route: '/admin/investors', icon: <AttachMoneyIcon /> },
+    { text: 'Statistics', route: 'statistics', icon: <HomeIcon /> },
+    { text: 'Managers', route: 'managers', icon: <PeopleIcon /> },
+    { text: 'Employees', route: 'employees', icon: <GroupIcon /> },
+    { text: 'Investors', route: 'investors', icon: <AttachMoneyIcon /> },
   ],
   manager: [
-    { text: 'Statistics', route: '/manager/statistics', icon: <HomeIcon /> },
-    { text: 'Employees', route: '/manager/employees', icon: <GroupIcon /> },
-    { text: 'Investors', route: '/manager/investors', icon: <AttachMoneyIcon /> },
-    { text: 'Link Generator', route: '/manager/link-generator', icon: <LinkIcon /> },
+    { text: 'Statistics', route: 'statistics', icon: <HomeIcon /> },
+    { text: 'Employees', route: 'employees', icon: <GroupIcon /> },
+    { text: 'Investors', route: 'investors', icon: <AttachMoneyIcon /> },
+    { text: 'Link Generator', route: 'link-generator', icon: <LinkIcon /> },
   ],
   employee: [
-    { text: 'Statistics', route: '/employee/statistics', icon: <HomeIcon /> },
-    { text: 'Investors', route: '/employee/investors', icon: <AttachMoneyIcon /> },
-    { text: 'Link Generator', route: '/employee/link-generator', icon: <LinkIcon /> },
+    { text: 'Statistics', route: 'statistics', icon: <HomeIcon /> },
+    { text: 'Investors', route: 'investors', icon: <AttachMoneyIcon /> },
+    { text: 'Link Generator', route: 'link-generator', icon: <LinkIcon /> },
   ],
 };
 
-const SideMenu = ({ role }) => {
-  console.log('call side menu', role)
-  const router = useRouter();
+const SideMenu = observer(({ role }) => {
   const items = menuItems[role];
-  const handleRoute = (item)=>{
-    // router.push(item.route)
-    store.routeLink  = item.text
-  }
+
+  const handleRoute = (item) => {
+    store.routeLink = item.route; // Сохраняем выбранный маршрут в глобальное состояние MobX
+  };
 
   return (
       <Box sx={{ width: 240 }}>
@@ -63,7 +62,7 @@ const SideMenu = ({ role }) => {
                     },
                     transition: 'background-color 0.3s ease',
                   }}
-                  selected={router.pathname === item.route}
+                  selected={store.routeLink === item.route}
               >
                 <ListItemIcon>{item.icon}</ListItemIcon>
                 <ListItemText primary={<Typography variant="body1">{item.text}</Typography>} />
@@ -72,6 +71,6 @@ const SideMenu = ({ role }) => {
         </List>
       </Box>
   );
-};
+});
 
 export default SideMenu;
