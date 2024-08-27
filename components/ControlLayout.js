@@ -11,12 +11,14 @@ import Employees from "../pages/roles/Employees";
 import Investors from "../pages/roles/Investors";
 import StatisticsChart from "../pages/roles/StatisticsChart";
 import AppBarControl from "./AppBarControl";
+import LinkGenerator from "./LinkGenerator";
 
 const ControlLayout = observer(({ children }) => {
     const theme = useTheme();
     const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
 
     const renderContent = () => {
+        console.log(store.routeLink);
         switch (store.routeLink) {
             case '/':
                 return <StatisticsChart />; // Компонент для отображения статистики
@@ -25,7 +27,9 @@ const ControlLayout = observer(({ children }) => {
             case 'employees':
                 return <Employees />; // Компонент для сотрудников
             case 'investors':
-                return <Investors />; // Компонент для инвесторов
+                return <Investors />;
+            case 'link-generator':
+                return <LinkGenerator />;
             default:
                 return <StatisticsChart />;
         }

@@ -28,21 +28,27 @@ const MyAgreements = () => {
                             <CardMedia
                                 component="img"
                                 height="140"
-                                image="/path/to/pdf-icon.jpg" // Ersetzen Sie dies durch den Pfad zu Ihrem Bild
+                                image={item === 1 ? "/pdf/first.jpg" : "/pdf/first.jpg"}
                                 alt="PDF Icon"
                             />
                             <CardContent>
                                 <Typography gutterBottom variant="h5" component="div">
-                                    Vereinbarung {item}
+                                    {item === 1 ? 'Zeichnung von SEC-registrierten\n' +
+                                        'vorbörslichen Wertpapieren der Victorum Capital Inc.' : 'Zeichnung von SEC-registrierten\n' +
+                                        'vorbörslichen Wertpapieren der Victorum Capital Inc.'}
                                 </Typography>
                                 <Typography variant="body2" color="text.secondary">
-                                    Dies ist eine detaillierte Beschreibung der Vereinbarung, die Sie unterzeichnet haben. Sie können die vollständige PDF-Datei herunterladen, indem Sie auf die Schaltfläche unten klicken.
+                                    {item === 1 ? 'Die Emittierung, die Registrierung, die Regulierung sowie der Verkauf\n' +
+                                        'der Wertpapiere der Victorum Capital Inc. erfolgt entsprechend den\n' +
+                                        'Richtlinien der US-Börsenaufsicht SEC sowie der deutschen BaFin.': 'Die Emittierung, die Registrierung, die Regulierung sowie der Verkauf\n' +
+                                        'der Wertpapiere der Victorum Capital Inc. erfolgt entsprechend den\n' +
+                                        'Richtlinien der US-Börsenaufsicht SEC sowie der deutschen BaFin.' }
                                 </Typography>
                                 <Button
                                     variant="contained"
                                     color="primary"
                                     sx={{ mt: 2 }}
-                                    href="#"
+                                    href={item === 1 ? "/pdf/ZEICHNUNGSSCHEIN_Victorum final.pdf" : "#"}
                                     target="_blank"
                                 >
                                     PDF herunterladen
