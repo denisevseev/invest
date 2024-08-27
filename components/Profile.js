@@ -49,7 +49,7 @@ const Profile = () => {
                     color: 'black',
                 }}
             >
-                Profile
+                Profil
             </Typography>
             <Divider/>
             <Box

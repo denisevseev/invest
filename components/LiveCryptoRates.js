@@ -17,7 +17,7 @@ const LiveCryptoRates = () => {
                     color: 'black',
                 }}
             >
-                Live Kryptokurse
+                Live-Kryptokurse
             </Typography>
 
             {/* Image Section */}

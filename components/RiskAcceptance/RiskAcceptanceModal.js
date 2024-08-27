@@ -62,7 +62,7 @@ const RiskAcceptanceModal = ({}) => {
                                 color: 'gray',
                             }}
                         >
-                            Anlage zum Zeichnungsschein
+                            Hinweise zur Wertpapierzeichnung
                         </Typography>
 
                         <Typography

@@ -17,7 +17,7 @@ const LiveCurrencyRates = () => {
                     color: 'black',
                 }}
             >
-                Live Currency Rates
+                Live-Währungskurse
             </Typography>
 
             {/* Image Section */}

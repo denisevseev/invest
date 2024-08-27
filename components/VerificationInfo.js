@@ -8,7 +8,7 @@ const VerificationInfo = () => {
     return (
         <Box>
             <Typography variant="h4" gutterBottom align="center">
-               Identifikations dokumente
+                Identifikationsdokumente
             </Typography>
             <Grid container spacing={3}>
                 <Grid item xs={12} md={12}>
