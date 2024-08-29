@@ -33,7 +33,7 @@
     "changePassword": "Passwort ändern"
   },
   "userSurveyResults": {
-    "myInformation": "Meine Informationen",
+    "myInformation": "Persönliche Angaben",
     "basicInformation": "Grundlegende Informationen",
     "contactInformation": "Kontaktinformationen",
     "questionsAndAnswers": "Allgemeine Angaben",
@@ -61,7 +61,7 @@
 
 
   "regulationAuthority": {
-    "title": "Stabilität und Vertrauen: Die U.S. Securities and Exchange Commission (SEC) als Hüter der Finanzmärkte",
+    "title": "Regulierungsbehörde",
     "content": [
       "Die US-amerikanische Börsenaufsicht SEC (Securities and Exchange Commission) beaufsichtigt die Finanzmärkte in den USA und ist eine der ältesten Organisationen zur Überwachung der Aktivitäten von Finanzdienstleistern, Banken und Unternehmen, welche Wertpapiere emittieren.",
       "Ihr Hauptziel ist es, ein funktionsfähiges, zuverlässiges und stabiles Finanzsystem zu gewährleisten und Bankkunden, Versicherte und Anleger zu schützen.",
@@ -102,7 +102,7 @@
   },
 
   "victorumPay": {
-    "title": "VicPay: Ihre sichere Zahlungslösung",
+    "title": "VicPay",
     "description1": "In einer Welt, in der Sicherheit immer wichtiger wird, bietet Victorum Pay zukunftssichere und zuverlässige Fiat- und Kryptowährungszahlungen. Unsere Plattform ist darauf ausgelegt, die höchsten Sicherheitsstandards zu erfüllen und sicherzustellen, dass Ihre Transaktionen sicher und geschützt sind.",
     "whyChooseTitle": "Warum Victorum Pay?",
     "reason1": "Victorum Pay zeichnet sich als Leuchtfeuer des Vertrauens und der Innovation in der Finanzlandschaft aus. Wir bieten unseren Kunden eine einfache und intuitive moderne Alternative zu traditionellen Brokern oder Filialbanken. Unsere Dienstleistungen sind darauf zugeschnitten, den unterschiedlichen Bedürfnissen von Unternehmen und Einzelpersonen gerecht zu werden und bieten Flexibilität, Schnelligkeit und Sicherheit.",

@@ -13,9 +13,9 @@ const ShareSubscription = () => {
     const [showRisksModal, setShowRisksModal] = useState(false);
     const user = store.user;
     const handleAcceptRisks = () => {
-        store.acceptedRisks = true; // Сохраняем согласие на риски
-        setShowRisksModal(false); // Закрываем модальное окно
-        store.showCalc = true
+        store.acceptedRisks = true; // Speichern der Risikoeinwilligung
+        setShowRisksModal(false); // Schließen des Modalfensters
+        store.showCalc = true;
     };
     const handleShow =()=>{
         setShowRisksModal(true)
@@ -24,50 +24,50 @@ const ShareSubscription = () => {
     return (
         <Box maxWidth={'lg'} sx={{ mt: 12, p: 2, ml: !isMobile && 25 }}>
             <Typography variant="h4" align="center" sx={{ fontWeight: 'bold', mb: 3 }}>
-                Share Subscription
+                Zeichnungsanfrage
             </Typography>
             {store.showCalc && (<InvestmentCalculator/>)}
             {!isMobile ? (
                 <Box
                     sx={{
                         position: 'relative',
-                        height: '400px', // Высота контейнера
-                        overflow: 'hidden', // Скрыть части изображения, выходящие за пределы контейнера
+                        height: '400px', // Höhe des Containers
+                        overflow: 'hidden', // Teile des Bildes, die über den Container hinausgehen, ausblenden
                     }}
                 >
                     <CardMedia
                         component="img"
                         image="/images/shareS.jpg"
-                        alt="Share Subscription"
+                        alt="Aktienzeichnung"
                         sx={{
                             position: 'absolute',
-                            top: '-40%', // Смещаем изображение вверх на 20%
+                            top: '-40%', // Bild um 20% nach oben verschieben
                             width: '100%',
-                            height: 'auto', // Сохраняем соотношение сторон
+                            height: 'auto', // Verhältnis des Bildes beibehalten
                         }}
                     />
                 </Box>
             ): <CardMedia
                 component="img"
                 image="/images/shareS.jpg"
-                alt="Share Subscription"
+                alt="Aktienzeichnung"
                 height="400"
             />}
 
 
             <Box sx={{ textAlign: 'left', maxWidth: '100%', p: isMobile ? 1 : 3 }}>
                 <Typography variant="body1" paragraph sx={{ fontSize: isMobile ? '18px' : '21px' }}>
-                    Subscribing to shares allows investors to become partial owners of a company, granting them a stake in the company’s profits and the ability to influence corporate decisions. By subscribing to new shares, investors can support the company’s growth while potentially earning dividends and benefiting from the appreciation of the share price.
+                    Die Zeichnung von Aktien ermöglicht es Investoren, Teilbesitzer eines Unternehmens zu werden. Dies gewährt ihnen einen Anteil am Gewinn des Unternehmens und die Möglichkeit, Unternehmensentscheidungen zu beeinflussen. Durch die Zeichnung neuer Aktien können Investoren das Wachstum des Unternehmens unterstützen, während sie möglicherweise Dividenden erhalten und von der Wertsteigerung des Aktienkurses profitieren.
                 </Typography>
                 <Typography variant="body1" paragraph sx={{ fontSize: isMobile ? '18px' : '21px' }}>
-                    Share subscription is a key strategy for those looking to diversify their investment portfolio, offering a mix of income through dividends and capital gains from stock price increases. It's important to carefully assess the company’s performance, industry trends, and your financial goals before making a subscription decision.
+                    Die Aktienzeichnung ist eine wichtige Strategie für diejenigen, die ihr Investitionsportfolio diversifizieren möchten. Sie bietet eine Mischung aus Einkommen durch Dividenden und Kapitalgewinnen aus Kurssteigerungen. Es ist wichtig, die Leistung des Unternehmens, Branchentrends und Ihre finanziellen Ziele sorgfältig zu bewerten, bevor Sie eine Entscheidung zur Zeichnung treffen.
                 </Typography>
                 <Typography variant="body1" paragraph sx={{ fontSize: isMobile ? '18px' : '21px' }}>
-                    Whether you are a seasoned investor or new to the market, subscribing to shares can be a valuable addition to your investment strategy, helping you to build wealth over the long term.
+                    Ob Sie nun ein erfahrener Investor oder neu am Markt sind, die Zeichnung von Aktien kann eine wertvolle Ergänzung Ihrer Anlagestrategie sein und Ihnen helfen, über einen langen Zeitraum Vermögen aufzubauen.
                 </Typography>
                 <Box textAlign="center" mt={4}>
                     <Button onClick={handleShow} variant="contained" color="primary" size="large">
-                        Subscribe to Shares Now
+                        Jetzt Aktien zeichnen
                     </Button>
                 </Box>
                 {showRisksModal && (

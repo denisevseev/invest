@@ -9,7 +9,7 @@ const MyAgreements = () => {
     return (
         <Box maxWidth={'lg'} sx={{ mt: 12, p: 2, ml: !isMobile && 25 }}>
             <Typography variant="h4" align="center" sx={{ fontWeight: 'bold', mb: 3 }}>
-                Meine Vereinbarungen
+                Meine Verträge
             </Typography>
             <CardMedia
                 component="img"
