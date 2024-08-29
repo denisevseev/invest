@@ -33,6 +33,9 @@ import ResponsiveGrid from "./ResponsiveGrid";
 import DataRequestModal from "./DataRequestModal";
 import Profile from "./Profile";
 import ShareType from "./SharType";
+import Investments from "./Investments";
+import {CorporateFare} from "@mui/icons-material";
+import CorporateFinance from "./CorporateFinance";
 
 const UserLayout = ({ children }) => {
     const { data: session, status } = useSession(); // Используем статус для отслеживания загрузки сессии
@@ -141,9 +144,9 @@ const UserLayout = ({ children }) => {
             case 'Presentation':
                 return <Dashboard />;
             case 'Corporate Finance':
-                return <Dashboard />;
+                return <CorporateFinance />;
             case 'Investments':
-                return <Dashboard />;
+                return <Investments />;
             case 'Consulting':
                 return <Dashboard />;
             case 'Economic Development':
