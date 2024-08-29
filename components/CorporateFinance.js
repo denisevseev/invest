@@ -57,7 +57,7 @@ const CorporateFinance = () => {
                     position: 'relative',
                     width: '100%',
                     height: '100%',
-                    backgroundImage: 'url(/images/profile.jpg)', // Укажите путь к фоновому изображению
+                    backgroundImage: 'url(/images/corpFinance.jpg)', // Укажите путь к фоновому изображению
                     backgroundSize: 'cover',
                     backgroundPosition: 'center',
                     display: 'flex',
