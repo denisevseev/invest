@@ -36,6 +36,8 @@ import ShareType from "./SharType";
 import Investments from "./Investments";
 import {CorporateFare} from "@mui/icons-material";
 import CorporateFinance from "./CorporateFinance";
+import Consulting from "./Consulting";
+import EconomicDevelopment from "./EconomicDevelopment";
 
 const UserLayout = ({ children }) => {
     const { data: session, status } = useSession(); // Используем статус для отслеживания загрузки сессии
@@ -148,9 +150,9 @@ const UserLayout = ({ children }) => {
             case 'Investments':
                 return <Investments />;
             case 'Consulting':
-                return <Dashboard />;
+                return <Consulting />;
             case 'Economic Development':
-                return <Dashboard />;
+                return <EconomicDevelopment />;
             case 'Share Type & Investors':
                 return <ShareType/>;
             case 'Shareholder Structure':
