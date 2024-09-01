@@ -5,6 +5,7 @@ import { observer } from 'mobx-react-lite';
 import store from './../stores/userStore';
 import en from './../public/lang/en.json';
 import de from './../public/lang/de.json';
+import MyPDFDocument from "./RiskPdf";
 
 // Styled Link component
 const StyledLink = styled(Link)(({ theme }) => ({

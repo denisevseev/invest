@@ -1,6 +1,7 @@
 import React from 'react';
 import { Box, Typography, Grid, Card, CardContent, CardMedia, Button, useTheme, useMediaQuery } from '@mui/material';
 import store from './../stores/userStore';
+import GeneratePDFButton from "./RiskPdf";
 
 const MyAgreements = () => {
     const theme = useTheme();
@@ -8,30 +9,31 @@ const MyAgreements = () => {
     const isTablet = useMediaQuery(theme.breakpoints.between('sm', 'md'));
     let user = store.user;
 
-    const handleGenerateDoc = async () => {
-        const response = await fetch('/api/generate-doc', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-                user
-            }),
-        });
+    const handleGenerateDoc = async (item) => {
+        if (item === 1) {
+            const response = await fetch('/api/generate-doc', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    user
+                }),
+            });
 
-        const result = await response.json();
-        console.log(result);
+            const result = await response.json();
+            console.log(result);
 
-        if (result.path && typeof window !== 'undefined') { // Проверяем, что код выполняется на клиенте
-            const link = document.createElement('a');
-            link.href = result.path;
-            link.download = 'document.pdf'; // Устанавливаем имя файла для скачивания
-            document.body.appendChild(link);
-            link.click();
-            document.body.removeChild(link);
+            if (result.path && typeof window !== 'undefined') { // Проверяем, что код выполняется на клиенте
+                const link = document.createElement('a');
+                link.href = result.path;
+                link.download = 'document.pdf'; // Устанавливаем имя файла для скачивания
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+            }
         }
     };
-
 
     return (
         <Box maxWidth={'lg'} sx={{ mt: 12, p: 2, ml: !isMobile && 25 }}>
@@ -55,30 +57,27 @@ const MyAgreements = () => {
                             <CardMedia
                                 component="img"
                                 height="140"
-                                image={item === 1 ? "/pdf/first.jpg" : "/pdf/first.jpg"}
+                                image={item === 1 ? "/pdf/first.jpg" : "/pdf/second.jpg"}
                                 alt="PDF Icon"
                             />
                             <CardContent>
                                 <Typography gutterBottom variant="h5" component="div">
                                     {item === 1 ? 'Zeichnung von SEC-registrierten\n' +
-                                        'vorbörslichen Wertpapieren der Victorum Capital Inc.' : 'Zeichnung von SEC-registrierten\n' +
-                                        'vorbörslichen Wertpapieren der Victorum Capital Inc.'}
+                                        'vorbörslichen Wertpapieren der Victorum Capital Inc.' : 'Chancen und Risiken bei Investitionen in vorbörsliche Aktien der Victorum Capital Inc.'}
                                 </Typography>
                                 <Typography variant="body2" color="text.secondary">
                                     {item === 1 ? 'Die Emittierung, die Registrierung, die Regulierung sowie der Verkauf\n' +
                                         'der Wertpapiere der Victorum Capital Inc. erfolgt entsprechend den\n' +
-                                        'Richtlinien der US-Börsenaufsicht SEC sowie der deutschen BaFin.': 'Die Emittierung, die Registrierung, die Regulierung sowie der Verkauf\n' +
-                                        'der Wertpapiere der Victorum Capital Inc. erfolgt entsprechend den\n' +
-                                        'Richtlinien der US-Börsenaufsicht SEC sowie der deutschen BaFin.' }
+                                        'Richtlinien der US-Börsenaufsicht SEC sowie der deutschen BaFin.': 'Ein umfassender Leitfaden, der die wesentlichen Chancen und Risiken beleuchtet, die bei einer Kapitalanlage in vorbörsliche Aktien der Victorum Capital Inc. zu berücksichtigen sind.' }
                                 </Typography>
-                                <Button
+                                {item === 1 ? <Button
                                     variant="contained"
                                     color="primary"
                                     sx={{ mt: 2 }}
-                                    onClick={handleGenerateDoc}
+                                    onClick={()=>handleGenerateDoc(item)}
                                 >
                                     PDF herunterladen
-                                </Button>
+                                </Button> : <GeneratePDFButton/>}
                             </CardContent>
                         </Card>
                     </Grid>

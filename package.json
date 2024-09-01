@@ -16,6 +16,7 @@
     "@mui/material": "^5.15.20",
     "@mui/x-date-pickers": "^7.7.0",
     "@prisma/client": "^5.15.0",
+    "@react-pdf/renderer": "^3.4.4",
     "axios": "^1.7.2",
     "bcrypt": "^5.1.1",
     "busboy": "^1.6.0",
