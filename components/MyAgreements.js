@@ -1,7 +1,6 @@
 import React from 'react';
 import { Box, Typography, Grid, Card, CardContent, CardMedia, Button, useTheme, useMediaQuery } from '@mui/material';
 import store from './../stores/userStore';
-import {router} from "next/client";
 
 const MyAgreements = () => {
     const theme = useTheme();

@@ -70,7 +70,7 @@ export default async function handler(req, res) {
             font: helveticaFont,
         });
 
-        firstPage.drawText(sanitizeText(``), { // Поле Fax пустое, но можно заменить на реальные данные если они есть
+        firstPage.drawText(sanitizeText(`(202) 772-9295`), { // Поле Fax пустое, но можно заменить на реальные данные если они есть
             x: 380,
             y: 437,
             size: 8,
@@ -86,7 +86,7 @@ export default async function handler(req, res) {
 
         firstPage.drawText(sanitizeText(`${user.country}`), {
             x: 380,
-            y: 408,
+            y: 393,
             size: 8,
             font: helveticaFont,
         });

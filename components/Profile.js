@@ -5,7 +5,6 @@ import { observer } from 'mobx-react-lite';
 import store from './../stores/userStore';
 import en from './../public/lang/en.json';
 import de from './../public/lang/de.json';
-import GenerateDocButton from "./GenerateDocButton";
 
 // Styled Link component
 const StyledLink = styled(Link)(({ theme }) => ({
@@ -38,7 +37,6 @@ const Profile = () => {
 
     return (
         <Box sx={{width: isMobile ? '100%' : '80%', ml: isMobile ? 1 : 28, mt: 12, textAlign: 'center'}}>
-            <GenerateDocButton/>
             <Typography
                 variant="h4"
                 align={isMobile ? 'center' : 'center'}

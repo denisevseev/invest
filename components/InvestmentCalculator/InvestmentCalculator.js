@@ -89,7 +89,7 @@ const InvestmentCalculator = () => {
     const handleClickFinish = async ()=>{
        await updateInvestmentData(user.email, investmentAmount, shareholdingPeriod)
        if(!store.isModalOpen){
-           location.reload()
+           // location.reload()
        }
     }
 
