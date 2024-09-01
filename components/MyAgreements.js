@@ -1,10 +1,38 @@
 import React from 'react';
 import { Box, Typography, Grid, Card, CardContent, CardMedia, Button, useTheme, useMediaQuery } from '@mui/material';
+import store from './../stores/userStore';
+import {router} from "next/client";
 
 const MyAgreements = () => {
     const theme = useTheme();
     const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
     const isTablet = useMediaQuery(theme.breakpoints.between('sm', 'md'));
+    let user = store.user;
+
+    const handleGenerateDoc = async () => {
+        const response = await fetch('/api/generate-doc', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                user
+            }),
+        });
+
+        const result = await response.json();
+        console.log(result);
+
+        if (result.path && typeof window !== 'undefined') { // Проверяем, что код выполняется на клиенте
+            const link = document.createElement('a');
+            link.href = result.path;
+            link.download = 'document.pdf'; // Устанавливаем имя файла для скачивания
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        }
+    };
+
 
     return (
         <Box maxWidth={'lg'} sx={{ mt: 12, p: 2, ml: !isMobile && 25 }}>
@@ -48,8 +76,7 @@ const MyAgreements = () => {
                                     variant="contained"
                                     color="primary"
                                     sx={{ mt: 2 }}
-                                    href={item === 1 ? "/pdf/ZEICHNUNGSSCHEIN_Victorum final.pdf" : "#"}
-                                    target="_blank"
+                                    onClick={handleGenerateDoc}
                                 >
                                     PDF herunterladen
                                 </Button>
