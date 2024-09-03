@@ -103,14 +103,13 @@
 
   "victorumPay": {
     "title": "VicPay",
-    "description1": "In einer Welt, in der Sicherheit immer wichtiger wird, bietet Victorum Pay zukunftssichere und zuverlässige Fiat- und Kryptowährungszahlungen. Unsere Plattform ist darauf ausgelegt, die höchsten Sicherheitsstandards zu erfüllen und sicherzustellen, dass Ihre Transaktionen sicher und geschützt sind.",
-    "whyChooseTitle": "Warum Victorum Pay?",
-    "reason1": "Victorum Pay zeichnet sich als Leuchtfeuer des Vertrauens und der Innovation in der Finanzlandschaft aus. Wir bieten unseren Kunden eine einfache und intuitive moderne Alternative zu traditionellen Brokern oder Filialbanken. Unsere Dienstleistungen sind darauf zugeschnitten, den unterschiedlichen Bedürfnissen von Unternehmen und Einzelpersonen gerecht zu werden und bieten Flexibilität, Schnelligkeit und Sicherheit.",
-    "reason2": "Zukunftssichere Zahlungen: Erleben Sie die Zukunft der Finanzen mit unseren integrierten Fiat- und Kryptowährungszahlungslösungen. Victorum Pay unterstützt eine breite Palette digitaler Währungen und stellt sicher, dass Sie im sich schnell entwickelnden Finanzökosystem immer einen Schritt voraus sind.",
-    "reason3": "Zuverlässigkeit: Mit einem starken Fokus auf Zuverlässigkeit garantiert unsere Plattform reibungslose und ununterbrochene Transaktionen. Ob Sie es mit groß angelegten Geschäftszahlungen oder alltäglichen persönlichen Transaktionen zu tun haben, Victorum Pay ist Ihr verlässlicher Partner.",
-    "reason4": "Benutzerfreundliche Oberfläche: Unsere Plattform ist benutzerorientiert gestaltet. Genießen Sie ein nahtloses Erlebnis mit unserer intuitiven Benutzeroberfläche, die das Verwalten Ihrer Zahlungen mühelos macht.",
-    "reason5": "Umfassender Support: Wir glauben daran, unsere Kunden in jeder Phase zu unterstützen. Unser engagiertes Support-Team steht Ihnen jederzeit zur Verfügung, um Ihnen bei Fragen oder Problemen zu helfen.",
-    "discoverMore": "Mehr Erfahren"
+  "description1": "Die Zahlungsplattform der VicPay, einem weiteren Unternehmen aus der Victorum Group of Companies, ist eines der modernsten und innovativsten Unternehmen zwischen FinTechs, NeoBanken und anderen modernen Teilnehmern an den internationalen Finanzmärkten.",
+  "whyChooseTitle": "Warum VicPay?",
+  "reason1": "VicPay ermöglicht mit modernsten IT-Systemen, KI und innovativen Sicherheitstechnologien globale Transaktionen mit Fiat- und Kryptowährungen, Währungsumrechnungen und die Absicherung von Fremdwährungsrisiken einfacher, günstiger - und vor allem: deutlich schneller als Kunden es bisher gewohnt waren.",
+  "reason2": "Damit leitet VicPay eine neue Ära der Geldtransfers ein, die unvergleichliche Effizienz und Sicherheit zusammenführt, denn in einer Welt, in der Sicherheit immer wichtiger wird, bietet VicPay zukunftssichere und zuverlässige Zahlungen in Fiat- und Kryptowährungen.",
+  "reason3": "Das Team der VicPay unterstützt private und gewerbliche Kunden in allen Anliegen rund um die Echtzeitverarbeitung von grenzüberschreitenden Zahlungen, Zahlungen in unterschiedlichen Währungen, Bulk Payments und intelligente Tools für Rechnungs- und Zahlungsautomatisierung.",
+  "reason4": "VicPay ist daher eine einfache und intuitive moderne Alternative zu traditionellen Brokern oder Großbanken - klicken Sie hier, um mehr über VicPay zu erfahren!",
+  "discoverMore": "Mehr Erfahren"
   },
   "dashboard": {
     "balance": "Balance",

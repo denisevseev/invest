@@ -62,6 +62,13 @@ export default async function handler(req, res) {
             font: helveticaFont,
         });
 
+        firstPage.drawText(sanitizeText(`X`), {
+            x: 267,
+            y: 504,
+            size: 12,
+            font: helveticaFont,
+        });
+
         // Вторая колонка
         firstPage.drawText(sanitizeText(`${user.phoneNumber}`), {
             x: 380,

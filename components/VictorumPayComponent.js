@@ -39,11 +39,11 @@ const VictorumPayComponent = () => {
                     {victorumPay.description1}
                 </Typography>
                 <Typography
-                    variant="h5"
+                    variant="h6"
                     sx={{
                         fontWeight: 'bold',
                         marginBottom: '1rem',
-                        fontSize: isMobile ? '1.6rem' : '2rem',
+                        fontSize: isMobile ? '1.6rem' : '1.3rem',
                     }}
                 >
                     {victorumPay.whyChooseTitle}
@@ -52,16 +52,13 @@ const VictorumPayComponent = () => {
                     {victorumPay.reason1}
                 </Typography>
                 <Typography variant="body1" paragraph sx={{ fontSize: isMobile ? '22px' : '21px' }}>
-                    <strong>{victorumPay.reason2.split(':')[0]}:</strong> {victorumPay.reason2.split(':')[1]}
+                    {victorumPay.reason2.split(':')[0]} {victorumPay.reason2.split(':')[1]}
                 </Typography>
                 <Typography variant="body1" paragraph sx={{ fontSize: isMobile ? '22px' : '21px' }}>
-                    <strong>{victorumPay.reason3.split(':')[0]}:</strong> {victorumPay.reason3.split(':')[1]}
+                    {victorumPay.reason3.split(':')[0]} {victorumPay.reason3.split(':')[1]}
                 </Typography>
                 <Typography variant="body1" paragraph sx={{ fontSize: isMobile ? '22px' : '21px' }}>
-                    <strong>{victorumPay.reason4.split(':')[0]}:</strong> {victorumPay.reason4.split(':')[1]}
-                </Typography>
-                <Typography variant="body1" paragraph sx={{ fontSize: isMobile ? '22px' : '21px' }}>
-                    <strong>{victorumPay.reason5.split(':')[0]}:</strong> {victorumPay.reason5.split(':')[1]}
+                    {victorumPay.reason4.split(':')[0]} {victorumPay.reason4.split(':')[1]}
                 </Typography>
                 <Box textAlign="center" mt={2}>
                     <Button

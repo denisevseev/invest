@@ -418,9 +418,9 @@ const RiskPdf = () => (
 // Компонент для генерации и скачивания PDF
 const GeneratePDFButton = () => (
     <div>
-        <PDFDownloadLink document={<RiskPdf />} fileName="RiskAcceptance.pdf">
+        <PDFDownloadLink document={<RiskPdf />} fileName="2024_VICCAPITAL_ChancenRisiken_Wertpap.vorbörslich.pdf">
             {({ blob, url, loading, error }) => (
-                <Button sx={{ mt: 4 }} variant="contained" color="primary" href={url} download="RiskAcceptance.pdf">
+                <Button sx={{ mt: 2 }} variant="contained" color="primary" href={url} download="2024_VICCAPITAL_ChancenRisiken_Wertpap.vorbörslich.pdf">
                     {loading ? 'Generiere PDF...' : 'PDF herunterladen'}
                 </Button>
             )}

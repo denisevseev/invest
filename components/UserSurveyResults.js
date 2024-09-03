@@ -120,7 +120,7 @@ const UserSurveyResults = () => {
     return (
         <Card sx={{ maxWidth: 1200, mx: 'auto', mt: 10, p: 2, marginLeft: '15%' }}>
             <CardContent>
-                <Typography sx={{ textAlign: 'center' }} variant="h5" gutterBottom>
+                <Typography variant="h4" align="center" sx={{ fontWeight: 'bold', mb: 3 }}>
                     {lang.userSurveyResults.myInformation}
                 </Typography>
                 <Divider sx={{ mb: 3 }} />

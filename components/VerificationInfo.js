@@ -7,7 +7,8 @@ const VerificationInfo = () => {
     const isTablet = useMediaQuery(theme.breakpoints.between('sm', 'md'));
     return (
         <Box>
-            <Typography variant="h4" gutterBottom align="center">
+            <Typography variant="h4" align="center" sx={{ fontWeight: 'bold', mb: 3 }}
+            >
                 Identifikationsdokumente
             </Typography>
             <Grid container spacing={3}>

@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { SessionProvider, useSession } from 'next-auth/react';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import Head from 'next/head';
@@ -14,7 +14,7 @@ import ControlLayout from "../components/ControlLayout";
 
 const theme = createTheme({
     typography: {
-        fontFamily: 'Times New Roman, Times, serif',
+        fontFamily: 'DejaVu Sans, sans-serif',
     },
 });
 
@@ -50,7 +50,7 @@ const MyAppContent = ({ Component, pageProps }) => {
     // Если пользователь не авторизован, обрабатываем страницы для неавторизованных пользователей
     if (status === 'unauthenticated') {
         if (isResetPasswordForm || isResetPassword || isSignUpPage ) {
-        return (
+            return (
                 <AppBarLayout>
                     <Component {...pageProps} />
                 </AppBarLayout>
@@ -105,7 +105,7 @@ const MyApp = ({ Component, pageProps }) => {
             <Head>
                 <link
                     rel="stylesheet"
-                    href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap"
+                    href="https://fonts.googleapis.com/css2?family=DejaVu+Sans:wght@400;500;700&display=swap"
                 />
             </Head>
             <ThemeProvider theme={theme}>

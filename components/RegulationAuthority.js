@@ -13,7 +13,7 @@ const RegulationAuthority = () => {
 
     return (
         <Box sx={{ width: isMobile ? '100%' : '80%', ml: isMobile ? 1 : 30, mt: 12, textAlign: 'center' }}>
-            <Typography variant="h5" align="center" sx={{ fontWeight: 'bold', marginBottom: '2rem' }}>
+            <Typography variant="h4" align="center" sx={{ fontWeight: 'bold', mb: 3 }}>
                 {regulationAuthority.title}
             </Typography>
             <Box component="img" src="https://smfanton.ru/wp-content/uploads/2019/07/shapka.jpg" alt="U.S. Securities and Exchange Commission" sx={{ width: '100%', height: isMobile ? 'auto' : '30rem' }} />
