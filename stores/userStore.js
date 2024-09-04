@@ -23,7 +23,7 @@ class UserStore {
   stepsInvestor = false;
   RiskAcceptanceModal = true
   acceptedRisks = false
-  lang = "en"
+  lang = "de"
   sessionUser = null
   selectedComponent = null
   DataRequestModal  = true

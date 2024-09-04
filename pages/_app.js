@@ -24,9 +24,10 @@ const MyAppContent = ({ Component, pageProps }) => {
     const { user, loading } = useFetchUser(); // Используем хук для получения пользователя
 
     // Определение маршрутов
-    const signUpPages = ['/signup', '/resetpassword', '/resetpasswordform', '/register', '/registerinvestor', '/registrationform'];
+    const signUpPages = ['/signup', '/resetpassword',  '/resetpasswordform', '/register', '/registerinvestor', '/registrationform'];
     const otherPages = ['/home', '/managers', '/', '/login'];
     const more = ['/more-info'];
+    debugger
 
     // Получаем путь без query-параметров для сравнения
     const pathname = router.pathname.toLowerCase();
@@ -94,7 +95,7 @@ const MyAppContent = ({ Component, pageProps }) => {
                 </div>
             )}
 
-            <UniversalModal /> {/* Добавляем модальное окно */}
+            <UniversalModal />
         </>
     );
 };

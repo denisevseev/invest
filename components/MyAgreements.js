@@ -2,6 +2,7 @@ import React from 'react';
 import { Box, Typography, Grid, Card, CardContent, CardMedia, Button, useTheme, useMediaQuery } from '@mui/material';
 import store from './../stores/userStore';
 import GeneratePDFButton from "./RiskPdf";
+import {observer} from "mobx-react-lite";
 
 const MyAgreements = () => {
     const theme = useTheme();
@@ -27,7 +28,7 @@ const MyAgreements = () => {
             if (result.path && typeof window !== 'undefined') { // Проверяем, что код выполняется на клиенте
                 const link = document.createElement('a');
                 link.href = result.path;
-                link.download = '2024_VICCAPITAL_Zeichnung_Wertpap.vorbörslich.pdf'; // Устанавливаем имя файла для скачивания
+                link.download = store.lang === 'de' ? '2024_VICCAPITAL_Zeichnung_Wertpap.vorbörslich.pdf' : '2024_VICCAPITAL_ShareSubscription_preIPO';
                 document.body.appendChild(link);
                 link.click();
                 document.body.removeChild(link);
@@ -87,4 +88,4 @@ const MyAgreements = () => {
     );
 };
 
-export default MyAgreements;
+export default observer(MyAgreements);

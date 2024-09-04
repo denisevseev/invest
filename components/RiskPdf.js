@@ -1,6 +1,8 @@
 import React from 'react';
 import { Page, Text, View, Document, StyleSheet, PDFDownloadLink } from '@react-pdf/renderer';
 import {Button} from "@mui/material";
+import {observer} from "mobx-react-lite";
+import store from './../stores/userStore'
 
 // Стили для PDF-документа
 const styles = StyleSheet.create({
@@ -416,16 +418,21 @@ const RiskPdf = () => (
 );
 
 // Компонент для генерации и скачивания PDF
-const GeneratePDFButton = () => (
-    <div>
-        <PDFDownloadLink document={<RiskPdf />} fileName="2024_VICCAPITAL_ChancenRisiken_Wertpap.vorbörslich.pdf">
-            {({ blob, url, loading, error }) => (
-                <Button sx={{ mt: 2 }} variant="contained" color="primary" href={url} download="2024_VICCAPITAL_ChancenRisiken_Wertpap.vorbörslich.pdf">
-                    {loading ? 'Generiere PDF...' : 'PDF herunterladen'}
-                </Button>
-            )}
-        </PDFDownloadLink>
-    </div>
-);
+const GeneratePDFButton = () => {
+    let name = store.lang === 'de' ? '2024_VICCAPITAL_ChancenRisiken_Wertpap.vorbörslich.pdf': '2024_VICCAPITAL_OpportunitiesRisks_preIPO.pdf'
+    return (
+        <div>
+            <PDFDownloadLink document={<RiskPdf/>} fileName={name}>
+                {({blob, url, loading, error}) => (
+                    <Button sx={{mt: 2}} variant="contained" color="primary" href={url}
+                            download={name}>
+                        {loading ? 'Generiere PDF...' : 'PDF herunterladen'}
+                    </Button>
+                )}
+            </PDFDownloadLink>
+        </div>
+    )
+}
 
-export default GeneratePDFButton;
+
+export default observer(GeneratePDFButton);
