@@ -27,7 +27,6 @@ const MyAppContent = ({ Component, pageProps }) => {
     const signUpPages = ['/signup', '/resetpassword',  '/resetpasswordform', '/register', '/registerinvestor', '/registrationform'];
     const otherPages = ['/home', '/managers', '/', '/login'];
     const more = ['/more-info'];
-    debugger
 
     // Получаем путь без query-параметров для сравнения
     const pathname = router.pathname.toLowerCase();
@@ -51,6 +50,7 @@ const MyAppContent = ({ Component, pageProps }) => {
     // Если пользователь не авторизован, обрабатываем страницы для неавторизованных пользователей
     if (status === 'unauthenticated') {
         if (isResetPasswordForm || isResetPassword || isSignUpPage ) {
+            debugger
             return (
                 <AppBarLayout>
                     <Component {...pageProps} />

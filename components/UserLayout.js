@@ -46,6 +46,7 @@ const UserLayout = ({ children }) => {
     const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
     const isTablet = useMediaQuery(theme.breakpoints.between('sm', 'md'));
 
+
     // Сохранение данных пользователя из локального хранилища
     useEffect(() => {
         const u = JSON.parse(localStorage.getItem('user'));
@@ -58,7 +59,7 @@ const UserLayout = ({ children }) => {
         }
     }, [user?.investmentAmount]);
 
-    if (status === 'loading') {
+    if (status === 'loading' || !user) {
         return (
             <Box
                 sx={{
