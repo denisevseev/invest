@@ -8,7 +8,7 @@ const MyAgreements = () => {
     const theme = useTheme();
     const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
     const isTablet = useMediaQuery(theme.breakpoints.between('sm', 'md'));
-    let user = store.user;
+    let user = store.user
 
     const handleGenerateDoc = async (item) => {
         if (item === 1) {
