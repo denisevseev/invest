@@ -123,6 +123,35 @@
     "kingMember": "King Member",
     "eliteMember": "Elite Member",
     "standardMember": "Standard Member"
-  }
+  },
+  "shareSubscription": {
+    "title": "Zeichnungsanfrage",
+    "imageAlt": "Aktienzeichnung",
+    "paragraphs": [
+      "Die Zeichnung von Aktien ermöglicht es Investoren, Teilbesitzer eines Unternehmens zu werden. Dies gewährt ihnen einen Anteil am Gewinn des Unternehmens und die Möglichkeit, Unternehmensentscheidungen zu beeinflussen. Durch die Zeichnung neuer Aktien können Investoren das Wachstum des Unternehmens unterstützen, während sie möglicherweise Dividenden erhalten und von der Wertsteigerung des Aktienkurses profitieren.",
+      "Die Aktienzeichnung ist eine wichtige Strategie für diejenigen, die ihr Investitionsportfolio diversifizieren möchten. Sie bietet eine Mischung aus Einkommen durch Dividenden und Kapitalgewinnen aus Kurssteigerungen. Es ist wichtig, die Leistung des Unternehmens, Branchentrends und Ihre finanziellen Ziele sorgfältig zu bewerten, bevor Sie eine Entscheidung zur Zeichnung treffen.",
+      "Ob Sie nun ein erfahrener Investor oder neu am Markt sind, die Zeichnung von Aktien kann eine wertvolle Ergänzung Ihrer Anlagestrategie sein und Ihnen helfen, über einen langen Zeitraum Vermögen aufzubauen."
+    ],
+    "buttonText": "Jetzt Aktien zeichnen"
+},
+
+
+  "corporateFinance": {
+    "title": "Corporate Finance",
+    "paragraphs": [
+      "2019 sind Transaktionen zwischen Osteuropa, Kanada und Deutschland in Höhe von rund 250 Mrd. USD nicht erfolgreich realisiert worden, da Finanzierungs-, Zoll- und Logistikprobleme diese blockiert haben.",
+      "Dadurch sind den beteiligten Gesellschaften nicht nur enorme Gewinne entgangen, sondern auch erhebliche vermeidbare Kosten entstanden.",
+      "Unser lokale Präsenz, die Kenntnis der nationalen Zoll- und Logistikherausforderungen sowie unsere Corporate Finance Lösungen sorgen dafür, dass geplante lukrative Im- und Exporttransaktionen sich nicht verteuern oder verzögern. Unsere erfahrenen Mitarbeiter sowie das gemeinsame Netzwerk mit den Unternehmen der Victorum Group sorgen für die reibungslose Finanzierung von Handelsgeschäften bis 250 Millionen USD.",
+      "Dabei finden Sie Niederlassungen der Victorum Group in China, Indien, Türkei, Nigeria, Namibia, Brasilien sowie Ländern in Osteuropa. Dadurch können wir einen reibungslosen Handelsprozess von Waren, Gütern und Rohstoffen durch lokale Mitarbeiter mit exzellenten Kontakten sichern.",
+      "Sie interessieren sich für unsere Corporate Finance Lösungen, Beteiligungen oder Mezzanine Capital?"
+    ],
+    "contactText": "Bei Fragen sind wir gerne für Sie unter",
+    "phone": "+1 604-260-0738",
+    "or": "oder per Mail unter",
+    "email": "support@victorum-capital.com"
+
+}
+
+
 
 }

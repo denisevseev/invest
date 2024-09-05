@@ -111,7 +111,7 @@
         "visitButton": "Visit Victorum Trade Website"
     },
     "victorumPay": {
-        "title": "Victorum Pay: Your Secure Payment Solution",
+        "title": "VicPay",
         "description1": "In a world where security is becoming increasingly important, Victorum Pay offers future-proof and reliable fiat and cryptocurrency payments. Our platform is designed to meet the highest security standards, ensuring that your transactions are safe and protected.",
         "whyChooseTitle": "Why Choose Victorum Pay?",
         "reason1": "Victorum Pay stands out as a beacon of trust and innovation in the financial landscape. We offer our customers a simple and intuitive modern alternative to traditional brokers or high street banks. Our services are tailored to meet the diverse needs of businesses and individuals, providing flexibility, speed, and security.",
@@ -120,6 +120,37 @@
         "reason4": "User-Friendly Interface: Our platform is designed with the user in mind. Enjoy a seamless experience with our intuitive interface that makes managing your payments effortless.",
         "reason5": "Comprehensive Support: We believe in supporting our customers every step of the way. Our dedicated support team is always ready to assist you with any queries or issues you might encounter.",
         "discoverMore": "Discover More"
-    }
+    },
+
+    "shareSubscription": {
+        "title": "Share Subscription",
+        "imageAlt": "Share Subscription",
+        "paragraphs": [
+            "Subscribing to shares allows investors to become partial owners of a company. This gives them a share in the company's profits and the ability to influence corporate decisions. By subscribing to new shares, investors can support the company's growth while potentially receiving dividends and benefiting from an increase in the stock price.",
+            "Share subscription is an important strategy for those looking to diversify their investment portfolio. It offers a mix of income from dividends and capital gains from price increases. It is important to carefully evaluate the company's performance, industry trends, and your financial goals before deciding to subscribe.",
+            "Whether you are an experienced investor or new to the market, subscribing to shares can be a valuable addition to your investment strategy and help you build wealth over time."
+        ],
+        "buttonText": "Subscribe to shares now"
+    },
+
+
+    "corporateFinance": {
+        "title": "Corporate Finance",
+        "paragraphs": [
+            "In 2019, transactions worth approximately USD 250 billion between Eastern Europe, Canada, and Germany were not successfully completed due to financing, customs, and logistics issues.",
+            "As a result, the companies involved not only lost significant profits but also incurred substantial avoidable costs.",
+            "Our local presence, knowledge of national customs and logistics challenges, and our corporate finance solutions ensure that planned lucrative import and export transactions do not become more expensive or delayed. Our experienced staff and the shared network with Victorum Group companies ensure the smooth financing of trade transactions up to USD 250 million.",
+            "You will find Victorum Group branches in China, India, Turkey, Nigeria, Namibia, Brazil, as well as countries in Eastern Europe. This allows us to ensure a smooth trading process for goods, products, and raw materials with local staff and excellent contacts.",
+            "Are you interested in our Corporate Finance solutions, equity investments, or mezzanine capital?"
+        ],
+        "contactText": "For any inquiries, feel free to contact us at",
+        "phone": "+1 604-260-0738",
+        "or": "or via email at",
+        "email": "support@victorum-capital.com"
+
+}
+
+
+
 
 }

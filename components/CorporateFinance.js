@@ -9,9 +9,9 @@ import de from './../public/lang/de.json';
 // Styled Link component
 const StyledLink = styled(Link)(({ theme }) => ({
     cursor: 'pointer',
-    textDecoration: 'none', // Optional: remove underline
+    textDecoration: 'none',
     '&:hover': {
-        textDecoration: 'underline', // Optional: underline on hover
+        textDecoration: 'underline',
     },
 }));
 
@@ -32,8 +32,8 @@ const StyledButton = styled(Button)(({ theme }) => ({
 const CorporateFinance = () => {
     const theme = useTheme();
     const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
-    const language = store.lang === 'de' ? de : en;
-    const { victorumTrade } = language;
+    const language = store.lang === 'de' ? de : en; // Определяем язык из состояния пользователя
+    const { corporateFinance } = language;
 
     return (
         <Box sx={{ width: isMobile ? '100%' : '80%', ml: isMobile ? 1 : 28, mt: 12, textAlign: 'center' }}>
@@ -49,7 +49,7 @@ const CorporateFinance = () => {
                     color: 'black',
                 }}
             >
-                Corporate Finance
+                {corporateFinance.title}
             </Typography>
             <Divider />
             <Box
@@ -63,7 +63,7 @@ const CorporateFinance = () => {
                     display: 'flex',
                     justifyContent: 'center',
                     alignItems: 'center',
-                    p: 3, // Отступы внутри контейнера
+                    p: 3,
                 }}
             >
                 <a href="https://victorum-trade.com/" target="_blank" rel="noopener noreferrer">
@@ -72,25 +72,15 @@ const CorporateFinance = () => {
             </Box>
             <Divider />
             <Box sx={{ textAlign: 'left', maxWidth: '100%', p: isMobile ? 1 : 3 }}>
+                {corporateFinance.paragraphs.map((paragraph, index) => (
+                    <Typography key={index} variant="body1" paragraph sx={{ fontSize: isMobile ? '22px' : '21px' }}>
+                        {paragraph}
+                    </Typography>
+                ))}
                 <Typography variant="body1" paragraph sx={{ fontSize: isMobile ? '22px' : '21px' }}>
-                    2019 sind Transaktionen zwischen Osteuropa, Kanada und Deutschland in Höhe von rund 250 Mrd. USD nicht erfolgreich realisiert worden, da Finanzierungs-, Zoll- und Logistikprobleme diese blockiert haben.
-                </Typography>
-                <Typography variant="body1" paragraph sx={{ fontSize: isMobile ? '22px' : '21px' }}>
-                    Dadurch sind den beteiligten Gesellschaften nicht nur enorme Gewinne entgangen, sondern auch erhebliche vermeidbare Kosten entstanden.
-                </Typography>
-                <Typography variant="body1" paragraph sx={{ fontSize: isMobile ? '22px' : '21px' }}>
-                    Unser lokale Präsenz, die Kenntnis der nationalen Zoll- und Logistikherausforderungen sowie unsere Corporate Finance Lösungen sorgen dafür, dass geplante lukrative Im- und Exporttransaktionen sich nicht verteuern oder verzögern. Unsere erfahrenen Mitarbeiter sowie das gemeinsame Netzwerk mit den Unternehmen der Victorum Group sorgen für die reibungslose Finanzierung von Handelsgeschäften bis 250 Millionen USD.
-                </Typography>
-                <Typography variant="body1" paragraph sx={{ fontSize: isMobile ? '22px' : '21px' }}>
-                    Dabei finden Sie Niederlassungen der Victorum Group in China, Indien, Türkei, Nigeria, Namibia, Brasilien sowie Ländern in Osteuropa. Dadurch können wir einen reibungslosen Handelsprozess von Waren, Gütern und Rohstoffen durch lokale Mitarbeiter mit exzellenten Kontakten sichern.
-                </Typography>
-                <Typography variant="body1" paragraph sx={{ fontSize: isMobile ? '22px' : '21px' }}>
-                    Sie interessieren sich für unsere Corporate Finance Lösungen, Beteiligungen oder Mezzanine Capital?
-                </Typography>
-                <Typography variant="body1" paragraph sx={{ fontSize: isMobile ? '22px' : '21px' }}>
-                    Bei Fragen sind wir gerne für Sie unter{' '}
-                    <StyledLink href="tel:+1-604-260-0738" color="primary">+1 604-260-0738</StyledLink> oder per Mail unter{' '}
-                    <StyledLink href="mailto:support@victorum-capital.com" color="primary">support@victorum-capital.com</StyledLink> erreichbar!
+                    {corporateFinance.contactText}{' '}
+                    <StyledLink href="tel:+1-604-260-0738" color="primary">{corporateFinance.phone}</StyledLink> {corporateFinance.or}{' '}
+                    <StyledLink href="mailto:support@victorum-capital.com" color="primary">{corporateFinance.email}</StyledLink>
                 </Typography>
             </Box>
         </Box>
