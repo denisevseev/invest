@@ -108,6 +108,7 @@ const MyApp = ({ Component, pageProps }) => {
                     rel="stylesheet"
                     href="https://fonts.googleapis.com/css2?family=DejaVu+Sans:wght@400;500;700&display=swap"
                 />
+                    <link rel="icon" href="/favicon.ico" />
             </Head>
             <ThemeProvider theme={theme}>
                 <MyAppContent Component={Component} pageProps={pageProps} />
