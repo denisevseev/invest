@@ -6,11 +6,23 @@ const ContactDetails = () => {
     const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
     const isTablet = useMediaQuery(theme.breakpoints.between('sm', 'md'));
 
+    // Общие отступы и стили для заголовков
+    const headerStyles = {
+        fontWeight: 'bold',
+        color: 'black',
+        marginBottom: 2,
+        marginTop: 2,
+    };
+
+    const sectionStyles = {
+        marginBottom: 2,
+    };
+
     return (
         <Box
             sx={{
-                padding: { xs: 2, md: 12 },
-                marginLeft: '10%',
+                padding: { xs: 2, md: 6, lg: 12 },
+                marginLeft: { xs: 0, md: '10%' },
                 backgroundSize: 'cover',
                 backgroundPosition: 'center',
                 backgroundRepeat: 'no-repeat',
@@ -47,114 +59,72 @@ const ContactDetails = () => {
                     objectFit: 'cover',
                 }}
             />
-            <Grid container spacing={4}>
+            <Grid container spacing={isMobile ? 2 : 4}>
+                {/* Блок компании */}
                 <Grid item xs={12} sm={6} md={4}>
-                    <Typography variant="h5" sx={{ marginBottom: 3, color: 'black' }}>
-                        Victorum Capital Inc.
+                    <Typography variant="body1" sx={headerStyles}>
+                        COMPANY:
                     </Typography>
-                    <Typography variant="body1" sx={{ color: 'black' }}>2102-58 Keefer Place</Typography>
-                    <Typography variant="body1" sx={{ color: 'black' }}>Vancouver, BC V6B 0B6, Canada</Typography>
+                    <Typography variant="body1" sx={{ color: 'black', ...sectionStyles }}>Victorum Capital Inc.</Typography>
+                    <Typography variant="body1" sx={{ color: 'black', ...sectionStyles }}>2102-58 Keefer Place</Typography>
+                    <Typography variant="body1" sx={{ color: 'black', ...sectionStyles }}>Vancouver, BC V6B 0B6</Typography>
+                    <Typography variant="body1" sx={{ color: 'black', ...sectionStyles }}>Canada</Typography>
+                    <Typography variant="body1" sx={{ fontWeight: 'bold', color: 'black', ...sectionStyles }}>CEO: Osbert Doehl</Typography>
                 </Grid>
+                {/* Блок контактов */}
                 <Grid item xs={12} sm={6} md={4}>
-                    <Box sx={{ marginBottom: 2 }}>
-                        <Typography variant="body1" sx={{ fontWeight: 'bold' }}>
-                            Legal representative:
-                        </Typography>
-                        <Typography variant="body1">CEO Osbert Doehl</Typography>
-                    </Box>
-                    <Box sx={{ marginBottom: 2 }}>
-                        <Typography variant="body1" sx={{ fontWeight: 'bold' }}>
-                            Telephone:
-                        </Typography>
-                        <Link href="tel:+16042600738" sx={{ color: 'primary.main' }}>
-                            +1 604-260-0738
-                        </Link>
-                    </Box>
-                    <Box sx={{ marginBottom: 2 }}>
-                        <Typography variant="body1" sx={{ fontWeight: 'bold' }}>
-                            Compliance:
-                        </Typography>
-                        <Link href="mailto:compliance@victorum-capital.com" sx={{ color: 'primary.main' }}>
-                            compliance@victorum-capital.com
-                        </Link>
-                    </Box>
-                    <Box sx={{ marginBottom: 2 }}>
-                        <Typography variant="body1" sx={{ fontWeight: 'bold' }}>
-                            Contacts for the media:
-                        </Typography>
-                        <Link href="mailto:press@victorum-capital.com" sx={{ color: 'primary.main' }}>
-                            press@victorum-capital.com
-                        </Link>
-                    </Box>
-                    <Box sx={{ marginBottom: 2 }}>
-                        <Typography variant="body1" sx={{ fontWeight: 'bold' }}>
-                            Administrative management:
-                        </Typography>
-                        <Link href="mailto:administration@victorum-capital.com" sx={{ color: 'primary.main' }}>
-                            administration@victorum-capital.com
-                        </Link>
-                    </Box>
+                    <Typography variant="body1" sx={headerStyles}>
+                        CONTACTS:
+                    </Typography>
+                    <Typography variant="body1" sx={{ fontWeight: 'bold', ...sectionStyles }}>
+                        Main Telephone:
+                    </Typography>
+                    <Link href="tel:+16042600738" sx={{ color: 'primary.main', ...sectionStyles }}>
+                        +1 604-260-0738
+                    </Link>
+                    <Typography variant="body1" sx={{ fontWeight: 'bold', ...sectionStyles }}>
+                        Main Email:
+                    </Typography>
+                    <Link href="mailto:support@victorum-capital.com" sx={{ color: 'primary.main', ...sectionStyles }}>
+                        support@victorum-capital.com
+                    </Link>
+                    <Typography variant="body1" sx={{ fontWeight: 'bold', ...sectionStyles }}>
+                        Compliance:
+                    </Typography>
+                    <Link href="mailto:compliance@victorum-capital.com" sx={{ color: 'primary.main', ...sectionStyles }}>
+                        compliance@victorum-capital.com
+                    </Link>
+                    <Typography variant="body1" sx={{ fontWeight: 'bold', ...sectionStyles }}>
+                        Media:
+                    </Typography>
+                    <Link href="mailto:press@victorum-capital.com" sx={{ color: 'primary.main', ...sectionStyles }}>
+                        press@victorum-capital.com
+                    </Link>
+                    <Typography variant="body1" sx={{ fontWeight: 'bold', ...sectionStyles }}>
+                        Administration:
+                    </Typography>
+                    <Link href="mailto:administration@victorum-capital.com" sx={{ color: 'primary.main', ...sectionStyles }}>
+                        administration@victorum-capital.com
+                    </Link>
                 </Grid>
+                {/* Блок регистрационных данных */}
                 <Grid item xs={12} sm={6} md={4}>
-                    <Box sx={{ marginBottom: 2 }}>
-                        <Typography variant="body1" sx={{ fontWeight: 'bold' }}>
-                            Registered in British Columbia, registration number:
-                        </Typography>
-                        <Typography variant="body1">790478002BC0001</Typography>
-                    </Box>
-                    <Box sx={{ marginBottom: 2 }}>
-                        <Typography variant="body1" sx={{ fontWeight: 'bold' }}>
-                            Information about Victorum Capital Inc. Securities
-                        </Typography>
-                        <Typography variant="body1">STYLE: COMMON CLASS A RESTRICTED SHARES</Typography>
-                    </Box>
-                    <Box sx={{ marginBottom: 2 }}>
-                        <Typography variant="body1" sx={{ fontWeight: 'bold' }}>
-                            ISIN:
-                        </Typography>
-                        <Typography variant="body1">CA92642D1024</Typography>
-                    </Box>
-                    <Box sx={{ marginBottom: 2 }}>
-                        <Typography variant="body1" sx={{ fontWeight: 'bold' }}>
-                            CUSIP:
-                        </Typography>
-                        <Typography variant="body1">92642D102</Typography>
-                    </Box>
-                </Grid>
-                <Grid item xs={12} sm={6} md={4}>
-                    <Box sx={{ marginBottom: 2 }}>
-                        <Typography variant="body1" sx={{ fontWeight: 'bold' }}>
-                            Transfer Agent
-                        </Typography>
-                        <Typography variant="body1" sx={{ color: 'black' }}>Integral Transfer Agency Inc.</Typography>
-                        <Typography variant="body1" sx={{ color: 'black' }}>100 Queen St E</Typography>
-                        <Typography variant="body1" sx={{ color: 'black' }}>Toronto, ON M5C 1S6, Canada</Typography>
-                        <Link href="http://www.integraltransfer.com" target="_blank" rel="noopener" sx={{ color: 'primary.main' }}>
-                            www.integraltransfer.com
-                        </Link>
-                    </Box>
-                </Grid>
-                <Grid item xs={12} sm={6} md={4}>
-                    <Box sx={{ marginBottom: 2 }}>
-                        <Typography variant="body1" sx={{ fontWeight: 'bold' }}>
-                            Competent regulatory authority
-                        </Typography>
-                        <Typography variant="body1" sx={{ color: 'black' }}>U.S. Securities and Exchange Commission</Typography>
-                        <Typography variant="body1" sx={{ color: 'black' }}>100 F Street, NE Washington</Typography>
-                        <Typography variant="body1" sx={{ color: 'black' }}>DC 20549-0213</Typography>
-                        <Box sx={{ marginBottom: 2 }}>
-                            <Typography variant="body1" sx={{ fontWeight: 'bold' }}>
-                                Telephone:
-                            </Typography>
-                            <Link href="tel:+18007320330" sx={{ color: 'primary.main' }}>
-                                (800) 732-0330
-                            </Link>
-                        </Box>
-                        <Typography variant="body1" sx={{ color: 'black' }}>Fax: (202) 772-9295</Typography>
-                        <Link href="http://www.sec.gov" target="_blank" rel="noopener" sx={{ color: 'primary.main' }}>
-                            www.sec.gov
-                        </Link>
-                    </Box>
+                    <Typography variant="body1" sx={headerStyles}>
+                        REGISTRATION:
+                    </Typography>
+                    <Typography variant="body1" sx={{ ...sectionStyles }}>State: British Columbia (BC)</Typography>
+                    <Typography variant="body1" sx={{ ...sectionStyles }}>Registration number: 790478002BC0001</Typography>
+                    <Typography variant="body1" sx={{ fontWeight: 'bold', ...sectionStyles }}>
+                        Share Style: Common CLASS A RESTRICTED SHARES
+                    </Typography>
+                    <Typography variant="body1" sx={{ fontWeight: 'bold', ...sectionStyles }}>
+                        ISIN:
+                    </Typography>
+                    <Typography variant="body1" sx={{ ...sectionStyles }}>CA92642D1024</Typography>
+                    <Typography variant="body1" sx={{ fontWeight: 'bold', ...sectionStyles }}>
+                        CUSIP:
+                    </Typography>
+                    <Typography variant="body1" sx={{ ...sectionStyles }}>92642D102</Typography>
                 </Grid>
             </Grid>
         </Box>

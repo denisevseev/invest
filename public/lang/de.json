@@ -150,7 +150,28 @@
     "or": "oder per Mail unter",
     "email": "support@victorum-capital.com"
 
-}
+},
+
+  "shareTypeInvestorsContent": {
+    "title": "Wertpapiertyp & Investoren",
+    "paragraphs": [
+      "In diesem Bereich finden Sie alle relevanten Informationen zu den Wertpapieren der Victorum Capital Inc.",
+      "Die Transaktion der Wertpapiere der Victorum Capital Inc. unterliegen unterschiedlichen Jurisdiktionen mit unterschiedlichen Regulierungen und Registrierungsprozessen.",
+      "Die Emittierung, die Registrierung sowie die Regulierung der Wertpapiere der Victorum Capital Inc. erfolgt nach US-Börsenrecht konform der Rule 506 der Regulation D der US-Börsenaufsicht SEC (United States Securities and Exchange Commission).",
+      "Der Verkauf der Wertpapiere in Deutschland erfolgt gemäß der BaFin (Bundesanstalt für Finanzdienstleistungsaufsicht) Richtlinie Art.1 Abs. 4 lit. b) Prospekt-VO der EU-Prospektverordnung.",
+      "Alle auf die Wertpapiere entfallenden Ausschüttungen und Rechte stehen ab dem Zeitpunkt der Übertragung ausschließlich dem Käufer der Wertpapiere oder der vom Käufer ausdrücklich angegebenen zu übertragenden Person/en und/oder Gesellschaft zu.",
+      "Die Parteien sind sich einig, dass das Eigentum der Wertpapiere von der Gesellschaft auf den Käufer übergeht und dass es sich bei diesen Wertpapieren um nennwertlose Common Restricted Class A Shares mit vollem Stimmrecht und Dividendenbezugsberechtigung handelt.",
+      "Der Übertrag geschieht, basierend auf kanadischem Recht, auf elektronischem Weg über die Integral Transfer Agency Shareholder Services Inc., 100 Queen St E, Suite 203, Toronto, ON, M5C 1S6, Canada, Phone: +1 416-623‐8028 / Fax: +1 647-794‐3332, info@integraltransfer.com.",
+      "§5 Möchte der Käufer seine erworbenen Wertpapiere vor dem Börsengang der Victorum Capital Inc. veräußern, so ist der Aktionär beim Verkauf an einen Dritten angehalten, dafür Sorge zu tragen, dass die Wertpapiere tatsächlich an den Erwerber und damit den neuen Aktionär übertragen werden.",
+      "Der Käufer hat in diesem Fall eine besondere Sorge dafür zu tragen, dass auf den Erwerber auch eventuell vorhandene Stimm- und Dividendenrechte, entsprechend den gesetzlichen Richtlinien des Landes in dem der neue Käufer ansässig ist, übertragen werden.",
+      "Der Käufer haftet gegenüber der Victorum Capital Inc. und/oder dem neuen Käufer der Wertpapiere für entstandene Schäden, die durch Verstöße gegen einen dieser Paragraphen zustande kommen.",
+      "Sie haben noch Fragen zu Ihren Wertpapieren? Es gibt Unklarheiten oder Hürden mit Korrespondenz in englischer Sprache?",
+      "Gar kein Problem - wir stehen Ihnen auch auf Deutsch täglich zwischen 10 und 22h Berlin Zeit unter +1 604-260-0738 zur Verfügung.",
+      "Natürlich können Sie uns Ihre Fragen auch schriftlich per E-Mail an contact@victorum-capital.com senden - wir freuen uns auf Ihre Nachricht!"
+    ],
+    "additionalContact": "Für weitere Informationen kontaktieren Sie uns bitte unter",
+    "or": "oder"
+  }
 
 
 

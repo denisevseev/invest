@@ -8,24 +8,21 @@ import de from './../public/lang/de.json';
 const ShareType = () => {
     const theme = useTheme();
     const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
-    const language = store.lang === 'de' ? de : en;
-
+    const language = store.lang === 'de' ? de : en; // Определяем язык в зависимости от состояния
 
     return (
         <Box sx={{ width: isMobile ? '100%' : '80%', ml: isMobile ? 1 : 28, mt: 12, textAlign: 'center' }}>
             <Typography
                 variant="h4"
-                align={isMobile ? 'center' : 'center'}
+                align="center"
                 sx={{
                     fontWeight: 'bold',
                     marginBottom: '1rem',
                     fontSize: isMobile ? '1.8rem' : '2.2rem',
-                    position: 'relative',
-                    overflow: 'hidden',
                     color: 'black',
                 }}
             >
-                Share Type & Investors
+                {language.shareTypeInvestorsContent?.title}
             </Typography>
             <Divider />
             <Box
@@ -39,79 +36,35 @@ const ShareType = () => {
                     display: 'flex',
                     justifyContent: 'center',
                     alignItems: 'center',
-                    p: 3, // Отступы внутри контейнера
+                    p: 3,
                 }}
             >
                 <Link
                     href="https://victorum-trade.com/"
                     target="_blank"
                     rel="noopener noreferrer"
-                    sx={{  textDecoration: 'none' }}
+                    sx={{ textDecoration: 'none' }}
                 >
                     <Box component="img" src="/images/trade.png" alt="Victorum Trade" sx={{ width: isMobile ? '80%' : '132%', opacity: 0 }} />
                 </Link>
             </Box>
             <Divider />
             <Box sx={{ textAlign: 'left', maxWidth: '100%', p: isMobile ? 1 : 3 }}>
+                {language.shareTypeInvestorsContent.paragraphs.map((paragraph, index) => (
+                    <Typography key={index} variant="body1" paragraph sx={{ fontSize: isMobile ? '22px' : '21px' }}>
+                        {paragraph}
+                    </Typography>
+                ))}
                 <Typography variant="body1" paragraph sx={{ fontSize: isMobile ? '22px' : '21px' }}>
-                    In diesem Bereich finden Sie alle relevanten Informationen zu den Wertpapieren der Victorum Capital Inc.
-                </Typography>
-                <Typography variant="body1" paragraph sx={{ fontSize: isMobile ? '22px' : '21px' }}>
-                    Die Transaktion der Wertpapiere der Victorum Capital Inc. unterliegen unterschiedlichen Jurisdiktionen mit unterschiedlichen Regulierungen und Registrierungsprozessen.
-                </Typography>
-                <Typography variant="body1" paragraph sx={{ fontSize: isMobile ? '22px' : '21px' }}>
-                    Die Emittierung, die Registrierung sowie die Regulierung der Wertpapiere der Victorum Capital Inc. erfolgt nach US-Börsenrecht konform der Rule 506 der Regulation D der US-Börsenaufsicht SEC (United States Securities and Exchange Commission).
-                </Typography>
-                <Typography variant="body1" paragraph sx={{ fontSize: isMobile ? '22px' : '21px' }}>
-                    Der Verkauf der Wertpapiere in Deutschland erfolgt gemäß der BaFin (Bundesanstalt für Finanzdienstleistungsaufsicht) Richtlinie Art.1 Abs. 4 lit. b) Prospekt-VO der EU-Prospektverordnung.
-                </Typography>
-                <Typography variant="body1" paragraph sx={{ fontSize: isMobile ? '22px' : '21px' }}>
-                    Alle auf die Wertpapiere entfallenden Ausschüttungen und Rechte stehen ab dem Zeitpunkt der Übertragung ausschließlich dem Käufer der Wertpapiere oder der vom Käufer ausdrücklich angegebenen zu übertragenden Person/en und/oder Gesellschaft zu.
-                </Typography>
-                <Typography variant="body1" paragraph sx={{ fontSize: isMobile ? '22px' : '21px' }}>
-                    Die Parteien sind sich einig, dass das Eigentum der Wertpapiere von der Gesellschaft auf den Käufer übergeht und dass es sich bei diesen Wertpapieren um nennwertlose Common Restricted Class A Shares mit vollem Stimmrecht und Dividendenbezugsberechtigung handelt.
-                </Typography>
-                <Typography variant="body1" paragraph sx={{ fontSize: isMobile ? '22px' : '21px' }}>
-                    Der Übertrag geschieht, basierend auf kanadischem Recht, auf elektronischem Weg über die{' '}
-                    <Link href="https://www.integraltransfer.com/" target="_blank" rel="noopener noreferrer" sx={{ textDecoration: 'none' }}>
-                        Integral Transfer Agency Shareholder Services Inc.
-                    </Link>, 100 Queen St E, Suite 203, Toronto, ON, M5C 1S6, Canada, Phone: {' '}
-                    <Link href="tel:+14166238028" sx={{  textDecoration: 'none' }}>
-                        +1 416-623‐8028
-                    </Link>{' '}
-                    / Fax: {' '}
-                    <Link href="tel:+16477943332" sx={{  textDecoration: 'none' }}>
-                        +1 647-794‐3332
-                    </Link>,{' '}
-                    <Link href="mailto:info@integraltransfer.com" sx={{  textDecoration: 'none' }}>
-                        info@integraltransfer.com
-                    </Link>
-                </Typography>
-                <Typography variant="body1" paragraph sx={{ fontSize: isMobile ? '22px' : '21px' }}>
-                    §5 Möchte der Käufer seine erworbenen Wertpapiere vor dem Börsengang der Victorum Capital Inc. veräußern, so ist der Aktionär beim Verkauf an einen Dritten angehalten, dafür Sorge zu tragen, dass die Wertpapiere tatsächlich an den Erwerber und damit den neuen Aktionär übertragen werden.
-                </Typography>
-                <Typography variant="body1" paragraph sx={{ fontSize: isMobile ? '22px' : '21px' }}>
-                    Der Käufer hat in diesem Fall eine besondere Sorge dafür zu tragen, dass auf den Erwerber auch eventuell vorhandene Stimm- und Dividendenrechte, entsprechend den gesetzlichen Richtlinien des Landes in dem der neue Käufer ansässig ist, übertragen werden.
-                </Typography>
-                <Typography variant="body1" paragraph sx={{ fontSize: isMobile ? '22px' : '21px' }}>
-                    Der Käufer haftet gegenüber der Victorum Capital Inc. und/oder dem neuen Käufer der Wertpapiere für entstandene Schäden, die durch Verstöße gegen einen dieser Paragraphen zustande kommen.
-                </Typography>
-                <Typography variant="body1" paragraph sx={{ fontSize: isMobile ? '22px' : '21px' }}>
-                    Sie haben noch Fragen zu Ihren Wertpapieren? Es gibt Unklarheiten oder Hürden mit Korrespondenz in englischer Sprache?
-                </Typography>
-                <Typography variant="body1" paragraph sx={{ fontSize: isMobile ? '22px' : '21px' }}>
-                    Gar kein Problem - wir stehen Ihnen auch auf Deutsch täglich zwischen 10 und 22h Berlin Zeit unter{' '}
-                    <Link href="tel:+16042600738" sx={{  textDecoration: 'none' }}>
+                    {language.shareTypeInvestorsContent.additionalContact}{' '}
+                    <Link href="tel:+16042600738" sx={{ textDecoration: 'none' }}>
                         +1 604-260-0738
-                    </Link>{' '}
-                    zur Verfügung.
-                </Typography>
-                <Typography variant="body1" paragraph sx={{ fontSize: isMobile ? '22px' : '21px' }}>
-                    Natürlich können Sie uns Ihre Fragen auch schriftlich per E-Mail an{' '}
-                    <Link href="mailto:contact@victorum-capital.com" sx={{  textDecoration: 'none' }}>
+                    </Link>
+                    {' '}
+                    {language.shareTypeInvestorsContent.or}{' '}
+                    <Link href="mailto:contact@victorum-capital.com" sx={{ textDecoration: 'none' }}>
                         contact@victorum-capital.com
-                    </Link>{' '}
-                    senden - wir freuen uns auf Ihre Nachricht!
+                    </Link>
                 </Typography>
             </Box>
         </Box>

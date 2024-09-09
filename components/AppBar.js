@@ -147,7 +147,7 @@ const AppBarComponent = () => {
                                 {!isMobile && <Typography variant="body1" sx={{ ml: 1 }}>Help Desk</Typography>}
                             </IconButton>
                             <Divider orientation="vertical" flexItem sx={{ mx: 1 }} />
-                            <Button sx={{ color: 'black', textShadow: '1px 1px 2px rgba(0,0,0,0.4)' }} onClick={handleLogout}>
+                            <Button sx={{ color: 'black'}} onClick={handleLogout}>
                                 <LogoutIcon />
                                 {!isMobile && 'Logout'}
                             </Button>

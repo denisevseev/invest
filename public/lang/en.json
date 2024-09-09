@@ -36,7 +36,7 @@
         "myInformation": "Personal Information",
         "basicInformation": "Basic Information",
         "contactInformation": "Contact Information",
-        "questionsAndAnswers": "Allgemeine Angaben",
+        "questionsAndAnswers": "General Information",
         "fields": {
             "firstName": "First Name",
             "lastName": "Last Name",
@@ -58,7 +58,6 @@
             "politicallyExposedPerson": "Politically Exposed Person"
         }
     },
-
     "regulationAuthority": {
         "title": "Regulation Authority",
         "content": [
@@ -80,7 +79,6 @@
             "additionalContactInfo": "If you have any further questions regarding Victorum Capital securities, feel free to contact us anytime at +1 604-260-0738 or via email at contact@victorum-capital.com - we look forward to your call!"
         }
     },
-
     "notifications": {
         "emailNotVerified": "Your email is not verified",
         "emailNotVerifiedText": "Your email address <span style='font-weight: bold;'>{email}</span> has not yet been verified.",
@@ -90,7 +88,6 @@
         "profilePreApprovedText": "Therefore, some functionalities may be limited. <Link href='/'>Click here to see what exactly is missing</Link>",
         "verifyNow": "Verify now"
     },
-
     "dashboard": {
         "balance": "Balance",
         "investmentOverTime": "Investment Over Time",
@@ -121,7 +118,6 @@
         "reason5": "Comprehensive Support: We believe in supporting our customers every step of the way. Our dedicated support team is always ready to assist you with any queries or issues you might encounter.",
         "discoverMore": "Discover More"
     },
-
     "shareSubscription": {
         "title": "Share Subscription",
         "imageAlt": "Share Subscription",
@@ -132,8 +128,6 @@
         ],
         "buttonText": "Subscribe to shares now"
     },
-
-
     "corporateFinance": {
         "title": "Corporate Finance",
         "paragraphs": [
@@ -147,10 +141,26 @@
         "phone": "+1 604-260-0738",
         "or": "or via email at",
         "email": "support@victorum-capital.com"
-
-}
-
-
-
+    },
+    "shareTypeInvestorsContent": {
+        "title": "Share Type & Investors",
+        "paragraphs": [
+            "In this section, you will find all relevant information regarding the securities of Victorum Capital Inc.",
+            "The transactions of the securities of Victorum Capital Inc. are subject to different jurisdictions with various regulations and registration processes.",
+            "The issuance, registration, and regulation of Victorum Capital Inc.'s securities are carried out in accordance with U.S. securities law in compliance with Rule 506 of Regulation D of the U.S. Securities and Exchange Commission (SEC).",
+            "The sale of securities in Germany is conducted in accordance with the BaFin (Federal Financial Supervisory Authority) directive Art.1 Abs. 4 lit. b) Prospectus-VO of the EU Prospectus Regulation.",
+            "All distributions and rights pertaining to the securities are granted exclusively to the buyer of the securities or the person(s) and/or company explicitly designated by the buyer from the moment of transfer.",
+            "The parties agree that the ownership of the securities is transferred from the company to the buyer, and that these securities are non-par value Common Restricted Class A Shares with full voting rights and dividend entitlement.",
+            "The transfer is carried out electronically under Canadian law through Integral Transfer Agency Shareholder Services Inc., 100 Queen St E, Suite 203, Toronto, ON, M5C 1S6, Canada, Phone: +1 416-623‐8028 / Fax: +1 647-794‐3332, info@integraltransfer.com.",
+            "§5 Should the buyer wish to sell the acquired securities before the initial public offering (IPO) of Victorum Capital Inc., the shareholder is required to ensure that the securities are indeed transferred to the acquirer, and thus to the new shareholder, when selling to a third party.",
+            "In this case, the buyer must take special care to ensure that any existing voting and dividend rights are also transferred to the acquirer, in accordance with the legal guidelines of the country in which the new buyer is resident.",
+            "The buyer is liable to Victorum Capital Inc. and/or the new buyer of the securities for damages incurred due to violations of any of these provisions.",
+            "Do you still have questions about your securities? Are there uncertainties or difficulties with correspondence in English?",
+            "No problem – we are also available in German daily between 10 AM and 10 PM Berlin time at +1 604-260-0738.",
+            "Of course, you can also send your questions to us in writing via email to contact@victorum-capital.com – we look forward to your message!"
+        ],
+        "additionalContact": "For further information, please contact us at",
+        "or": "or"
+    }
 
 }
