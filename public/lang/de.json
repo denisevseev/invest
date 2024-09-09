@@ -171,7 +171,33 @@
     ],
     "additionalContact": "Für weitere Informationen kontaktieren Sie uns bitte unter",
     "or": "oder"
+  },
+
+
+  "contactDetails": {
+    "title": "Kontaktcenter",
+    "companyHeader": "UNTERNEHMEN:",
+    "companyName": "Victorum Capital Inc.",
+    "address": {
+      "line1": "2102-58 Keefer Place",
+      "line2": "Vancouver, BC V6B 0B6",
+      "country": "Kanada"
+    },
+    "ceo": "CEO: Osbert Doehl",
+    "contactsHeader": "KONTAKTE:",
+    "mainTelephone": "Haupttelefonnummer:",
+    "mainEmail": "Haupt-E-Mail:",
+    "compliance": "Compliance:",
+    "media": "Medien:",
+    "administration": "Verwaltung:",
+    "registrationHeader": "REGISTRIERUNG:",
+    "state": "Bundesstaat: British Columbia (BC)",
+    "registrationNumber": "Registrierungsnummer: 790478002BC0001",
+    "shareStyle": "Aktientyp: Common CLASS A RESTRICTED SHARES",
+    "isin": "ISIN: CA92642D1024",
+    "cusip": "CUSIP: 92642D102"
   }
+
 
 
 
