@@ -15,22 +15,23 @@ const ContactDetails = () => {
     const headerStyles = {
         fontWeight: 'bold',
         color: 'black',
-        marginBottom: 2,
+        marginBottom: 0, // Убираем отступ снизу у заголовков
         marginTop: 2,
-        fontFamily: 'DejaVu Sans, sans-serif', // Шрифт для заголовков
+        fontFamily: 'DejaVu Sans, sans-serif',
     };
 
-    // Стили для основного текста
-    const sectionStyles = {
-        marginBottom: 2,
-        fontFamily: 'DejaVu Sans, sans-serif', // Шрифт для текста
+    // Стили для значений
+    const valueStyles = {
+        marginBottom: 2, // Добавляем отступ между значением и следующим заголовком
+        fontFamily: 'DejaVu Sans, sans-serif',
+        color: 'black',
     };
 
     // Стили для ссылок
     const linkStyles = {
         color: 'primary.main',
-        marginBottom: 2,
-        fontFamily: 'DejaVu Sans, sans-serif', // Шрифт для ссылок
+        marginBottom: 2, // Добавляем отступ после ссылок
+        fontFamily: 'DejaVu Sans, sans-serif',
     };
 
     return (
@@ -80,42 +81,45 @@ const ContactDetails = () => {
                     <Typography variant="body1" sx={headerStyles}>
                         {language.contactDetails.companyHeader}
                     </Typography>
-                    <Typography variant="body1" sx={{ color: 'black', ...sectionStyles }}>{language.contactDetails.companyName}</Typography>
-                    <Typography variant="body1" sx={{ color: 'black', ...sectionStyles }}>{language.contactDetails.address.line1}</Typography>
-                    <Typography variant="body1" sx={{ color: 'black', ...sectionStyles }}>{language.contactDetails.address.line2}</Typography>
-                    <Typography variant="body1" sx={{ color: 'black', ...sectionStyles }}>{language.contactDetails.address.country}</Typography>
-                    <Typography variant="body1" sx={{ fontWeight: 'bold', color: 'black', ...sectionStyles }}>{language.contactDetails.ceo}</Typography>
+                    <Typography variant="body1" sx={valueStyles}>
+                        <Box sx={{mt: 2}}>{language.contactDetails.companyName}</Box>
+                    </Typography>
+                    <Typography variant="body1" sx={valueStyles}>{language.contactDetails.address.line1}</Typography>
+                    <Typography variant="body1" sx={valueStyles}>{language.contactDetails.address.line2}</Typography>
+                    <Typography variant="body1" sx={valueStyles}>{language.contactDetails.address.country}</Typography>
+                    <Typography variant="body1" sx={headerStyles}>{language.contactDetails.ceoH}</Typography>
+                    <Typography variant="body1" sx={valueStyles}>{language.contactDetails.ceo}</Typography>
                 </Grid>
                 {/* Блок контактов */}
                 <Grid item xs={12} sm={6} md={4}>
                     <Typography variant="body1" sx={headerStyles}>
                         {language.contactDetails.contactsHeader}
                     </Typography>
-                    <Typography variant="body1" sx={{ fontWeight: 'bold', ...sectionStyles }}>
+                    <Typography variant="body1" sx={headerStyles}>
                         {language.contactDetails.mainTelephone}
                     </Typography>
                     <Link href="tel:+16042600738" sx={linkStyles}>
                         +1 604-260-0738
                     </Link>
-                    <Typography variant="body1" sx={{ fontWeight: 'bold', ...sectionStyles }}>
+                    <Typography variant="body1" sx={headerStyles}>
                         {language.contactDetails.mainEmail}
                     </Typography>
                     <Link href="mailto:support@victorum-capital.com" sx={linkStyles}>
                         support@victorum-capital.com
                     </Link>
-                    <Typography variant="body1" sx={{ fontWeight: 'bold', ...sectionStyles }}>
+                    <Typography variant="body1" sx={headerStyles}>
                         {language.contactDetails.compliance}
                     </Typography>
                     <Link href="mailto:compliance@victorum-capital.com" sx={linkStyles}>
                         compliance@victorum-capital.com
                     </Link>
-                    <Typography variant="body1" sx={{ fontWeight: 'bold', ...sectionStyles }}>
+                    <Typography variant="body1" sx={headerStyles}>
                         {language.contactDetails.media}
                     </Typography>
                     <Link href="mailto:press@victorum-capital.com" sx={linkStyles}>
                         press@victorum-capital.com
                     </Link>
-                    <Typography variant="body1" sx={{ fontWeight: 'bold', ...sectionStyles }}>
+                    <Typography variant="body1" sx={headerStyles}>
                         {language.contactDetails.administration}
                     </Typography>
                     <Link href="mailto:administration@victorum-capital.com" sx={linkStyles}>
@@ -127,19 +131,24 @@ const ContactDetails = () => {
                     <Typography variant="body1" sx={headerStyles}>
                         {language.contactDetails.registrationHeader}
                     </Typography>
-                    <Typography variant="body1" sx={{ ...sectionStyles }}>{language.contactDetails.state}</Typography>
-                    <Typography variant="body1" sx={{ ...sectionStyles }}>{language.contactDetails.registrationNumber}</Typography>
-                    <Typography variant="body1" sx={{ fontWeight: 'bold', ...sectionStyles }}>
+                    <Typography variant="body1" sx={headerStyles}>{language.contactDetails.stateHeader}</Typography>
+                    <Typography variant="body1" sx={valueStyles}>{language.contactDetails.state}</Typography>
+                    <Typography variant="body1" sx={headerStyles}>{language.contactDetails.registrationNumberHeader}</Typography>
+                    <Typography variant="body1" sx={valueStyles}>{language.contactDetails.registrationNumber}</Typography>
+                    <Typography variant="body1" sx={headerStyles}>
+                        AKTIENTYP:
+                    </Typography>
+                    <Typography variant="body1" sx={valueStyles}>
                         {language.contactDetails.shareStyle}
                     </Typography>
-                    <Typography variant="body1" sx={{ fontWeight: 'bold', ...sectionStyles }}>
+                    <Typography variant="body1" sx={headerStyles}>
                         ISIN:
                     </Typography>
-                    <Typography variant="body1" sx={{ ...sectionStyles }}>{language.contactDetails.isin}</Typography>
-                    <Typography variant="body1" sx={{ fontWeight: 'bold', ...sectionStyles }}>
+                    <Typography variant="body1" sx={valueStyles}>{language.contactDetails.isin}</Typography>
+                    <Typography variant="body1" sx={headerStyles}>
                         CUSIP:
                     </Typography>
-                    <Typography variant="body1" sx={{ ...sectionStyles }}>{language.contactDetails.cusip}</Typography>
+                    <Typography variant="body1" sx={valueStyles}>{language.contactDetails.cusip}</Typography>
                 </Grid>
             </Grid>
         </Box>

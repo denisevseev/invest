@@ -183,7 +183,8 @@
       "line2": "Vancouver, BC V6B 0B6",
       "country": "Kanada"
     },
-    "ceo": "CEO: Osbert Doehl",
+    "ceoH": "CEO:",
+    "ceo": "Osbert Doehl",
     "contactsHeader": "KONTAKTE:",
     "mainTelephone": "Haupttelefonnummer:",
     "mainEmail": "Haupt-E-Mail:",
@@ -191,11 +192,13 @@
     "media": "Medien:",
     "administration": "Verwaltung:",
     "registrationHeader": "REGISTRIERUNG:",
-    "state": "Bundesstaat: British Columbia (BC)",
-    "registrationNumber": "Registrierungsnummer: 790478002BC0001",
-    "shareStyle": "Aktientyp: Common CLASS A RESTRICTED SHARES",
-    "isin": "ISIN: CA92642D1024",
-    "cusip": "CUSIP: 92642D102"
+    "stateHeader": "Bundesstaat:",
+    "state": "British Columbia (BC)",
+    "registrationNumberHeader": "Registration number:",
+    "registrationNumber": "790478002BC0001",
+    "shareStyle": "Common CLASS A Restricted Shares",
+    "isin": "CA92642D1024",
+    "cusip": "92642D102"
   }
 
 
