@@ -198,7 +198,56 @@
         "newPassword": "New Password",
         "confirmPassword": "Confirm New Password",
         "button": "Change Password"
+    },
+
+
+    "faq": {
+        "title": "FAQ",
+        "questions": [
+            {
+                "question": "1. What can I use this platform for?",
+                "answer": "Our platform provides a secure and user-friendly interface to manage your request process for subscribing to Victorum Capital Inc.'s securities and changing your password. It ensures that your personal information remains secure and helps you easily update your login credentials."
+            },
+            {
+                "question": "2. How do I change my password?",
+                "answer": "To change your password, navigate to the 'Change Password' section in your account settings. Enter your current password, then a new password, and confirm it. Make sure the new password is at least 8 characters long and matches the confirmation."
+            },
+            {
+                "question": "3. What should I do if I forget my password?",
+                "answer": "If you forget your password, use the 'Forgot Password' link on the login page. Follow the instructions to reset your password via the email associated with your account."
+            },
+            {
+                "question": "4. What are the requirements for a strong password?",
+                "answer": "A strong password should be at least 8 characters long and include a mix of uppercase letters, lowercase letters, numbers, and special characters. Avoid easily guessable information such as common words or personal details."
+            },
+            {
+                "question": "5. Why is my new password not being accepted?",
+                "answer": "Ensure that your new password meets the minimum length requirement and matches the confirmation field. If the password is still not accepted, check that it meets all complexity requirements and try again."
+            },
+            {
+                "question": "6. How often should I change my password?",
+                "answer": "For security reasons, it's recommended to change your password every 3 to 6 months or immediately if you suspect your account has been compromised."
+            },
+            {
+                "question": "7. What should I do if I encounter an error while changing my password?",
+                "answer": "If you encounter an error, check that you have filled in all the required fields correctly and that your new password meets the necessary criteria. If the issue persists, contact our support team."
+            },
+            {
+                "question": "8. How can I contact support for further assistance?",
+                "answer": "If you need further assistance, you can contact our support team at <Link href='tel:+16042600738'>001 604-260-0738</Link>. We are here to help with any issues or questions."
+            },
+            {
+                "question": "9. Are my personal details secure?",
+                "answer": "Yes, your personal details are protected with industry-standard encryption and security measures. We take your privacy seriously and ensure that your data is handled with the utmost care."
+            },
+            {
+                "question": "10. Where can I find more information about your security policies?",
+                "answer": "Detailed information about our security policies can be found in the 'Privacy Policy' and 'Terms of Service' sections of our website. If you have specific questions, feel free to contact our support team via email at <Link href='mailto:support@victorum-capital.com'>support@victorum-capital.com</Link> or call us at <Link href='tel:+16042600738'>001 604-260-0738</Link>!"
+            }
+        ]
     }
+
+
 
 
 

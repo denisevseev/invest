@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box, Typography, Grid, useTheme, useMediaQuery } from '@mui/material';
+import { Box, Typography, Grid, useTheme, useMediaQuery, Link } from '@mui/material';
 
 const ResponsiveGrid = () => {
     const theme = useTheme();
@@ -55,13 +55,13 @@ const ResponsiveGrid = () => {
                         Wenn Sie auf einen Fehler stoßen, überprüfen Sie, ob Sie alle erforderlichen Felder korrekt ausgefüllt haben und ob Ihr neues Passwort die notwendigen Kriterien erfüllt. Wenn das Problem weiterhin besteht, wenden Sie sich an unser Support-Team.<br /><br />
 
                         <strong>8. Wie kann ich den Support für weitere Unterstützung kontaktieren?</strong><br />
-                        Wenn Sie weitere Unterstützung benötigen, können Sie unser Support-Team unter 001 604-260-0738 kontaktieren. Wir sind hier, um Ihnen bei allen Problemen oder Fragen zu helfen.<br /><br />
+                        Wenn Sie weitere Unterstützung benötigen, können Sie unser Support-Team unter <Link href="tel:+16042600738">001 604-260-0738</Link> kontaktieren. Wir sind hier, um Ihnen bei allen Problemen oder Fragen zu helfen.<br /><br />
 
                         <strong>9. Sind meine persönlichen Informationen sicher?</strong><br />
                         Ja, Ihre persönlichen Informationen werden mit branchenüblichen Verschlüsselungs- und Sicherheitsmaßnahmen geschützt. Wir nehmen Ihre Privatsphäre ernst und stellen sicher, dass Ihre Daten mit größter Sorgfalt behandelt werden.<br /><br />
 
                         <strong>10. Wo finde ich weitere Informationen zu Ihren Sicherheitsrichtlinien?</strong><br />
-                        Detaillierte Informationen zu unseren Sicherheitsrichtlinien finden Sie in den Abschnitten „Datenschutzrichtlinie“ und „Nutzungsbedingungen“ auf unserer Website. Wenn Sie spezielle Fragen haben, können Sie sich gerne an unser Support-Team wenden. Sie können uns dazu einfach eine E-Mail an support@victorum-capital.com senden oder uns unter 001 604-260-0738 anrufen!
+                        Detaillierte Informationen zu unseren Sicherheitsrichtlinien finden Sie in den Abschnitten „Datenschutzrichtlinie“ und „Nutzungsbedingungen“ auf unserer Website. Wenn Sie spezielle Fragen haben, können Sie sich gerne an unser Support-Team wenden. Sie können uns dazu einfach eine E-Mail an <Link href="mailto:support@victorum-capital.com">support@victorum-capital.com</Link> senden oder uns unter <Link href="tel:+16042600738">001 604-260-0738</Link> anrufen!
                     </Typography>
                 </Grid>
             </Grid>

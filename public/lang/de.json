@@ -208,7 +208,61 @@
     "confirmPassword": "Neues Passwort bestätigen",
     "button": "JETZT PASSWORT ÄNDERN"
 
-}
+},
+
+
+  "faq": {
+    "title": "FAQ",
+    "questions": [
+      {
+        "question": "1. Wofür kann ich diese Plattform verwenden?",
+        "answer": "Unsere Plattform bietet eine sichere und benutzerfreundliche Oberfläche zur Verwaltung Ihres Anfrageprozesses zur Zeichnung von Wertpapieren der Victorum Capital Inc. und zum Ändern Ihres Passworts. Sie stellt sicher, dass Ihre persönlichen Informationen sicher bleiben und hilft Ihnen, Ihre Anmeldedaten einfach zu aktualisieren."
+      },
+      {
+        "question": "2. Wie ändere ich mein Passwort?",
+        "answer": "Um Ihr Passwort zu ändern, navigieren Sie zum Abschnitt „Passwort ändern“ in Ihren Kontoeinstellungen. Geben Sie Ihr aktuelles Passwort ein, dann ein neues Passwort und bestätigen Sie es. Stellen Sie sicher, dass das neue Passwort mindestens 8 Zeichen lang ist und mit der Bestätigung übereinstimmt."
+      },
+      {
+        "question": "3. Was soll ich tun, wenn ich mein Passwort vergessen habe?",
+        "answer": "Wenn Sie Ihr Passwort vergessen haben, verwenden Sie den Link „Passwort vergessen“ auf der Anmeldeseite. Folgen Sie den Anweisungen, um Ihr Passwort über die mit Ihrem Konto verknüpfte E-Mail-Adresse zurückzusetzen."
+      },
+      {
+        "question": "4. Was sind die Anforderungen an ein starkes Passwort?",
+        "answer": "Ein starkes Passwort sollte mindestens 8 Zeichen lang sein und eine Mischung aus Großbuchstaben, Kleinbuchstaben, Zahlen und Sonderzeichen enthalten. Vermeiden Sie leicht zu erratende Informationen wie gängige Wörter oder persönliche Details."
+      },
+      {
+        "question": "5. Warum wird mein neues Passwort nicht akzeptiert?",
+        "answer": "Stellen Sie sicher, dass Ihr neues Passwort die Mindestlängenanforderung erfüllt und mit dem Bestätigungsfeld übereinstimmt. Wenn das Passwort immer noch nicht akzeptiert wird, überprüfen Sie, ob es alle Komplexitätsanforderungen erfüllt, und versuchen Sie es erneut."
+      },
+      {
+        "question": "6. Wie oft sollte ich mein Passwort ändern?",
+        "answer": "Aus Sicherheitsgründen wird empfohlen, Ihr Passwort alle 3 bis 6 Monate zu ändern oder sofort, wenn Sie vermuten, dass Ihr Konto kompromittiert wurde."
+      },
+      {
+        "question": "7. Was soll ich tun, wenn ich beim Ändern meines Passworts auf einen Fehler stoße?",
+        "answer": "Wenn Sie auf einen Fehler stoßen, überprüfen Sie, ob Sie alle erforderlichen Felder korrekt ausgefüllt haben und ob Ihr neues Passwort die notwendigen Kriterien erfüllt. Wenn das Problem weiterhin besteht, wenden Sie sich an unser Support-Team."
+      },
+      {
+        "question": "8. Wie kann ich den Support für weitere Unterstützung kontaktieren?",
+        "answer": "Wenn Sie weitere Unterstützung benötigen, können Sie unser Support-Team unter <Link href='tel:+16042600738'>001 604-260-0738</Link> kontaktieren. Wir sind hier, um Ihnen bei allen Problemen oder Fragen zu helfen."
+      },
+      {
+        "question": "9. Sind meine persönlichen Informationen sicher?",
+        "answer": "Ja, Ihre persönlichen Informationen werden mit branchenüblichen Verschlüsselungs- und Sicherheitsmaßnahmen geschützt. Wir nehmen Ihre Privatsphäre ernst und stellen sicher, dass Ihre Daten mit größter Sorgfalt behandelt werden."
+      },
+      {
+        "question": "Wo finde ich weitere Informationen zu Ihren Sicherheitsrichtlinien?",
+        "answerPart1": "Detaillierte Informationen zu unseren Sicherheitsrichtlinien finden Sie in den Abschnitten 'Datenschutzrichtlinie' und 'Nutzungsbedingungen' auf unserer Website. Wenn Sie spezielle Fragen haben, können Sie unser Support-Team per E-Mail unter ",
+        "email": "support@victorum-capital.com",
+        "answerPart2": " oder telefonisch unter ",
+        "phone": "001 604-260-0738",
+        "answerPart3": " kontaktieren."
+      }
+    ]
+  }
+
+
+
 
 
 
