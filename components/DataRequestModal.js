@@ -7,7 +7,7 @@ import { observer } from 'mobx-react-lite';
 const DataRequestModal = () => {
     const router = useRouter();
     const handle =  ()=>{
-       router.push('/more-info');
+        router.push('/more-info');
     }
     return (
         <Modal
@@ -50,22 +50,18 @@ const DataRequestModal = () => {
                             Vertrauen Sie uns – Ihr Erfolg ist unser Ziel. Lassen Sie uns gemeinsam diesen letzten Schritt gehen und sicherstellen, dass Sie bestens gerüstet sind, um das Potenzial Ihrer Investitionen voll auszuschöpfen.
                         </Typography>
                     </Grid>
-                    <Grid item xs={12} sm={6}>
+                    <Grid item xs={12} sm={6} >
                         <Button
-                            
-                            color="primary"
-                            fullWidth
                             onClick={handle}
+                            sx={{fontSize: '13px'}}
                         >
                             Weitere Daten bereitstellen
                         </Button>
                     </Grid>
-                    <Grid item xs={12} sm={6}>
+                    <Grid item xs={12} sm={6} sx={{ display: 'flex', justifyContent: 'flex-end' }}>
                         <Button
-                            variant="outlined"
-                            color="secondary"
-                            fullWidth
                             onClick={() => store.DataRequestModal = false}
+                            sx={{fontSize: '13px'}}
                         >
                             Schließen
                         </Button>
