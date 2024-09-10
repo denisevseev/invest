@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
-import {Box, Typography, TextField, Button, Grid, useTheme, useMediaQuery, CardMedia} from '@mui/material';
+import { Box, Typography, TextField, Button, Grid, useTheme, useMediaQuery, CardMedia } from '@mui/material';
 import { observer } from 'mobx-react-lite';
 import store from '../stores/userStore';
+import en from './../public/lang/en.json';
+import de from './../public/lang/de.json';
 
 const ChangePassword = () => {
     const theme = useTheme();
@@ -11,6 +13,9 @@ const ChangePassword = () => {
     const [confirmPassword, setConfirmPassword] = useState('');
     const [user, setUser] = useState(null);
     const [error, setError] = useState('');
+
+    // Определение текущего языка
+    const language = store.lang === 'de' ? de : en;
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -53,7 +58,7 @@ const ChangePassword = () => {
     return (
         <Box maxWidth={'md'} sx={{ mt: 12, p: 2, ml: !isMobile && 40 }}>
             <Typography variant="h4" align="center" sx={{ fontWeight: 'bold', mb: 3 }}>
-                Change Password
+                {language.changePassword.title}
             </Typography>
             {/* Add your image here */}
             <Box textAlign="center" mb={4}>
@@ -75,7 +80,7 @@ const ChangePassword = () => {
                     <Grid item xs={12}>
                         <TextField
                             fullWidth
-                            label="Old Password"
+                            label={language.changePassword.oldPassword}
                             type="password"
                             value={oldPassword}
                             onChange={(e) => setOldPassword(e.target.value)}
@@ -85,7 +90,7 @@ const ChangePassword = () => {
                     <Grid item xs={12}>
                         <TextField
                             fullWidth
-                            label="New Password"
+                            label={language.changePassword.newPassword}
                             type="password"
                             value={newPassword}
                             onChange={(e) => setNewPassword(e.target.value)}
@@ -95,7 +100,7 @@ const ChangePassword = () => {
                     <Grid item xs={12}>
                         <TextField
                             fullWidth
-                            label="Confirm New Password"
+                            label={language.changePassword.confirmPassword}
                             type="password"
                             value={confirmPassword}
                             onChange={(e) => setConfirmPassword(e.target.value)}
@@ -107,9 +112,9 @@ const ChangePassword = () => {
                             <Typography color="error">{error}</Typography>
                         </Grid>
                     )}
-                    <Grid item xs={12}>
-                        <Button  color="primary" type="submit">
-                            Change Password
+                    <Grid item xs={8} sx={{display: 'flex', justifyContent: 'flex-end'}}>
+                        <Button color="primary" type="submit">
+                            {language.changePassword.button}
                         </Button>
                     </Grid>
                 </Grid>

@@ -189,7 +189,18 @@
         "shareStyle": "Common CLASS A Restricted Shares",
         "isin": "CA92642D1024",
         "cusip": "92642D102"
+    },
+
+
+    "changePassword": {
+        "title": "Change Password",
+        "oldPassword": "Old Password",
+        "newPassword": "New Password",
+        "confirmPassword": "Confirm New Password",
+        "button": "Change Password"
     }
+
+
 
 
 
