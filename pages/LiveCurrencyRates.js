@@ -34,7 +34,7 @@ const LiveCurrencyRates = () => {
 
             {/* Text Section */}
             <Box sx={{ textAlign: 'left', maxWidth: '100%', p: isMobile ? 1 : 3 }}>
-                <Typography variant="h6" gutterBottom>
+                <Typography variant="body1" gutterBottom>
                     Das Geschäft der Victorum Capital ist global und geht über diverse Landesgrenzen, viele Zeitzonen und in unterschiedlichsten Währungen.
                 </Typography>
                 <Typography variant="body1" paragraph>

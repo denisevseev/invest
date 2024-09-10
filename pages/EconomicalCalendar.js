@@ -41,7 +41,7 @@ const EconomicCalendar = () => {
 
             {/* Text Section */}
             <Box sx={{ textAlign: 'left', maxWidth: '100%', p: isMobile ? 1 : 3 }}>
-                <Typography variant="h6" gutterBottom>
+                <Typography variant="body1" gutterBottom>
                     In einer globalisierten Welt ist es für Investoren wichtig, stets die weltweiten wirtschaftlichen Geschehnisse gut im Auge zu behalten.
                 </Typography>
                 <Typography variant="body1" paragraph>

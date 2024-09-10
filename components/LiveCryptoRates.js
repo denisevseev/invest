@@ -34,7 +34,7 @@ const LiveCryptoRates = () => {
 
             {/* Text Section */}
             <Box sx={{ textAlign: 'left', maxWidth: '100%', p: isMobile ? 1 : 3 }}>
-                <Typography variant="h6" gutterBottom>
+                <Typography variant="body1" gutterBottom>
                     Kryptowährungen sind schon lange kein Nischenprodukt, sondern ein fester Bestandteil der globalen Ökonomie.
                 </Typography>
                 <Typography variant="body1" paragraph>

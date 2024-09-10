@@ -32,6 +32,7 @@ const ContactDetails = () => {
         color: 'primary.main',
         marginBottom: 2, // Добавляем отступ после ссылок
         fontFamily: 'DejaVu Sans, sans-serif',
+        fontSize: '15px',
     };
 
     return (
@@ -39,24 +40,6 @@ const ContactDetails = () => {
             sx={{
                 padding: { xs: 2, md: 6, lg: 12 },
                 marginLeft: { xs: 0, md: '10%' },
-                backgroundSize: 'cover',
-                backgroundPosition: 'center',
-                backgroundRepeat: 'no-repeat',
-                position: 'relative',
-                '&:before': {
-                    content: '""',
-                    position: 'absolute',
-                    top: 0,
-                    left: 0,
-                    right: 0,
-                    bottom: 0,
-                    backgroundColor: 'rgba(255, 255, 255, 0.85)',
-                    zIndex: 1,
-                },
-                '& > *': {
-                    position: 'relative',
-                    zIndex: 2,
-                },
             }}
         >
             <Typography variant="h4" sx={{ marginBottom: 3, textAlign: 'center', fontWeight: 'bold', color: 'black', fontFamily: 'DejaVu Sans, sans-serif' }}>
