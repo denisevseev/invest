@@ -31,37 +31,37 @@ const ResponsiveGrid = () => {
                         }}
                     />
                 </Grid>
-                <Grid ml={ !isMobile && 30} item xs={12} md={ isMobile ? 6 : 10}>
+                <Grid ml={ !isMobile && 25} item xs={12} md={ isMobile ? 6 : 10}>
                     <Typography variant="body1" align="left" sx={{ color: 'text.secondary' }}>
-                        <strong>1. What is the purpose of this application?</strong><br />
-                        Our application provides a secure and user-friendly platform for managing your account and changing your password. It ensures that your personal information remains safe and helps you update your credentials easily.<br /><br />
+                        <strong>1. Wofür kann ich diese Plattform verwenden?</strong><br />
+                        Unsere Plattform bietet eine sichere und benutzerfreundliche Oberfläche zur Verwaltung Ihres Anfrageprozesses zur Zeichnung von Wertpapieren der Victorum Capital Inc. und zum Ändern Ihres Passworts. Sie stellt sicher, dass Ihre persönlichen Informationen sicher bleiben und hilft Ihnen, Ihre Anmeldedaten einfach zu aktualisieren.<br /><br />
 
-                        <strong>2. How do I change my password?</strong><br />
-                        To change your password, navigate to the "Change Password" section in your account settings. Enter your current password, then provide a new password and confirm it. Ensure that the new password is at least 8 characters long and matches the confirmation.<br /><br />
+                        <strong>2. Wie ändere ich mein Passwort?</strong><br />
+                        Um Ihr Passwort zu ändern, navigieren Sie zum Abschnitt „Passwort ändern“ in Ihren Kontoeinstellungen. Geben Sie Ihr aktuelles Passwort ein, dann ein neues Passwort und bestätigen Sie es. Stellen Sie sicher, dass das neue Passwort mindestens 8 Zeichen lang ist und mit der Bestätigung übereinstimmt.<br /><br />
 
-                        <strong>3. What should I do if I forget my password?</strong><br />
-                        If you forget your password, use the "Forgot Password" link on the login page. Follow the instructions to reset your password via the email associated with your account.<br /><br />
+                        <strong>3. Was soll ich tun, wenn ich mein Passwort vergessen habe?</strong><br />
+                        Wenn Sie Ihr Passwort vergessen haben, verwenden Sie den Link „Passwort vergessen“ auf der Anmeldeseite. Folgen Sie den Anweisungen, um Ihr Passwort über die mit Ihrem Konto verknüpfte E-Mail-Adresse zurückzusetzen.<br /><br />
 
-                        <strong>4. What are the requirements for a strong password?</strong><br />
-                        A strong password should be at least 8 characters long and include a mix of uppercase letters, lowercase letters, numbers, and special characters. Avoid using easily guessable information like common words or personal details.<br /><br />
+                        <strong>4. Was sind die Anforderungen an ein starkes Passwort?</strong><br />
+                        Ein starkes Passwort sollte mindestens 8 Zeichen lang sein und eine Mischung aus Großbuchstaben, Kleinbuchstaben, Zahlen und Sonderzeichen enthalten. Vermeiden Sie leicht zu erratende Informationen wie gängige Wörter oder persönliche Details.<br /><br />
 
-                        <strong>5. Why is my new password not being accepted?</strong><br />
-                        Ensure that your new password meets the minimum length requirement and matches the confirmation field. If the password still isn't accepted, verify that it meets all complexity requirements and try again.<br /><br />
+                        <strong>5. Warum wird mein neues Passwort nicht akzeptiert?</strong><br />
+                        Stellen Sie sicher, dass Ihr neues Passwort die Mindestlängenanforderung erfüllt und mit dem Bestätigungsfeld übereinstimmt. Wenn das Passwort immer noch nicht akzeptiert wird, überprüfen Sie, ob es alle Komplexitätsanforderungen erfüllt, und versuchen Sie es erneut.<br /><br />
 
-                        <strong>6. How often should I change my password?</strong><br />
-                        For security purposes, it's recommended to change your password every 3 to 6 months or immediately if you suspect that your account has been compromised.<br /><br />
+                        <strong>6. Wie oft sollte ich mein Passwort ändern?</strong><br />
+                        Aus Sicherheitsgründen wird empfohlen, Ihr Passwort alle 3 bis 6 Monate zu ändern oder sofort, wenn Sie vermuten, dass Ihr Konto kompromittiert wurde.<br /><br />
 
-                        <strong>7. What should I do if I encounter an error while changing my password?</strong><br />
-                        If you encounter an error, check that you have entered all required fields correctly and that your new password meets the necessary criteria. If the problem persists, contact our support team for assistance.<br /><br />
+                        <strong>7. Was soll ich tun, wenn ich beim Ändern meines Passworts auf einen Fehler stoße?</strong><br />
+                        Wenn Sie auf einen Fehler stoßen, überprüfen Sie, ob Sie alle erforderlichen Felder korrekt ausgefüllt haben und ob Ihr neues Passwort die notwendigen Kriterien erfüllt. Wenn das Problem weiterhin besteht, wenden Sie sich an unser Support-Team.<br /><br />
 
-                        <strong>8. How can I contact support for further assistance?</strong><br />
-                        If you need further assistance, you can contact our support team via email at support@example.com or through the contact form on our website. We are here to help you with any issues or questions you may have.<br /><br />
+                        <strong>8. Wie kann ich den Support für weitere Unterstützung kontaktieren?</strong><br />
+                        Wenn Sie weitere Unterstützung benötigen, können Sie unser Support-Team unter 001 604-260-0738 kontaktieren. Wir sind hier, um Ihnen bei allen Problemen oder Fragen zu helfen.<br /><br />
 
-                        <strong>9. Is my personal information secure?</strong><br />
-                        Yes, your personal information is protected using industry-standard encryption and security measures. We take your privacy seriously and ensure that your data is handled with the utmost care.<br /><br />
+                        <strong>9. Sind meine persönlichen Informationen sicher?</strong><br />
+                        Ja, Ihre persönlichen Informationen werden mit branchenüblichen Verschlüsselungs- und Sicherheitsmaßnahmen geschützt. Wir nehmen Ihre Privatsphäre ernst und stellen sicher, dass Ihre Daten mit größter Sorgfalt behandelt werden.<br /><br />
 
-                        <strong>10. Where can I find more information about your security policies?</strong><br />
-                        You can find detailed information about our security policies in the "Privacy Policy" and "Terms of Service" sections on our website. If you have any specific questions, feel free to reach out to our support team.
+                        <strong>10. Wo finde ich weitere Informationen zu Ihren Sicherheitsrichtlinien?</strong><br />
+                        Detaillierte Informationen zu unseren Sicherheitsrichtlinien finden Sie in den Abschnitten „Datenschutzrichtlinie“ und „Nutzungsbedingungen“ auf unserer Website. Wenn Sie spezielle Fragen haben, können Sie sich gerne an unser Support-Team wenden. Sie können uns dazu einfach eine E-Mail an support@victorum-capital.com senden oder uns unter 001 604-260-0738 anrufen!
                     </Typography>
                 </Grid>
             </Grid>

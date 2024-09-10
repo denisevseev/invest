@@ -22,7 +22,7 @@ const ContactDetails = () => {
 
     // Стили для значений
     const valueStyles = {
-        marginBottom: 2, // Добавляем отступ между значением и следующим заголовком
+        marginBottom: 2,
         fontFamily: 'DejaVu Sans, sans-serif',
         color: 'black',
     };
