@@ -51,11 +51,11 @@ const ShareType = () => {
             <Divider />
             <Box sx={{ textAlign: 'left', maxWidth: '100%', p: isMobile ? 1 : 3 }}>
                 {language.shareTypeInvestorsContent.paragraphs.map((paragraph, index) => (
-                    <Typography key={index} variant="body1" paragraph sx={{ fontSize: isMobile ? '22px' : '21px' }}>
+                    <Typography key={index} variant="body1" paragraph >
                         {paragraph}
                     </Typography>
                 ))}
-                <Typography variant="body1" paragraph sx={{ fontSize: isMobile ? '22px' : '21px' }}>
+                <Typography variant="body1" paragraph >
                     {language.shareTypeInvestorsContent.additionalContact}{' '}
                     <Link href="tel:+16042600738" sx={{ textDecoration: 'none' }}>
                         +1 604-260-0738

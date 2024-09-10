@@ -198,7 +198,7 @@ const UploadScansComponent = () => {
         <Box>
             {passportFiles.length < 3 && (
                 <>
-                    <Typography variant="h5" fontWeight={"bold"} gutterBottom>
+                    <Typography  fontWeight={"bold"} gutterBottom>
                         Bitte laden Sie Scans beider Seiten Ihres Reisepasses / Personalausweises hoch. / hier können Sie auch einen Scheck für eine abgeschlossene Überweisung hinzufügen
                     </Typography>
                     <Box
@@ -227,7 +227,7 @@ const UploadScansComponent = () => {
 
             {addressFiles.length < 2 && (
                 <>
-                    <Typography variant="h5" fontWeight={"bold"} gutterBottom sx={{ mt: 4 }}>
+                    <Typography  fontWeight={"bold"} gutterBottom sx={{ mt: 4 }}>
                         Bitte laden Sie Scans Ihres Adressnachweises hoch
                     </Typography>
                     <Box

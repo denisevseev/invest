@@ -73,11 +73,11 @@ const CorporateFinance = () => {
             <Divider />
             <Box sx={{ textAlign: 'left', maxWidth: '100%', p: isMobile ? 1 : 3 }}>
                 {corporateFinance.paragraphs.map((paragraph, index) => (
-                    <Typography key={index} variant="body1" paragraph sx={{ fontSize: isMobile ? '22px' : '21px' }}>
+                    <Typography key={index} variant="body1" paragraph >
                         {paragraph}
                     </Typography>
                 ))}
-                <Typography variant="body1" paragraph sx={{ fontSize: isMobile ? '22px' : '21px' }}>
+                <Typography variant="body1" paragraph >
                     {corporateFinance.contactText}{' '}
                     <StyledLink href="tel:+1-604-260-0738" color="primary">{corporateFinance.phone}</StyledLink> {corporateFinance.or}{' '}
                     <StyledLink href="mailto:support@victorum-capital.com" color="primary">{corporateFinance.email}</StyledLink>

@@ -64,7 +64,7 @@ const ShareSubscription = () => {
 
             <Box sx={{ textAlign: 'left', maxWidth: '100%', p: isMobile ? 1 : 3 }}>
                 {shareSubscription.paragraphs.map((paragraph, index) => (
-                    <Typography key={index} variant="body1" paragraph sx={{ fontSize: isMobile ? '18px' : '21px' }}>
+                    <Typography key={index} variant="body1" paragraph >
                         {paragraph}
                     </Typography>
                 ))}

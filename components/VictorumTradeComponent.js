@@ -30,7 +30,6 @@ const VictorumTradeComponent = () => {
                 sx={{
                     fontWeight: 'bold',
                     marginBottom: '1rem',
-                    fontSize: isMobile ? '1.8rem' : '2.2rem',
                     position: 'relative',
                     overflow: 'hidden',
                     color: 'black',
@@ -59,10 +58,10 @@ const VictorumTradeComponent = () => {
             </Box>
             <Divider/>
             <Box sx={{textAlign: 'left', maxWidth: '100%', p: isMobile ? 1 : 3}}>
-                <Typography variant="body1" paragraph sx={{fontSize: isMobile ? '22px' : '21px'}}>
+                <Typography variant="body1" paragraph >
                     {victorumTrade.description1}
                 </Typography>
-                <Typography variant="body1" paragraph sx={{fontSize: isMobile ? '22px' : '21px'}}>
+                <Typography variant="body1" paragraph >
                     {victorumTrade.description2}
                 </Typography>
                 <Box textAlign="center" mt={2}>

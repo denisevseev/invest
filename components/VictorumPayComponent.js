@@ -35,7 +35,7 @@ const VictorumPayComponent = () => {
             </Typography>
             <Image sx={{maxWidth: '100%', maxHeight: '400px', objectFit: 'cover' }} src="/images/VicPay.jpg" alt="Victorum Pay" />
             <Box sx={{ textAlign: 'left', maxWidth: '100%', margin: '0 auto' }}>
-                <Typography variant="body1" paragraph sx={{ fontSize: isMobile ? '22px' : '21px' }}>
+                <Typography variant="body1" paragraph >
                     {victorumPay.description1}
                 </Typography>
                 <Typography
@@ -48,16 +48,16 @@ const VictorumPayComponent = () => {
                 >
                     {victorumPay.whyChooseTitle}
                 </Typography>
-                <Typography variant="body1" paragraph sx={{ fontSize: isMobile ? '22px' : '21px' }}>
+                <Typography variant="body1" paragraph   >
                     {victorumPay.reason1}
                 </Typography>
-                <Typography variant="body1" paragraph sx={{ fontSize: isMobile ? '22px' : '21px' }}>
+                <Typography variant="body1" paragraph >
                     {victorumPay.reason2.split(':')[0]} {victorumPay.reason2.split(':')[1]}
                 </Typography>
-                <Typography variant="body1" paragraph sx={{ fontSize: isMobile ? '22px' : '21px' }}>
+                <Typography variant="body1" paragraph >
                     {victorumPay.reason3.split(':')[0]} {victorumPay.reason3.split(':')[1]}
                 </Typography>
-                <Typography variant="body1" paragraph sx={{ fontSize: isMobile ? '22px' : '21px' }}>
+                <Typography variant="body1" paragraph >
                     {victorumPay.reason4.split(':')[0]} {victorumPay.reason4.split(':')[1]}
                 </Typography>
                 <Box textAlign="center" mt={2}>
@@ -68,7 +68,7 @@ const VictorumPayComponent = () => {
                         rel="noopener"
                         size="large"
                     >
-                        <Typography variant="body1" sx={{fontSize: isMobile ? '22px' : '21px'}}>
+                        <Typography variant="body1" >
                             {victorumPay.discoverMore}
                         </Typography>
                     </Button>

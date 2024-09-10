@@ -22,15 +22,15 @@ const VerificationInfo = () => {
                     />
                 </Grid>
                 <Grid item xs={12} md={12}>
-                    <Typography variant="h5" paragraph>
+                    <Typography  paragraph>
                         Die Verifizierung Ihrer Ausweisdokumente, E-Mail-Adresse und Telefonnummer ist entscheidend, um die Sicherheit und Integrität Ihres Kontos zu gewährleisten.
                         Sie hilft, Identitätsdiebstahl zu verhindern, stellt die Einhaltung von Vorschriften sicher und schafft eine sichere Umgebung für alle Nutzer.
                     </Typography>
-                    <Typography variant="h5" paragraph>
+                    <Typography  paragraph>
                         Durch die Verifizierung Ihrer Informationen schützen Sie nicht nur Ihr eigenes Konto, sondern tragen auch zu einem sichereren digitalen Ökosystem bei. Dieser Prozess
                         ist schnell und einfach und verringert das Risiko von Betrug und unbefugtem Zugriff erheblich.
                     </Typography>
-                    <Typography variant="h5" paragraph>
+                    <Typography  paragraph>
                         Bitte nehmen Sie sich einen Moment Zeit, um Ihr Profil zu vervollständigen, indem Sie Ihre E-Mail-Adresse, Telefonnummer verifizieren und die erforderlichen Dokumente hochladen. Dadurch werden
                         alle Funktionen unserer Plattform freigeschaltet und Sie können eine reibungslose Erfahrung genießen.
                     </Typography>

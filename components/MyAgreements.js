@@ -49,7 +49,7 @@ const MyAgreements = () => {
                 alt="My agreements"
                 sx={{ mb: 4 }}
             />
-            <Typography variant="h6" align="center" sx={{ mb: 5 }}>
+            <Typography  align="center" sx={{ mb: 5 }}>
                 {lang === 'de'
                     ? 'Auf dieser Seite finden Sie alle rechtlichen Vereinbarungen, die Sie im Laufe Ihrer Nutzung dieser Plattform unterzeichnet haben. Diese Dokumente umfassen allgemeine Nutzungsbedingungen, Datenschutzerklärungen und spezifische Vereinbarungen für verschiedene Dienstleistungen. Es ist wichtig, dass Sie eine Kopie dieser Dokumente für Ihre Unterlagen aufbewahren. Falls Sie eine dieser Vereinbarungen erneut einsehen oder herunterladen möchten, können Sie dies ganz einfach über die untenstehenden Links tun.'
                     : 'On this page, you will find all the legal agreements you have signed during your use of this platform. These documents include general terms and conditions, privacy policies, and specific agreements for various services. It is important that you keep a copy of these documents for your records. If you would like to review or download any of these agreements again, you can easily do so via the links below.'
@@ -66,7 +66,7 @@ const MyAgreements = () => {
                                 alt="PDF Icon"
                             />
                             <CardContent>
-                                <Typography gutterBottom variant="h5" component="div">
+                                <Typography gutterBottom  component="div">
                                     {item === 1
                                         ? lang === 'de'
                                             ? 'Zeichnung von SEC-registrierten vorbörslichen Wertpapieren der Victorum Capital Inc.'
