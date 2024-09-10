@@ -114,8 +114,8 @@
   "dashboard": {
     "balance": "Balance",
     "investmentOverTime": "Investment Over Time",
-    "pieChartExample": "Pie Chart Example",
-    "barChartExample": "Bar Chart Example",
+    "pieChartExample": "Pie Chart",
+    "barChartExample": "Bar Chart",
     "investmentProgress": "Investment Progress",
     "statusOverview": "Status Overview",
     "randomCurve": "Random Curve",
