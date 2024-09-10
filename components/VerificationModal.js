@@ -149,7 +149,7 @@ const VerificationModal = ({ open, handleClose, confirmationText, user }) => {
                   margin="normal"
                 />
                 <Button
-                  variant="contained"
+                  
                   color="primary"
                   onClick={handleSubmitCode}
                   sx={{ mt: 2 }}
@@ -159,7 +159,7 @@ const VerificationModal = ({ open, handleClose, confirmationText, user }) => {
               </>
             ) : (
               <Button
-                variant="contained"
+                
                 color="primary"
                 onClick={handleSendCode}
                 disabled={isLoading}

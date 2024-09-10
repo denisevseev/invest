@@ -318,7 +318,7 @@ const RiskAcceptanceModal = ({}) => {
                     sx={{ mt: 2, fontSize: isMobile ? '1rem' : '1.5rem' }}
                 />
                 <Button
-                    variant="contained"
+                    
                     color="primary"
                     onClick={handleAcceptClick}
                     disabled={!store.acceptedRisks}

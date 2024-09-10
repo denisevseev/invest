@@ -88,7 +88,7 @@ const MyAgreements = () => {
                                 </Typography>
                                 {item === 1 ?
                                     <Button
-                                        variant="contained"
+                                        
                                         color="primary"
                                         sx={{ mt: 2 }}
                                         onClick={() => handleGenerateDoc(item)}

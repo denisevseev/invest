@@ -419,14 +419,15 @@ const RiskPdf = () => (
 
 // Компонент для генерации и скачивания PDF
 const GeneratePDFButton = () => {
+    const lang = store.lang;
     let name = store.lang === 'de' ? '2024_VICCAPITAL_ChancenRisiken_Wertpap.vorbörslich.pdf': '2024_VICCAPITAL_OpportunitiesRisks_preIPO.pdf'
     return (
         <div>
             <PDFDownloadLink document={<RiskPdf/>} fileName={name}>
                 {({blob, url, loading, error}) => (
-                    <Button sx={{mt: 2}} variant="contained" color="primary" href={url}
+                    <Button sx={{mt: lang === 'de' ? 2 : 4.5}}  color="primary" href={url}
                             download={name}>
-                        {loading ? 'Generiere PDF...' : 'PDF herunterladen'}
+                        {lang === 'de' ? 'PDF herunterladen' : 'Download PDF'}
                     </Button>
                 )}
             </PDFDownloadLink>

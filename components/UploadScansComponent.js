@@ -289,7 +289,7 @@ const UploadScansComponent = () => {
                                 marginBottom: '16px'
                             }}
                         />
-                        <Button onClick={closeModal} variant="contained" color="primary">Schließen</Button>
+                        <Button onClick={closeModal}  color="primary">Schließen</Button>
                     </Box>
                 </Modal>
             )}
@@ -318,13 +318,13 @@ const UploadScansComponent = () => {
                         </Typography>
                         <Button
                             onClick={confirmDelete}
-                            variant="contained"
+                            
                             color="secondary"
                             sx={{ mr: 2 }}
                         >
                             Ja
                         </Button>
-                        <Button onClick={closeDeleteModal} variant="contained">
+                        <Button onClick={closeDeleteModal} >
                             Nein
                         </Button>
                     </Box>

@@ -67,7 +67,7 @@ const ResetPasswordForm = ({}) => {
             />
           </Grid>
           <Grid item xs={12}>
-            <Button type="submit" variant="contained" color="primary" fullWidth>
+            <Button type="submit"  color="primary" fullWidth>
               Reset Password
             </Button>
           </Grid>

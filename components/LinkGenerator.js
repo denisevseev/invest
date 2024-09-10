@@ -32,7 +32,7 @@ const LinkGenerator = () => {
                 Link Generator
             </Typography>
             <Box>
-                <Button variant="contained" color="primary" onClick={generateLink}>
+                <Button  color="primary" onClick={generateLink}>
                     Generate Link
                 </Button>
                 {referralLink && (

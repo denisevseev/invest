@@ -52,7 +52,7 @@ const DataRequestModal = () => {
                     </Grid>
                     <Grid item xs={12} sm={6}>
                         <Button
-                            variant="contained"
+                            
                             color="primary"
                             fullWidth
                             onClick={handle}

@@ -76,7 +76,7 @@ const ResetPassword = () => {
                         required
                         sx={{ marginBottom: '1rem' }}
                     />
-                    <Button type="submit" variant="contained" color="primary" fullWidth>
+                    <Button type="submit"  color="primary" fullWidth>
                         Send Email
                     </Button>
                 </form>

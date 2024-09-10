@@ -49,7 +49,7 @@
 //                   label="I have read and agree to the terms and conditions"
 //               />
 //               <Button
-//                   variant="contained"
+//                   
 //                   color="primary"
 //                   onClick={handleNextClick}
 //                   // disabled={!checked}
@@ -98,16 +98,16 @@
 //           />
 //         </Box>
 //         <Box sx={{ display: 'flex', justifyContent: 'center', gap: 2 }}>
-//           <Button variant="contained" color="secondary" onClick={clear}>
+//           <Button  color="secondary" onClick={clear}>
 //             clear
 //           </Button>
-//           <Button variant="contained" color="primary" onClick={save}>
+//           <Button  color="primary" onClick={save}>
 //             save
 //           </Button>
 //         </Box>
 //         <Box sx={{ display: 'flex', justifyContent: 'center', mt: 2 }}>
 //           <Button
-//               variant="contained"
+//               
 //               color="primary"
 //               onClick={onFinish}
 //               disabled={!canProceed}
@@ -296,7 +296,7 @@ const DocumentStep = ({ title, content, onAgree, scrolledToEnd, isLastStep, onNe
                   label="I have read and agree to the terms and conditions"
               />
               <Button
-                  variant="contained"
+                  
                   color="primary"
                   onClick={handleNextClick}
                   disabled={!checked}
@@ -345,16 +345,16 @@ const SignatureStep = ({ onSaveSignature, onFinish, canFinish }) => {
           />
         </Box>
         <Box sx={{ display: 'flex', justifyContent: 'center', gap: 2 }}>
-          <Button variant="contained" color="secondary" onClick={clear}>
+          <Button  color="secondary" onClick={clear}>
             clear
           </Button>
-          <Button variant="contained" color="primary" onClick={save}>
+          <Button  color="primary" onClick={save}>
             save
           </Button>
         </Box>
         <Box sx={{ display: 'flex', justifyContent: 'center', mt: 2 }}>
           <Button
-              variant="contained"
+              
               color="primary"
               onClick={onFinish}
               disabled={!canProceed} // Используем !canProceed для отключения кнопки finish

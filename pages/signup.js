@@ -136,7 +136,7 @@ const Signup = () => {
                 size="small"
                 sx={{ mb: 2 }}
             />
-            <Button type="submit" variant="contained" color="primary" fullWidth disabled={loading}>
+            <Button type="submit"  color="primary" fullWidth disabled={loading}>
               {loading ? <CircularProgress size={24} /> : 'Sign Up'}
             </Button>
           </form>

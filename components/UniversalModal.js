@@ -19,7 +19,7 @@ const UniversalModal = observer(() => {
                 </Typography>
             </DialogContent>
             <DialogActions>
-                <Button size={"small"} onClick={handleClose} variant="contained" color="primary">
+                <Button size={"small"} onClick={handleClose}  color="primary">
                     Schließen Sie
                 </Button>
             </DialogActions>

@@ -54,7 +54,7 @@ const Employees = () => {
                 Employees
             </Typography>
             <Box>
-                {/*<Button variant="contained" color="primary" onClick={handleOpen}>*/}
+                {/*<Button  color="primary" onClick={handleOpen}>*/}
                 {/*    Add Employee*/}
                 {/*</Button>*/}
                 <AddManagerModal open={open} handleClose={handleClose} />

@@ -31,10 +31,10 @@ const SignaturePad = ({ onSave }) => {
                     ref={sigCanvas}
                 />
             <Box sx={{ display: 'flex', justifyContent: 'center', gap: 2 }}>
-                <Button variant="contained" color="secondary" onClick={clear}>
+                <Button  color="secondary" onClick={clear}>
                     Clear
                 </Button>
-                <Button variant="contained" color="primary" onClick={save}>
+                <Button  color="primary" onClick={save}>
                     Save
                 </Button>
             </Box>

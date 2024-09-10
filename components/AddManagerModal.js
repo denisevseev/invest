@@ -51,7 +51,7 @@ const AddManagerModal = ({ open, handleClose }) => {
             <TextField label="Phone Number" fullWidth value={phoneNumber} onChange={(e) => setPhoneNumber(e.target.value)} required />
           </Box>
           <Box mt={2} display="flex" justifyContent="space-between">
-            <Button type="submit" variant="contained" color="primary">Save</Button>
+            <Button type="submit"  color="primary">Save</Button>
             <Button onClick={handleClose} variant="outlined">Cancel</Button>
           </Box>
         </form>

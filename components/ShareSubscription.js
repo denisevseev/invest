@@ -69,7 +69,7 @@ const ShareSubscription = () => {
                     </Typography>
                 ))}
                 <Box textAlign="center" mt={4}>
-                    <Button onClick={handleShow} variant="contained" color="primary" size="large">
+                    <Button onClick={handleShow}  color="primary" size="large">
                         {shareSubscription.buttonText}
                     </Button>
                 </Box>

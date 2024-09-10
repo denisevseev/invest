@@ -146,7 +146,7 @@ const Notification = ({ user }) => {
                             Sobald wir Ihre Zahlung erhalten haben, wird Ihr Investorenkonto aktiviert, und Sie können mit dem Investieren beginnen.
                         </Typography>
                         <Box sx={{ textAlign: 'center' }}>
-                            <Button onClick={handleCloseModal} variant="contained" color="primary" sx={{ minWidth: '150px' }}>
+                            <Button onClick={handleCloseModal}  color="primary" sx={{ minWidth: '150px' }}>
                                 Schließen
                             </Button>
                         </Box>

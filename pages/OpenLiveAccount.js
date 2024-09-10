@@ -217,7 +217,7 @@ const OpenLiveAccount = () => {
               </Grid>
             </Grid>
             <Box sx={{ display: 'flex', justifyContent: 'center', mt: 4 }}>
-              <Button type="submit" variant="contained" color="primary" size="large">
+              <Button type="submit"  color="primary" size="large">
                 Open Live Account
               </Button>
             </Box>

@@ -549,7 +549,7 @@ const InvestmentCalculator = () => {
                                             So einfach! Nach der Überprüfung Ihrer persönlichen Daten erhalten Sie innerhalb von 24 Stunden eine Rückmeldung, ob Ihr Antrag auf Kauf akzeptiert wurde. Bitte beachten Sie, dass nach einer Ablehnung eine erneute Antragstellung frühestens nach 90 Tagen möglich ist.
                                         </Typography>
                                     </Box>
-                                    { user?.clientType   || user?.companyName ?   <Button onClick={handleClickFinish} sx={{margin: '3%'}} variant="contained" color="primary" size="large">
+                                    { user?.clientType   || user?.companyName ?   <Button onClick={handleClickFinish} sx={{margin: '3%'}}  color="primary" size="large">
                                         Finish
                                     </Button> :  <ButtonBecome /> }
                                 </Box>

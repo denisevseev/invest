@@ -62,7 +62,7 @@ const VictorumPayComponent = () => {
                 </Typography>
                 <Box textAlign="center" mt={2}>
                     <Button
-                        variant="contained"
+                        
                         href="https://vicpayments.com"
                         target="_blank"
                         rel="noopener"

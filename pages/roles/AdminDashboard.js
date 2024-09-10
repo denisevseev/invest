@@ -44,7 +44,7 @@ const AdminDashboard = () => {
           Managers
         </Typography>
         <Box>
-          <Button variant="contained" color="primary" onClick={handleOpen}>
+          <Button  color="primary" onClick={handleOpen}>
             Add Manager
           </Button>
           <AddManagerModal open={open} handleClose={handleClose} />

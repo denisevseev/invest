@@ -66,7 +66,7 @@ const VictorumTradeComponent = () => {
                 </Typography>
                 <Box textAlign="center" mt={2}>
                     <Button
-                        variant="contained"
+                        
                         href="https://victorum-trade.com/"
                         target="_blank"
                         rel="noopener"
