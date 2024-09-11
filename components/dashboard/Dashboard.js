@@ -198,9 +198,10 @@ const Dashboard = observer(() => {
                                     zIndex: expanded === index ? 10 : 1,
                                     width: expanded === index ? 300 : 250, // Adjusted width
                                     height: expanded === index ? 300 : 250, // Adjusted height
-                                    my: 2
+                                    my: 1,
+                                    boxShadow: '30px'
                                 }}
-                                elevation={expanded === index ? 8 : 1}
+                                elevation={expanded === index ? 8 : 5}
                             >
                                 <Typography variant="h6">{title}</Typography>
                                 {index === 0 && (
