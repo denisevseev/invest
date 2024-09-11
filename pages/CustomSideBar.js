@@ -99,10 +99,12 @@ const CustomSideBar = ({ positionMenu }) => {
                     position: 'fixed',
                     top: '80px', // Adjust this value to match your app bar height
                     height: 'calc(100% - 80px)',
+                    boxShadow: '5px 2px 7px rgba(0, 0, 0, 0.3)', // Add shadow here
+                    borderRadius: '4px' // Optionally, add rounde
                 },
             }}
         >
-            <Box sx={{ overflow: 'auto', marginTop: positionMenu && '6rem' }}>
+            <Box sx={{ overflow: 'auto', marginTop: positionMenu && '6rem',  }} >
                 <List
                     subheader={
                         <ListSubheader component="div" id="nested-list-subheader">
