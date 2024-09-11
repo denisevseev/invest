@@ -174,7 +174,7 @@ const Dashboard = observer(() => {
     return (
         <Box>
             <BalanceHeader />
-            <Box sx={{ p: 10, ml: !isMobile && !isTablet ? 35: 2 }} >
+            <Box sx={{ p: 2, ml: !isMobile && !isTablet ? 40 : 2 }} maxWidth={"lg"}>
                 <Grid container spacing={2}>
                     {[
                         lang.dashboard.investmentOverTime,
@@ -184,26 +184,27 @@ const Dashboard = observer(() => {
                         lang.dashboard.statusOverview,
                         lang.dashboard.randomCurve
                     ].map((title, index) => (
-                        <Grid item xs={12} md={isLg  ? 6 :  4} key={title} onClick={() => handleExpand(index)}>
+                        <Grid item xs={12} md={isLg ? 6 : 4} key={title} onClick={() => handleExpand(index)}>
                             <Paper
                                 className={expanded === index ? 'expanded-widget' : ''}
                                 sx={{
                                     p: 2,
                                     cursor: 'pointer',
                                     transition: 'all 0.3s ease-in-out',
-                                    transform: expanded === index ? 'translate(-50%, -50%) scale(1.3)' : 'scale(1)',
+                                    transform: expanded === index ? 'translate(-50%, -50%) scale(1.2)' : 'scale(1)', // Reduced scale
                                     position: expanded === index ? 'fixed' : 'relative',
                                     top: expanded === index ? '50%' : 'auto',
                                     left: expanded === index ? '50%' : 'auto',
                                     zIndex: expanded === index ? 10 : 1,
-                                    width: expanded === index ? 267 : 234,
-                                    height: expanded === index ? 267 : 177.78
+                                    width: expanded === index ? 300 : 250, // Adjusted width
+                                    height: expanded === index ? 300 : 250, // Adjusted height
+                                    my: 2
                                 }}
                                 elevation={expanded === index ? 8 : 1}
                             >
                                 <Typography variant="h6">{title}</Typography>
                                 {index === 0 && (
-                                    <LineChart width={expanded === 0 ? 267 : 177.78} height={expanded === 0 ? 233 : 166.67} data={lineData}>
+                                    <LineChart width={expanded === 0 ? 300 : 250} height={expanded === 0 ? 250 : 200} data={lineData}>
                                         <CartesianGrid strokeDasharray="3 3" />
                                         <XAxis dataKey="name" />
                                         <YAxis />
@@ -214,13 +215,13 @@ const Dashboard = observer(() => {
                                     </LineChart>
                                 )}
                                 {index === 1 && (
-                                    <PieChart width={expanded === 1 ? 267 : 177.78} height={expanded === 1 ? 233 : 166.67}>
+                                    <PieChart width={expanded === 1 ? 300 : 250} height={expanded === 1 ? 250 : 200}>
                                         <Pie
                                             data={data}
-                                            cx={expanded === 1 ? 133 : 88.89}
-                                            cy={expanded === 1 ? 117 : 83.33}
+                                            cx={expanded === 1 ? 150 : 125}
+                                            cy={expanded === 1 ? 125 : 100}
                                             labelLine={false}
-                                            outerRadius={expanded === 1 ? 80 : 53.33}
+                                            outerRadius={expanded === 1 ? 100 : 80} // Adjusted outer radius
                                             fill="#8884d8"
                                             dataKey="value"
                                         >
@@ -232,7 +233,7 @@ const Dashboard = observer(() => {
                                     </PieChart>
                                 )}
                                 {index === 2 && (
-                                    <BarChart width={expanded === 2 ? 267 : 177.78} height={expanded === 2 ? 233 : 166.67} data={barData}>
+                                    <BarChart width={expanded === 2 ? 300 : 250} height={expanded === 2 ? 250 : 200} data={barData}>
                                         <CartesianGrid strokeDasharray="3 3" />
                                         <XAxis dataKey="name" />
                                         <YAxis />
@@ -243,7 +244,7 @@ const Dashboard = observer(() => {
                                     </BarChart>
                                 )}
                                 {index === 3 && (
-                                    <Box sx={{ mt: 6 }}>
+                                    <Box sx={{ mt: 9 }}>
                                         <Typography variant="body1">
                                             {lang.dashboard.investedUnits.replace('{amount}', investmentAmount)}
                                         </Typography>
@@ -265,7 +266,7 @@ const Dashboard = observer(() => {
                                     </Box>
                                 )}
                                 {index === 5 && (
-                                    <LineChart width={expanded === 5 ? 267 : 177.78} height={expanded === 5 ? 233 : 166.67} data={lineData}>
+                                    <LineChart width={expanded === 5 ? 300 : 250} height={expanded === 5 ? 250 : 200} data={lineData}>
                                         <CartesianGrid strokeDasharray="3 3" />
                                         <XAxis dataKey="name" />
                                         <YAxis />
@@ -276,6 +277,7 @@ const Dashboard = observer(() => {
                                 )}
                             </Paper>
                         </Grid>
+
                     ))}
                 </Grid>
             </Box>

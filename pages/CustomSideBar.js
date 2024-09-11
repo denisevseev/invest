@@ -17,11 +17,12 @@ import FolderIcon from '@mui/icons-material/Folder';
 import ExpandLess from '@mui/icons-material/ExpandLess';
 import ExpandMore from '@mui/icons-material/ExpandMore';
 import TrendingUpIcon from '@mui/icons-material/TrendingUp';
+import HelpIcon from '@mui/icons-material/Help';
+import GavelIcon from '@mui/icons-material/Gavel'; // New icon for regulation
 import { useRouter } from 'next/router';
 import store from "../stores/userStore";
 import en from './../public/lang/en.json';
 import de from './../public/lang/de.json';
-import useFetchUser from './../stores/hooks/useFetchUser';
 
 const CustomSideBar = ({ positionMenu }) => {
     const router = useRouter();
@@ -32,15 +33,12 @@ const CustomSideBar = ({ positionMenu }) => {
     const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
     const isTablet = useMediaQuery(theme.breakpoints.between('sm', 'md'));
 
-    // Определение переводов на основе выбранного языка
     const translations = lang === 'de' ? de : en;
 
-    // Функция для получения перевода текста
     const getText = (key) => {
         return translations.sidebar[key] || key;
     };
 
-    // Функция для получения английского текста
     const getEnglishText = (key) => {
         return en.sidebar[key] || key;
     };
@@ -112,6 +110,7 @@ const CustomSideBar = ({ positionMenu }) => {
                         </ListSubheader>
                     }
                 >
+                    {/* My Profile Section */}
                     <ListItem button onClick={handleClickProfile} selected={activeMenuItem.startsWith(getEnglishText('myProfile'))} sx={{ fontSize: '1rem' }}>
                         <ListItemIcon>
                             <AccountBoxIcon />
@@ -136,6 +135,7 @@ const CustomSideBar = ({ positionMenu }) => {
                         </List>
                     </Collapse>
 
+                    {/* Company Profile Section */}
                     <ListItem button onClick={handleClickCompanyProfile} selected={activeMenuItem.startsWith(getEnglishText('companyProfile'))} sx={{ fontSize: '1rem' }}>
                         <ListItemIcon>
                             <AccountBalanceIcon />
@@ -160,6 +160,7 @@ const CustomSideBar = ({ positionMenu }) => {
                         </List>
                     </Collapse>
 
+                    {/* Services Section */}
                     <ListItem button onClick={handleClickServices} selected={activeMenuItem.startsWith(getEnglishText('services'))} sx={{ fontSize: '1rem' }}>
                         <ListItemIcon>
                             <FolderIcon />
@@ -184,9 +185,10 @@ const CustomSideBar = ({ positionMenu }) => {
                         </List>
                     </Collapse>
 
+                    {/* Regulation Section */}
                     <ListItem button onClick={handleClickRegulation} selected={activeMenuItem.startsWith(getEnglishText('regulation'))} sx={{ fontSize: '1rem' }}>
                         <ListItemIcon>
-                            <AccountBoxIcon />
+                            <GavelIcon /> {/* Updated to GavelIcon for Regulation */}
                         </ListItemIcon>
                         <ListItemText primary={getText('regulation')} primaryTypographyProps={{ style: { whiteSpace: 'normal', wordBreak: 'break-word', fontSize: '1rem' } }} />
                         {openRegulation ? <ExpandLess /> : <ExpandMore />}
@@ -206,6 +208,7 @@ const CustomSideBar = ({ positionMenu }) => {
                         </List>
                     </Collapse>
 
+                    {/* News Section */}
                     <ListItem button onClick={handleClickNews} selected={activeMenuItem.startsWith(getEnglishText('news'))} sx={{ fontSize: '1rem' }}>
                         <ListItemIcon>
                             <TrendingUpIcon />
@@ -230,9 +233,10 @@ const CustomSideBar = ({ positionMenu }) => {
                         </List>
                     </Collapse>
 
+                    {/* Help Section */}
                     <ListItem button onClick={handleClickHelp} selected={activeMenuItem.startsWith(getEnglishText('help'))} sx={{ fontSize: '1rem' }}>
                         <ListItemIcon>
-                            <AccountBoxIcon />
+                            <HelpIcon /> {/* Updated to HelpIcon */}
                         </ListItemIcon>
                         <ListItemText primary={getText('help')} primaryTypographyProps={{ style: { whiteSpace: 'normal', wordBreak: 'break-word', fontSize: '1rem' } }} />
                         {openHelp ? <ExpandLess /> : <ExpandMore />}
