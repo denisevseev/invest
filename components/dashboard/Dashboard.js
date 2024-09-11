@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import {Box, Grid, Paper, Typography, Slider, useMediaQuery, ThemeProvider, useTheme} from '@mui/material'; // Import ThemeProvider
-import { createTheme } from '@mui/material/styles'; // Import createTheme
+import { Box, Grid, Paper, Typography, Slider, useMediaQuery, useTheme } from '@mui/material';
 import { PieChart, Pie, Cell, BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, LineChart, Line, Legend } from 'recharts';
 import { observer } from 'mobx-react-lite';
 import store from './../../stores/userStore';
@@ -37,19 +36,19 @@ const lineData = [
 ];
 
 const CrownIcon = () => (
-    <svg width="100" height="100" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <svg width="67" height="67" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path d="M2 20h20v2H2v-2zM7 13l-5 5h20l-5-5-5 4-5-4zM18 11.635l3.424-6.44-7.353 2.735-3.558-5.853-3.557 5.852-7.353-2.734L6 11.635l6 4.933 6-4.933z" fill="#FFD700"/>
     </svg>
 );
 
 const MedalIcon = () => (
-    <svg width="100" height="100" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <svg width="67" height="67" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path d="M12 2L8.5 8.5 1 9.5l5 5-2 9L12 18l8-4.5-2-9 5-5-7.5-1L12 2z" fill="#C0C0C0"/>
     </svg>
 );
 
 const StarIcon = () => (
-    <svg width="100" height="100" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <svg width="67" height="67" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path d="M12 2L15 9h8l-6.5 5 2.5 8-7-4-7 4 2.5-8L1 9h8l3-7z" fill="#FFD700"/>
     </svg>
 );
@@ -175,7 +174,7 @@ const Dashboard = observer(() => {
     return (
         <Box>
             <BalanceHeader />
-            <Box sx={{ p: 2, ml: !isMobile && !isTablet ? 25: 2 }} maxWidth={"lg"}>
+            <Box sx={{ p: 10, ml: !isMobile && !isTablet ? 35: 2 }} >
                 <Grid container spacing={2}>
                     {[
                         lang.dashboard.investmentOverTime,
@@ -197,14 +196,14 @@ const Dashboard = observer(() => {
                                     top: expanded === index ? '50%' : 'auto',
                                     left: expanded === index ? '50%' : 'auto',
                                     zIndex: expanded === index ? 10 : 1,
-                                    width: expanded === index ? 400 : 350.67,
-                                    height: expanded === index ? 400 : 266.67
+                                    width: expanded === index ? 267 : 234,
+                                    height: expanded === index ? 267 : 177.78
                                 }}
                                 elevation={expanded === index ? 8 : 1}
                             >
                                 <Typography variant="h6">{title}</Typography>
                                 {index === 0 && (
-                                    <LineChart width={expanded === 0 ? 400 : 266.67} height={expanded === 0 ? 350 : 250} data={lineData}>
+                                    <LineChart width={expanded === 0 ? 267 : 177.78} height={expanded === 0 ? 233 : 166.67} data={lineData}>
                                         <CartesianGrid strokeDasharray="3 3" />
                                         <XAxis dataKey="name" />
                                         <YAxis />
@@ -215,13 +214,13 @@ const Dashboard = observer(() => {
                                     </LineChart>
                                 )}
                                 {index === 1 && (
-                                    <PieChart width={expanded === 1 ? 400 : 266.67} height={expanded === 1 ? 350 : 250}>
+                                    <PieChart width={expanded === 1 ? 267 : 177.78} height={expanded === 1 ? 233 : 166.67}>
                                         <Pie
                                             data={data}
-                                            cx={expanded === 1 ? 200 : 133.33}
-                                            cy={expanded === 1 ? 150 : 100}
+                                            cx={expanded === 1 ? 133 : 88.89}
+                                            cy={expanded === 1 ? 117 : 83.33}
                                             labelLine={false}
-                                            outerRadius={expanded === 1 ? 120 : 80}
+                                            outerRadius={expanded === 1 ? 80 : 53.33}
                                             fill="#8884d8"
                                             dataKey="value"
                                         >
@@ -233,7 +232,7 @@ const Dashboard = observer(() => {
                                     </PieChart>
                                 )}
                                 {index === 2 && (
-                                    <BarChart width={expanded === 2 ? 400 : 266.67} height={expanded === 2 ? 350 : 250} data={barData}>
+                                    <BarChart width={expanded === 2 ? 267 : 177.78} height={expanded === 2 ? 233 : 166.67} data={barData}>
                                         <CartesianGrid strokeDasharray="3 3" />
                                         <XAxis dataKey="name" />
                                         <YAxis />
@@ -244,7 +243,7 @@ const Dashboard = observer(() => {
                                     </BarChart>
                                 )}
                                 {index === 3 && (
-                                    <Box sx={{ mt: 9 }}>
+                                    <Box sx={{ mt: 6 }}>
                                         <Typography variant="body1">
                                             {lang.dashboard.investedUnits.replace('{amount}', investmentAmount)}
                                         </Typography>
@@ -266,7 +265,7 @@ const Dashboard = observer(() => {
                                     </Box>
                                 )}
                                 {index === 5 && (
-                                    <LineChart width={expanded === 5 ? 400 : 266.67} height={expanded === 5 ? 350 : 250} data={lineData}>
+                                    <LineChart width={expanded === 5 ? 267 : 177.78} height={expanded === 5 ? 233 : 166.67} data={lineData}>
                                         <CartesianGrid strokeDasharray="3 3" />
                                         <XAxis dataKey="name" />
                                         <YAxis />

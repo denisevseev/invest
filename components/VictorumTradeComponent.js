@@ -23,7 +23,7 @@ const VictorumTradeComponent = () => {
     const { victorumTrade } = language;
 
     return (
-        <Box sx={{width: isMobile ? '100%' : '80%', ml: isMobile ? 1 : 28, mt: 12, textAlign: 'center'}}>
+        <Box sx={{ width: isMobile ? '100%' : '74%', mt: 12, ml: 35, textAlign: 'center' }}>
             <Typography
                 variant="h4"
                 align={isMobile ? 'center' : 'center'}

@@ -39,7 +39,7 @@ const ContactDetails = () => {
         <Box
             sx={{
                 padding: { xs: 2, md: 6, lg: 12 },
-                marginLeft: { xs: 0, md: '10%' },
+                marginLeft: { xs: 0, md: '15%' },
             }}
         >
             <Typography variant="h4" sx={{ marginBottom: 3, textAlign: 'center', fontWeight: 'bold', color: 'black', fontFamily: 'DejaVu Sans, sans-serif' }}>

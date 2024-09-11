@@ -12,8 +12,9 @@ const RegulationAuthority = () => {
     const { regulationAuthority } = language;
 
     return (
-        <Box sx={{ width: isMobile ? '100%' : '80%', ml: isMobile ? 1 : 30, mt: 12, textAlign: 'center' }}>
-            <Typography variant="h4" align="center" sx={{ fontWeight: 'bold', mb: 3 }}>
+        <Box sx={{ width: isMobile ? '100%' : '75%', ml: isMobile ? 1 : 35, mt: 12, textAlign: 'center' }}>
+
+        <Typography variant="h4" align="center" sx={{ fontWeight: 'bold', mb: 3 }}>
                 {regulationAuthority.title}
             </Typography>
             <Box component="img" src="https://smfanton.ru/wp-content/uploads/2019/07/shapka.jpg" alt="U.S. Securities and Exchange Commission" sx={{ width: '100%', height: isMobile ? 'auto' : '30rem' }} />

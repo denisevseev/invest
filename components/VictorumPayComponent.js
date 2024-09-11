@@ -20,7 +20,7 @@ const VictorumPayComponent = () => {
     const { victorumPay } = language;
 
     return (
-        <Box sx={{ width: isMobile ? '100%' : '80%', mt: 12, ml: 30, textAlign: 'center' }}>
+        <Box sx={{ width: isMobile ? '100%' : '77%', mt: 12, ml: 35, textAlign: 'center' }}>
             <Typography
                 variant="h4"
                 sx={{

@@ -6,8 +6,8 @@ const LiveCryptoRates = () => {
     const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
 
     return (
-        <Box sx={{ width: isMobile ? '100%' : '80%', ml: isMobile ? 1 : 28, mt: 12, textAlign: 'center' }}>
-            <Typography
+        <Box sx={{ width: isMobile ? '100%' : '75%', ml: isMobile ? 1 : 35, mt: 12, textAlign: 'center' }}>
+        <Typography
                 variant="h4"
                 align="center"
                 sx={{

@@ -118,7 +118,7 @@ const UserSurveyResults = () => {
     };
 
     return (
-        <Card sx={{ maxWidth: 1200, mx: 'auto', mt: 10, p: 2, marginLeft: '15%' }}>
+        <Card sx={{ maxWidth: 1100, mx: 'auto', mt: 10, p: 2, marginLeft: '20%' }}>
             <CardContent>
                 <Typography variant="h4" align="center" sx={{ fontWeight: 'bold', mb: 3 }}>
                     {lang.userSurveyResults.myInformation}

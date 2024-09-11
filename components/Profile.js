@@ -37,7 +37,7 @@ const Profile = () => {
     const { victorumTrade } = language;
 
     return (
-        <Box sx={{width: isMobile ? '100%' : '80%', ml: isMobile ? 1 : 28, mt: 12, textAlign: 'center'}}>
+        <Box  sx={{ maxWidth: 1010, mt: 12, p: 2, ml: !isMobile && 35 }}>
             <Typography
                 variant="h4"
                 align={isMobile ? 'center' : 'center'}

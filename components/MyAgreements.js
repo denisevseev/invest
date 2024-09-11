@@ -38,7 +38,7 @@ const MyAgreements = () => {
     };
 
     return (
-        <Box maxWidth={'lg'} sx={{ mt: 12, p: 2, ml: !isMobile && 25 }}>
+        <Box  sx={{ maxWidth: 1100, mt: 12, p: 2, ml: !isMobile && 35 }}>
             <Typography variant="h4" align="center" sx={{ fontWeight: 'bold', mb: 3 }}>
                 {lang === 'de' ? 'Meine Verträge' : 'My Agreements'}
             </Typography>

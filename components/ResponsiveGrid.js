@@ -12,6 +12,7 @@ const ResponsiveGrid = () => {
                 textAlign: 'center',
             }}
             mt={8}
+            ml={7}
         >
             <Grid container spacing={4}>
                 <Grid item xs={12} md={12}>
