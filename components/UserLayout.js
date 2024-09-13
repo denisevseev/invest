@@ -20,7 +20,7 @@ import Investors from '../pages/roles/Investors';
 import LinkGenerator from './LinkGenerator';
 import OpenLiveAccount from '../pages/OpenLiveAccount';
 import RiskAcceptanceModal from './RiskAcceptance/RiskAcceptanceModal';
-import Notification from './Notification';
+import Notification from './notification/Notification';
 import store from '../stores/userStore';
 import { observer } from 'mobx-react-lite';
 import { useSession } from 'next-auth/react';

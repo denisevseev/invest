@@ -1,19 +1,24 @@
 import React, { useState } from 'react';
 import { Alert, AlertTitle, Link, Typography, Container, useTheme, useMediaQuery, Grid, Modal, Box, Button } from '@mui/material';
-import useFetchUser from './../stores/hooks/useFetchUser';
-import VerificationModal from './../components/VerificationModal';
+import useFetchUser from '../../stores/hooks/useFetchUser';
+import VerificationModal from '../VerificationModal';
+import UserModal from "./UserModal";
+import useFetchFiles from "../../stores/hooks/useFetchFiles";
 
 const Notification = ({ user }) => {
     const theme = useTheme();
     const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
-    const isTablet = useMediaQuery(theme.breakpoints.between('sm', 'md'));
     const [modalOpen, setModalOpen] = useState(false);
     const [confirmationType, setConfirmationType] = useState('');
     const [isPaymentModalOpen, setIsPaymentModalOpen] = useState(false);
+    const [isInfoModalOpen, setIsInfoModalOpen] = useState(false); // Управляем состоянием для UserModal
+    const files = useFetchFiles();
 
     const handleOpenModal = (type) => {
         if (type === 'payment') {
             setIsPaymentModalOpen(true);
+        } else if (type === 'info') {
+            setIsInfoModalOpen(true); // Открываем UserModal
         } else {
             setConfirmationType(type);
             setModalOpen(true);
@@ -23,10 +28,11 @@ const Notification = ({ user }) => {
     const handleCloseModal = () => {
         setModalOpen(false);
         setIsPaymentModalOpen(false);
+        setIsInfoModalOpen(false); // Закрываем UserModal
     };
 
     return (
-        <Container >
+        <Container>
             <VerificationModal
                 open={modalOpen}
                 handleClose={handleCloseModal}
@@ -74,11 +80,11 @@ const Notification = ({ user }) => {
 
                 {!user.profileApproved && (
                     <Grid item xs={12}>
-                        <Alert severity="warning" sx={{ fontSize: !isMobile ? '1rem' : '1rem', mb: 2 }}>
+                        <Alert severity="warning" sx={{ fontSize: '1rem', mb: 2 }}>
                             <AlertTitle sx={{ fontSize: 'inherit' }}>
                                 Ihr Profil ist noch nicht vollständig
                                 Daher sind einige Funktionen eingeschränkt.{' '}
-                                <Link href="/">Klicken Sie hier, um zu sehen, was genau fehlt</Link>
+                                <Link href="#" onClick={() => handleOpenModal('info')}>Klicken Sie hier, um zu sehen, was genau fehlt</Link>
                                 .
                             </AlertTitle>
                         </Alert>
@@ -86,6 +92,7 @@ const Notification = ({ user }) => {
                 )}
             </Grid>
 
+            {/* Модальное окно для платежной информации */}
             {isPaymentModalOpen && (
                 <Modal
                     open={isPaymentModalOpen}
@@ -146,7 +153,7 @@ const Notification = ({ user }) => {
                             Sobald wir Ihre Zahlung erhalten haben, wird Ihr Investorenkonto aktiviert, und Sie können mit dem Investieren beginnen.
                         </Typography>
                         <Box sx={{ textAlign: 'center' }}>
-                            <Button onClick={handleCloseModal}  color="primary" sx={{ minWidth: '150px' }}>
+                            <Button onClick={handleCloseModal} color="primary" sx={{ minWidth: '150px' }}>
                                 Schließen
                             </Button>
                         </Box>
@@ -154,6 +161,35 @@ const Notification = ({ user }) => {
                 </Modal>
             )}
 
+            {/* Модальное окно для информации о профиле */}
+            <Modal
+                open={isInfoModalOpen}
+                onClose={handleCloseModal}
+                sx={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center'
+                }}
+            >
+                <Box
+                    sx={{
+                        width: isMobile ? '90%' : '500px',
+                        bgcolor: 'background.paper',
+                        borderRadius: '12px',
+                        p: 4,
+                        boxShadow: 24,
+                        textAlign: 'left',
+                    }}
+                >
+                    {/* Вставляем компонент UserModal внутрь модального окна */}
+                    <UserModal user={user} files={files} />
+                    <Box sx={{ textAlign: 'center', mt: 2 }}>
+                        <Button onClick={handleCloseModal} color="primary" sx={{ minWidth: '150px' }}>
+                            Закрыть
+                        </Button>
+                    </Box>
+                </Box>
+            </Modal>
         </Container>
     );
 };
