@@ -1,9 +1,8 @@
-
-
 import { MongoClient, GridFSBucket } from 'mongodb';
 import { getSession } from 'next-auth/react';
 import multer from 'multer';
 import { Readable } from 'stream';
+import path from 'path';
 
 const uri = process.env.MONGODB_URI;
 let cachedClient = null;
@@ -49,6 +48,19 @@ export default async function handler(req, res) {
     const email = session.user.email;
 
     await runMiddleware(req, res, upload);
+
+    // Allowed file extensions
+    const allowedExtensions = ['.jpg', '.jpeg', '.png', '.pdf'];
+
+    // Validate file extensions
+    const invalidFiles = req.files.filter(file => {
+        const fileExtension = path.extname(file.originalname).toLowerCase();
+        return !allowedExtensions.includes(fileExtension);
+    });
+
+    if (invalidFiles.length > 0) {
+        return res.status(400).json({ message: 'Only .jpg, .jpeg, .png, and .pdf files are allowed.' });
+    }
 
     const db = await connectToDatabase();
     const bucket = new GridFSBucket(db, {
