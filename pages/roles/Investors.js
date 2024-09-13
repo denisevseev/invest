@@ -17,6 +17,7 @@ const Investors = () => {
     useEffect(() => {
         if (user) {
             if(user.role =! 'investor')
+                debugger
             fetchInvestors();
         }
     }, [user]);
