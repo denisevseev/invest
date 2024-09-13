@@ -50,6 +50,7 @@ const VerificationModal = ({ open, handleClose, confirmationText, user }) => {
   }, [timer]);
 
   const handleSendCode = async () => {
+    debugger
     setIsLoading(true);
     setError('');
     try {
@@ -66,6 +67,7 @@ const VerificationModal = ({ open, handleClose, confirmationText, user }) => {
       });
 
       const data = await response.json();
+      debugger
 
       if (!response.ok) {
         setError(data.error);
@@ -74,7 +76,7 @@ const VerificationModal = ({ open, handleClose, confirmationText, user }) => {
         setTimer(60); // Установить таймер на 60 секунд
       }
     } catch (error) {
-      setError('Failed to send verification code. Please try again.');
+      setError('Failed to send verification code. Please try again', error);
     } finally {
       setIsLoading(false);
     }
@@ -97,13 +99,15 @@ const VerificationModal = ({ open, handleClose, confirmationText, user }) => {
 
       const data = await response.json();
 
+
       if (!response.ok) {
+        debugger
         setError(data.error);
       } else {
         setIsVerified(true);
       }
     } catch (error) {
-      setError('Failed to verify code. Please try again.');
+      setError('Failed to verify code. Please try again.' , error);
     }
   };
 
