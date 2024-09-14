@@ -22,26 +22,41 @@ const UserModal = ({ user, files }) => {
         : `Laden Sie mindestens 2 Adressnachweise hoch. Aktuell hochgeladen: ${addressFiles.length}`;
 
     return (
-        <Box>
+        <Box
+            sx={{
+                backgroundColor: '#f5f5f5', // Светлый фон
+                borderRadius: '8px',
+                padding: '16px',
+                boxShadow: 3,
+            }}
+        >
             {/* Сообщения о верификации */}
             {!user.emailVerified && (
-                <Typography color="error"><strong>Achtung:</strong> {emailVerifiedMessage}</Typography>
+                <Typography sx={{ mb: 2, color: '#333' }}>
+                    <strong>Achtung:</strong> {emailVerifiedMessage}
+                </Typography>
             )}
             {!user.phoneVerified && (
-                <Typography color="error"><strong>Achtung:</strong> {phoneVerifiedMessage}</Typography>
+                <Typography sx={{ mb: 2, color: '#333' }}>
+                    <strong>Achtung:</strong> {phoneVerifiedMessage}
+                </Typography>
             )}
 
             {/* Сообщения о загруженных файлах */}
             {passportMessage && (
-                <Typography color="error"><strong>Achtung:</strong> {passportMessage}</Typography>
+                <Typography sx={{ mb: 2, color: '#333' }}>
+                    <strong>Achtung:</strong> {passportMessage} <span style={{ color: 'red' }}>Aktuell hochgeladen: {passportFiles.length}</span>
+                </Typography>
             )}
             {addressMessage && (
-                <Typography color="error"><strong>Achtung:</strong> {addressMessage}</Typography>
+                <Typography sx={{ mb: 2, color: '#333' }}>
+                    <strong>Achtung:</strong> {addressMessage} <span style={{ color: 'red' }}>Aktuell hochgeladen: {addressFiles.length}</span>
+                </Typography>
             )}
 
             {/* Сообщение, если все данные в порядке */}
             {user.emailVerified && user.phoneVerified && passportFiles.length >= 3 && addressFiles.length >= 2 && (
-                <Typography color="success">Ihre Informationen sind vollständig und bestätigt!</Typography>
+                <Typography sx={{ color: '#4caf50' }}>Ihre Informationen sind vollständig und bestätigt!</Typography>
             )}
         </Box>
     );
