@@ -12,28 +12,32 @@ const AddManagerModal = ({ open, handleClose }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(email, password, phoneNumber, firstName, lastName )
+    console.log(email, password, phoneNumber, firstName, lastName)
 
     const response = await fetch('/api/admin/addManager', {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ email, password, phoneNumber, firstName, lastName })
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({email, password, phoneNumber, firstName, lastName})
     });
 
     if (response.ok) {
-      store.isAdedRole  = true
+      store.isAdedRole = true;
       handleClose();
     } else {
-      alert('Error adding manager');
+      // Читаем тело ответа как JSON
+      const errorData = await response.json();
+
+      // Отображаем сообщение об ошибке, полученное от сервера
+      alert(errorData.message || 'Error adding manager');
     }
-  };
+  }
 
 
 
-  return (
+
+    return (
     <Modal open={open} onClose={handleClose}>
       <Box sx={{ p: 4, backgroundColor: 'white', borderRadius: 2, boxShadow: 24, maxWidth: 500, mx: 'auto', mt: '10%' }}>
-        <Typography variant="h6" gutterBottom>Add {store.roleTitle}</Typography>
         <form onSubmit={handleSubmit}>
           <Box mb={2}>
             <TextField label="First Name" fullWidth value={firstName} onChange={(e) => setFirstName(e.target.value)} required />

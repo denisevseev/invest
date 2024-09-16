@@ -30,7 +30,7 @@ export default async function handler(req, res) {
     });
 
     if (existingUser) {
-      client.close();
+      await client.close();
       return res.status(400).json({ message: 'User with this email or phone number already exists' });
     }
 
@@ -51,7 +51,7 @@ export default async function handler(req, res) {
     // Вставка пользователя в базу данных
     const result = await usersCollection.insertOne(newUser);
 
-    client.close();
+    await client.close();
 
     res.status(201).json({ message: 'Manager created successfully', userId: result.insertedId });
   } catch (error) {
