@@ -99,13 +99,13 @@ const Login = () => {
                     {/*    sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY}  // Use environment variable for site key*/}
                     {/*    onChange={handleRecaptchaChange}*/}
                     {/*/>*/}
-                    <Button type="submit"  color="primary" fullWidth>
+                    <Button type="submit" variant="outlined" sx={{marginTop: '1rem'}} color="primary" fullWidth>
                         Sign In
                     </Button>
                 </form>
                 {error && <Typography color="error">{error}</Typography>}
                 <Box mt={5} sx={{ display: 'flex', justifyContent: 'center' }}>
-                    <Typography sx={{ marginLeft: '1rem' }}>
+                    <Typography sx={{ marginLeft: '1rem' , fontSize: '0.9rem' }}>
                         <Link href="/ResetPassword" underline="true">
                             Forgot Password
                         </Link>
