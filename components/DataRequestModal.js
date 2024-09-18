@@ -6,13 +6,14 @@ import { observer } from 'mobx-react-lite';
 
 const DataRequestModal = () => {
     const router = useRouter();
-    const handle =  ()=>{
+    const handle = () => {
         router.push('/more-info');
-    }
+    };
+
     return (
         <Modal
             open={store.DataRequestModal}
-            onClose={() => store.DataRequestModal = false}
+            onClose={() => (store.DataRequestModal = false)}
         >
             <Box
                 sx={{
@@ -33,35 +34,44 @@ const DataRequestModal = () => {
                 <Grid container spacing={2}>
                     <Grid item xs={12}>
                         <Typography variant="h6" align="center" gutterBottom>
-                            Eingeschränkte Funktionalität
+                            Einfach mal anonym und unverbindlich schauen? Kein Problem!
                         </Typography>
                     </Grid>
                     <Grid item xs={12}>
                         <Typography variant="body1" align="center">
-                            Um die volle Funktionalität unserer Plattform nutzen zu können, benötigen wir von Ihnen noch einige zusätzliche Informationen. Diese Informationen sind von entscheidender Bedeutung, um Ihre Identität zu verifizieren, Ihre Investitionsziele zu verstehen und sicherzustellen, dass Sie die besten Möglichkeiten zur Maximierung Ihrer Gewinne erhalten.
+                            Für uns ist es wichtig, dass der Kreis unserer Investoren die Möglichkeiten sich alles im Vorfeld anzuschauen.
                         </Typography>
                         <Typography variant="body1" align="center" mt={2}>
-                            Indem Sie uns die fehlenden Daten zur Verfügung stellen, eröffnen Sie sich die Tür zu einer Welt voller finanzieller Möglichkeiten. Sie werden in der Lage sein, in Projekte zu investieren, die Ihrem Profil und Ihren Erwartungen entsprechen, und die Chance nutzen, von steigenden Dividenden und Kapitalzuwächsen zu profitieren.
+                            Einfach, unkompliziert und gerne auch anonym!
                         </Typography>
                         <Typography variant="body1" align="center" mt={2}>
-                            Dieser letzte Schritt ist nicht nur ein formaler Abschluss, sondern auch der entscheidende Moment, in dem Sie vom Interessenten zum aktiven Investor werden. Stellen Sie sich vor, Sie könnten noch heute Ihre ersten Investitionen tätigen und den Grundstein für Ihre finanzielle Zukunft legen.
+                            Bei dem nicht-öffentlichen Angebot der Wertpapiere der Victorum Capital Inc., deren Bezug über diese Online-Plattform. Um die volle Funktionalität unserer Plattform nutzen zu können, benötigen wir von Ihnen noch einige zusätzliche Informationen. Diese Informationen sind von entscheidender Bedeutung, um Ihre Identität zu verifizieren, Ihre Investitionsziele zu verstehen und sicherzustellen, dass Sie die richtigen Informationen und Hinweise erhalten.
                         </Typography>
                         <Typography variant="body1" align="center" mt={2}>
-                            Vertrauen Sie uns – Ihr Erfolg ist unser Ziel. Lassen Sie uns gemeinsam diesen letzten Schritt gehen und sicherstellen, dass Sie bestens gerüstet sind, um das Potenzial Ihrer Investitionen voll auszuschöpfen.
+                            Erst nachdem Sie sich informiert und anschließend Ihre persönlichen Daten eingefügt haben, können Sie diesen Bereich unserer Webseite vollständig nutzen und Wertpapierkäufe initiieren.
+                        </Typography>
+                        <Typography variant="body1" align="center" mt={2}>
+                            Öffnen Sie einfach und unkompliziert sich die Tür zu einer Welt voller neuer Möglichkeiten und erhalten die Chance von der zukünftigen Entwicklung der Victorum Capital Inc. zu profitieren und am geplanten Börsengang sowie möglichen Dividenden zu partizipieren.
+                        </Typography>
+                        <Typography variant="body1" align="center" mt={2}>
+                            Dieser letzte Schritt ist nicht der formale Abschluss einer Geschäftsbeziehung und auch keine Zeichnung von Wertpapieren der Victorum Capital Inc. Bei dem Antrag auf Zeichnung der Wertpapiere handelt es sich um einen separaten Bereich auf dieser Webseite, welcher besonders gekennzeichnet ist.
+                        </Typography>
+                        <Typography variant="body1" align="center" mt={2}>
+                            Sie haben Fragen? Sie benötigen weitere Informationen?
+                        </Typography>
+                        <Typography variant="body1" align="center" mt={2}>
+                            Kein Problem - nehmen Sie per Email unter support@victorum-capital.com mit uns Kontakt auf oder wählen Sie +1 604-260-0738 – wir freuen uns auf Ihren Anruf!
                         </Typography>
                     </Grid>
-                    <Grid item xs={12} sm={6} >
-                        <Button
-                            onClick={handle}
-                            sx={{fontSize: '13px'}}
-                        >
+                    <Grid item xs={12} sm={6}>
+                        <Button onClick={handle} sx={{ fontSize: '13px' }}>
                             Weitere Daten bereitstellen
                         </Button>
                     </Grid>
                     <Grid item xs={12} sm={6} sx={{ display: 'flex', justifyContent: 'flex-end' }}>
                         <Button
-                            onClick={() => store.DataRequestModal = false}
-                            sx={{fontSize: '13px'}}
+                            onClick={() => (store.DataRequestModal = false)}
+                            sx={{ fontSize: '13px' }}
                         >
                             Schließen
                         </Button>
