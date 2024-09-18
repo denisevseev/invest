@@ -35,6 +35,11 @@ const UserSurveyResults = () => {
     };
 
     const saveFieldToBackend = async (userId, field, value) => {
+        if(field === 'lastName'||field==='firstName'||field==='lastName'){
+            store.isModalOpen = true;
+            store.modalText = 'Sehr geehrter Anleger, wenn Sie Ihren Namen ändern möchten, müssen Sie eine neue Kopie Ihres Reisepasses mit den neuen Daten hochladen!'
+            store.userInfo =  true
+        }
         try {
             console.log(`Sending request to save: userId=${userId}, field=${field}, value=${value}`);
 

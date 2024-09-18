@@ -1,5 +1,5 @@
 import React from 'react';
-import { Dialog, DialogContent, DialogContentText, DialogActions, Button, Typography } from '@mui/material';
+import {Dialog, DialogContent, DialogContentText, DialogActions, Button, Typography, Box} from '@mui/material';
 import { observer } from 'mobx-react-lite';
 import store from '../stores/userStore'; // Импортируйте ваш MobX-стор
 
@@ -18,11 +18,19 @@ const UniversalModal = observer(() => {
                     {store.modalText}
                 </Typography>
             </DialogContent>
-            <DialogActions>
-                <Button size={"small"} onClick={handleClose}  color="primary">
-                    Schließen Sie
-                </Button>
-            </DialogActions>
+           <Box display="flex" justifyContent="space-between">
+               <DialogActions>
+                   <Button size={"small"} onClick={handleClose}  color="primary">
+                       Schließen Sie
+                   </Button>
+               </DialogActions>
+
+               {store.userInfo && ( <DialogActions>
+                   <Button size={"small"} onClick={handleClose}  color="primary">
+                       In Ordnung, ich besorge einen neuen Pass.
+                   </Button>
+               </DialogActions>)}
+           </Box>
         </Dialog>
     );
 });

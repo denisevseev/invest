@@ -1,4 +1,3 @@
-
 import { MongoClient, ObjectId } from 'mongodb';
 
 async function dbConnect() {
@@ -23,9 +22,24 @@ export default async function handler(req, res) {
                     return res.status(400).json({ message: 'Invalid data' });
                 }
 
+                // Получаем текущие данные пользователя
+                const user = await db.collection('users').findOne({ _id: new ObjectId(userId) });
+
+                if (!user) {
+                    return res.status(404).json({ message: 'User not found' });
+                }
+
+                // Проверяем, если поле - это firstName или lastName
+                let updateFields = { [field]: value };
+                if ((field === 'firstName' || field === 'lastName') && user[field] !== value) {
+                    // Пользователь изменяет имя или фамилию
+                    updateFields.updatedName = true;
+                }
+
+                // Обновляем пользователя
                 const result = await db.collection('users').updateOne(
                     { _id: new ObjectId(userId) },
-                    { $set: { [field]: value } }
+                    { $set: updateFields }
                 );
 
                 if (result.matchedCount === 0) {
@@ -47,3 +61,4 @@ export default async function handler(req, res) {
             break;
     }
 }
+

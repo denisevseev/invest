@@ -9,6 +9,7 @@ const UserModal = ({ user, files }) => {
     // Проверяем верификацию email и телефона
     const emailVerifiedMessage = user.emailVerified ? null : 'Ihre E-Mail-Adresse ist nicht bestätigt. Bitte bestätigen Sie Ihre E-Mail-Adresse.';
     const phoneVerifiedMessage = user.phoneVerified ? null : 'Ihre Telefonnummer ist nicht bestätigt. Bitte bestätigen Sie Ihre Telefonnummer.';
+    const userNameUpdated = !user.updatedName ? null : 'Da Sie Ihren Namen geändert haben, müssen Sie Ihren Reisepass neu hochladen.';
 
     // Проверяем количество загруженных файлов
     const passportFiles = files.passportFiles || [];
@@ -41,6 +42,12 @@ const UserModal = ({ user, files }) => {
                     <strong>Achtung:</strong> {phoneVerifiedMessage}
                 </Typography>
             )}
+            {user.updatedName && (
+                <Typography sx={{ mb: 2, color: '#333' }}>
+                    <strong>Achtung:</strong> {userNameUpdated}
+                </Typography>
+            )
+            }
 
             {/* Сообщения о загруженных файлах */}
             {passportMessage && (

@@ -49,6 +49,7 @@ class UserStore {
   modalText =''
   isModalOpen = false
   reloadPage = false;
+  userInfo  = false
 
 
   constructor() {
