@@ -1,6 +1,6 @@
 // pages/roles/Investors.js
 import React, { useState, useEffect } from 'react';
-import { Container, Typography, Box, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, IconButton, Collapse } from '@mui/material';
+import { Container, Typography, Box, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, IconButton, Switch, Collapse } from '@mui/material';
 import { observer } from "mobx-react-lite";
 import { ExpandMore, ExpandLess } from '@mui/icons-material';
 import useFetchUser from '../../stores/hooks/useFetchUser';
@@ -80,6 +80,7 @@ const Investors = () => {
                                                                     <TableCell>Filename</TableCell>
                                                                     <TableCell>Type</TableCell>
                                                                     <TableCell>Preview</TableCell>
+                                                                    <TableCell>Approved</TableCell>
                                                                 </TableRow>
                                                             </TableHead>
                                                             <TableBody>
@@ -92,6 +93,15 @@ const Investors = () => {
                                                                                 View
                                                                             </a>
                                                                         </TableCell>
+                                                                        <TableCell>
+                                                                            <Switch
+                                                                                checked={false}
+                                                                                onChange={()=>{}}
+                                                                                name="checkedA"
+                                                                                inputProps={{ 'aria-label': 'secondary checkbox' }}
+                                                                            />
+                                                                        </TableCell>
+
                                                                     </TableRow>
                                                                 ))}
                                                             </TableBody>

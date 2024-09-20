@@ -51,6 +51,9 @@ class UserStore {
   reloadPage = false;
   userInfo  = false
 
+  //adminpanel
+  passportApproved = false
+
 
   constructor() {
     makeAutoObservable(this, {
@@ -62,6 +65,7 @@ class UserStore {
       arr: observable,
       roleTitle: observable,
       isAdedRole: observable,
+      passportApproved:observable,
       isOpenDefaultSideBar: observable,
       investmentAmount: observable,
       shareholdingPeriod: observable,

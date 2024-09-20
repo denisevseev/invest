@@ -1,12 +1,14 @@
-module.exports = {
-    // Удаление ненужной конфигурации
-    // Настройка webpack
+const withPlugins = require('next-compose-plugins');
+const optimizedImages = require('next-optimized-images');
+
+module.exports = withPlugins([optimizedImages], {
     webpack(config, { dev, isServer }) {
-        if (!dev && !isServer) {
-            config.optimization.minimize = false; // Отключение минимизации
-            config.optimization.splitChunks = false; // Отключение разбиения на чанки
-            config.optimization.runtimeChunk = false;
+        if (dev) {
+            config.devtool = false;
+            config.cache = {
+                type: 'filesystem',
+            };
         }
         return config;
     },
-};
+});
