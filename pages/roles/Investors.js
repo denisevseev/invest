@@ -1,4 +1,3 @@
-// pages/roles/Investors.js
 import React, { useState, useEffect } from 'react';
 import { Container, Typography, Box, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, IconButton, Switch, Collapse } from '@mui/material';
 import { observer } from "mobx-react-lite";
@@ -15,27 +14,31 @@ const Investors = () => {
     };
 
     useEffect(() => {
-        if (user) {
-            if(user.role =! 'investor')
-                debugger
+        if (user && user.role === 'admin') { // Проверяем, что пользователь с ролью admin
             fetchInvestors();
         }
     }, [user]);
 
     const fetchInvestors = async () => {
-        const response = await fetch('/api/admin/getAllInvestorFiles');
-        const data = await response.json()
-        debugger
-        setInvestors(data);
+        try {
+            const response = await fetch('/api/admin/getAllInvestorFiles');
+            if (!response.ok) {
+                throw new Error('Failed to fetch investors');
+            }
+            const data = await response.json();
+            setInvestors(data);
+        } catch (error) {
+            console.error('Error fetching investors:', error);
+        }
     };
 
     return (
-        <Container sx={{ mt: '6rem', marginLeft: 'auto', marginRight: 'auto', maxWidth: '800px', flexGrow: 1 }}>
+        <Container sx={{ mt: '6rem', ml: '-2%', maxWidth: '800px', flexGrow: 1 }}>
             <Typography variant="h6" align="center" gutterBottom>
                 Investors
             </Typography>
             <Box>
-                <Box mt={4}>
+                <Box mt={4} ml={-3}>
                     <TableContainer component={Paper}>
                         <Table>
                             <TableHead>
@@ -95,13 +98,12 @@ const Investors = () => {
                                                                         </TableCell>
                                                                         <TableCell>
                                                                             <Switch
-                                                                                checked={false}
-                                                                                onChange={()=>{}}
-                                                                                name="checkedA"
-                                                                                inputProps={{ 'aria-label': 'secondary checkbox' }}
+                                                                                checked={file.approved || false}
+                                                                                onChange={() => handleFileApprovalToggle(investor._id, file.metadata?.type, !file.approved)}
+                                                                                name="approved"
+                                                                                inputProps={{ 'aria-label': 'file approval toggle' }}
                                                                             />
                                                                         </TableCell>
-
                                                                     </TableRow>
                                                                 ))}
                                                             </TableBody>
@@ -121,5 +123,28 @@ const Investors = () => {
     );
 };
 
-export default observer(Investors);
+const handleFileApprovalToggle = async (investorId, type, newStatus) => {
+    try {
+        const response = await fetch('/api/admin/updateDocumentStatus', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                investorId,
+                type,
+                approved: newStatus
+            }),
+        });
 
+        if (!response.ok) {
+            throw new Error('Failed to update file status');
+        }
+
+        // Handle response (maybe trigger a state update or refetch data)
+    } catch (error) {
+        console.error('Error updating file status:', error);
+    }
+};
+
+export default observer(Investors);
