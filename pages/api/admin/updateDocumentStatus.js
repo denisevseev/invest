@@ -1,3 +1,4 @@
+// /pages/api/admin/updateDocumentStatus.js
 import { MongoClient, ObjectId } from 'mongodb';
 
 const MONGODB_URI = process.env.MONGODB_URI;
@@ -7,9 +8,9 @@ export default async function handler(req, res) {
         return res.status(405).json({ message: 'Method not allowed' });
     }
 
-    const { investorId, fileId, approved } = req.body;
+    const { fileId, approved } = req.body;
 
-    if (!investorId || !fileId || typeof approved !== 'boolean') {
+    if (!fileId || typeof approved !== 'boolean') {
         return res.status(400).json({ message: 'Invalid request data' });
     }
 
@@ -21,18 +22,18 @@ export default async function handler(req, res) {
         });
 
         const db = client.db();
-        const investorsCollection = db.collection('investors');
+        const filesCollection = db.collection('uploads.files');
 
-        // Поиск инвестора с конкретным файлом
-        const result = await investorsCollection.updateOne(
-            { _id: new ObjectId(investorId), "files._id": new ObjectId(fileId) },
-            { $set: { "files.$.approved": approved } }
+        // Обновляем поле одобрения в конкретном файле
+        const result = await filesCollection.updateOne(
+            { _id: new ObjectId(fileId) },
+            { $set: { approved } } // Добавляем или обновляем поле "approved"
         );
 
         await client.close();
 
         if (result.matchedCount === 0) {
-            return res.status(404).json({ message: 'Investor or file not found' });
+            return res.status(404).json({ message: 'File not found' });
         }
 
         return res.status(200).json({ message: 'File status updated successfully' });

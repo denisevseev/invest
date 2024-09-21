@@ -1,35 +1,80 @@
 import React, { useState, useEffect } from 'react';
 import { Container, Typography, Box, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, IconButton, Switch, Collapse } from '@mui/material';
-import { observer } from "mobx-react-lite";
 import { ExpandMore, ExpandLess } from '@mui/icons-material';
 import useFetchUser from '../../stores/hooks/useFetchUser';
+import { observer } from "mobx-react-lite";
 
 const Investors = () => {
-    const [investors, setInvestors] = useState([]);
-    const [expanded, setExpanded] = useState({});
-    const { user } = useFetchUser();
+    const [investors, setInvestors] = useState([]); // Хранение данных инвесторов
+    const [expanded, setExpanded] = useState({}); // Для управления раскрытием списка файлов инвесторов
+    const { user } = useFetchUser(); // Получение информации о пользователе
 
+    // Функция для управления раскрытием файлов инвестора
     const handleExpandClick = (id) => {
         setExpanded(prev => ({ ...prev, [id]: !prev[id] }));
     };
 
+    // Загрузка списка инвесторов при рендере компонента
     useEffect(() => {
-        if (user && user.role === 'admin') { // Проверяем, что пользователь с ролью admin
-            fetchInvestors();
+        if (user && user.role === 'admin') { // Проверяем, что пользователь администратор
+            fetchInvestors(); // Загружаем данные инвесторов
         }
     }, [user]);
 
+    // Функция для получения данных инвесторов с сервера
     const fetchInvestors = async () => {
         try {
-            const response = await fetch('/api/admin/getAllInvestorFiles');
+            const response = await fetch('/api/admin/getAllInvestorFiles'); // API-запрос для получения инвесторов
             if (!response.ok) {
                 throw new Error('Failed to fetch investors');
             }
-            const data = await response.json();
-            setInvestors(data);
+            const data = await response.json(); // Преобразуем ответ в JSON
+            setInvestors(data); // Сохраняем данные инвесторов
         } catch (error) {
             console.error('Error fetching investors:', error);
         }
+    };
+
+    // Функция для обработки переключения статуса одобрения файла (паспорт или адрес)
+    const handleFileApprovalToggle = async (investorId, fileId, newStatus) => {
+        try {
+            const response = await fetch('/api/admin/updateDocumentStatus', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    investorId,
+                    fileId,
+                    approved: newStatus
+                }),
+            });
+
+            if (!response.ok) {
+                throw new Error('Failed to update file status');
+            }
+
+            // Обновляем состояние инвесторов после успешного обновления статуса
+            setInvestors(prevInvestors => prevInvestors.map(investor =>
+                investor._id === investorId
+                    ? {
+                        ...investor,
+                        files: investor.files.map(file =>
+                            file._id === fileId
+                                ? { ...file, approved: newStatus }
+                                : file
+                        )
+                    }
+                    : investor
+            ));
+        } catch (error) {
+            console.error('Error updating file status:', error);
+        }
+    };
+
+    // Функция для проверки, все ли файлы одобрены
+    const areAllFilesApproved = (files) => {
+        return files.every(file => file.approved); // Если все файлы одобрены, вернется true
     };
 
     return (
@@ -99,13 +144,23 @@ const Investors = () => {
                                                                         <TableCell>
                                                                             <Switch
                                                                                 checked={file.approved || false}
-                                                                                onChange={() => handleFileApprovalToggle(investor._id, file.metadata?.type, !file.approved)}
+                                                                                onChange={() => handleFileApprovalToggle(investor._id, file._id, !file.approved)}
                                                                                 name="approved"
                                                                                 inputProps={{ 'aria-label': 'file approval toggle' }}
                                                                             />
                                                                         </TableCell>
                                                                     </TableRow>
                                                                 ))}
+                                                                {/* Если все файлы одобрены, показываем сообщение */}
+                                                                {areAllFilesApproved(investor.files) && (
+                                                                    <TableRow>
+                                                                        <TableCell colSpan={4}>
+                                                                            <Typography color="success" variant="body1">
+                                                                                All files approved
+                                                                            </Typography>
+                                                                        </TableCell>
+                                                                    </TableRow>
+                                                                )}
                                                             </TableBody>
                                                         </Table>
                                                     </Box>
@@ -121,30 +176,6 @@ const Investors = () => {
             </Box>
         </Container>
     );
-};
-
-const handleFileApprovalToggle = async (investorId, type, newStatus) => {
-    try {
-        const response = await fetch('/api/admin/updateDocumentStatus', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-                investorId,
-                type,
-                approved: newStatus
-            }),
-        });
-
-        if (!response.ok) {
-            throw new Error('Failed to update file status');
-        }
-
-        // Handle response (maybe trigger a state update or refetch data)
-    } catch (error) {
-        console.error('Error updating file status:', error);
-    }
 };
 
 export default observer(Investors);
