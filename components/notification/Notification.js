@@ -4,6 +4,9 @@ import useFetchUser from '../../stores/hooks/useFetchUser';
 import VerificationModal from '../VerificationModal';
 import UserModal from "./UserModal";
 import useFetchFiles from "../../stores/hooks/useFetchFiles";
+import store from "../../stores/userStore";
+import {observer} from "mobx-react-lite";
+
 
 const Notification = ({ user }) => {
     const theme = useTheme();
@@ -12,15 +15,13 @@ const Notification = ({ user }) => {
     const [confirmationType, setConfirmationType] = useState('');
     const [isPaymentModalOpen, setIsPaymentModalOpen] = useState(false);
     const [isInfoModalOpen, setIsInfoModalOpen] = useState(false); // Управляем состоянием для UserModal
-    const [filesApp, setFilesApp] = useState(false);
-    const files = useFetchFiles();
+    store.files = useFetchFiles();
+    const files = store.files
 
-    useEffect(()=>{
-        if(files.passportFiles.length >= 3 && files.addressFiles >= 2 ){
-            setFilesApp(true)
+        if (files.passportFiles.length >= 3 && files.addressFiles.length >= 2) {
+            debugger
+            store.filesApp = false
         }
-    },[])
-
 
 
     const handleOpenModal = (type) => {
@@ -87,7 +88,7 @@ const Notification = ({ user }) => {
                     </Alert>
                 </Grid>
 
-                {filesApp && (
+                {store.filesApp && (
                     <Grid item xs={12}>
                         <Alert severity="warning" sx={{ fontSize: '1rem', mb: 2 }}>
                             <AlertTitle sx={{ fontSize: 'inherit' }}>
@@ -213,4 +214,4 @@ const Notifications = () => {
     return <Notification user={user} />;
 };
 
-export default Notifications;
+export default observer(Notifications);

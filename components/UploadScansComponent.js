@@ -4,6 +4,7 @@ import { useDropzone } from 'react-dropzone';
 import CloudUploadIcon from '@mui/icons-material/CloudUpload';
 import DeleteIcon from '@mui/icons-material/Delete';
 import { useSession } from 'next-auth/react';
+import store from "../stores/userStore";
 
 const UploadScansComponent = () => {
     const { data: session } = useSession();
@@ -132,6 +133,7 @@ const UploadScansComponent = () => {
             await removeFile(fileToDelete, setFiles);
             setIsDeleteModalOpen(false);
             setFileToDelete(null);
+            store.filesApp = true
         }
     };
 

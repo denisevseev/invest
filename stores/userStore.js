@@ -54,10 +54,16 @@ class UserStore {
   //adminpanel
   passportApproved = false
 
+  files = null
+
+  filesApp = true
+
 
   constructor() {
     makeAutoObservable(this, {
       user: observable,
+      files: observable,
+      filesApp: observable,
       regForm: observable,
       routeLink: observable,
       modalOpen: observable,
