@@ -312,20 +312,25 @@ const RiskAcceptanceModal = ({}) => {
                 </Typography>
                 <Contacts/>
 
-                <FormControlLabel
-                    control={<Checkbox checked={store.acceptedRisks} onChange={handleAcceptChange} />}
-                    label={'Ich verstehe die Ausführungen zu den Risiken und stimme diesen zu!'}
-                    sx={{ mt: 2, fontSize: isMobile ? '1rem' : '1.5rem' }}
-                />
-                <Button
-                    
-                    color="primary"
-                    onClick={handleAcceptClick}
-                    disabled={!store.acceptedRisks}
-                    sx={{ mt: 2 }}
-                >
-                    {isMobile ? 'Accept' : 'Akzeptieren'}
-                </Button>
+                <Box display="flex" justifyContent="space-between" >
+                    <FormControlLabel
+                        control={<Checkbox checked={store.acceptedRisks} onChange={handleAcceptChange} />}
+                        label={'Ich verstehe die Ausführungen zu den Risiken und stimme diesen zu!'}
+                        sx={{ mt: 2, fontSize: isMobile ? '1rem' : '1.5rem' }}
+                    />
+                    <Button
+
+                        color="primary"
+                        onClick={handleAcceptClick}
+                        disabled={!store.acceptedRisks}
+                        sx={{ mt: 2 }}
+                    >
+                        {isMobile ? 'Akzeptieren' : 'Akzeptieren'}
+                    </Button>
+                </Box>
+
+
+
             </Box>
         </Modal>
     );
