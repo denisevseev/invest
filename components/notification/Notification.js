@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, {useEffect, useState} from 'react';
 import { Alert, AlertTitle, Link, Typography, Container, useTheme, useMediaQuery, Grid, Modal, Box, Button } from '@mui/material';
 import useFetchUser from '../../stores/hooks/useFetchUser';
 import VerificationModal from '../VerificationModal';
@@ -12,7 +12,16 @@ const Notification = ({ user }) => {
     const [confirmationType, setConfirmationType] = useState('');
     const [isPaymentModalOpen, setIsPaymentModalOpen] = useState(false);
     const [isInfoModalOpen, setIsInfoModalOpen] = useState(false); // Управляем состоянием для UserModal
+    const [filesApp, setFilesApp] = useState(false);
     const files = useFetchFiles();
+
+    useEffect(()=>{
+        if(files.passportFiles.length >= 3 && files.addressFiles >= 2 ){
+            setFilesApp(true)
+        }
+    },[])
+
+
 
     const handleOpenModal = (type) => {
         if (type === 'payment') {
@@ -78,7 +87,7 @@ const Notification = ({ user }) => {
                     </Alert>
                 </Grid>
 
-                {!user.profileApproved && (
+                {filesApp && (
                     <Grid item xs={12}>
                         <Alert severity="warning" sx={{ fontSize: '1rem', mb: 2 }}>
                             <AlertTitle sx={{ fontSize: 'inherit' }}>
