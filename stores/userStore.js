@@ -144,6 +144,10 @@ class UserStore {
     });
   }
 
+  setFilesApp(value) {
+      this.filesApp = value;
+  }
+
   async SetUserInfo() {
     // Your logic here
   }

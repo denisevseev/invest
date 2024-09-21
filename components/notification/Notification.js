@@ -19,8 +19,7 @@ const Notification = ({ user }) => {
     const files = store.files
 
         if (files.passportFiles.length >= 3 && files.addressFiles.length >= 2) {
-            debugger
-            store.filesApp = false
+            store.setFilesApp(false);
         }
 
 

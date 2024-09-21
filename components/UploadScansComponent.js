@@ -133,7 +133,7 @@ const UploadScansComponent = () => {
             await removeFile(fileToDelete, setFiles);
             setIsDeleteModalOpen(false);
             setFileToDelete(null);
-            store.filesApp = true
+            // store.setFilesApp(true);
         }
     };
 
