@@ -5,6 +5,8 @@ import { observer } from 'mobx-react-lite';
 import store from './../../stores/userStore';
 import en from './../../public/lang/en.json';
 import de from './../../public/lang/de.json';
+import randomNormal from 'random-normal';
+
 
 const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042'];
 
@@ -151,6 +153,73 @@ const Dashboard = observer(() => {
     const isLg = useMediaQuery(theme.breakpoints.between('md', 'lg'));
     const isXl = useMediaQuery(theme.breakpoints.up('lg'));
 
+
+    const [cadData, setCadData] = useState([]);
+    const appId = '69fc9c5292074fecbe9043784ddaa38e';
+
+    useEffect(() => {
+        const today = new Date().toISOString().slice(0, 10);
+        const fetchTodayRate = async () => {
+            try {
+                const response = await fetch(
+                    `https://openexchangerates.org/api/latest.json?app_id=${appId}&symbols=CAD`
+                );
+                const data = await response.json();
+                debugger
+                return data.rates.CAD;
+            } catch (error) {
+                console.error('Error fetching today rate:', error);
+                return null;
+            }
+        };
+
+        const generateTestData = async () => {
+            const todayRate = await fetchTodayRate();
+            const today = new Date();
+
+            // Сохраняем сгенерированные данные в localStorage,
+            // чтобы они не менялись при каждом рендере
+            const storedData = localStorage.getItem('cadData');
+            if (storedData) {
+                return JSON.parse(storedData);
+            }
+
+            const testData = [];
+            for (let i = 6; i >= 0; i--) {
+                const currentDate = new Date(today);
+                currentDate.setDate(today.getDate() - i);
+                const currentDateStr = currentDate.toISOString().slice(0, 10);
+
+                let value;
+                if (i === 0 && todayRate) {
+                    value = todayRate;
+                } else {
+                    // Генерируем случайное число с нормальным распределением
+                    value = randomNormal({ mean: todayRate, dev: 0.000001 });
+                }
+
+                testData.push({
+                    date: currentDateStr,
+                    value,
+                });
+            }
+
+            // Сохраняем данные в localStorage
+            localStorage.setItem('cadData', JSON.stringify(testData));
+            return testData;
+        };
+
+        generateTestData().then(data => setCadData(data));
+    }, []);
+
+    // Функция для форматирования даты на оси X
+    const formatXAxis = (date) => {
+        const options = { month: 'short', day: 'numeric' };
+        return new Date(date).toLocaleDateString('en-US', options);
+    };
+
+
+
     useEffect(() => {
         const handleClickOutside = (event) => {
             if (expanded !== null && !event.target.closest('.expanded-widget')) {
@@ -267,13 +336,14 @@ const Dashboard = observer(() => {
                                     </Box>
                                 )}
                                 {index === 5 && (
-                                    <LineChart width={expanded === 5 ? 300 : 250} height={expanded === 5 ? 250 : 200} data={lineData}>
+                                    <LineChart width={expanded === 5 ? 300 : 250} height={expanded === 5 ? 250 : 200} data={cadData}>
                                         <CartesianGrid strokeDasharray="3 3" />
-                                        <XAxis dataKey="name" />
-                                        <YAxis />
+                                        {/* Изменяем формат даты на оси X */}
+                                        <XAxis dataKey="date" tickFormatter={formatXAxis} fontSize={10} />
+                                        <YAxis domain={['auto', 'auto']} />
                                         <Tooltip />
                                         <Legend />
-                                        <Line type="monotone" dataKey="pv" stroke="#8884d8" />
+                                        <Line type="monotone" dataKey="value" stroke="#8884d8" />
                                     </LineChart>
                                 )}
                             </Paper>
