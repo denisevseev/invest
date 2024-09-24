@@ -25,6 +25,8 @@ import {
     Legend,
     ResponsiveContainer,
 } from 'recharts';
+
+// Импорт вашего хранилища и языковых файлов
 import { observer } from 'mobx-react-lite';
 import store from './../../stores/userStore';
 import de from './../../public/lang/de.json';
@@ -32,8 +34,9 @@ import de from './../../public/lang/de.json';
 // Определение цветов для графиков
 const COLORS = ['#0088FE', '#00C49F', '#FFBB28'];
 
-// Функции для отображения иконок статуса
+// Компоненты и функции для отображения иконок статуса
 const CrownIcon = () => (
+    // SVG-иконка короны
     <svg width="67" height="67" viewBox="0 0 24 24" fill="none">
         <path
             d="M2 20h20v2H2v-2zM7 13l-5 5h20l-5-5-5 4-5-4zM18 11.635l3.424-6.44-7.353 2.735-3.558-5.853-3.557 5.852-7.353-2.734L6 11.635l6 4.933 6-4.933z"
@@ -43,6 +46,7 @@ const CrownIcon = () => (
 );
 
 const MedalIcon = () => (
+    // SVG-иконка медали
     <svg width="67" height="67" viewBox="0 0 24 24" fill="none">
         <path
             d="M12 2L8.5 8.5 1 9.5l5 5-2 9L12 18l8-4.5-2-9 5-5-7.5-1L12 2z"
@@ -52,6 +56,7 @@ const MedalIcon = () => (
 );
 
 const StarIcon = () => (
+    // SVG-иконка звезды
     <svg width="67" height="67" viewBox="0 0 24 24" fill="none">
         <path
             d="M12 2L15 9h8l-6.5 5 2.5 8-7-4-7 4 2.5-8L1 9h8l3-7z"
@@ -60,6 +65,7 @@ const StarIcon = () => (
     </svg>
 );
 
+// Функция для выбора иконки статуса в зависимости от суммы инвестиций
 const getStatusIcon = (investmentAmount) => {
     if (investmentAmount >= 1000000) {
         return <CrownIcon />;
@@ -70,7 +76,7 @@ const getStatusIcon = (investmentAmount) => {
     }
 };
 
-// Компонент для бегущей строки (оставлен без изменений)
+// Компонент для бегущей строки
 const Marquee = ({ children }) => {
     return (
         <Box
@@ -101,23 +107,66 @@ const Marquee = ({ children }) => {
     );
 };
 
-// Компонент для отображения баланса (оставлен без изменений)
+// Обновленный компонент BalanceHeader
 const BalanceHeader = () => {
-    const lang = de;
-    const userBalanceCAD = store.investmentAmount;
+    const lang = de; // Используем немецкий язык
+    const userBalanceCAD = store.investmentAmount; // Получаем сумму инвестиций пользователя из хранилища
+
+    // Состояние для хранения курсов валют
     const [currencyRates, setCurrencyRates] = useState({
-        EUR: 0.7,
-        RUB: 55.0,
-        NAIRA: 450.0,
+        USD: 0,
+        EUR: 0,
+        NGN: 1201.70, // Статичный курс NGN к CAD
     });
 
+    // Функция для форматирования чисел с разделителями тысяч
+    const formatNumber = (number, decimals = 5) => {
+        const parts = number.toFixed(decimals).split('.');
+        parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
+        return parts.join('.');
+    };
+
+
+    // Получаем реальные курсы валют при загрузке компонента и каждые 5 секунд
     useEffect(() => {
-        // Здесь оставляем ваш оригинальный код или обновите его по необходимости
+        const fetchCurrencyRates = async () => {
+            try {
+                // Запрашиваем данные из API Банка Канады для USD и EUR
+                const responseBoC = await fetch(
+                    'https://www.bankofcanada.ca/valet/observations/FXUSDCAD,FXEURCAD/json?recent=1'
+                );
+                const dataBoC = await responseBoC.json();
+                const observationsBoC = dataBoC.observations[0];
+
+                // Извлекаем курсы валют из Банка Канады
+                const usdRate = parseFloat(observationsBoC['FXUSDCAD'].v);
+                const eurRate = parseFloat(observationsBoC['FXEURCAD'].v);
+
+                // Конвертируем курсы, чтобы получить отношение CAD к валюте
+                setCurrencyRates((prevRates) => ({
+                    ...prevRates,
+                    USD: 1 / usdRate,
+                    EUR: 1 / eurRate,
+                }));
+            } catch (error) {
+                console.error('Ошибка при получении курсов валют:', error);
+            }
+        };
+
+        // Вызываем функцию при загрузке компонента
+        fetchCurrencyRates();
+
+        // Устанавливаем интервал обновления каждые 5 секунд
+        const intervalId = setInterval(fetchCurrencyRates, 5000);
+
+        // Очищаем интервал при размонтировании компонента
+        return () => clearInterval(intervalId);
     }, []);
 
-    const userBalanceEUR = (userBalanceCAD * currencyRates.EUR).toFixed(2);
-    const userBalanceRUB = (userBalanceCAD * currencyRates.RUB).toFixed(2);
-    const userBalanceNAIRA = (userBalanceCAD * currencyRates.NAIRA).toFixed(2);
+    // Рассчитываем баланс пользователя в разных валютах
+    const userBalanceUSD = userBalanceCAD * currencyRates.USD;
+    const userBalanceEUR = userBalanceCAD * currencyRates.EUR;
+    const userBalanceNGN = userBalanceCAD * currencyRates.NGN;
 
     return (
         <Marquee>
@@ -125,16 +174,16 @@ const BalanceHeader = () => {
                 {lang.dashboard.balance}:
             </Typography>
             <Typography variant="body1" component="span" sx={{ mx: 2 }}>
-                CAD: {userBalanceCAD.toFixed(2)}
+                CAD: {formatNumber(userBalanceCAD)}
             </Typography>
             <Typography variant="body1" component="span" sx={{ mx: 2 }}>
-                EUR: {userBalanceEUR}
+                USD: {formatNumber(userBalanceUSD)}
             </Typography>
             <Typography variant="body1" component="span" sx={{ mx: 2 }}>
-                RUB: {userBalanceRUB}
+                EUR: {formatNumber(userBalanceEUR)}
             </Typography>
             <Typography variant="body1" component="span" sx={{ mx: 2 }}>
-                NAIRA: {userBalanceNAIRA}
+                NGN: {formatNumber(userBalanceNGN, 2)}
             </Typography>
         </Marquee>
     );
@@ -142,13 +191,13 @@ const BalanceHeader = () => {
 
 // Основной компонент Dashboard
 const Dashboard = observer(() => {
-    const lang = de;
-    const [expanded, setExpanded] = useState(null);
-    const { investmentAmount } = store;
-    const theme = useTheme();
-    const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
-    const isTablet = useMediaQuery(theme.breakpoints.between('sm', 'md'));
-    const isLg = useMediaQuery(theme.breakpoints.between('md', 'lg'));
+    const lang = de; // Используем немецкий язык
+    const [expanded, setExpanded] = useState(null); // Состояние для управления расширением виджетов
+    const { investmentAmount } = store; // Получаем сумму инвестиций из хранилища
+    const theme = useTheme(); // Получаем тему оформления
+    const isMobile = useMediaQuery(theme.breakpoints.down('sm')); // Определяем, является ли устройство мобильным
+    const isTablet = useMediaQuery(theme.breakpoints.between('sm', 'md')); // Определяем, является ли устройство планшетом
+    const isLg = useMediaQuery(theme.breakpoints.between('md', 'lg')); // Определяем, является ли устройство большим
 
     // Состояния для данных графиков
     const [investmentData, setInvestmentData] = useState([]);
@@ -156,7 +205,7 @@ const Dashboard = observer(() => {
     const [barData, setBarData] = useState([]);
     const [weeklyData, setWeeklyData] = useState([]);
 
-    // Получение исторических данных
+    // Получение исторических данных при загрузке компонента и каждые 5 секунд
     useEffect(() => {
         const fetchHistoricalData = async () => {
             try {
@@ -167,10 +216,10 @@ const Dashboard = observer(() => {
                 startDateObj.setFullYear(startDateObj.getFullYear() - 1);
                 const startDate = startDateObj.toISOString().slice(0, 10);
 
-                // Дата неделю назад
-                const startDateWeekObj = new Date();
-                startDateWeekObj.setDate(startDateWeekObj.getDate() - 7);
-                const startDateWeek = startDateWeekObj.toISOString().slice(0, 10);
+                // Дата месяц назад
+                const startDateMonthObj = new Date();
+                startDateMonthObj.setMonth(startDateMonthObj.getMonth() - 1);
+                const startDateMonth = startDateMonthObj.toISOString().slice(0, 10);
 
                 // Запрос данных из API Банка Канады за год
                 const responseYear = await fetch(
@@ -179,13 +228,11 @@ const Dashboard = observer(() => {
                 const dataYear = await responseYear.json();
                 const observationsYear = dataYear.observations;
 
-                // Обработка данных для Investment Over Time
-                const initialInvestment = investmentAmount; // Используем ваш инвестиционный баланс из store
+                // Обработка данных для графика "Investment Over Time"
                 const investmentChartData = observationsYear.map((obs) => {
                     const rate = parseFloat(obs['FXUSDCAD'].v);
                     const date = obs.d;
-                    // Конвертируем инвестицию в USD по курсу на текущую дату
-                    const investmentValueUSD = initialInvestment / rate;
+                    const investmentValueUSD = investmentAmount / rate;
                     return {
                         date,
                         investmentValueUSD: parseFloat(investmentValueUSD.toFixed(2)),
@@ -194,11 +241,7 @@ const Dashboard = observer(() => {
 
                 setInvestmentData(investmentChartData);
 
-                // Подготовка данных для PieChart (распределение изменений курса за последний месяц)
-                const startDateMonthObj = new Date();
-                startDateMonthObj.setMonth(startDateMonthObj.getMonth() - 1);
-                const startDateMonth = startDateMonthObj.toISOString().slice(0, 10);
-
+                // Подготовка данных для круговой диаграммы
                 const responseMonth = await fetch(
                     `https://www.bankofcanada.ca/valet/observations/FXUSDCAD/json?start_date=${startDateMonth}&end_date=${endDate}`
                 );
@@ -229,7 +272,7 @@ const Dashboard = observer(() => {
 
                 setPieData(pieChartData);
 
-                // Подготовка данных для BarChart (средний месячный курс)
+                // Подготовка данных для столбчатой диаграммы
                 const monthlyData = {};
                 observationsYear.forEach((obs) => {
                     const date = new Date(obs.d);
@@ -251,7 +294,7 @@ const Dashboard = observer(() => {
 
                 setBarData(barChartData);
 
-                // Обработка данных для Random Curve (последняя неделя)
+                // Обработка данных для графика за последнюю неделю
                 const observationsWeek = observationsYear.slice(-7);
                 const weeklyChartData = observationsWeek.map((obs) => ({
                     date: obs.d,
@@ -260,12 +303,19 @@ const Dashboard = observer(() => {
 
                 setWeeklyData(weeklyChartData);
             } catch (error) {
-                console.error('Error fetching historical data:', error);
+                console.error('Ошибка при получении исторических данных:', error);
             }
         };
 
+        // Вызываем функцию при загрузке компонента
         fetchHistoricalData();
-    }, [investmentAmount]); // Добавляем зависимость от investmentAmount
+
+        // Устанавливаем интервал обновления каждые 5 секунд
+        const intervalId = setInterval(fetchHistoricalData, 5000);
+
+        // Очищаем интервал при размонтировании компонента
+        return () => clearInterval(intervalId);
+    }, [investmentAmount]);
 
     // Функция для форматирования даты на оси X
     const formatXAxis = (date) => {
@@ -273,6 +323,7 @@ const Dashboard = observer(() => {
         return new Date(date).toLocaleDateString('de-DE', options);
     };
 
+    // Обработчик для закрытия расширенного виджета при клике вне его области
     useEffect(() => {
         const handleClickOutside = (event) => {
             if (expanded !== null && !event.target.closest('.expanded-widget')) {
@@ -287,13 +338,14 @@ const Dashboard = observer(() => {
         };
     }, [expanded]);
 
+    // Функция для управления расширением виджета
     const handleExpand = (index) => {
         if (expanded === null || expanded === index) {
             setExpanded(expanded === index ? null : index);
         }
     };
 
-    // Описания для всплывающих подсказок (на немецком языке)
+    // Описания для всплывающих подсказок
     const widgetDescriptions = [
         'Diese Grafik zeigt, wie sich der Wert Ihrer Investition in USD im Laufe der Zeit verändert hätte, basierend auf Ihrem aktuellen Investitionsbetrag in CAD.',
         'Diese Tortendiagramm zeigt die Verteilung der Tage im letzten Monat, an denen der CAD/USD Wechselkurs gestiegen, gefallen oder unverändert geblieben ist.',
@@ -305,7 +357,10 @@ const Dashboard = observer(() => {
 
     return (
         <Box>
+            {/* Компонент заголовка с балансом */}
             <BalanceHeader />
+
+            {/* Основное содержимое дашборда */}
             <Box
                 sx={{ p: 2, ml: !isMobile && !isTablet ? 40 : 2 }}
                 maxWidth={'lg'}
@@ -350,7 +405,7 @@ const Dashboard = observer(() => {
                                 >
                                     <Typography variant="h6">{title}</Typography>
                                     {index === 0 && (
-                                        // Investment Over Time
+                                        // График "Investment Over Time"
                                         <ResponsiveContainer width="100%" height="80%">
                                             <LineChart data={investmentData}>
                                                 <CartesianGrid strokeDasharray="3 3" />
@@ -389,7 +444,7 @@ const Dashboard = observer(() => {
                                         </ResponsiveContainer>
                                     )}
                                     {index === 1 && (
-                                        // PieChart с распределением изменений курса
+                                        // Круговая диаграмма
                                         <ResponsiveContainer width="100%" height="80%">
                                             <PieChart>
                                                 <Pie
@@ -413,16 +468,14 @@ const Dashboard = observer(() => {
                                         </ResponsiveContainer>
                                     )}
                                     {index === 2 && (
-                                        // BarChart с месячными средними значениями
+                                        // Столбчатая диаграмма
                                         <ResponsiveContainer width="100%" height="80%">
                                             <BarChart data={barData}>
                                                 <CartesianGrid strokeDasharray="3 3" />
                                                 <XAxis dataKey="name" />
                                                 <YAxis
                                                     domain={['dataMin - 0.05', 'dataMax + 0.05']}
-                                                    tickFormatter={(value) =>
-                                                        value.toFixed(2)
-                                                    }
+                                                    tickFormatter={(value) => value.toFixed(2)}
                                                 />
                                                 <Tooltip
                                                     formatter={(value) => value.toFixed(4)}
@@ -438,11 +491,12 @@ const Dashboard = observer(() => {
                                         </ResponsiveContainer>
                                     )}
                                     {index === 3 && (
+                                        // Прогресс инвестиций
                                         <Box sx={{ mt: 9 }}>
                                             <Typography variant="body1">
                                                 {lang.dashboard.investedUnits.replace(
                                                     '{amount}',
-                                                    investmentAmount
+                                                    investmentAmount.toLocaleString('en-US')
                                                 )}
                                             </Typography>
                                             <Slider
@@ -454,6 +508,7 @@ const Dashboard = observer(() => {
                                         </Box>
                                     )}
                                     {index === 4 && (
+                                        // Статус участника
                                         <Box sx={{ mt: 2, textAlign: 'center' }}>
                                             {getStatusIcon(investmentAmount)}
                                             <Typography variant="body1" sx={{ mt: 1 }}>
@@ -466,7 +521,7 @@ const Dashboard = observer(() => {
                                         </Box>
                                     )}
                                     {index === 5 && (
-                                        // LineChart с историческими данными за последнюю неделю
+                                        // График за последнюю неделю
                                         <ResponsiveContainer width="100%" height="80%">
                                             <LineChart data={weeklyData}>
                                                 <CartesianGrid strokeDasharray="3 3" />

@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Калькулятор ж/д сборки</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f7f7f7;
+            padding: 20px;
+        }
+        .container {
+            display: flex;
+            justify-content: space-between;
+            max-width: 1200px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .form-section, .result-section {
+            width: 48%;
+        }
+        h1 {
+            font-size: 24px;
+            margin-bottom: 20px;
+            color: #333;
+        }
+        label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: bold;
+            color: #333;
+        }
+        input, select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        .result {
+            font-size: 18px;
+            color: #333;
+        }
+        .result p {
+            margin: 10px 0;
+        }
+        .btn-submit {
+            width: 100%;
+            padding: 15px;
+            background-color: #FF0000;
+            border: none;
+            color: white;
+            font-size: 18px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        .btn-submit:hover {
+            background-color: #cc0000;
+        }
+        .price-label {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            font-size: 18px;
+            color: #333;
+        }
+        .price-value {
+            font-size: 20px;
+            color: red;
+        }
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+            }
+            .form-section, .result-section {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="form-section">
+        <h1>Калькулятор ж/д сборки</h1>
+        <label for="country">Страна доставки</label>
+        <select id="country">
+            <option value="Россия">Россия</option>
+            <option value="Китай">Китай</option>
+            <option value="Германия">Германия</option>
+        </select>
+
+        <label for="pickupCity">Город забора</label>
+        <input type="text" id="pickupCity" placeholder="Введите город">
+
+        <label for="consolidationCity">Место консолидации</label>
+        <input type="text" id="consolidationCity" placeholder="Введите место">
+
+        <label for="deliveryConditions">Условия поставки</label>
+        <input type="text" id="deliveryConditions" placeholder="Введите условия">
+
+        <label for="volume">Объем, м³</label>
+        <input type="number" id="volume" placeholder="Введите объем">
+
+        <label for="weight">Вес, кг</label>
+        <input type="number" id="weight" placeholder="Введите вес">
+
+        <label for="quantity">Кол-во ДТ</label>
+        <input type="number" id="quantity" placeholder="Введите количество">
+
+        <label for="distance">Расстояние до двери по РФ, км</label>
+        <input type="number" id="distance" placeholder="Введите расстояние">
+
+        <button class="btn-submit" onclick="calculateShipping()">ОСТАВИТЬ ЗАЯВКУ</button>
+    </div>
+
+    <div class="result-section">
+        <h1>Расчет стоимости</h1>
+        <div class="result">
+            <p class="price-label">Китай - Москва:</p>
+            <p class="price-value"><span id="priceUSD">0</span> $ / <span id="priceCNY">0</span> ¥</p>
+
+            <p class="price-label">По России:</p>
+            <p class="price-value"><span id="priceRUB">0</span> ₽</p>
+        </div>
+    </div>
+</div>
+
+<script>
+    // Моковые данные для расчета
+    const rates = {
+        "Китай": { usd: 100, cny: 600 },
+        "Россия": { rub: 5000 },
+        "Германия": { usd: 150, cny: 900 }
+    };
+
+    // Функция для расчета
+    function calculateShipping() {
+        const country = document.getElementById('country').value;
+        const weight = document.getElementById('weight').value;
+        const distance = document.getElementById('distance').value;
+
+        // Если поля не заполнены, то возвращаем
+        if (!weight || !distance) {
+            alert('Заполните все поля для расчета');
+            return;
+        }
+
+        // Расчет для Китая - Москва
+        const usdRate = rates[country].usd || 0;
+        const cnyRate = rates[country].cny || 0;
+        const totalUSD = (weight * usdRate).toFixed(2);
+        const totalCNY = (weight * cnyRate).toFixed(2);
+        document.getElementById('priceUSD').innerText = totalUSD;
+        document.getElementById('priceCNY').innerText = totalCNY;
+
+        // Расчет для России
+        const rubRate = rates['Россия'].rub || 0;
+        const totalRUB = (distance * rubRate).toFixed(2);
+        document.getElementById('priceRUB').innerText = totalRUB;
+    }
+</script>
+</body>
+</html>

@@ -1,4 +1,4 @@
-// pages/test.js
+// pages/index.html
 import React from 'react';
 
 const TestPage = () => {
