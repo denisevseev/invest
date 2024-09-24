@@ -29,7 +29,7 @@ export default async (req, res) => {
         },
       });
 
-      const resetLink = `${url}/ResetsPasswordForm?token=${token}&email=${email}`;
+      const resetLink = `${url}/ResetPasswordForm?token=${token}&email=${email}`;
 
       const mailOptions = {
         from: '"Victorum Capital Support" <support@victorum-capital.com>',
