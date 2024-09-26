@@ -1,6 +1,6 @@
 // pages/roles/Employees.js
 import React, { useState, useEffect } from 'react';
-import { Button, Container, Typography, Box, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Collapse, IconButton } from '@mui/material';
+import { Button, Container, Typography, Box, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Collapse, IconButton, TextField } from '@mui/material';
 import AddManagerModal from '../../components/AddManagerModal';
 import { observer } from "mobx-react-lite";
 import { ExpandMore, ExpandLess } from '@mui/icons-material';
@@ -10,7 +10,9 @@ import store from './../../stores/userStore';
 const Employees = () => {
     const [open, setOpen] = useState(false);
     const [employees, setEmployees] = useState([]);
+    const [filteredEmployees, setFilteredEmployees] = useState([]); // Отфильтрованные сотрудники
     const [expanded, setExpanded] = useState({});
+    const [searchTerm, setSearchTerm] = useState(''); // Строка поиска
     const { user } = useFetchUser();
 
     const handleOpen = () => setOpen(true);
@@ -34,13 +36,32 @@ const Employees = () => {
                 emp.assignedInvestors = investors;
             }
             setEmployees(filteredEmployees);
+            setFilteredEmployees(filteredEmployees); // По умолчанию отображаем всех
         } else if (user.role === 'admin') {
-            setEmployees(data.filter(emp => emp.role === 'employee'));
+            const employeesList = data.filter(emp => emp.role === 'employee');
+            setEmployees(employeesList);
+            setFilteredEmployees(employeesList); // По умолчанию отображаем всех
         }
     };
 
     const handleExpandClick = (id) => {
         setExpanded(prev => ({ ...prev, [id]: !prev[id] }));
+    };
+
+    const handleSearch = () => {
+        if (searchTerm.trim() === '') {
+            setFilteredEmployees(employees); // Если строка поиска пуста, показать всех сотрудников
+            return;
+        }
+
+        const lowerSearchTerm = searchTerm.toLowerCase();
+        const filtered = employees.filter(employee =>
+            employee.firstName.toLowerCase().includes(lowerSearchTerm) ||
+            employee.lastName.toLowerCase().includes(lowerSearchTerm) ||
+            employee.email.toLowerCase().includes(lowerSearchTerm) ||
+            employee.phoneNumber.includes(searchTerm)
+        );
+        setFilteredEmployees(filtered);
     };
 
     if (store.isAdedRole) {
@@ -54,10 +75,25 @@ const Employees = () => {
                 Employees
             </Typography>
             <Box>
-                {/*<Button  color="primary" onClick={handleOpen}>*/}
-                {/*    Add Employee*/}
-                {/*</Button>*/}
+                {/* Добавление поля поиска */}
+                <Box display="flex" justifyContent="center" my={2}>
+                    <TextField
+                        label="Search by Name, Email, or Phone"
+                        variant="outlined"
+                        value={searchTerm}
+                        onChange={(e) => setSearchTerm(e.target.value)}
+                        sx={{ marginRight: '1rem', width: '300px' }}
+                    />
+                    <Button variant="contained" color="primary" onClick={handleSearch}>
+                        Search
+                    </Button>
+                    <Button variant="outlined" color="secondary" onClick={() => setFilteredEmployees(employees)} sx={{ marginLeft: '1rem' }}>
+                        Reset
+                    </Button>
+                </Box>
+
                 <AddManagerModal open={open} handleClose={handleClose} />
+
                 <Box mt={4}>
                     <TableContainer component={Paper}>
                         <Table>
@@ -71,7 +107,7 @@ const Employees = () => {
                                 </TableRow>
                             </TableHead>
                             <TableBody>
-                                {employees.map(employee => (
+                                {filteredEmployees.map(employee => (
                                     <React.Fragment key={employee._id}>
                                         <TableRow>
                                             <TableCell>{employee.firstName}</TableCell>

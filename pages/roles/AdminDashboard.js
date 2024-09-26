@@ -1,6 +1,6 @@
 // pages/roles/AdminDashboard.js
 import React, { useState, useEffect } from 'react';
-import { Button, Container, Typography, Box, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Collapse, IconButton } from '@mui/material';
+import { Button, Container, Typography, Box, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Collapse, IconButton, TextField } from '@mui/material';
 import AddManagerModal from '../../components/AddManagerModal';
 import { observer } from "mobx-react-lite";
 import { ExpandMore, ExpandLess } from '@mui/icons-material';
@@ -11,6 +11,7 @@ const AdminDashboard = () => {
   const [managers, setManagers] = useState([]);
   const [expanded, setExpanded] = useState({});
   const [expandedEmployee, setExpandedEmployee] = useState({});
+  const [searchTerm, setSearchTerm] = useState(''); // Поисковая строка
 
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
@@ -33,6 +34,23 @@ const AdminDashboard = () => {
     setExpandedEmployee(prev => ({ ...prev, [id]: !prev[id] }));
   };
 
+  const handleSearch = async () => {
+    try {
+      // Если строка поиска пустая, загружаем всех менеджеров
+      if (searchTerm.trim() === '') {
+        fetchManagers();
+        return;
+      }
+
+      // Выполнение поиска по введенному запросу
+      const response = await fetch(`/api/admin/searchUsers?searchTerm=${searchTerm}`);
+      const filteredManagers = await response.json();
+      setManagers(filteredManagers);
+    } catch (error) {
+      console.error('Error searching users:', error);
+    }
+  };
+
   if (store.isAdedRole) {
     store.isAdedRole = !store.isAdedRole;
     fetchManagers();
@@ -44,10 +62,29 @@ const AdminDashboard = () => {
           Managers
         </Typography>
         <Box>
-          <Button  color="primary" onClick={handleOpen}>
+          <Button color="primary" onClick={handleOpen}>
             Add Manager
           </Button>
           <AddManagerModal open={open} handleClose={handleClose} />
+
+          {/* Поле поиска */}
+          <Box display="flex" justifyContent="center" my={2}>
+            <TextField
+                label="Search by Name, Email, or Phone"
+                variant="outlined"
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+                sx={{ marginRight: '1rem', width: '300px' }}
+            />
+            <Button variant="contained" color="primary" onClick={handleSearch}>
+              Search
+            </Button>
+            {/* Кнопка сброса фильтра */}
+            <Button variant="outlined" color="secondary" onClick={fetchManagers} sx={{ marginLeft: '1rem' }}>
+              Reset
+            </Button>
+          </Box>
+
           <Box mt={4}>
             <TableContainer component={Paper}>
               <Table>
@@ -118,17 +155,15 @@ const AdminDashboard = () => {
                                                       </TableRow>
                                                     </TableHead>
                                                     <TableBody>
-                                                      {employee.assignedInvestors.map(investor => {
-                                                        // alert(JSON.stringify(investor))
-                                                        return(
-                                                                <TableRow key={investor._id}>
-                                                                  <TableCell>{investor.firstName}</TableCell>
-                                                                  <TableCell>{investor.lastName}</TableCell>
-                                                                  <TableCell>{investor.email}</TableCell>
-                                                                  <TableCell>{investor.phoneNumber}</TableCell>
-                                                                </TableRow>
-                                                            )
-                                                      })}
+                                                      {/* Проверка на наличие assignedInvestors */}
+                                                      {(employee.assignedInvestors || []).map(investor => (
+                                                          <TableRow key={investor._id}>
+                                                            <TableCell>{investor.firstName}</TableCell>
+                                                            <TableCell>{investor.lastName}</TableCell>
+                                                            <TableCell>{investor.email}</TableCell>
+                                                            <TableCell>{investor.phoneNumber}</TableCell>
+                                                          </TableRow>
+                                                      ))}
                                                     </TableBody>
                                                   </Table>
                                                 </Box>

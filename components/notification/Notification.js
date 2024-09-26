@@ -194,7 +194,7 @@ const Notification = ({ user }) => {
                     <UserModal user={user} files={files} />
                     <Box sx={{ textAlign: 'center', mt: 2 }}>
                         <Button onClick={handleCloseModal} color="primary" sx={{ minWidth: '150px' }}>
-                            Закрыть
+                            Schließen
                         </Button>
                     </Box>
                 </Box>

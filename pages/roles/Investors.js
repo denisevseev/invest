@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from 'react';
-import { Container, Typography, Box, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, IconButton, Switch, Collapse } from '@mui/material';
+import { Container, Typography, Box, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, IconButton, Switch, Collapse, TextField, Button } from '@mui/material';
 import { ExpandMore, ExpandLess } from '@mui/icons-material';
 import useFetchUser from '../../stores/hooks/useFetchUser';
 import { observer } from "mobx-react-lite";
 
 const Investors = () => {
     const [investors, setInvestors] = useState([]); // Хранение данных инвесторов
+    const [filteredInvestors, setFilteredInvestors] = useState([]); // Отфильтрованные инвесторы
     const [expanded, setExpanded] = useState({}); // Для управления раскрытием списка файлов инвесторов
+    const [searchTerm, setSearchTerm] = useState(''); // Поисковая строка
     const { user } = useFetchUser(); // Получение информации о пользователе
 
     // Функция для управления раскрытием файлов инвестора
@@ -30,6 +32,7 @@ const Investors = () => {
             }
             const data = await response.json(); // Преобразуем ответ в JSON
             setInvestors(data); // Сохраняем данные инвесторов
+            setFilteredInvestors(data); // Изначально показываем всех инвесторов
         } catch (error) {
             console.error('Error fetching investors:', error);
         }
@@ -77,11 +80,46 @@ const Investors = () => {
         return files.every(file => file.approved); // Если все файлы одобрены, вернется true
     };
 
+    // Функция для поиска инвесторов
+    const handleSearch = () => {
+        if (searchTerm.trim() === '') {
+            setFilteredInvestors(investors); // Если строка поиска пуста, показать всех инвесторов
+            return;
+        }
+
+        const lowerSearchTerm = searchTerm.toLowerCase();
+        const filtered = investors.filter(investor =>
+            investor.firstName.toLowerCase().includes(lowerSearchTerm) ||
+            investor.lastName.toLowerCase().includes(lowerSearchTerm) ||
+            investor.email.toLowerCase().includes(lowerSearchTerm) ||
+            investor.phoneNumber.includes(searchTerm)
+        );
+        setFilteredInvestors(filtered);
+    };
+
     return (
         <Container sx={{ mt: '6rem', ml: '-2%', maxWidth: '800px', flexGrow: 1 }}>
             <Typography variant="h6" align="center" gutterBottom>
                 Investors
             </Typography>
+
+            {/* Добавление поля поиска */}
+            <Box display="flex" justifyContent="center" my={2}>
+                <TextField
+                    label="Search by Name, Email, or Phone"
+                    variant="outlined"
+                    value={searchTerm}
+                    onChange={(e) => setSearchTerm(e.target.value)}
+                    sx={{ marginRight: '1rem', width: '300px' }}
+                />
+                <Button variant="contained" color="primary" onClick={handleSearch}>
+                    Search
+                </Button>
+                <Button variant="outlined" color="secondary" onClick={() => setFilteredInvestors(investors)} sx={{ marginLeft: '1rem' }}>
+                    Reset
+                </Button>
+            </Box>
+
             <Box>
                 <Box mt={4} ml={-3}>
                     <TableContainer component={Paper}>
@@ -99,7 +137,7 @@ const Investors = () => {
                                 </TableRow>
                             </TableHead>
                             <TableBody>
-                                {investors?.map(investor => (
+                                {filteredInvestors?.map(investor => (
                                     <React.Fragment key={investor._id}>
                                         <TableRow>
                                             <TableCell>{investor._id}</TableCell>
