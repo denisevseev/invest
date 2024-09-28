@@ -89,10 +89,10 @@ const Investors = () => {
 
         const lowerSearchTerm = searchTerm.toLowerCase();
         const filtered = investors.filter(investor =>
-            investor.firstName.toLowerCase().includes(lowerSearchTerm) ||
-            investor.lastName.toLowerCase().includes(lowerSearchTerm) ||
-            investor.email.toLowerCase().includes(lowerSearchTerm) ||
-            investor.phoneNumber.includes(searchTerm)
+            (investor.firstName && investor.firstName.toLowerCase().includes(lowerSearchTerm)) || // Проверка на наличие firstName
+            (investor.lastName && investor.lastName.toLowerCase().includes(lowerSearchTerm)) || // Проверка на наличие lastName
+            (investor.email && investor.email.toLowerCase().includes(lowerSearchTerm)) || // Проверка на наличие email
+            (investor.phoneNumber && investor.phoneNumber.includes(searchTerm)) // Проверка на наличие phoneNumber
         );
         setFilteredInvestors(filtered);
     };
