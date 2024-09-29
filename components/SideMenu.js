@@ -1,8 +1,8 @@
 import React from 'react';
 import { List, ListItem, ListItemText, ListItemIcon, Box, Typography } from '@mui/material';
-import { useRouter } from 'next/router';
-import HomeIcon from '@mui/icons-material/Home';
-import PeopleIcon from '@mui/icons-material/People';
+import AssignmentIcon from '@mui/icons-material/Assignment';
+import StackedLineChartIcon from '@mui/icons-material/StackedLineChart';
+import AttributionIcon from '@mui/icons-material/Attribution';
 import GroupIcon from '@mui/icons-material/Group';
 import AttachMoneyIcon from '@mui/icons-material/AttachMoney';
 import LinkIcon from '@mui/icons-material/Link';
@@ -11,21 +11,24 @@ import store from "../stores/userStore"; // Подключение вашего 
 
 const menuItems = {
   admin: [
-    { text: 'Statistics', route: 'statistics', icon: <HomeIcon /> },
-    { text: 'Managers', route: 'managers', icon: <PeopleIcon /> },
+    { text: 'Statistics', route: 'statistics', icon: <StackedLineChartIcon /> },
+    { text: 'Managers', route: 'managers', icon: <AttributionIcon /> },
     { text: 'Employees', route: 'employees', icon: <GroupIcon /> },
     { text: 'Investors', route: 'investors', icon: <AttachMoneyIcon /> },
+    { text: 'brochure', route: 'brochure', icon: <AssignmentIcon /> },
   ],
   manager: [
-    { text: 'Statistics', route: 'statistics', icon: <HomeIcon /> },
+    { text: 'Statistics', route: 'statistics', icon: <StackedLineChartIcon /> },
     { text: 'Employees', route: 'employees', icon: <GroupIcon /> },
     { text: 'Investors', route: 'investors', icon: <AttachMoneyIcon /> },
     { text: 'Link Generator', route: 'link-generator', icon: <LinkIcon /> },
+    { text: 'brochure', route: 'brochure', icon: <AssignmentIcon /> },
   ],
   employee: [
-    { text: 'Statistics', route: 'statistics', icon: <HomeIcon /> },
+    { text: 'Statistics', route: 'statistics', icon: <StackedLineChartIcon /> },
     { text: 'Investors', route: 'investors', icon: <AttachMoneyIcon /> },
     { text: 'Link Generator', route: 'link-generator', icon: <LinkIcon /> },
+    { text: 'brochure', route: 'brochure', icon: <AssignmentIcon /> },
   ],
 };
 

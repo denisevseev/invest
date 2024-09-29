@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { observer } from "mobx-react-lite";
 import AppBarComponent from "./AppBar";
 import Footer from "./Footer";
@@ -17,15 +17,20 @@ const ControlLayout = observer(({ children }) => {
     const theme = useTheme();
     const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
 
+    useEffect(() => {
+        if (store.routeLink === 'brochure') {
+            window.open('https://www.victorum-capital.com/wp-content/uploads/2021/12/Victorum_Catalog.pdf', '_blank');
+        }
+    }, [store.routeLink]);
+
     const renderContent = () => {
-        console.log(store.routeLink);
         switch (store.routeLink) {
             case '/':
-                return <StatisticsChart />; // Компонент для отображения статистики
+                return <StatisticsChart />;
             case 'managers':
-                return <AdminDashboard />; // Компонент для администраторов
+                return <AdminDashboard />;
             case 'employees':
-                return <Employees />; // Компонент для сотрудников
+                return <Employees />;
             case 'investors':
                 return <Investors />;
             case 'link-generator':
@@ -37,10 +42,11 @@ const ControlLayout = observer(({ children }) => {
 
     return (
         <Box display="flex" flexDirection="column" minHeight="100vh">
-            {/* AppBarComponent уже управляет рендерингом меню */}
+            {/* Верхняя панель */}
             <AppBarControl />
+
+            {/* Основной контент */}
             <Grid container spacing={0}>
-                {/* Боковое меню убрано из ControlLayout, так как оно рендерится через AppBarComponent */}
                 <Grid item xs={12} sm={12} ml={30} md={12}>
                     <main>
                         {renderContent()}
@@ -48,6 +54,8 @@ const ControlLayout = observer(({ children }) => {
                     </main>
                 </Grid>
             </Grid>
+
+            {/* Футер */}
             <Footer />
         </Box>
     );
