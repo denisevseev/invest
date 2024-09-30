@@ -18,7 +18,7 @@ const ControlLayout = observer(({ children }) => {
     const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
 
     useEffect(() => {
-        if (store.routeLink === 'brochure') {
+        if (store.routeLink === 'Brochure') {
             window.open('https://www.victorum-capital.com/wp-content/uploads/2021/12/Victorum_Catalog.pdf', '_blank');
         }
     }, [store.routeLink]);

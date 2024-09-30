@@ -15,20 +15,20 @@ const menuItems = {
     { text: 'Managers', route: 'managers', icon: <AttributionIcon /> },
     { text: 'Employees', route: 'employees', icon: <GroupIcon /> },
     { text: 'Investors', route: 'investors', icon: <AttachMoneyIcon /> },
-    { text: 'brochure', route: 'brochure', icon: <AssignmentIcon /> },
+    { text: 'Brochure', route: 'Brochure', icon: <AssignmentIcon /> },
   ],
   manager: [
     { text: 'Statistics', route: 'statistics', icon: <StackedLineChartIcon /> },
     { text: 'Employees', route: 'employees', icon: <GroupIcon /> },
     { text: 'Investors', route: 'investors', icon: <AttachMoneyIcon /> },
     { text: 'Link Generator', route: 'link-generator', icon: <LinkIcon /> },
-    { text: 'brochure', route: 'brochure', icon: <AssignmentIcon /> },
+    { text: 'Brochure', route: 'Brochure', icon: <AssignmentIcon /> },
   ],
   employee: [
     { text: 'Statistics', route: 'statistics', icon: <StackedLineChartIcon /> },
     { text: 'Investors', route: 'investors', icon: <AttachMoneyIcon /> },
     { text: 'Link Generator', route: 'link-generator', icon: <LinkIcon /> },
-    { text: 'brochure', route: 'brochure', icon: <AssignmentIcon /> },
+    { text: 'Brochure', route: 'Brochure', icon: <AssignmentIcon /> },
   ],
 };
 
