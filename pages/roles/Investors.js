@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { Container, Typography, Box, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, IconButton, Switch, Collapse, TextField, Button } from '@mui/material';
-import { ExpandMore, ExpandLess } from '@mui/icons-material';
+import { Container, Typography, Box, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, IconButton, Switch, Collapse, TextField, Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle } from '@mui/material';
+import { ExpandMore, ExpandLess, Edit, Delete } from '@mui/icons-material';
 import useFetchUser from '../../stores/hooks/useFetchUser';
 import { observer } from "mobx-react-lite";
 
@@ -10,6 +10,12 @@ const Investors = () => {
     const [expanded, setExpanded] = useState({}); // Для управления раскрытием списка файлов инвесторов
     const [searchTerm, setSearchTerm] = useState(''); // Поисковая строка
     const { user } = useFetchUser(); // Получение информации о пользователе
+
+    // Состояния для редактирования и удаления
+    const [editingInvestor, setEditingInvestor] = useState(null); // Инвестор для редактирования
+    const [openEditDialog, setOpenEditDialog] = useState(false); // Управление модальным окном редактирования
+    const [openDeleteDialog, setOpenDeleteDialog] = useState(false); // Управление модальным окном удаления
+    const [deletingInvestor, setDeletingInvestor] = useState(null); // Инвестор для удаления
 
     // Функция для управления раскрытием файлов инвестора
     const handleExpandClick = (id) => {
@@ -75,9 +81,60 @@ const Investors = () => {
         }
     };
 
-    // Функция для проверки, все ли файлы одобрены
-    const areAllFilesApproved = (files) => {
-        return files.every(file => file.approved); // Если все файлы одобрены, вернется true
+    // Функция для редактирования инвестора
+    const handleEditClick = (investor) => {
+        setEditingInvestor(investor);
+        setOpenEditDialog(true);
+    };
+
+    const handleSaveEdit = async () => {
+        try {
+            const response = await fetch(`/api/admin/updateInvestor/${editingInvestor._id}`, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(editingInvestor),
+            });
+
+            if (!response.ok) {
+                throw new Error('Failed to update investor');
+            }
+
+            // Обновляем состояние инвесторов после успешного обновления
+            setInvestors(prevInvestors =>
+                prevInvestors.map(investor =>
+                    investor._id === editingInvestor._id ? editingInvestor : investor
+                )
+            );
+            setOpenEditDialog(false);
+        } catch (error) {
+            console.error('Error updating investor:', error);
+        }
+    };
+
+    // Функция для удаления инвестора
+    const handleDeleteClick = (investor) => {
+        setDeletingInvestor(investor);
+        setOpenDeleteDialog(true);
+    };
+
+    const handleDeleteInvestor = async () => {
+        try {
+            const response = await fetch(`/api/admin/deleteInvestor/${deletingInvestor._id}`, {
+                method: 'DELETE',
+            });
+
+            if (!response.ok) {
+                throw new Error('Failed to delete investor');
+            }
+
+            // Удаляем инвестора из состояния
+            setInvestors(prevInvestors => prevInvestors.filter(investor => investor._id !== deletingInvestor._id));
+            setOpenDeleteDialog(false);
+        } catch (error) {
+            console.error('Error deleting investor:', error);
+        }
     };
 
     // Функция для поиска инвесторов
@@ -126,21 +183,19 @@ const Investors = () => {
                         <Table>
                             <TableHead>
                                 <TableRow>
-                                    <TableCell>ID</TableCell>
                                     <TableCell>First Name</TableCell>
                                     <TableCell>Last Name</TableCell>
                                     <TableCell>Email</TableCell>
                                     <TableCell>Phone Number</TableCell>
                                     <TableCell>Email Verified</TableCell>
                                     <TableCell>Phone Verified</TableCell>
-                                    <TableCell>Files</TableCell>
+                                    <TableCell>Actions</TableCell>
                                 </TableRow>
                             </TableHead>
                             <TableBody>
                                 {filteredInvestors?.map(investor => (
                                     <React.Fragment key={investor._id}>
                                         <TableRow>
-                                            <TableCell>{investor._id}</TableCell>
                                             <TableCell>{investor.firstName}</TableCell>
                                             <TableCell>{investor.lastName}</TableCell>
                                             <TableCell>{investor.email}</TableCell>
@@ -148,10 +203,19 @@ const Investors = () => {
                                             <TableCell>{investor.emailVerified ? 'Verified' : 'Not Verified'}</TableCell>
                                             <TableCell>{investor.phoneVerified ? 'Verified' : 'Not Verified'}</TableCell>
                                             <TableCell>
-                                                <IconButton onClick={() => handleExpandClick(investor._id)}>
-                                                    {expanded[investor._id] ? <ExpandLess /> : <ExpandMore />}
-                                                </IconButton>
+                                                <Box display="flex" justifyContent="space-between" alignItems="center">
+                                                    <IconButton onClick={() => handleEditClick(investor)}>
+                                                        <Edit />
+                                                    </IconButton>
+                                                    <IconButton onClick={() => handleDeleteClick(investor)}>
+                                                        <Delete />
+                                                    </IconButton>
+                                                    <IconButton onClick={() => handleExpandClick(investor._id)}>
+                                                        {expanded[investor._id] ? <ExpandLess /> : <ExpandMore />}
+                                                    </IconButton>
+                                                </Box>
                                             </TableCell>
+
                                         </TableRow>
                                         <TableRow>
                                             <TableCell colSpan={8}>
@@ -189,16 +253,6 @@ const Investors = () => {
                                                                         </TableCell>
                                                                     </TableRow>
                                                                 ))}
-                                                                {/* Если все файлы одобрены, показываем сообщение */}
-                                                                {areAllFilesApproved(investor.files) && (
-                                                                    <TableRow>
-                                                                        <TableCell colSpan={4}>
-                                                                            <Typography color="success" variant="body1">
-                                                                                All files approved
-                                                                            </Typography>
-                                                                        </TableCell>
-                                                                    </TableRow>
-                                                                )}
                                                             </TableBody>
                                                         </Table>
                                                     </Box>
@@ -212,6 +266,71 @@ const Investors = () => {
                     </TableContainer>
                 </Box>
             </Box>
+
+            {/* Модальное окно для редактирования */}
+            <Dialog open={openEditDialog} onClose={() => setOpenEditDialog(false)}>
+                <DialogTitle>Edit Investor</DialogTitle>
+                <DialogContent>
+                    <TextField
+                        margin="dense"
+                        label="First Name"
+                        type="text"
+                        fullWidth
+                        value={editingInvestor?.firstName || ''}
+                        onChange={(e) => setEditingInvestor({ ...editingInvestor, firstName: e.target.value })}
+                    />
+                    <TextField
+                        margin="dense"
+                        label="Last Name"
+                        type="text"
+                        fullWidth
+                        value={editingInvestor?.lastName || ''}
+                        onChange={(e) => setEditingInvestor({ ...editingInvestor, lastName: e.target.value })}
+                    />
+                    <TextField
+                        margin="dense"
+                        label="Email"
+                        type="email"
+                        fullWidth
+                        value={editingInvestor?.email || ''}
+                        onChange={(e) => setEditingInvestor({ ...editingInvestor, email: e.target.value })}
+                    />
+                    <TextField
+                        margin="dense"
+                        label="Phone Number"
+                        type="text"
+                        fullWidth
+                        value={editingInvestor?.phoneNumber || ''}
+                        onChange={(e) => setEditingInvestor({ ...editingInvestor, phoneNumber: e.target.value })}
+                    />
+                </DialogContent>
+                <DialogActions>
+                    <Button onClick={() => setOpenEditDialog(false)} color="secondary">
+                        Cancel
+                    </Button>
+                    <Button onClick={handleSaveEdit} color="primary">
+                        Save
+                    </Button>
+                </DialogActions>
+            </Dialog>
+
+            {/* Модальное окно для подтверждения удаления */}
+            <Dialog open={openDeleteDialog} onClose={() => setOpenDeleteDialog(false)}>
+                <DialogTitle>Delete Investor</DialogTitle>
+                <DialogContent>
+                    <DialogContentText>
+                        Are you sure you want to delete this investor?
+                    </DialogContentText>
+                </DialogContent>
+                <DialogActions>
+                    <Button onClick={() => setOpenDeleteDialog(false)} color="secondary">
+                        Cancel
+                    </Button>
+                    <Button onClick={handleDeleteInvestor} color="primary">
+                        Delete
+                    </Button>
+                </DialogActions>
+            </Dialog>
         </Container>
     );
 };
