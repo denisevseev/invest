@@ -1,9 +1,8 @@
-// pages/roles/Employees.js
 import React, { useState, useEffect } from 'react';
-import { Button, Container, Typography, Box, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Collapse, IconButton, TextField } from '@mui/material';
+import { Button, Container, Typography, Box, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Collapse, IconButton, TextField, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle } from '@mui/material';
+import { ExpandMore, ExpandLess, Edit, Delete, VpnKey } from '@mui/icons-material';
 import AddManagerModal from '../../components/AddManagerModal';
 import { observer } from "mobx-react-lite";
-import { ExpandMore, ExpandLess } from '@mui/icons-material';
 import useFetchUser from '../../stores/hooks/useFetchUser';
 import store from './../../stores/userStore';
 
@@ -15,6 +14,19 @@ const Employees = () => {
     const [searchTerm, setSearchTerm] = useState(''); // Строка поиска
     const { user } = useFetchUser();
 
+    // Для модального окна редактирования и удаления
+    const [editingEmployee, setEditingEmployee] = useState(null);
+    const [openEditDialog, setOpenEditDialog] = useState(false);
+    const [openDeleteDialog, setOpenDeleteDialog] = useState(false);
+    const [deletingEmployee, setDeletingEmployee] = useState(null);
+
+    // Для модального окна смены пароля
+    const [openPasswordDialog, setOpenPasswordDialog] = useState(false);
+    const [passwordEmployee, setPasswordEmployee] = useState(null); // Сотрудник, для которого меняется пароль
+    const [newPassword, setNewPassword] = useState(''); // Новый пароль
+    const [confirmPassword, setConfirmPassword] = useState(''); // Подтверждение пароля
+
+
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
 
@@ -23,6 +35,38 @@ const Employees = () => {
             fetchEmployees();
         }
     }, [user]);
+    const handlePasswordChangeClick = (employee) => {
+        setPasswordEmployee(employee);
+        setOpenPasswordDialog(true);
+    };
+
+    const handleSavePasswordChange = async () => {
+        if (newPassword !== confirmPassword) {
+            alert('Passwords do not match');
+            return;
+        }
+
+        try {
+            const response = await fetch(`/api/admin/userHandler?userId=${passwordEmployee._id}`, {
+                method: 'POST', // Используем POST для смены пароля
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ newPassword }),
+            });
+
+            if (!response.ok) {
+                throw new Error('Failed to change password');
+            }
+
+            setOpenPasswordDialog(false);
+            setNewPassword('');
+            setConfirmPassword('');
+        } catch (error) {
+            console.error('Error changing password:', error);
+        }
+    };
+
 
     const fetchEmployees = async () => {
         const response = await fetch('/api/admin/getUsers');
@@ -64,6 +108,69 @@ const Employees = () => {
         setFilteredEmployees(filtered);
     };
 
+    // Функция для редактирования сотрудника
+    const handleEditClick = (employee) => {
+        setEditingEmployee(employee);
+        setOpenEditDialog(true);
+    };
+
+    const handleSaveEdit = async () => {
+        try {
+            const response = await fetch(`/api/admin/userHandler?userId=${editingEmployee._id}`, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    firstName: editingEmployee.firstName,
+                    lastName: editingEmployee.lastName,
+                    email: editingEmployee.email,
+                    phoneNumber: editingEmployee.phoneNumber
+                }),
+            });
+
+            if (!response.ok) {
+                throw new Error('Failed to update employee');
+            }
+
+            // Обновляем состояние сотрудников после успешного обновления
+            setEmployees(prevEmployees =>
+                prevEmployees.map(emp =>
+                    emp._id === editingEmployee._id ? editingEmployee : emp
+                )
+            );
+            setOpenEditDialog(false);
+        } catch (error) {
+            console.error('Error updating employee:', error);
+        }
+    };
+
+
+    // Функция для удаления сотрудника
+    const handleDeleteClick = (employee) => {
+        setDeletingEmployee(employee);
+        setOpenDeleteDialog(true);
+    };
+
+    const handleDeleteEmployee = async () => {
+        try {
+            const response = await fetch(`/api/admin/userHandler?userId=${deletingEmployee._id}`, {
+                method: 'DELETE',
+            });
+
+            if (!response.ok) {
+                throw new Error('Failed to delete employee');
+            }
+
+            // Удаляем сотрудника из состояния
+            setEmployees(prevEmployees => prevEmployees.filter(emp => emp._id !== deletingEmployee._id));
+            setOpenDeleteDialog(false);
+        } catch (error) {
+            console.error('Error deleting employee:', error);
+        }
+    };
+
+
     if (store.isAdedRole) {
         store.isAdedRole = !store.isAdedRole;
         fetchEmployees();
@@ -103,7 +210,7 @@ const Employees = () => {
                                     <TableCell>Last Name</TableCell>
                                     <TableCell>Email</TableCell>
                                     <TableCell>Phone Number</TableCell>
-                                    <TableCell>Investors</TableCell>
+                                    <TableCell>Actions</TableCell>
                                 </TableRow>
                             </TableHead>
                             <TableBody>
@@ -115,9 +222,21 @@ const Employees = () => {
                                             <TableCell>{employee.email}</TableCell>
                                             <TableCell>{employee.phoneNumber}</TableCell>
                                             <TableCell>
-                                                <IconButton onClick={() => handleExpandClick(employee._id)}>
-                                                    {expanded[employee._id] ? <ExpandLess /> : <ExpandMore />}
-                                                </IconButton>
+                                                <Box display="flex" justifyContent="space-between" alignItems="center">
+                                                    <IconButton onClick={() => handleEditClick(employee)}>
+                                                        <Edit />
+                                                    </IconButton>
+                                                    <IconButton onClick={() => handleDeleteClick(employee)}>
+                                                        <Delete />
+                                                    </IconButton>
+                                                    <IconButton onClick={() => handlePasswordChangeClick(employee)}>
+                                                        <VpnKey /> {/* Иконка ключа для смены пароля */}
+                                                    </IconButton>
+
+                                                    <IconButton onClick={() => handleExpandClick(employee._id)}>
+                                                        {expanded[employee._id] ? <ExpandLess /> : <ExpandMore />}
+                                                    </IconButton>
+                                                </Box>
                                             </TableCell>
                                         </TableRow>
                                         <TableRow>
@@ -164,6 +283,103 @@ const Employees = () => {
                     </TableContainer>
                 </Box>
             </Box>
+
+            {/* Модальное окно для смены пароля */}
+            <Dialog open={openPasswordDialog} onClose={() => setOpenPasswordDialog(false)}>
+                <DialogTitle>Change Password for {passwordEmployee?.firstName}</DialogTitle>
+                <DialogContent>
+                    <TextField
+                        margin="dense"
+                        label="New Password"
+                        type="password"
+                        fullWidth
+                        value={newPassword}
+                        onChange={(e) => setNewPassword(e.target.value)}
+                    />
+                    <TextField
+                        margin="dense"
+                        label="Confirm New Password"
+                        type="password"
+                        fullWidth
+                        value={confirmPassword}
+                        onChange={(e) => setConfirmPassword(e.target.value)}
+                    />
+                </DialogContent>
+                <DialogActions>
+                    <Button onClick={() => setOpenPasswordDialog(false)} color="secondary">
+                        Cancel
+                    </Button>
+                    <Button onClick={handleSavePasswordChange} color="primary">
+                        Save
+                    </Button>
+                </DialogActions>
+            </Dialog>
+
+
+            {/* Модальное окно для редактирования */}
+            <Dialog open={openEditDialog} onClose={() => setOpenEditDialog(false)}>
+                <DialogTitle>Edit Employee</DialogTitle>
+                <DialogContent>
+                    <TextField
+                        margin="dense"
+                        label="First Name"
+                        type="text"
+                        fullWidth
+                        value={editingEmployee?.firstName || ''}
+                        onChange={(e) => setEditingEmployee({ ...editingEmployee, firstName: e.target.value })}
+                    />
+                    <TextField
+                        margin="dense"
+                        label="Last Name"
+                        type="text"
+                        fullWidth
+                        value={editingEmployee?.lastName || ''}
+                        onChange={(e) => setEditingEmployee({ ...editingEmployee, lastName: e.target.value })}
+                    />
+                    <TextField
+                        margin="dense"
+                        label="Email"
+                        type="email"
+                        fullWidth
+                        value={editingEmployee?.email || ''}
+                        onChange={(e) => setEditingEmployee({ ...editingEmployee, email: e.target.value })}
+                    />
+                    <TextField
+                        margin="dense"
+                        label="Phone Number"
+                        type="text"
+                        fullWidth
+                        value={editingEmployee?.phoneNumber || ''}
+                        onChange={(e) => setEditingEmployee({ ...editingEmployee, phoneNumber: e.target.value })}
+                    />
+                </DialogContent>
+                <DialogActions>
+                    <Button onClick={() => setOpenEditDialog(false)} color="secondary">
+                        Cancel
+                    </Button>
+                    <Button onClick={handleSaveEdit} color="primary">
+                        Save
+                    </Button>
+                </DialogActions>
+            </Dialog>
+
+            {/* Модальное окно для подтверждения удаления */}
+            <Dialog open={openDeleteDialog} onClose={() => setOpenDeleteDialog(false)}>
+                <DialogTitle>Delete Employee</DialogTitle>
+                <DialogContent>
+                    <DialogContentText>
+                        Are you sure you want to delete this employee?
+                    </DialogContentText>
+                </DialogContent>
+                <DialogActions>
+                    <Button onClick={() => setOpenDeleteDialog(false)} color="secondary">
+                        Cancel
+                    </Button>
+                    <Button onClick={handleDeleteEmployee} color="primary">
+                        Delete
+                    </Button>
+                </DialogActions>
+            </Dialog>
         </Container>
     );
 };
