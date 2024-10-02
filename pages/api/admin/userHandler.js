@@ -6,7 +6,7 @@ export default async function handler(req, res) {
 
     const { method } = req; // Определяем HTTP-метод
     const { userId } = req.query; // Получаем ID пользователя из запроса
-
+    console.log(method)
     switch (method) {
         case 'PUT':
             // Обработка редактирования пользователя

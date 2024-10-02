@@ -133,17 +133,22 @@ const Employees = () => {
                 throw new Error('Failed to update employee');
             }
 
+            const { updatedUser } = await response.json();
+
             // Обновляем состояние сотрудников после успешного обновления
-            setEmployees(prevEmployees =>
-                prevEmployees.map(emp =>
-                    emp._id === editingEmployee._id ? editingEmployee : emp
-                )
-            );
+            setEmployees(prevEmployees => {
+                const updatedEmployees = prevEmployees.map(emp =>
+                    emp._id === updatedUser._id ? updatedUser : emp
+                );
+                setFilteredEmployees(updatedEmployees); // Обновляем отфильтрованное состояние
+                return updatedEmployees;
+            });
             setOpenEditDialog(false);
         } catch (error) {
             console.error('Error updating employee:', error);
         }
     };
+
 
 
     // Функция для удаления сотрудника
@@ -163,12 +168,17 @@ const Employees = () => {
             }
 
             // Удаляем сотрудника из состояния
-            setEmployees(prevEmployees => prevEmployees.filter(emp => emp._id !== deletingEmployee._id));
+            setEmployees(prevEmployees => {
+                const updatedEmployees = prevEmployees.filter(emp => emp._id !== deletingEmployee._id);
+                setFilteredEmployees(updatedEmployees); // Обновляем отфильтрованное состояние
+                return updatedEmployees;
+            });
             setOpenDeleteDialog(false);
         } catch (error) {
             console.error('Error deleting employee:', error);
         }
     };
+
 
 
     if (store.isAdedRole) {

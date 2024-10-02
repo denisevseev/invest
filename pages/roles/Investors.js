@@ -48,7 +48,7 @@ const Investors = () => {
         }
 
         try {
-            const response = await fetch(`/api/admin/changePassword/${passwordInvestor._id}`, {
+            const response = await fetch(`/api/admin/userHandler?userId=${passwordInvestor._id}`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -129,7 +129,7 @@ const Investors = () => {
 
     const handleSaveEdit = async () => {
         try {
-            const response = await fetch(`/api/admin/updateInvestor/${editingInvestor._id}`, {
+            const response = await fetch(`/api/admin/userHandler?userId=${editingInvestor._id}`, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',
@@ -141,12 +141,17 @@ const Investors = () => {
                 throw new Error('Failed to update investor');
             }
 
+            const { updatedUser } = await response.json();
+            debugger
+
             // Обновляем состояние инвесторов после успешного обновления
-            setInvestors(prevInvestors =>
-                prevInvestors.map(investor =>
-                    investor._id === editingInvestor._id ? editingInvestor : investor
-                )
-            );
+            setInvestors(prevInvestors => {
+                const updatedInvestors = prevInvestors.map(investor =>
+                    investor._id === updatedUser._id ? updatedUser : investor
+                );
+                setFilteredInvestors(updatedInvestors); // Обновляем отфильтрованное состояние
+                return updatedInvestors;
+            });
             setOpenEditDialog(false);
         } catch (error) {
             console.error('Error updating investor:', error);
@@ -161,7 +166,7 @@ const Investors = () => {
 
     const handleDeleteInvestor = async () => {
         try {
-            const response = await fetch(`/api/admin/deleteInvestor/${deletingInvestor._id}`, {
+            const response = await fetch(`/api/admin/userHandler?userId=${deletingInvestor._id}`, {
                 method: 'DELETE',
             });
 
@@ -170,7 +175,11 @@ const Investors = () => {
             }
 
             // Удаляем инвестора из состояния
-            setInvestors(prevInvestors => prevInvestors.filter(investor => investor._id !== deletingInvestor._id));
+            setInvestors(prevInvestors => {
+                const updatedInvestors = prevInvestors.filter(investor => investor._id !== deletingInvestor._id);
+                setFilteredInvestors(updatedInvestors); // Обновляем отфильтрованное состояние
+                return updatedInvestors;
+            });
             setOpenDeleteDialog(false);
         } catch (error) {
             console.error('Error deleting investor:', error);
@@ -280,26 +289,33 @@ const Investors = () => {
                                                                 </TableRow>
                                                             </TableHead>
                                                             <TableBody>
-                                                                {investor.files.map(file => (
-                                                                    <TableRow key={file._id}>
-                                                                        <TableCell>{file.filename}</TableCell>
-                                                                        <TableCell>{file.metadata?.type}</TableCell>
-                                                                        <TableCell>
-                                                                            <a href={`/api/getFile?filename=${file.filename}`} target="_blank" rel="noopener noreferrer">
-                                                                                View
-                                                                            </a>
-                                                                        </TableCell>
-                                                                        <TableCell>
-                                                                            <Switch
-                                                                                checked={file.approved || false}
-                                                                                onChange={() => handleFileApprovalToggle(investor._id, file._id, !file.approved)}
-                                                                                name="approved"
-                                                                                inputProps={{ 'aria-label': 'file approval toggle' }}
-                                                                            />
-                                                                        </TableCell>
+                                                                {(investor.files && Array.isArray(investor.files)) ? (
+                                                                    investor.files.map(file => (
+                                                                        <TableRow key={file._id}>
+                                                                            <TableCell>{file.filename}</TableCell>
+                                                                            <TableCell>{file.metadata?.type}</TableCell>
+                                                                            <TableCell>
+                                                                                <a href={`/api/getFile?filename=${file.filename}`} target="_blank" rel="noopener noreferrer">
+                                                                                    View
+                                                                                </a>
+                                                                            </TableCell>
+                                                                            <TableCell>
+                                                                                <Switch
+                                                                                    checked={file.approved || false}
+                                                                                    onChange={() => handleFileApprovalToggle(investor._id, file._id, !file.approved)}
+                                                                                    name="approved"
+                                                                                    inputProps={{ 'aria-label': 'file approval toggle' }}
+                                                                                />
+                                                                            </TableCell>
+                                                                        </TableRow>
+                                                                    ))
+                                                                ) : (
+                                                                    <TableRow>
+                                                                        <TableCell colSpan={4}>No files available</TableCell>
                                                                     </TableRow>
-                                                                ))}
+                                                                )}
                                                             </TableBody>
+
                                                         </Table>
                                                     </Box>
                                                 </Collapse>
