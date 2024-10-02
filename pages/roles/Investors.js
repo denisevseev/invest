@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Container, Typography, Box, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, IconButton, Switch, Collapse, TextField, Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle } from '@mui/material';
-import { ExpandMore, ExpandLess, Edit, Delete } from '@mui/icons-material';
+import { ExpandMore, ExpandLess, Edit, Delete, VpnKey } from '@mui/icons-material';
 import useFetchUser from '../../stores/hooks/useFetchUser';
 import { observer } from "mobx-react-lite";
 
@@ -17,10 +17,22 @@ const Investors = () => {
     const [openDeleteDialog, setOpenDeleteDialog] = useState(false); // Управление модальным окном удаления
     const [deletingInvestor, setDeletingInvestor] = useState(null); // Инвестор для удаления
 
+    const [openPasswordDialog, setOpenPasswordDialog] = useState(false);
+    const [passwordInvestor, setPasswordInvestor] = useState(null); // Инвестор для смены пароля
+    const [newPassword, setNewPassword] = useState(''); // Новый пароль
+    const [confirmPassword, setConfirmPassword] = useState(''); // Подтверждение пароля
+
+
     // Функция для управления раскрытием файлов инвестора
     const handleExpandClick = (id) => {
         setExpanded(prev => ({ ...prev, [id]: !prev[id] }));
     };
+
+    const handlePasswordChangeClick = (investor) => {
+        setPasswordInvestor(investor);
+        setOpenPasswordDialog(true);
+    };
+
 
     // Загрузка списка инвесторов при рендере компонента
     useEffect(() => {
@@ -28,6 +40,34 @@ const Investors = () => {
             fetchInvestors(); // Загружаем данные инвесторов
         }
     }, [user]);
+
+    const handleSavePasswordChange = async () => {
+        if (newPassword !== confirmPassword) {
+            alert('Passwords do not match');
+            return;
+        }
+
+        try {
+            const response = await fetch(`/api/admin/changePassword/${passwordInvestor._id}`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ newPassword }),
+            });
+
+            if (!response.ok) {
+                throw new Error('Failed to change password');
+            }
+
+            setOpenPasswordDialog(false);
+            setNewPassword('');
+            setConfirmPassword('');
+        } catch (error) {
+            console.error('Error changing password:', error);
+        }
+    };
+
 
     // Функция для получения данных инвесторов с сервера
     const fetchInvestors = async () => {
@@ -210,6 +250,12 @@ const Investors = () => {
                                                     <IconButton onClick={() => handleDeleteClick(investor)}>
                                                         <Delete />
                                                     </IconButton>
+
+                                                    <IconButton onClick={() => handlePasswordChangeClick(investor)}>
+                                                        <VpnKey /> {/* Иконка ключа для смены пароля */}
+                                                    </IconButton>
+
+
                                                     <IconButton onClick={() => handleExpandClick(investor._id)}>
                                                         {expanded[investor._id] ? <ExpandLess /> : <ExpandMore />}
                                                     </IconButton>
@@ -266,6 +312,38 @@ const Investors = () => {
                     </TableContainer>
                 </Box>
             </Box>
+
+            {/* Модальное окно для смены пароля */}
+            <Dialog open={openPasswordDialog} onClose={() => setOpenPasswordDialog(false)}>
+                <DialogTitle>Change Password for {passwordInvestor?.firstName}</DialogTitle>
+                <DialogContent>
+                    <TextField
+                        margin="dense"
+                        label="New Password"
+                        type="password"
+                        fullWidth
+                        value={newPassword}
+                        onChange={(e) => setNewPassword(e.target.value)}
+                    />
+                    <TextField
+                        margin="dense"
+                        label="Confirm New Password"
+                        type="password"
+                        fullWidth
+                        value={confirmPassword}
+                        onChange={(e) => setConfirmPassword(e.target.value)}
+                    />
+                </DialogContent>
+                <DialogActions>
+                    <Button onClick={() => setOpenPasswordDialog(false)} color="secondary">
+                        Cancel
+                    </Button>
+                    <Button onClick={handleSavePasswordChange} color="primary">
+                        Save
+                    </Button>
+                </DialogActions>
+            </Dialog>
+
 
             {/* Модальное окно для редактирования */}
             <Dialog open={openEditDialog} onClose={() => setOpenEditDialog(false)}>
