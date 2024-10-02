@@ -226,8 +226,7 @@ const Investors = () => {
                 </Button>
             </Box>
 
-            <Box>
-                <Box mt={4} ml={-3}>
+                <Box width="107%" ml={-4}>
                     <TableContainer component={Paper}>
                         <Table>
                             <TableHead>
@@ -236,11 +235,12 @@ const Investors = () => {
                                     <TableCell>Last Name</TableCell>
                                     <TableCell>Email</TableCell>
                                     <TableCell>Phone Number</TableCell>
-                                    <TableCell>Email Verified</TableCell>
-                                    <TableCell>Phone Verified</TableCell>
+                                    <TableCell>Email Verified</TableCell> {/* Устанавливаем минимальную ширину */}
+                                    <TableCell>Phone Verified</TableCell> {/* Устанавливаем минимальную ширину */}
                                     <TableCell>Actions</TableCell>
                                 </TableRow>
                             </TableHead>
+
                             <TableBody>
                                 {filteredInvestors?.map(investor => (
                                     <React.Fragment key={investor._id}>
@@ -327,7 +327,6 @@ const Investors = () => {
                         </Table>
                     </TableContainer>
                 </Box>
-            </Box>
 
             {/* Модальное окно для смены пароля */}
             <Dialog open={openPasswordDialog} onClose={() => setOpenPasswordDialog(false)}>
