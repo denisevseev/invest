@@ -397,7 +397,7 @@ const Dashboard = observer(() => {
                                         left: expanded === index ? '50%' : 'auto',
                                         zIndex: expanded === index ? 10 : 1,
                                         width: expanded === index ? 400 : 250,
-                                        height: expanded === index ? 400 : 250,
+                                        height: expanded === index ? 400 : 280,
                                         my: 1,
                                         boxShadow: '30px',
                                     }}
