@@ -1,12 +1,13 @@
-// pages/register.js
-import React, {useEffect, useState} from 'react';
+import React, { useEffect, useState } from 'react';
 import { Container, TextField, Button, Box, Typography } from '@mui/material';
 import { useRouter } from 'next/router';
 import RiskAcceptanceModal from "../components/RiskAcceptance/RiskAcceptanceModal";
+import { useSession } from 'next-auth/react';
 
 const Register = () => {
     const router = useRouter();
-    const { referralCode } = router.query;
+    const { referralCode } = router.query; // Get referral code from query params
+    const { data: session } = useSession(); // Get current session information
     const [formData, setFormData] = useState({
         firstName: '',
         lastName: '',
@@ -15,8 +16,6 @@ const Register = () => {
         phoneNumber: '',
     });
 
-
-
     const handleChange = (e) => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
     };
@@ -24,24 +23,31 @@ const Register = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        const response = await fetch('/api/registerEmployee', {
+        debugger
+
+        // Determine the appropriate endpoint based on the logged-in user's role or referralCode
+        const apiEndpoint = session?.user?.role === 'employee' || referralCode
+            ? '/api/registerInvestor'
+            : '/api/registerEmployee';
+
+        const response = await fetch(apiEndpoint, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ ...formData, referralCode })
         });
 
         if (response.ok) {
-            alert('Employee registered successfully');
+            alert('Registration successful');
             router.push('/login');
         } else {
-            alert('Error registering employee');
+            alert('Error during registration');
         }
     };
 
     return (
         <Container sx={{ mt: '6rem', marginLeft: 'auto', marginRight: 'auto', maxWidth: '800px', flexGrow: 1 }}>
             <Typography variant="h6" align="center" gutterBottom>
-                Employee Registration
+                {referralCode ? 'Investor Registration' : 'Employee Registration'}
             </Typography>
             <Box component="form" onSubmit={handleSubmit}>
                 <TextField
@@ -91,7 +97,7 @@ const Register = () => {
                     onChange={handleChange}
                     sx={{ mb: 2 }}
                 />
-                <Button type="submit"  color="primary" fullWidth>
+                <Button type="submit" color="primary" fullWidth>
                     Register
                 </Button>
             </Box>

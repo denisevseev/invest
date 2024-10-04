@@ -1,173 +1,70 @@
-<!DOCTYPE html>
-<html lang="ru">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Калькулятор ж/д сборки</title>
-    <style>
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f7f7f7;
-            padding: 20px;
-        }
-        .container {
-            display: flex;
-            justify-content: space-between;
-            max-width: 1200px;
-            margin: 0 auto;
-            background-color: #fff;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-        .form-section, .result-section {
-            width: 48%;
-        }
-        h1 {
-            font-size: 24px;
-            margin-bottom: 20px;
-            color: #333;
-        }
-        label {
-            display: block;
-            margin-bottom: 10px;
-            font-weight: bold;
-            color: #333;
-        }
-        input, select {
-            width: 100%;
-            padding: 10px;
-            margin-bottom: 20px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-        }
-        .result {
-            font-size: 18px;
-            color: #333;
-        }
-        .result p {
-            margin: 10px 0;
-        }
-        .btn-submit {
-            width: 100%;
-            padding: 15px;
-            background-color: #FF0000;
-            border: none;
-            color: white;
-            font-size: 18px;
-            cursor: pointer;
-            border-radius: 5px;
-        }
-        .btn-submit:hover {
-            background-color: #cc0000;
-        }
-        .price-label {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 10px;
-            font-size: 18px;
-            color: #333;
-        }
-        .price-value {
-            font-size: 20px;
-            color: red;
-        }
-        @media (max-width: 768px) {
-            .container {
-                flex-direction: column;
-            }
-            .form-section, .result-section {
-                width: 100%;
-            }
-        }
-    </style>
-</head>
-<body>
-<div class="container">
-    <div class="form-section">
-        <h1>Калькулятор ж/д сборки</h1>
-        <label for="country">Страна доставки</label>
-        <select id="country">
-            <option value="Россия">Россия</option>
-            <option value="Китай">Китай</option>
-            <option value="Германия">Германия</option>
-        </select>
-
-        <label for="pickupCity">Город забора</label>
-        <input type="text" id="pickupCity" placeholder="Введите город">
-
-        <label for="consolidationCity">Место консолидации</label>
-        <input type="text" id="consolidationCity" placeholder="Введите место">
-
-        <label for="deliveryConditions">Условия поставки</label>
-        <input type="text" id="deliveryConditions" placeholder="Введите условия">
-
-        <label for="volume">Объем, м³</label>
-        <input type="number" id="volume" placeholder="Введите объем">
-
-        <label for="weight">Вес, кг</label>
-        <input type="number" id="weight" placeholder="Введите вес">
-
-        <label for="quantity">Кол-во ДТ</label>
-        <input type="number" id="quantity" placeholder="Введите количество">
-
-        <label for="distance">Расстояние до двери по РФ, км</label>
-        <input type="number" id="distance" placeholder="Введите расстояние">
-
-        <button class="btn-submit" onclick="calculateShipping()">ОСТАВИТЬ ЗАЯВКУ</button>
-    </div>
-
-    <div class="result-section">
-        <h1>Расчет стоимости</h1>
-        <div class="result">
-            <p class="price-label">Китай - Москва:</p>
-            <p class="price-value"><span id="priceUSD">0</span> $ / <span id="priceCNY">0</span> ¥</p>
-
-            <p class="price-label">По России:</p>
-            <p class="price-value"><span id="priceRUB">0</span> ₽</p>
-        </div>
-    </div>
-</div>
-
-<script>
-    // Моковые данные для расчета
-    const rates = {
-        "Китай": { usd: 100, cny: 600 },
-        "Россия": { rub: 5000 },
-        "Германия": { usd: 150, cny: 900 }
-    };
-
-    // Функция для расчета
-    function calculateShipping() {
-        const country = document.getElementById('country').value;
-        const weight = document.getElementById('weight').value;
-        const distance = document.getElementById('distance').value;
-
-        // Если поля не заполнены, то возвращаем
-        if (!weight || !distance) {
-            alert('Заполните все поля для расчета');
-            return;
-        }
-
-        // Расчет для Китая - Москва
-        const usdRate = rates[country].usd || 0;
-        const cnyRate = rates[country].cny || 0;
-        const totalUSD = (weight * usdRate).toFixed(2);
-        const totalCNY = (weight * cnyRate).toFixed(2);
-        document.getElementById('priceUSD').innerText = totalUSD;
-        document.getElementById('priceCNY').innerText = totalCNY;
-
-        // Расчет для России
-        const rubRate = rates['Россия'].rub || 0;
-        const totalRUB = (distance * rubRate).toFixed(2);
-        document.getElementById('priceRUB').innerText = totalRUB;
-    }
-</script>
-</body>
-</html>
+04.10.2024, 04:03:26 - Вход в сделку по паре CVCUSDT в направлении up. Цена открытия: 0.137300
+04.10.2024, 04:26:41 - Вход в сделку по паре BLZUSDT в направлении up. Цена открытия: 0.142400
+04.10.2024, 04:29:12 - Вход в сделку по паре VIDTUSDT в направлении up. Цена открытия: 0.054430
+04.10.2024, 05:35:22 - Прибыль по CVCUSDT: 4.01 USDT, Цена закрытия: 0.142800, Процент изменения: 4.01%
+04.10.2024, 05:48:57 - Вход в сделку по паре CELOUSDT в направлении up. Цена открытия: 0.672600
+04.10.2024, 05:52:54 - Вход в сделку по паре EIGENUSDT в направлении up. Цена открытия: 3.508000
+04.10.2024, 06:33:27 - Вход в сделку по паре FTTUSDT в направлении up. Цена открытия: 2.122000
+04.10.2024, 06:33:37 - Убыток по VIDTUSDT: 22.31 USDT, Цена закрытия: 0.043430, Процент изменения: -20.21%
+04.10.2024, 06:41:01 - Прибыль по FTTUSDT: 4.20 USDT, Цена закрытия: 2.196700, Процент изменения: 3.52%
+04.10.2024, 06:43:22 - Вход в сделку по паре USTCUSDT в направлении up. Цена открытия: 0.021350
+04.10.2024, 06:50:29 - Вход в сделку по паре VIDTUSDT в направлении down. Цена открытия: 0.040800
+04.10.2024, 06:53:04 - Вход в сделку по паре FTTUSDT в направлении up. Цена открытия: 2.330000
+04.10.2024, 07:04:52 - Вход в сделку по паре SUPERUSDT в направлении up. Цена открытия: 1.061900
+04.10.2024, 07:31:02 - Вход в сделку по паре DARUSDT в направлении up. Цена открытия: 0.145060
+04.10.2024, 07:34:02 - Вход в сделку по паре PDAUSDT в направлении up. Цена открытия: 0.043700
+04.10.2024, 07:42:32 - Прибыль по USTCUSDT: 4.01 USDT, Цена закрытия: 0.022000, Процент изменения: 3.04%
+04.10.2024, 07:44:15 - Прибыль по FTTUSDT: 4.06 USDT, Цена закрытия: 2.395200, Процент изменения: 2.80%
+04.10.2024, 07:48:06 - Прибыль по VIDTUSDT: 4.24 USDT, Цена закрытия: 0.039720, Процент изменения: 2.65%
+04.10.2024, 08:00:05 - Вход в сделку по паре VIDTUSDT в направлении down. Цена открытия: 0.037300
+04.10.2024, 08:00:23 - Прибыль по VIDTUSDT: 4.02 USDT, Цена закрытия: 0.036450, Процент изменения: 2.28%
+04.10.2024, 08:07:17 - Вход в сделку по паре BNXUSDT в направлении down. Цена открытия: 0.805100
+04.10.2024, 08:08:30 - Вход в сделку по паре HOOKUSDT в направлении up. Цена открытия: 0.427700
+04.10.2024, 08:11:20 - Прибыль по DARUSDT: 4.10 USDT, Цена закрытия: 0.148120, Процент изменения: 2.11%
+04.10.2024, 08:12:23 - Прибыль по HOOKUSDT: 4.76 USDT, Цена закрытия: 0.437200, Процент изменения: 2.22%
+04.10.2024, 08:32:43 - Вход в сделку по паре REQUSDT в направлении down. Цена открытия: 0.094900
+04.10.2024, 08:32:48 - Вход в сделку по паре PROSUSDT в направлении up. Цена открытия: 0.282000
+04.10.2024, 09:19:40 - Вход в сделку по паре AAVEUSDT в направлении up. Цена открытия: 151.260000
+04.10.2024, 09:20:19 - Вход в сделку по паре UMAUSDT в направлении up. Цена открытия: 3.021000
+04.10.2024, 09:23:36 - Вход в сделку по паре WIFUSDT в направлении up. Цена открытия: 2.148000
+04.10.2024, 09:24:24 - Прибыль по UMAUSDT: 4.77 USDT, Цена закрытия: 3.082000, Процент изменения: 2.02%
+04.10.2024, 09:25:26 - Вход в сделку по паре DARUSDT в направлении up. Цена открытия: 0.157030
+04.10.2024, 09:25:28 - Вход в сделку по паре ALICEUSDT в направлении up. Цена открытия: 0.983000
+04.10.2024, 09:51:12 - Вход в сделку по паре BEAMXUSDT в направлении up. Цена открытия: 0.015820
+04.10.2024, 10:38:30 - Прибыль по EIGENUSDT: 5.49 USDT, Цена закрытия: 3.582000, Процент изменения: 2.11%
+04.10.2024, 10:38:31 - Вход в сделку по паре ONGUSDT в направлении up. Цена открытия: 0.300800
+04.10.2024, 10:38:31 - Вход в сделку по паре FTTUSDT в направлении up. Цена открытия: 2.570100
+04.10.2024, 10:41:39 - Прибыль по BEAMXUSDT: 5.80 USDT, Цена закрытия: 0.016140, Процент изменения: 2.02%
+04.10.2024, 10:41:39 - Вход в сделку по паре LISTAUSDT в направлении up. Цена открытия: 0.329700
+04.10.2024, 10:41:40 - Вход в сделку по паре LUNAUSDT в направлении up. Цена открытия: 0.375900
+04.10.2024, 10:43:06 - Прибыль по ONGUSDT: 6.52 USDT, Цена закрытия: 0.307000, Процент изменения: 2.06%
+04.10.2024, 10:43:06 - Вход в сделку по паре LUNCUSDT в направлении up. Цена открытия: 0.000087
+04.10.2024, 10:43:06 - Вход в сделку по паре BANANAUSDT в направлении down. Цена открытия: 46.520000
+04.10.2024, 10:47:12 - Прибыль по FTTUSDT: 7.19 USDT, Цена закрытия: 2.623100, Процент изменения: 2.06%
+04.10.2024, 10:50:07 - Вход в сделку по паре USTCUSDT в направлении up. Цена открытия: 0.023350
+04.10.2024, 10:54:06 - Вход в сделку по паре TURBOUSDT в направлении up. Цена открытия: 0.005175
+04.10.2024, 11:00:24 - Прибыль по USTCUSDT: 8.06 USDT, Цена закрытия: 0.023840, Процент изменения: 2.10%
+04.10.2024, 11:08:05 - Вход в сделку по паре VITEUSDT в направлении down. Цена открытия: 0.012850
+04.10.2024, 11:17:32 - Прибыль по VITEUSDT: 8.89 USDT, Цена закрытия: 0.012580, Процент изменения: 2.10%
+04.10.2024, 11:17:32 - Вход в сделку по паре NEIROUSDT в направлении up. Цена открытия: 0.000969
+04.10.2024, 11:17:34 - Вход в сделку по паре BLURUSDT в направлении up. Цена открытия: 0.204400
+04.10.2024, 11:34:26 - Прибыль по PROSUSDT: 10.92 USDT, Цена закрытия: 0.288600, Процент изменения: 2.34%
+04.10.2024, 11:34:26 - Вход в сделку по паре PEPEUSDT в направлении up. Цена открытия: 0.000009
+04.10.2024, 11:34:26 - Вход в сделку по паре WLDUSDT в направлении up. Цена открытия: 1.692000
+04.10.2024, 11:35:43 - Прибыль по NEIROUSDT: 10.78 USDT, Цена закрытия: 0.000990, Процент изменения: 2.10%
+04.10.2024, 11:35:44 - Вход в сделку по паре PEOPLEUSDT в направлении up. Цена открытия: 0.063520
+04.10.2024, 11:35:44 - Вход в сделку по паре APTUSDT в направлении up. Цена открытия: 8.930000
+04.10.2024, 11:36:24 - Прибыль по WIFUSDT: 11.61 USDT, Цена закрытия: 2.192000, Процент изменения: 2.05%
+04.10.2024, 11:36:24 - Вход в сделку по паре SAGAUSDT в направлении up. Цена открытия: 2.290200
+04.10.2024, 11:36:24 - Вход в сделку по паре TAOUSDT в направлении up. Цена открытия: 526.800000
+04.10.2024, 11:36:33 - Прибыль по TURBOUSDT: 12.79 USDT, Цена закрытия: 0.005281, Процент изменения: 2.05%
+04.10.2024, 11:36:34 - Вход в сделку по паре RUNEUSDT в направлении up. Цена открытия: 4.770000
+04.10.2024, 11:58:17 - Прибыль по BANANAUSDT: 13.91 USDT, Цена закрытия: 45.580000, Процент изменения: 2.02%
+04.10.2024, 11:58:17 - Вход в сделку по паре RENDERUSDT в направлении up. Цена открытия: 5.574000
+04.10.2024, 11:58:18 - Вход в сделку по паре TIAUSDT в направлении up. Цена открытия: 5.115000
+04.10.2024, 12:16:03 - Прибыль по TIAUSDT: 15.42 USDT, Цена закрытия: 5.219000, Процент изменения: 2.03%
+04.10.2024, 12:16:03 - Вход в сделку по паре BONKUSDT в направлении up. Цена открытия: 0.000021
+04.10.2024, 12:16:03 - Вход в сделку по паре DYMUSDT в направлении up. Цена открытия: 1.496000
+04.10.2024, 12:16:44 - Прибыль по BLURUSDT: 17.18 USDT, Цена закрытия: 0.208600, Процент изменения: 2.05%
+04.10.2024, 12:16:45 - Вход в сделку по паре SUIUSDT в направлении up. Цена открытия: 1.790600
+04.10.2024, 12:16:45 - Вход в сделку по паре SEIUSDT в направлении up. Цена открытия: 0.416500

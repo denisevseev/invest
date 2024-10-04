@@ -1,4 +1,3 @@
-// pages/api/registerInvestor.js
 import dbConnect from './../../lib/dbConnect';
 import User from './../../models/User';
 // import bcrypt from 'bcryptjs';
@@ -10,9 +9,10 @@ export default async function handler(req, res) {
         const { firstName, lastName, email, password, phoneNumber, referralCode } = req.body;
 
         try {
-            const employee = await User.findOne({ referralCode, role: 'employee' });
+            // Check if referral code belongs to an employee or manager
+            const referrer = await User.findOne({ referralCode });
 
-            if (!employee) {
+            if (!referrer) {
                 return res.status(400).json({ message: 'Invalid referral code' });
             }
 
@@ -25,7 +25,7 @@ export default async function handler(req, res) {
                 password,
                 phoneNumber,
                 role: 'investor',
-                assignedTo: employee._id
+                assignedTo: referrer._id // Assign to referrer whether employee or manager
             });
 
             await newUser.save();
