@@ -23,12 +23,12 @@ const Register = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        debugger
-
         // Determine the appropriate endpoint based on the logged-in user's role or referralCode
         const apiEndpoint = session?.user?.role === 'employee' || referralCode
             ? '/api/registerInvestor'
             : '/api/registerEmployee';
+
+        debugger
 
         const response = await fetch(apiEndpoint, {
             method: 'POST',

@@ -14,6 +14,7 @@ const LinkGenerator = () => {
     useEffect(() => {
         if (user?.referralCode) {
             const link = linkType === 'employee' ? 'RegisterInvestor' : 'register';
+            debugger
             setReferralLink(`${window.location.origin}/${link}?referralCode=${user.referralCode}`);
         }
     }, [user, linkType]);
