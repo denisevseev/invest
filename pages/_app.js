@@ -50,7 +50,6 @@ const MyAppContent = ({ Component, pageProps }) => {
     // Если пользователь не авторизован, обрабатываем страницы для неавторизованных пользователей
     if (status === 'unauthenticated') {
         if (isResetPasswordForm || isResetPassword || isSignUpPage ) {
-            debugger
             return (
                 <AppBarLayout>
                     <Component {...pageProps} />

@@ -1,4 +1,3 @@
-// pages/api/admin/getAllInvestorFiles.js
 import dbConnect from '../../../lib/dbConnect';
 import User from '../../../models/User';
 import { MongoClient, GridFSBucket } from 'mongodb';
@@ -42,12 +41,21 @@ export default async function handler(req, res) {
 
         let investors;
         if (user.role === 'admin') {
+            // Для администратора получаем всех инвесторов
             investors = await User.find({ role: 'investor' }).lean();
         } else if (user.role === 'manager') {
+            // Для менеджера получаем как его собственных инвесторов, так и инвесторов его сотрудников
             const employees = await User.find({ assignedTo: user._id });
             const employeeIds = employees.map(emp => emp._id);
-            investors = await User.find({ assignedTo: { $in: employeeIds } }).lean();
+
+            investors = await User.find({
+                $or: [
+                    { assignedTo: user._id },  // Инвесторы, закрепленные непосредственно за менеджером
+                    { assignedTo: { $in: employeeIds } }  // Инвесторы, закрепленные за сотрудниками менеджера
+                ]
+            }).lean();
         } else if (user.role === 'employee') {
+            // Для сотрудника получаем только его инвесторов
             investors = await User.find({ assignedTo: user._id }).lean();
         } else {
             return res.status(403).json({ message: 'Forbidden' });

@@ -50,7 +50,6 @@ const VerificationModal = ({ open, handleClose, confirmationText, user }) => {
   }, [timer]);
 
   const handleSendCode = async () => {
-    debugger
     setIsLoading(true);
     setError('');
     try {

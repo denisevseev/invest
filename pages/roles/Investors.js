@@ -142,7 +142,7 @@ const Investors = () => {
             }
 
             const { updatedUser } = await response.json();
-            debugger
+
 
             // Обновляем состояние инвесторов после успешного обновления
             setInvestors(prevInvestors => {

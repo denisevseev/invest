@@ -13,8 +13,7 @@ const LinkGenerator = () => {
 
     useEffect(() => {
         if (user?.referralCode) {
-            const link = linkType === 'employee' ? 'RegisterInvestor' : 'register';
-            debugger
+            const link = linkType === 'employee' ? 'register' : 'register';
             setReferralLink(`${window.location.origin}/${link}?referralCode=${user.referralCode}`);
         }
     }, [user, linkType]);
@@ -31,7 +30,7 @@ const LinkGenerator = () => {
             if (!response.ok) throw new Error('Failed to generate referral link');
 
             const data = await response.json();
-            const link = linkType === 'employee' ? 'RegisterInvestor' : 'register';
+            const link = linkType === 'employee' ? 'register' : 'register';
             setReferralLink(`${window.location.origin}/${link}?referralCode=${data.referralCode}`);
         } catch (error) {
             console.error('Error generating referral link:', error);

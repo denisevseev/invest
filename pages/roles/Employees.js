@@ -73,20 +73,25 @@ const Employees = () => {
         const data = await response.json();
 
         if (user.role === 'manager') {
-            const filteredEmployees = data.filter(emp => emp?.assignedTo?._id === user._id);
+            // Фильтруем сотрудников, назначенных текущему менеджеру
+            const filteredEmployees = data.filter(emp => emp?.assignedTo?._id === user._id && emp.role === 'employee'); // Добавляем проверку роли 'employee'
+
+            // Загружаем инвесторов для каждого сотрудника
             for (const emp of filteredEmployees) {
                 const investorResponse = await fetch(`/api/admin/getInvestors?employeeId=${emp._id}`);
                 const investors = await investorResponse.json();
                 emp.assignedInvestors = investors;
             }
+
             setEmployees(filteredEmployees);
-            setFilteredEmployees(filteredEmployees); // По умолчанию отображаем всех
+            setFilteredEmployees(filteredEmployees); // Отображаем всех отфильтрованных сотрудников
         } else if (user.role === 'admin') {
             const employeesList = data.filter(emp => emp.role === 'employee');
             setEmployees(employeesList);
-            setFilteredEmployees(employeesList); // По умолчанию отображаем всех
+            setFilteredEmployees(employeesList); // Отображаем всех сотрудников
         }
     };
+
 
     const handleExpandClick = (id) => {
         setExpanded(prev => ({ ...prev, [id]: !prev[id] }));
