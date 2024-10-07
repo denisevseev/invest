@@ -22,7 +22,6 @@ const Investors = () => {
     const [newPassword, setNewPassword] = useState(''); // Новый пароль
     const [confirmPassword, setConfirmPassword] = useState(''); // Подтверждение пароля
 
-
     // Функция для управления раскрытием файлов инвестора
     const handleExpandClick = (id) => {
         setExpanded(prev => ({ ...prev, [id]: !prev[id] }));
@@ -32,7 +31,6 @@ const Investors = () => {
         setPasswordInvestor(investor);
         setOpenPasswordDialog(true);
     };
-
 
     // Загрузка списка инвесторов при рендере компонента
     useEffect(() => {
@@ -68,7 +66,6 @@ const Investors = () => {
         }
     };
 
-
     // Функция для получения данных инвесторов с сервера
     const fetchInvestors = async () => {
         try {
@@ -76,9 +73,13 @@ const Investors = () => {
             if (!response.ok) {
                 throw new Error('Failed to fetch investors');
             }
-            const data = await response.json(); // Преобразуем ответ в JSON
-            setInvestors(data); // Сохраняем данные инвесторов
-            setFilteredInvestors(data); // Изначально показываем всех инвесторов
+            const data = await response.json();
+
+            // Фильтруем только тех пользователей, которые имеют роль "инвестор"
+            const investorsOnly = data.filter(investor => investor.role === 'investor');
+
+            setInvestors(investorsOnly); // Сохраняем только инвесторов
+            setFilteredInvestors(investorsOnly); // Изначально показываем всех инвесторов
         } catch (error) {
             console.error('Error fetching investors:', error);
         }
@@ -142,7 +143,6 @@ const Investors = () => {
             }
 
             const { updatedUser } = await response.json();
-
 
             // Обновляем состояние инвесторов после успешного обновления
             setInvestors(prevInvestors => {
@@ -226,107 +226,106 @@ const Investors = () => {
                 </Button>
             </Box>
 
-                <Box width="107%" ml={-4}>
-                    <TableContainer component={Paper}>
-                        <Table>
-                            <TableHead>
-                                <TableRow>
-                                    <TableCell>First Name</TableCell>
-                                    <TableCell>Last Name</TableCell>
-                                    <TableCell>Email</TableCell>
-                                    <TableCell>Phone Number</TableCell>
-                                    <TableCell>Email Verified</TableCell> {/* Устанавливаем минимальную ширину */}
-                                    <TableCell>Phone Verified</TableCell> {/* Устанавливаем минимальную ширину */}
-                                    <TableCell>Actions</TableCell>
-                                </TableRow>
-                            </TableHead>
+            <Box width="107%" ml={-4}>
+                <TableContainer component={Paper}>
+                    <Table>
+                        <TableHead>
+                            <TableRow>
+                                <TableCell>First Name</TableCell>
+                                <TableCell>Last Name</TableCell>
+                                <TableCell>Email</TableCell>
+                                <TableCell>Phone Number</TableCell>
+                                <TableCell>Email Verified</TableCell>
+                                <TableCell>Phone Verified</TableCell>
+                                <TableCell>Actions</TableCell>
+                            </TableRow>
+                        </TableHead>
 
-                            <TableBody>
-                                {filteredInvestors?.map(investor => (
-                                    <React.Fragment key={investor._id}>
-                                        <TableRow>
-                                            <TableCell>{investor.firstName}</TableCell>
-                                            <TableCell>{investor.lastName}</TableCell>
-                                            <TableCell>{investor.email}</TableCell>
-                                            <TableCell>{investor.phoneNumber}</TableCell>
-                                            <TableCell>{investor.emailVerified ? 'Verified' : 'Not Verified'}</TableCell>
-                                            <TableCell>{investor.phoneVerified ? 'Verified' : 'Not Verified'}</TableCell>
-                                            <TableCell>
-                                                <Box display="flex" justifyContent="space-between" alignItems="center">
-                                                    <IconButton onClick={() => handleEditClick(investor)}>
-                                                        <Edit />
-                                                    </IconButton>
-                                                    <IconButton onClick={() => handleDeleteClick(investor)}>
-                                                        <Delete />
-                                                    </IconButton>
+                        <TableBody>
+                            {filteredInvestors?.map(investor => (
+                                <React.Fragment key={investor._id}>
+                                    <TableRow>
+                                        <TableCell>{investor.firstName}</TableCell>
+                                        <TableCell>{investor.lastName}</TableCell>
+                                        <TableCell>{investor.email}</TableCell>
+                                        <TableCell>{investor.phoneNumber}</TableCell>
+                                        <TableCell>{investor.emailVerified ? 'Verified' : 'Not Verified'}</TableCell>
+                                        <TableCell>{investor.phoneVerified ? 'Verified' : 'Not Verified'}</TableCell>
+                                        <TableCell>
+                                            <Box display="flex" justifyContent="space-between" alignItems="center">
+                                                <IconButton onClick={() => handleEditClick(investor)}>
+                                                    <Edit />
+                                                </IconButton>
+                                                <IconButton onClick={() => handleDeleteClick(investor)}>
+                                                    <Delete />
+                                                </IconButton>
 
-                                                    <IconButton onClick={() => handlePasswordChangeClick(investor)}>
-                                                        <VpnKey /> {/* Иконка ключа для смены пароля */}
-                                                    </IconButton>
+                                                <IconButton onClick={() => handlePasswordChangeClick(investor)}>
+                                                    <VpnKey /> {/* Иконка ключа для смены пароля */}
+                                                </IconButton>
 
+                                                <IconButton onClick={() => handleExpandClick(investor._id)}>
+                                                    {expanded[investor._id] ? <ExpandLess /> : <ExpandMore />}
+                                                </IconButton>
+                                            </Box>
+                                        </TableCell>
 
-                                                    <IconButton onClick={() => handleExpandClick(investor._id)}>
-                                                        {expanded[investor._id] ? <ExpandLess /> : <ExpandMore />}
-                                                    </IconButton>
-                                                </Box>
-                                            </TableCell>
-
-                                        </TableRow>
-                                        <TableRow>
-                                            <TableCell colSpan={8}>
-                                                <Collapse in={expanded[investor._id]} timeout="auto" unmountOnExit>
-                                                    <Box margin={1}>
-                                                        <Typography variant="h6" gutterBottom component="div">
-                                                            Files
-                                                        </Typography>
-                                                        <Table size="small" aria-label="files">
-                                                            <TableHead>
-                                                                <TableRow>
-                                                                    <TableCell>Filename</TableCell>
-                                                                    <TableCell>Type</TableCell>
-                                                                    <TableCell>Preview</TableCell>
-                                                                    <TableCell>Approved</TableCell>
-                                                                </TableRow>
-                                                            </TableHead>
-                                                            <TableBody>
-                                                                {(investor.files && Array.isArray(investor.files)) ? (
-                                                                    investor.files.map(file => (
-                                                                        <TableRow key={file._id}>
-                                                                            <TableCell>{file.filename}</TableCell>
-                                                                            <TableCell>{file.metadata?.type}</TableCell>
-                                                                            <TableCell>
-                                                                                <a href={`/api/getFile?filename=${file.filename}`} target="_blank" rel="noopener noreferrer">
-                                                                                    View
-                                                                                </a>
-                                                                            </TableCell>
-                                                                            <TableCell>
-                                                                                <Switch
-                                                                                    checked={file.approved || false}
-                                                                                    onChange={() => handleFileApprovalToggle(investor._id, file._id, !file.approved)}
-                                                                                    name="approved"
-                                                                                    inputProps={{ 'aria-label': 'file approval toggle' }}
-                                                                                />
-                                                                            </TableCell>
-                                                                        </TableRow>
-                                                                    ))
-                                                                ) : (
-                                                                    <TableRow>
-                                                                        <TableCell colSpan={4}>No files available</TableCell>
+                                    </TableRow>
+                                    <TableRow>
+                                        <TableCell colSpan={8}>
+                                            <Collapse in={expanded[investor._id]} timeout="auto" unmountOnExit>
+                                                <Box margin={1}>
+                                                    <Typography variant="h6" gutterBottom component="div">
+                                                        Files
+                                                    </Typography>
+                                                    <Table size="small" aria-label="files">
+                                                        <TableHead>
+                                                            <TableRow>
+                                                                <TableCell>Filename</TableCell>
+                                                                <TableCell>Type</TableCell>
+                                                                <TableCell>Preview</TableCell>
+                                                                <TableCell>Approved</TableCell>
+                                                            </TableRow>
+                                                        </TableHead>
+                                                        <TableBody>
+                                                            {(investor.files && Array.isArray(investor.files)) ? (
+                                                                investor.files.map(file => (
+                                                                    <TableRow key={file._id}>
+                                                                        <TableCell>{file.filename}</TableCell>
+                                                                        <TableCell>{file.metadata?.type}</TableCell>
+                                                                        <TableCell>
+                                                                            <a href={`/api/getFile?filename=${file.filename}`} target="_blank" rel="noopener noreferrer">
+                                                                                View
+                                                                            </a>
+                                                                        </TableCell>
+                                                                        <TableCell>
+                                                                            <Switch
+                                                                                checked={file.approved || false}
+                                                                                onChange={() => handleFileApprovalToggle(investor._id, file._id, !file.approved)}
+                                                                                name="approved"
+                                                                                inputProps={{ 'aria-label': 'file approval toggle' }}
+                                                                            />
+                                                                        </TableCell>
                                                                     </TableRow>
-                                                                )}
-                                                            </TableBody>
+                                                                ))
+                                                            ) : (
+                                                                <TableRow>
+                                                                    <TableCell colSpan={4}>No files available</TableCell>
+                                                                </TableRow>
+                                                            )}
+                                                        </TableBody>
 
-                                                        </Table>
-                                                    </Box>
-                                                </Collapse>
-                                            </TableCell>
-                                        </TableRow>
-                                    </React.Fragment>
-                                ))}
-                            </TableBody>
-                        </Table>
-                    </TableContainer>
-                </Box>
+                                                    </Table>
+                                                </Box>
+                                            </Collapse>
+                                        </TableCell>
+                                    </TableRow>
+                                </React.Fragment>
+                            ))}
+                        </TableBody>
+                    </Table>
+                </TableContainer>
+            </Box>
 
             {/* Модальное окно для смены пароля */}
             <Dialog open={openPasswordDialog} onClose={() => setOpenPasswordDialog(false)}>
