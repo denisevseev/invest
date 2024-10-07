@@ -1,10 +1,10 @@
-import React, { useState } from 'react';
-import { Container, TextField, Button, Box, Typography } from '@mui/material';
+import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
+import { Container, TextField, Button, Typography, Box } from '@mui/material';
 
 const Register = () => {
     const router = useRouter();
-    const { referralCode } = router.query; // Получаем реферальный код из URL
+    const { referralCode, role } = router.query; // Получаем реферальный код и роль из query params
     const [formData, setFormData] = useState({
         firstName: '',
         lastName: '',
@@ -20,40 +20,32 @@ const Register = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        // Проверяем, был ли предоставлен реферальный код
-        const apiEndpoint = referralCode
-            ? '/api/registerInvestor' // Регистрация инвестора через реферальный код
-            : '/api/registerEmployee'; // Регистрация сотрудника без реферального кода
+        const apiEndpoint = role === 'employee'
+            ? '/api/registerEmployee' // Регистрация сотрудника
+            : '/api/registerInvestor'; // Регистрация инвестора
 
-        try {
-            const response = await fetch(apiEndpoint, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ ...formData, referralCode })
-            });
+        const response = await fetch(apiEndpoint, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ ...formData, referralCode })
+        });
 
-            if (response.ok) {
-                alert('Регистрация успешна');
-                router.push('/login');
-            } else {
-                const errorData = await response.json();
-                console.error('Registration error:', errorData);
-                alert('Ошибка при регистрации');
-            }
-        } catch (error) {
-            console.error('Error submitting form:', error);
-            alert('Ошибка при регистрации');
+        if (response.ok) {
+            alert('Registration successful');
+            router.push('/login');
+        } else {
+            alert('Error during registration');
         }
     };
 
     return (
         <Container sx={{ mt: '6rem', marginLeft: 'auto', marginRight: 'auto', maxWidth: '800px', flexGrow: 1 }}>
             <Typography variant="h6" align="center" gutterBottom>
-                {referralCode ? 'Регистрация инвестора' : 'Регистрация сотрудника'}
+                {role === 'employee' ? 'Employee Registration' : 'Investor Registration'}
             </Typography>
             <Box component="form" onSubmit={handleSubmit}>
                 <TextField
-                    label="Имя"
+                    label="First Name"
                     name="firstName"
                     fullWidth
                     required
@@ -62,7 +54,7 @@ const Register = () => {
                     sx={{ mb: 2 }}
                 />
                 <TextField
-                    label="Фамилия"
+                    label="Last Name"
                     name="lastName"
                     fullWidth
                     required
@@ -81,7 +73,7 @@ const Register = () => {
                     sx={{ mb: 2 }}
                 />
                 <TextField
-                    label="Пароль"
+                    label="Password"
                     name="password"
                     fullWidth
                     required
@@ -91,7 +83,7 @@ const Register = () => {
                     sx={{ mb: 2 }}
                 />
                 <TextField
-                    label="Номер телефона"
+                    label="Phone Number"
                     name="phoneNumber"
                     fullWidth
                     required
@@ -100,7 +92,7 @@ const Register = () => {
                     sx={{ mb: 2 }}
                 />
                 <Button type="submit" color="primary" fullWidth>
-                    Зарегистрироваться
+                    Register
                 </Button>
             </Box>
         </Container>
