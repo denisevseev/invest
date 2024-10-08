@@ -30,6 +30,7 @@ import {
 import { observer } from 'mobx-react-lite';
 import store from './../../stores/userStore';
 import de from './../../public/lang/de.json';
+import en from './../../public/lang/en.json';
 
 // Определение цветов для графиков
 const COLORS = ['#0088FE', '#00C49F', '#FFBB28'];
@@ -109,7 +110,7 @@ const Marquee = ({ children }) => {
 
 // Обновленный компонент BalanceHeader
 const BalanceHeader = () => {
-    const lang = de; // Используем немецкий язык
+    const lang = en; // Используем немецкий язык
     const userBalanceCAD = store.investmentAmount; // Получаем сумму инвестиций пользователя из хранилища
 
     // Состояние для хранения курсов валют
