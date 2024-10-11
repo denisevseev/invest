@@ -80,16 +80,40 @@ async function handleChangePassword(req, res, userId) {
 // Функция для удаления пользователя
 async function handleDeleteUser(req, res, userId) {
     try {
-        // Удаляем пользователя по его ID
+        // Находим сотрудника по ID
+        const employee = await User.findById(userId);
+
+        if (!employee || employee.role !== 'employee') {
+            return res.status(404).json({ message: 'Employee not found or not an employee' });
+        }
+
+        // Получаем менеджера, которому был прикреплен этот сотрудник
+        const managerId = employee.assignedTo;
+
+        if (!managerId) {
+            return res.status(400).json({ message: 'This employee is not assigned to a manager' });
+        }
+
+        // Переназначаем всех инвесторов, прикрепленных к сотруднику, на менеджера
+        const updatedInvestors = await User.updateMany(
+            { assignedTo: userId, role: 'investor' },  // Ищем всех инвесторов, прикрепленных к сотруднику
+            { $set: { assignedTo: managerId } }  // Обновляем поле assignedTo, чтобы инвесторы прикрепились к менеджеру
+        );
+
+        // Удаляем сотрудника
         const deletedUser = await User.findByIdAndDelete(userId);
 
         if (!deletedUser) {
             return res.status(404).json({ message: 'User not found' });
         }
 
-        res.status(200).json({ message: 'User deleted successfully' });
+        res.status(200).json({
+            message: 'Employee deleted successfully, and investors reassigned to manager',
+            updatedInvestorsCount: updatedInvestors.modifiedCount
+        });
     } catch (error) {
         console.error(error);
-        res.status(500).json({ message: 'Error deleting user' });
+        res.status(500).json({ message: 'Error deleting employee or reassigning investors' });
     }
 }
+
