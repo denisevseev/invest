@@ -324,9 +324,8 @@ const Investors = () => {
                                                                             </a>
                                                                         </TableCell>
                                                                         <TableCell>
-                                                                            {/* Отображаем прелоадер, если идет запрос на обновление */}
                                                                             {loadingFiles[file._id] ? (
-                                                                                <CircularProgress size={24} />
+                                                                                <CircularProgress sx={{marginLeft: '1rem'}} size={32} />
                                                                             ) : (
                                                                                 <Switch
                                                                                     checked={file.approved || false}
