@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Container, Typography, Box, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, IconButton, Switch, Collapse, TextField, Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle } from '@mui/material';
+import {CircularProgress, Container, Typography, Box, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, IconButton, Switch, Collapse, TextField, Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle } from '@mui/material';
 import { ExpandMore, ExpandLess, Edit, Delete, VpnKey } from '@mui/icons-material';
 import useFetchUser from '../../stores/hooks/useFetchUser';
 import { observer } from "mobx-react-lite";
@@ -10,6 +10,8 @@ const Investors = () => {
     const [expanded, setExpanded] = useState({}); // Для управления раскрытием списка файлов инвесторов
     const [searchTerm, setSearchTerm] = useState(''); // Поисковая строка
     const { user } = useFetchUser(); // Получение информации о пользователе
+    const [loadingFiles, setLoadingFiles] = useState({}); // Состояние загрузки для каждого файла
+
 
     // Состояния для редактирования и удаления
     const [editingInvestor, setEditingInvestor] = useState(null); // Инвестор для редактирования
@@ -85,8 +87,10 @@ const Investors = () => {
         }
     };
 
-    // Функция для обработки переключения статуса одобрения файла (паспорт или адрес)
+// Функция для обработки переключения статуса одобрения файла (паспорт или адрес)
     const handleFileApprovalToggle = async (investorId, fileId, newStatus) => {
+        setLoadingFiles(prev => ({ ...prev, [fileId]: true })); // Устанавливаем состояние загрузки для текущего файла
+
         try {
             const response = await fetch('/api/admin/updateDocumentStatus', {
                 method: 'POST',
@@ -105,22 +109,43 @@ const Investors = () => {
             }
 
             // Обновляем состояние инвесторов после успешного обновления статуса
-            setInvestors(prevInvestors => prevInvestors.map(investor =>
-                investor._id === investorId
-                    ? {
-                        ...investor,
-                        files: investor.files.map(file =>
-                            file._id === fileId
-                                ? { ...file, approved: newStatus }
-                                : file
-                        )
-                    }
-                    : investor
-            ));
+            setInvestors(prevInvestors =>
+                prevInvestors.map(investor =>
+                    investor._id === investorId
+                        ? {
+                            ...investor,
+                            files: investor.files.map(file =>
+                                file._id === fileId
+                                    ? { ...file, approved: newStatus } // Создаем новый объект для изменения статуса
+                                    : file
+                            )
+                        }
+                        : investor
+                )
+            );
+
+            // Чтобы убедиться, что фильтрованные инвесторы также обновлены
+            setFilteredInvestors(prevFiltered =>
+                prevFiltered.map(investor =>
+                    investor._id === investorId
+                        ? {
+                            ...investor,
+                            files: investor.files.map(file =>
+                                file._id === fileId
+                                    ? { ...file, approved: newStatus } // Обновляем и в отфильтрованных
+                                    : file
+                            )
+                        }
+                        : investor
+                )
+            );
         } catch (error) {
             console.error('Error updating file status:', error);
+        } finally {
+            setLoadingFiles(prev => ({ ...prev, [fileId]: false })); // Снимаем состояние загрузки
         }
     };
+
 
     // Функция для редактирования инвестора
     const handleEditClick = (investor) => {
@@ -299,12 +324,17 @@ const Investors = () => {
                                                                             </a>
                                                                         </TableCell>
                                                                         <TableCell>
-                                                                            <Switch
-                                                                                checked={file.approved || false}
-                                                                                onChange={() => handleFileApprovalToggle(investor._id, file._id, !file.approved)}
-                                                                                name="approved"
-                                                                                inputProps={{ 'aria-label': 'file approval toggle' }}
-                                                                            />
+                                                                            {/* Отображаем прелоадер, если идет запрос на обновление */}
+                                                                            {loadingFiles[file._id] ? (
+                                                                                <CircularProgress size={24} />
+                                                                            ) : (
+                                                                                <Switch
+                                                                                    checked={file.approved || false}
+                                                                                    onChange={() => handleFileApprovalToggle(investor._id, file._id, !file.approved)}
+                                                                                    name="approved"
+                                                                                    inputProps={{ 'aria-label': 'file approval toggle' }}
+                                                                                />
+                                                                            )}
                                                                         </TableCell>
                                                                     </TableRow>
                                                                 ))
