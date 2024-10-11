@@ -112,14 +112,14 @@ const AppBarControl = () => {
                                     </Typography>
                                 </Box>
                             )}
-                            {!isMobile && <Divider orientation="vertical" flexItem sx={{ mx: 1 }} />}
-                            <IconButton onClick={handleLanguageMenu}>
-                                <img
-                                    src={user?.language === 'de' ? "/images/germany_flag.png" : "/images/United-States-Flag.svg"}
-                                    alt="Selected Flag"
-                                    style={{ width: 30, height: user?.language === 'de' ? 20 : 30 }} // Увеличение размера флагов для мобильных устройств
-                                />
-                            </IconButton>
+                            {/*{!isMobile && <Divider orientation="vertical" flexItem sx={{ mx: 1 }} />}*/}
+                            {/*<IconButton onClick={handleLanguageMenu}>*/}
+                            {/*    <img*/}
+                            {/*        src={user?.language === 'de' ? "/images/germany_flag.png" : "/images/United-States-Flag.svg"}*/}
+                            {/*        alt="Selected Flag"*/}
+                            {/*        style={{ width: 30, height: user?.language === 'de' ? 20 : 30 }} // Увеличение размера флагов для мобильных устройств*/}
+                            {/*    />*/}
+                            {/*</IconButton>*/}
                             <Menu
                                 anchorEl={anchorEl}
                                 open={Boolean(anchorEl)}
